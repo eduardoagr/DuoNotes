@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application x:Class="DuoNotes.App"
+             xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <Application.Resources>
+        <ResourceDictionary>
+
+            <!--  colors  -->
+            <Color x:Key="BackgroundLigthColor">#ffff</Color>
+            <Color x:Key="BckgroundDarkColor">#000</Color>
+
+            <!--  styles  -->
+            <Style x:Key="EntrySyle"
+                   TargetType="Entry">
+                <Setter Property="TextColor"
+                        Value="{AppThemeBinding Dark={StaticResource BackgroundLigthColor}, Light={StaticResource BckgroundDarkColor}}" />
+                <Setter Property="PlaceholderColor"
+                        Value="#A9A9A9" />
+                <Setter Property="Visual"
+                        Value="Material" />
+            </Style>
+
+            <Style x:Key="LabelStyle"
+                   TargetType="Label">
+                <Setter Property="TextColor"
+                        Value="{AppThemeBinding Dark={StaticResource BackgroundLigthColor}, Light={StaticResource BckgroundDarkColor}}" />
+                <Setter Property="HorizontalTextAlignment"
+                        Value="Center" />
+                <Setter Property="FontSize"
+                        Value="Small" />
+                <Setter Property="VerticalTextAlignment"
+                        Value="Center" />
+            </Style>
+
+            <Style x:Key="ButonStyle"
+                   TargetType="Button">
+                <Setter Property="TextColor"
+                        Value="{AppThemeBinding Dark={StaticResource BackgroundLigthColor}, Light={StaticResource BckgroundDarkColor}}" />
+                <Setter Property="HorizontalOptions"
+                        Value="Fill" />
+                <Setter Property="FontSize"
+                        Value="Small" />
+                <Setter Property="VerticalOptions"
+                        Value="Fill" />
+            </Style>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

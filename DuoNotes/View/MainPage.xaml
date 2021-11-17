@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="DuoNotes.MainPage"
+             xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:community="http://xamarin.com/schemas/2020/toolkit"
+             xmlns:icon="clr-namespace:DuoNotes.Resources"
+             xmlns:xct="clr-namespace:Xamarin.CommunityToolkit.UI.Views;assembly=Xamarin.CommunityToolkit"
+             xmlns:translate="clr-namespace:DuoNotes.Utils"
+             xmlns:pancakeview="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             BackgroundColor="{AppThemeBinding Dark={StaticResource BckgroundDarkColor},
+                                      Light={StaticResource BackgroundLigthColor}}">
+
+    <Grid>
+        <pancakeview:PancakeView HorizontalOptions="End"
+                                 VerticalOptions="End"
+                                 Margin="30"
+                                 CornerRadius="40"
+                                 Padding="15"
+                                 BackgroundColor="CornflowerBlue">
+
+            <xct:Expander HorizontalOptions="Start"
+                          Rotation="180"
+                          VerticalOptions="End">
+                <xct:Expander.Header>
+                    <Label Text="{Static icon:IconFont.BoxOpen}"
+                           Rotation="180"
+                           FontSize="20"
+                           FontFamily="fa">
+                        <Label.Triggers>
+                            <DataTrigger TargetType="Label"
+                                         Binding="{Binding Source={RelativeSource AncestorType={x:Type xct:Expander}}, Path=IsExpanded}"
+                                         Value="False">
+                                <Setter Property="Text"
+                                        Value="{Static icon:IconFont.Box}">
+                                </Setter>
+                            </DataTrigger>
+                        </Label.Triggers>
+                    </Label>
+                </xct:Expander.Header>
+                <StackLayout Spacing="20"
+                             Margin="0,20,0,0"
+                             HorizontalOptions="Center">
+
+                    <Label Text="{Static icon:IconFont.Book}"
+                           Rotation="180"
+                           FontSize="20"
+                           community:TouchEffect.Command="{}"
+                           FontFamily="fa" />
+
+                    <Label Text="{Static icon:IconFont.User}"
+                           Rotation="180"
+                           FontSize="20"
+                           FontFamily="fa" />
+
+                    <Label Text="{Static icon:IconFont.WindowClose}"
+                           Rotation="180"
+                           FontSize="20"
+                           FontFamily="fa" />
+
+
+
+                </StackLayout>
+            </xct:Expander>
+        </pancakeview:PancakeView>
+    </Grid>
+
+</ContentPage>
