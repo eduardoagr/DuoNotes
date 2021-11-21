@@ -3,12 +3,19 @@
              xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:community="http://xamarin.com/schemas/2020/toolkit"
-             xmlns:icon="clr-namespace:DuoNotes.Resources"
+             xmlns:icon="clr-namespace:DuoNotes.Fonts"
              xmlns:xct="clr-namespace:Xamarin.CommunityToolkit.UI.Views;assembly=Xamarin.CommunityToolkit"
              xmlns:translate="clr-namespace:DuoNotes.Utils"
+             xmlns:vm="clr-namespace:DuoNotes.ViewModel"
+             x:DataType="vm:MainPageViewModel"
+             Title="{translate:Translate Notebooks}"
              xmlns:pancakeview="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              BackgroundColor="{AppThemeBinding Dark={StaticResource BckgroundDarkColor},
                                       Light={StaticResource BackgroundLigthColor}}">
+
+    <ContentPage.BindingContext>
+        <vm:MainPageViewModel />
+    </ContentPage.BindingContext>
 
     <Grid>
         <pancakeview:PancakeView HorizontalOptions="End"
@@ -41,21 +48,22 @@
                              Margin="0,20,0,0"
                              HorizontalOptions="Center">
 
-                    <Label Text="{Static icon:IconFont.Book}"
+                    <Label Text="{Static icon:Material.Person}"
                            Rotation="180"
                            FontSize="20"
-                           community:TouchEffect.Command="{}"
-                           FontFamily="fa" />
+                           FontFamily="mat" />
 
-                    <Label Text="{Static icon:IconFont.User}"
+                    <Label Text="{Static icon:Material.Add}"
                            Rotation="180"
                            FontSize="20"
-                           FontFamily="fa" />
+                           community:TouchEffect.Command="{Binding CreateNotebook}"
+                           FontFamily="mat" />
 
-                    <Label Text="{Static icon:IconFont.WindowClose}"
+                    <Label Text="{Static icon:Material.Logout}"
                            Rotation="180"
                            FontSize="20"
-                           FontFamily="fa" />
+                           community:TouchEffect.Command="{Binding Logout}"
+                           FontFamily="mat" />
 
 
 

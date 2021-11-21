@@ -144,6 +144,9 @@
   <data name="NewUser" xml:space="preserve">
     <value>Nuevo usuario</value>
   </data>
+  <data name="NoteBookName" xml:space="preserve">
+    <value>Nombre del cuaderno</value>
+  </data>
   <data name="Notebooks" xml:space="preserve">
     <value>Cuadernos</value>
   </data>

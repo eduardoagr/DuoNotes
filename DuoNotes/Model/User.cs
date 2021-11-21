@@ -8,7 +8,7 @@ using System;
 namespace DuoNotes.Model {
 
     [AddINotifyPropertyChangedInterface]
-    public class Users {
+    public class User {
 
         [OnChangedMethod(nameof(OnPropertyChanged))]
         public string Email { get; set; }

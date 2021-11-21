@@ -1,10 +1,9 @@
 ﻿using System;
 
 namespace DuoNotes.Model {
-    public class Notebooks {
+    public class Notebook {
 
-        public string Id { get; set; }
-
+        public int Id { get; set; }
 
         public string UserID { get; set; }
 

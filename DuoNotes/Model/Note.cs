@@ -1,7 +1,7 @@
 ﻿using System;
 
 namespace DuoNotes.Model {
-    public class Notes {
+    public class Note {
 
         public string Id { get; set; }
 

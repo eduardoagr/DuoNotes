@@ -3,6 +3,7 @@ using Acr.UserDialogs;
 
 using DuoNotes.Model;
 using DuoNotes.Resources;
+using DuoNotes.Services;
 using DuoNotes.Utils;
 
 using Firebase.Auth;
@@ -26,19 +27,19 @@ namespace DuoNotes.ViewModel {
 
         public ICommand Login { get; set; }
 
-        public Users Users { get; set; }
+        public Model.User Users { get; set; }
 
         public bool IsRegisterAllowed { get; set; }
 
         public bool IsPopUpOpen { get; set; }
 
 
-        FirebaseAuthProvider authProvider;
+        FirebaseServices Services;
 
 
         public LoginPageViewModel() {
 
-            Users = new Users {
+            Users = new Model.User {
                 OnAnyPropertiesChanged = () => {
 
                     (Login as Command).ChangeCanExecute();
@@ -47,7 +48,7 @@ namespace DuoNotes.ViewModel {
                 }
             };
 
-            authProvider = new FirebaseAuthProvider(new FirebaseConfig(App.WEB_API_KEY));
+            Services = new FirebaseServices();
 
             Login = new Command(LoginAction, CanPreformAction);
 
@@ -68,36 +69,12 @@ namespace DuoNotes.ViewModel {
 
         private async void RegisterActionAsync(object obj) {
 
-            try {
-                UserDialogs.Instance.ShowLoading(AppResources.Loading);
-                var auth = await authProvider.CreateUserWithEmailAndPasswordAsync(Users.Email, Users.Password);
-                await Application.Current.MainPage.DisplayAlert(
-                AppResources.NewUser,
-              AppResources.UserInserted, "OK");
-                UserDialogs.Instance.HideLoading();
-            } catch (FirebaseAuthException ex) {
-                Exceptions.GetErrorMessage(ex);
-            }
-            UserDialogs.Instance.HideLoading();
-
-
-
-
-
+            await Services.RegisterAsync(Users);
         }
         private async void LoginAction(object obj) {
 
-            try {
-                UserDialogs.Instance.ShowLoading(AppResources.Loading);
-                var auth = await authProvider.SignInWithEmailAndPasswordAsync(Users.Email, Users.Password);
-                Preferences.Set(App.UID, auth.User.LocalId);
-                App.UserID = auth.User.LocalId;
-                UserDialogs.Instance.HideLoading();
-                Application.Current.MainPage = new NavigationPage(new MainPage());
-            } catch (FirebaseAuthException ex) {
-                Exceptions.GetErrorMessage(ex);
-            }
-            UserDialogs.Instance.HideLoading();
+            await Services.LoginAsync(Users);
+
         }
     }
 }
