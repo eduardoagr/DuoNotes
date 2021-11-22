@@ -13,11 +13,16 @@
              BackgroundColor="{AppThemeBinding Dark={StaticResource BckgroundDarkColor},
                                       Light={StaticResource BackgroundLigthColor}}">
 
+
     <ContentPage.BindingContext>
         <vm:MainPageViewModel />
     </ContentPage.BindingContext>
 
+
     <Grid>
+        <CollectionView ItemsSource="{Binding Notebooks}">
+
+        </CollectionView>
         <pancakeview:PancakeView HorizontalOptions="End"
                                  VerticalOptions="End"
                                  Margin="30"

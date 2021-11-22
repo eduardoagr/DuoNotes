@@ -11,6 +11,8 @@ using Newtonsoft.Json;
 
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -24,6 +26,7 @@ namespace DuoNotes.Services {
 
         FirebaseAuthProvider authProvider;
         FirebaseClient Client;
+        string childName = "Notebooks";
 
         public FirebaseServices() {
 
@@ -63,8 +66,25 @@ namespace DuoNotes.Services {
         }
 
         public async Task AddNotebook(Notebook notebook, string name) {
-            notebook = new Notebook() { Id = notebook.Id, Name = name, UserID = App.UserID };
-            await Client.Child("Notebooks").PostAsync(JsonConvert.SerializeObject(notebook));
+            if (notebook is null) {
+                throw new ArgumentNullException(nameof(notebook));
+            }
+            notebook = new Notebook() { Id = notebook.Id, Name = name, UserID = App.UserID, CreatedDate = DateTime.Today.Date };
+            await Client.Child(childName).PostAsync(JsonConvert.SerializeObject(notebook));
+        }
+
+        public async Task<ObservableCollection<FirebaseObject<Notebook>>> GetNotebooks() {
+
+            var NotebooksCollection = new ObservableCollection<FirebaseObject<Notebook>>();
+
+            var list = await Client.Child(childName).OnceAsync<Notebook>();
+
+            foreach (var item in list) {
+                item.Object.Id = item.Key;
+                NotebooksCollection.Add(item);
+            }
+
+            return NotebooksCollection;
         }
 
         public void LogOut() {

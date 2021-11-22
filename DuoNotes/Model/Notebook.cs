@@ -3,7 +3,7 @@
 namespace DuoNotes.Model {
     public class Notebook {
 
-        public int Id { get; set; }
+        public string Id { get; set; }
 
         public string UserID { get; set; }
 
