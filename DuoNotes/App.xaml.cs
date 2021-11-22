@@ -24,6 +24,8 @@ namespace DuoNotes {
 
             UserID = Preferences.Get(UID, string.Empty);
 
+            System.Console.WriteLine(App.UserID);
+
             if (!string.IsNullOrEmpty(UserID)) {
                 MainPage = new NavigationPage(new MainPage());
             } else {

@@ -55,8 +55,8 @@ namespace DuoNotes.Services {
             try {
                 UserDialogs.Instance.ShowLoading(AppResources.Loading);
                 var auth = await authProvider.SignInWithEmailAndPasswordAsync(users.Email, users.Password);
-                Preferences.Set(App.UID, auth.User.LocalId);
                 App.UserID = auth.User.LocalId;
+                Preferences.Set(App.UID, App.UserID);
                 UserDialogs.Instance.HideLoading();
                 Application.Current.MainPage = new NavigationPage(new MainPage());
             } catch (FirebaseAuthException ex) {

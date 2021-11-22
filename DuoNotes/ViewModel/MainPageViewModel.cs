@@ -43,7 +43,7 @@ namespace DuoNotes.ViewModel {
         }
 
         private async void NewNotebook(object obj) {
-            string name = await App.Current.MainPage.DisplayPromptAsync(String.Empty, Resources.AppResources.NoteBookName);
+            string name = await App.Current.MainPage.DisplayPromptAsync(string.Empty, Resources.AppResources.NoteBookName);
             if (!string.IsNullOrEmpty(name)) {
                 await Servces.AddNotebook(Notebook, name);
             }
@@ -59,8 +59,8 @@ namespace DuoNotes.ViewModel {
 
         private async void CallNotebooks() {
             var collection = await Servces.GetNotebooks();
+            Console.WriteLine(App.UserID);
             collection.Where(n => n.Object.UserID == App.UserID).ToList();
-
             Notebooks.Clear();
             foreach (var item in collection) {
                 Notebooks.Add(item);
