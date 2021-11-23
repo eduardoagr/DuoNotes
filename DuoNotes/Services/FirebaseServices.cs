@@ -26,7 +26,7 @@ namespace DuoNotes.Services {
 
         FirebaseAuthProvider authProvider;
         FirebaseClient Client;
-        string childName = "Notebooks";
+
 
         public FirebaseServices() {
 
@@ -65,32 +65,33 @@ namespace DuoNotes.Services {
             UserDialogs.Instance.HideLoading();
         }
 
-        public async Task AddNotebook(Notebook notebook, string name) {
-            if (notebook is null) {
-                throw new ArgumentNullException(nameof(notebook));
-            }
-            notebook = new Notebook() { Id = notebook.Id, Name = name, UserID = App.UserID, CreatedDate = DateTime.Today.Date };
-            await Client.Child(childName).PostAsync(JsonConvert.SerializeObject(notebook));
+        public void LogOut() {
+            Preferences.Clear();
+            Application.Current.MainPage = new NavigationPage(new LoginPage());
         }
 
-        public async Task<ObservableCollection<FirebaseObject<Notebook>>> GetNotebooks() {
+        public async Task InsertAsync(NotebookNote notebookNote, string ChildName) {
+            if (notebookNote is null) {
+                throw new ArgumentNullException(nameof(notebookNote));
+            }
+            await Client.Child(ChildName).PostAsync(JsonConvert.SerializeObject(notebookNote));
+        }
 
-            var NotebooksCollection = new ObservableCollection<FirebaseObject<Notebook>>();
+        public async Task<List<FirebaseObject<NotebookNote>>> ReadAsync(string ChildName) {
 
-            var list = await Client.Child(childName).OnceAsync<Notebook>();
+            var listNotebooks = new List<FirebaseObject<NotebookNote>>();
+
+            var list = await Client.Child(ChildName).OnceAsync<NotebookNote>();
 
             foreach (var item in list) {
                 item.Object.Id = item.Key;
-                NotebooksCollection.Add(item);
+                listNotebooks.Add(item);
             }
 
-            return NotebooksCollection;
+            return listNotebooks;
         }
 
-        public void LogOut() {
-            Preferences.Clear();
-            App.Current.MainPage = new NavigationPage(new LoginPage());
-        }
+
 
         public void GetErrorMessage(FirebaseAuthException ex) {
 

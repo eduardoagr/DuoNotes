@@ -133,6 +133,15 @@ namespace DuoNotes.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to New notebook.
+        /// </summary>
+        internal static string NewNotebook {
+            get {
+                return ResourceManager.GetString("NewNotebook", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to New user.
         /// </summary>
         internal static string NewUser {

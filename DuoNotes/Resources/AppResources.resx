@@ -141,6 +141,9 @@
   <data name="NewNote" xml:space="preserve">
     <value>NewNote</value>
   </data>
+  <data name="NewNotebook" xml:space="preserve">
+    <value>New notebook</value>
+  </data>
   <data name="NewUser" xml:space="preserve">
     <value>New user</value>
   </data>

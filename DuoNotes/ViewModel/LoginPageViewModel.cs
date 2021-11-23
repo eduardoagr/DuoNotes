@@ -59,7 +59,7 @@ namespace DuoNotes.ViewModel {
             });
         }
 
-        private bool CanPreformAction(object arg) {
+        private bool CanPreformAction() {
 
             return Users != null && !string.IsNullOrEmpty(Users.Email) &&
                 new EmailAddressAttribute().IsValid(Users.Email) &&
@@ -67,11 +67,11 @@ namespace DuoNotes.ViewModel {
 
         }
 
-        private async void RegisterActionAsync(object obj) {
+        private async void RegisterActionAsync() {
 
             await Services.RegisterAsync(Users);
         }
-        private async void LoginAction(object obj) {
+        private async void LoginAction() {
 
             await Services.LoginAsync(Users);
 
