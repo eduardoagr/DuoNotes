@@ -4,9 +4,6 @@ using System.Text;
 
 namespace DuoNotes.Model {
     public class NotebookNote {
-
-        public string ChildName { get; set; }
-
         public string Id { get; set; }
 
         public string Name { get; set; }
