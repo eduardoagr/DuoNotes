@@ -37,20 +37,18 @@ namespace DuoNotes.ViewModel {
 
             CreateNotebook = new Command(NewNotebookAsync);
 
-            //CallNotebookAssync();
+            CallNotebookAssync();
 
         }
 
         private async void NewNotebookAsync() {
-            string name = await Application.Current.MainPage.DisplayPromptAsync(AppResources.NewNotebook, Resources.AppResources.NoteBookName);
+            string name = await Application.Current.MainPage.DisplayPromptAsync(AppResources.NewNotebook, AppResources.NoteBookName);
             if (!string.IsNullOrEmpty(name)) {
                 Notebook notebook = new Notebook() { Name = name, UserID = App.UserID, CreatedDate = DateTime.Now };
                 await Servces.InsertAsync(notebook, ChildName);
             }
 
             CallNotebookAssync();
-
-            Console.WriteLine(Notebooks.Count);
         }
 
         private void LogOut(object obj) {
