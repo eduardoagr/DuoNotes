@@ -19,8 +19,18 @@
 
 
     <Grid>
-        <CollectionView ItemsSource="{Binding Notebooks}">
-
+        <CollectionView ItemsSource="{Binding Notebooks}"
+                        ItemsLayout="VerticalList">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout>
+                        <Label Text="{Binding Id, StringFormat='id = {0}'}"></Label>
+                        <Label Text="{Binding UserID, StringFormat='UserID = {0}'}"></Label>
+                        <Label Text="{Binding Name, StringFormat='notebook name = {0}'}"></Label>
+                        <Label Text="{Binding CreatedDate, StringFormat='date = {0}'}"></Label>
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
         </CollectionView>
         <pancakeview:PancakeView HorizontalOptions="End"
                                  VerticalOptions="End"

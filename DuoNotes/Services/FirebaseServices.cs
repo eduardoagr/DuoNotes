@@ -67,32 +67,32 @@ namespace DuoNotes.Services {
             Application.Current.MainPage = new NavigationPage(new LoginPage());
         }
 
-        public async Task InsertAsync(NotebookNote notebookNote, string ChildName) {
-            if (notebookNote is null) {
-                throw new ArgumentNullException(nameof(notebookNote));
+        public async Task InsertAsync(IElementProperties element, string ChildName) {
+            if (element is null) {
+                throw new ArgumentNullException(nameof(element));
             }
-            await Client.Child(ChildName).PostAsync(JsonConvert.SerializeObject(notebookNote));
+            await Client.Child(ChildName)
+                .PostAsync(JsonConvert.SerializeObject(element));
         }
 
-        public async Task<List<FirebaseObject<NotebookNote>>> ReadAsync(string ChildName) {
+        public async Task<List<FirebaseObject<IElementProperties>>> ReadAsync(string ChildName) {
 
-            var listNotebooks = new List<FirebaseObject<NotebookNote>>();
+            var listNotebooks = new List<FirebaseObject<IElementProperties>>();
 
-            var list = await Client.Child(ChildName).OnceAsync<NotebookNote>();
+            var list = await Client.Child(ChildName)
+                .OnceAsync<IElementProperties>();
 
             foreach (var item in list) {
                 item.Object.Id = item.Key;
                 listNotebooks.Add(item);
             }
-
             return listNotebooks;
         }
 
-
-
         public void GetErrorMessage(FirebaseAuthException ex) {
 
-            var stringError = JsonConvert.DeserializeObject<Response>(ex.ResponseData);
+            var stringError = JsonConvert
+                .DeserializeObject<Response>(ex.ResponseData);
 
             switch (stringError.Error.Message) {
                 case "EMAIL_EXISTS":
