@@ -19,7 +19,7 @@
 
 
     <Grid>
-        <CollectionView ItemsSource="{Binding newNotebooksObjects}">
+        <CollectionView ItemsSource="{Binding Notebooks}">
 
         </CollectionView>
         <pancakeview:PancakeView HorizontalOptions="End"
