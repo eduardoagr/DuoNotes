@@ -21,21 +21,21 @@ using User = DuoNotes.Model.User;
 namespace DuoNotes.Services {
     public class FirebaseServices {
 
-        FirebaseAuthProvider authProvider;
+        FirebaseAuthProvider AuthProvider;
         FirebaseClient Client;
-
+        string BASE_URL = "https://duonotes-f2b77-default-rtdb.europe-west1.firebasedatabase.app/";
 
         public FirebaseServices() {
 
-            authProvider = new FirebaseAuthProvider(new FirebaseConfig(App.WEB_API_KEY));
-            Client = new FirebaseClient("https://duonotes-f2b77-default-rtdb.europe-west1.firebasedatabase.app/");
+            AuthProvider = new FirebaseAuthProvider(new FirebaseConfig(App.WEB_API_KEY));
+            Client = new FirebaseClient(BASE_URL);
         }
 
         public async Task RegisterAsync(User users) {
 
             try {
                 UserDialogs.Instance.ShowLoading(AppResources.Loading);
-                var auth = await authProvider.CreateUserWithEmailAndPasswordAsync(users.Email, users.Password);
+                var auth = await AuthProvider.CreateUserWithEmailAndPasswordAsync(users.Email, users.Password);
                 await Application.Current.MainPage.DisplayAlert(
                 AppResources.NewUser,
               AppResources.UserInserted, "OK");
@@ -51,7 +51,7 @@ namespace DuoNotes.Services {
 
             try {
                 UserDialogs.Instance.ShowLoading(AppResources.Loading);
-                var auth = await authProvider.SignInWithEmailAndPasswordAsync(users.Email, users.Password);
+                var auth = await AuthProvider.SignInWithEmailAndPasswordAsync(users.Email, users.Password);
                 App.UserID = auth.User.LocalId;
                 Preferences.Set(App.UID, App.UserID);
                 UserDialogs.Instance.HideLoading();
@@ -67,7 +67,7 @@ namespace DuoNotes.Services {
             Application.Current.MainPage = new NavigationPage(new LoginPage());
         }
 
-        public async Task InsertAsync(IElementProperties element, string ChildName) {
+        public async Task InsertAsync(NotebookNote element, string ChildName) {
             if (element is null) {
                 throw new ArgumentNullException(nameof(element));
             }
@@ -75,12 +75,12 @@ namespace DuoNotes.Services {
                 .PostAsync(JsonConvert.SerializeObject(element));
         }
 
-        public async Task<List<FirebaseObject<IElementProperties>>> ReadAsync(string ChildName) {
+        public async Task<List<FirebaseObject<NotebookNote>>> ReadAsync(string ChildName) {
 
-            var listNotebooks = new List<FirebaseObject<IElementProperties>>();
+            var listNotebooks = new List<FirebaseObject<NotebookNote>>();
 
             var list = await Client.Child(ChildName)
-                .OnceAsync<IElementProperties>();
+                .OnceAsync<NotebookNote>();
 
             foreach (var item in list) {
                 item.Object.Id = item.Key;

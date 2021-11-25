@@ -7,12 +7,11 @@
              xmlns:xct="clr-namespace:Xamarin.CommunityToolkit.UI.Views;assembly=Xamarin.CommunityToolkit"
              xmlns:translate="clr-namespace:DuoNotes.Utils"
              xmlns:vm="clr-namespace:DuoNotes.ViewModel"
-             x:DataType="vm:MainPageViewModel"
+             xmlns:model="clr-namespace:DuoNotes.Model"
              Title="{translate:Translate Notebooks}"
              xmlns:pancakeview="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              BackgroundColor="{AppThemeBinding Dark={StaticResource BckgroundDarkColor},
                                       Light={StaticResource BackgroundLigthColor}}">
-
 
     <ContentPage.BindingContext>
         <vm:MainPageViewModel />
@@ -20,7 +19,14 @@
 
 
     <Grid>
-        <CollectionView ItemsSource="{Binding Notebooks}">
+        <CollectionView ItemsSource="{Binding FireBaseNotebooks}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="model:Notebook">
+                    <Grid>
+                        <Label Text="{Binding Name, StringFormat='Notebook name: {0}'}" />
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
 
         </CollectionView>
         <pancakeview:PancakeView HorizontalOptions="End"
@@ -49,6 +55,7 @@
                         </Label.Triggers>
                     </Label>
                 </xct:Expander.Header>
+
                 <StackLayout Spacing="30"
                              Margin="0,30,0,0"
                              HorizontalOptions="Center">
