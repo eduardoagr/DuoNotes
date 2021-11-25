@@ -23,9 +23,9 @@ namespace DuoNotes.ViewModel {
 
         public ICommand CreateNotebook { get; set; }
 
-        public ObservableCollection<FirebaseObject<IElementProperties>> FirebaseObjects { get; set; }
+        public ObservableCollection<FirebaseObject<NotebookNote>> Notebooks { get; set; }
 
-        public ObservableCollection<Notebook> Notebooks { get; set; }
+        public ObservableCollection<FirebaseObject<NotebookNote>> FirebaseObjects { get; set; }
 
         public ICommand Logout { get; set; }
 
@@ -33,9 +33,9 @@ namespace DuoNotes.ViewModel {
 
             Servces = new FirebaseServices();
 
-            FirebaseObjects = new ObservableCollection<FirebaseObject<IElementProperties>>();
+            FirebaseObjects = new ObservableCollection<FirebaseObject<NotebookNote>>();
 
-            Notebooks = new ObservableCollection<Notebook>();
+            NewNotebooksObjects = new ObservableCollection<Notebook>();
 
             Logout = new Command(LogOut);
 
@@ -44,9 +44,9 @@ namespace DuoNotes.ViewModel {
         }
 
         private async void NewNotebookAsync() {
-            string NotebookName = await Application.Current.MainPage.DisplayPromptAsync(AppResources.NewNotebook, AppResources.NoteBookName);
-            if (!string.IsNullOrEmpty(NotebookName)) {
-                Notebook notebook = new Notebook() { Name = NotebookName, UserID = App.UserID, YearOfCreation = DateTime.Now.ToString("yyyy") };
+            string name = await Application.Current.MainPage.DisplayPromptAsync(AppResources.NewNotebook, AppResources.NoteBookName);
+            if (!string.IsNullOrEmpty(name)) {
+                Notebook notebook = new Notebook() { Name = name, UserID = App.UserID, CreatedDate = DateTime.Now.ToString("yyyy") };
                 await Servces.InsertAsync(notebook, ChildName);
             }
 
@@ -59,22 +59,30 @@ namespace DuoNotes.ViewModel {
 
         private async void CallNotebookAssync() {
             var collection = await Servces.ReadAsync(ChildName);
-            var tempList = new ObservableCollection<Notebook>();
+            ObservableCollection<Notebook> NotebookCollection = new ObservableCollection<Notebook>();
             foreach (var item in collection) {
-                //Notebook notebook = new Notebook {
-                //    Id = item.Object.Id,
-                //    Name = item.Object.Name,
-                //    YearOfCreation = item.Object.YearOfCreation,
-                //    UserID = item.Object.user
-            };
-            //tempList.Add(notebook);
-        }
-        //Notebooks.Clear();
-        //foreach (var item in tempList) {
-        //    if (item.UserID == ) {
 
-        //    }
-        //    Notebooks.Add(item);
-        //}
+                Notebook notebook = new Notebook {
+                    UserID = App.UserID,
+                    Id = item.Key,
+                    Name = item.Object.Name,
+                    CreatedDate = DateTime.Now.ToShortDateString(),
+                };
+                NotebookNote notebookNote = item.Object as NotebookNote;
+                notebook.Id = notebookNote.Id;
+                notebook.Name = notebookNote.Name;
+                notebook.CreatedDate = notebookNote.CreatedDate;
+                NotebookCollection.Add(notebook);
+            }
+
+             = NotebookCollection.Where(n => n.UserID == App.UserID).ToList();
+
+            NewNotebooksObjects.Clear();
+            foreach (var element in NewNotebooksObjects) {
+                NewNotebooksObjects.Add(element);
+            }
+
+        }
     }
+
 }
