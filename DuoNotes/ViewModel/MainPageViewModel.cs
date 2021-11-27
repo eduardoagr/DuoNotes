@@ -74,11 +74,13 @@ namespace DuoNotes.ViewModel {
             foreach (var item in collection) {
 
                 Notebook notebook = new Notebook {
-                    UserID = App.UserID,
+                    UserID = item.Object.UserID,
                     Id = item.Key,
                     Name = item.Object.Name,
                     CreatedDate = item.Object.CreatedDate,
                 };
+
+                Console.WriteLine("Notebooks ID: " + notebook.UserID);
                 NotebookCollection.Add(notebook);
             }
 
