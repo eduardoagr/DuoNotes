@@ -83,7 +83,6 @@ namespace DuoNotes.Services {
                 .OnceAsync<NotebookNote>();
 
             foreach (var item in list) {
-                item.Object.Id = item.Key;
                 listNotebooks.Add(item);
             }
             return listNotebooks;
