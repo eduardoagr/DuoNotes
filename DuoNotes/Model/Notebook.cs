@@ -1,6 +1,5 @@
-﻿using Firebase.Database;
-
-using System;
+﻿
+using Xamarin.Forms;
 
 namespace DuoNotes.Model {
     public class Notebook : NotebookNote {

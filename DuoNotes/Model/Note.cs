@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace DuoNotes.Model {
+﻿namespace DuoNotes.Model {
     public class Note : Notebook {
 
         public string NotebookId { get; set; }

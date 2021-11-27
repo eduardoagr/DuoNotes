@@ -40,6 +40,8 @@ namespace DuoNotes.ViewModel {
             CreateNotebook = new Command(NewNotebookAsync);
 
             CallNotebookAssync();
+
+            Console.WriteLine(App.UserID);
         }
 
         private async void NewNotebookAsync() {
@@ -83,7 +85,7 @@ namespace DuoNotes.ViewModel {
             NotebookCollection = NotebookCollection.Where(n => n.UserID == App.UserID).ToList();
 
             FireBaseNotebooks.Clear();
-            foreach (var element in FireBaseNotebooks) {
+            foreach (var element in NotebookCollection) {
                 FireBaseNotebooks.Add(element);
             }
 

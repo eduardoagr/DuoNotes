@@ -21,9 +21,9 @@ using User = DuoNotes.Model.User;
 namespace DuoNotes.Services {
     public class FirebaseServices {
 
-        FirebaseAuthProvider AuthProvider;
-        FirebaseClient Client;
-        string BASE_URL = "https://duonotes-f2b77-default-rtdb.europe-west1.firebasedatabase.app/";
+        readonly FirebaseAuthProvider AuthProvider;
+        readonly FirebaseClient Client;
+        readonly string BASE_URL = "https://duonotes-f2b77-default-rtdb.europe-west1.firebasedatabase.app/";
 
         public FirebaseServices() {
 
