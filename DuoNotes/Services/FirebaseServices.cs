@@ -10,6 +10,8 @@ using Firebase.Database;
 
 using Newtonsoft.Json;
 
+using Rg.Plugins.Popup.Services;
+
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -41,8 +43,9 @@ namespace DuoNotes.Services {
                 AppResources.NewUser,
               AppResources.UserInserted, "OK");
                 UserDialogs.Instance.HideLoading();
+                await PopupNavigation.Instance.PopAsync(true);
             } catch (FirebaseAuthException ex) {
-                ErrorHandling.GetErrorMessage(ex);
+                Firebasemessages.GetMessages(ex);
             }
             UserDialogs.Instance.HideLoading();
         }
@@ -58,7 +61,7 @@ namespace DuoNotes.Services {
                 UserDialogs.Instance.HideLoading();
                 Application.Current.MainPage = new NavigationPage(new MainPage());
             } catch (FirebaseAuthException ex) {
-                ErrorHandling.GetErrorMessage(ex);
+                Firebasemessages.GetMessages(ex);
             }
             UserDialogs.Instance.HideLoading();
         }

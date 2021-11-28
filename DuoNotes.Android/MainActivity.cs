@@ -8,8 +8,6 @@ using Android.Runtime;
 
 using FFImageLoading.Forms.Platform;
 
-using Syncfusion.XForms.Android.PopupLayout;
-
 using Xamarin.Forms;
 using Xamarin.Forms.DualScreen;
 using Xamarin.Forms.Platform.Android;
@@ -30,7 +28,7 @@ namespace DuoNotes.Droid {
             Forms.Init(this, savedInstanceState);
             CachedImageRenderer.Init(true);
             FormsMaterial.Init(this, savedInstanceState);
-            SfPopupLayoutRenderer.Init();
+            Rg.Plugins.Popup.Popup.Init(this);
             LoadApplication(new App());
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Permission[] grantResults) {

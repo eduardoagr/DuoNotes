@@ -1,10 +1,7 @@
 ﻿
-
 using FFImageLoading.Forms.Platform;
 
 using Foundation;
-
-using Syncfusion.XForms.iOS.PopupLayout;
 
 using UIKit;
 
@@ -28,7 +25,7 @@ namespace DuoNotes.iOS {
             Forms.Init();
             CachedImageRenderer.Init();
             FormsMaterial.Init();
-            SfPopupLayoutRenderer.Init();
+            Rg.Plugins.Popup.Popup.Init();
             LoadApplication(new App());
 
             return base.FinishedLaunching(app, options);

@@ -40,8 +40,6 @@ namespace DuoNotes.ViewModel {
             CreateNotebook = new Command(NewNotebookAsync);
 
             CallNotebookAssync();
-
-            Console.WriteLine(App.UserID);
         }
 
         private async void NewNotebookAsync() {
@@ -79,8 +77,6 @@ namespace DuoNotes.ViewModel {
                     Name = item.Object.Name,
                     CreatedDate = item.Object.CreatedDate,
                 };
-
-                Console.WriteLine("Notebooks ID: " + notebook.UserID);
                 NotebookCollection.Add(notebook);
             }
 

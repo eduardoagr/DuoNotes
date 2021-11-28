@@ -3,7 +3,6 @@
              xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
-             xmlns:sfPopup="clr-namespace:Syncfusion.XForms.PopupLayout;assembly=Syncfusion.SfPopupLayout.XForms"
              xmlns:translate="clr-namespace:DuoNotes.Utils"
              xmlns:vm="clr-namespace:DuoNotes.ViewModel"
              xmlns:community="http://xamarin.com/schemas/2020/toolkit"
@@ -17,7 +16,6 @@
 
     <ScrollView>
         <Grid Padding="20"
-              x:DataType="vm:LoginPageViewModel"
               RowDefinitions="120,Auto,*"
               RowSpacing="20"
               VerticalOptions="Center">
@@ -29,7 +27,8 @@
             <Frame Grid.Row="1"
                    Padding="0"
                    BorderColor="Silver"
-                   BackgroundColor="{AppThemeBinding Dark={StaticResource BckgroundDarkColor}, Light={StaticResource BackgroundLigthColor}}"
+                   BackgroundColor="{AppThemeBinding Dark={StaticResource BckgroundDarkColor},
+                   Light={StaticResource BackgroundLigthColor}}"
                    IsClippedToBounds="True"
                    VerticalOptions="FillAndExpand">
 
@@ -37,11 +36,11 @@
                     <Entry Keyboard="Email"
                            Placeholder="{translate:Translate Email}"
                            Style="{StaticResource EntrySyle}"
-                           Text="{Binding Users.Email}" />
+                           Text="{Binding User.Email}" />
 
                     <Entry Placeholder="{translate:Translate Password}"
                            Style="{StaticResource EntrySyle}"
-                           Text="{Binding Users.Password}" />
+                           Text="{Binding User.Password}" />
 
                     <Button Padding="5"
                             Style="{StaticResource ButonStyle}"
@@ -55,50 +54,10 @@
                    HorizontalOptions="End"
                    Style="{StaticResource LabelStyle}"
                    Text="{translate:Translate HaveAccount}"
-                   community:TouchEffect.Command="{Binding OpenRegisterPopupCommand}">
+                   community:TouchEffect.Command="{Binding NavigateToRegister}">
             </Label>
 
-            <sfPopup:SfPopupLayout IsOpen="{Binding IsPopUpOpen}">
-                <sfPopup:SfPopupLayout.PopupView>
-                    <sfPopup:PopupView AnimationMode="Zoom"
-                                       AutoSizeMode="Height">
-                        <sfPopup:PopupView.PopupStyle>
-                            <sfPopup:PopupStyle FooterBackgroundColor="{AppThemeBinding Dark={StaticResource BckgroundDarkColor}, Light={StaticResource BackgroundLigthColor}}"
-                                                HeaderBackgroundColor="{AppThemeBinding Dark={StaticResource BckgroundDarkColor}, Light={StaticResource BackgroundLigthColor}}" />
-                        </sfPopup:PopupView.PopupStyle>
-                        <sfPopup:PopupView.HeaderTemplate>
-                            <DataTemplate>
-                                <Label Style="{StaticResource LabelStyle}"
-                                       Text="{translate:Translate Register}" />
-                            </DataTemplate>
-                        </sfPopup:PopupView.HeaderTemplate>
-                        <sfPopup:PopupView.FooterTemplate>
-                            <DataTemplate>
-                                <Button Command="{Binding Register}"
-                                        Style="{StaticResource ButonStyle}"
-                                        Text="{translate:Translate Register}" />
-                            </DataTemplate>
-                        </sfPopup:PopupView.FooterTemplate>
-                        <sfPopup:PopupView.ContentTemplate>
-                            <DataTemplate>
-                                <StackLayout Padding="0"
-                                             BackgroundColor="{AppThemeBinding Dark={StaticResource BckgroundDarkColor}, Light={StaticResource BackgroundLigthColor}}">
-                                    <Entry Keyboard="Email"
-                                           Placeholder="{translate:Translate Email}"
-                                           Style="{StaticResource EntrySyle}"
-                                           Text="{Binding Users.Email}" />
-                                    <Entry Placeholder="{translate:Translate Password}"
-                                           Style="{StaticResource EntrySyle}"
-                                           Text="{Binding Users.Password}" />
-                                    <Entry Placeholder="{translate:Translate Confirm password}"
-                                           Style="{StaticResource EntrySyle}"
-                                           Text="{Binding Users.Password}" />
-                                </StackLayout>
-                            </DataTemplate>
-                        </sfPopup:PopupView.ContentTemplate>
-                    </sfPopup:PopupView>
-                </sfPopup:SfPopupLayout.PopupView>
-            </sfPopup:SfPopupLayout>
+
         </Grid>
     </ScrollView>
 </ContentPage>

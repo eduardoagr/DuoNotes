@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                 xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+                 xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+                 x:Class="DuoNotes.View.PopUps.RegisterPopUp"
+                 Padding="20"
+                 xmlns:vm="clr-namespace:DuoNotes.ViewModel.PopUps"
+                 xmlns:translate="clr-namespace:DuoNotes.Utils">
+
+    <pages:PopupPage.BindingContext>
+        <vm:RegisterPopUpViewModel />
+    </pages:PopupPage.BindingContext>
+
+    <pages:PopupPage.Animation>
+        <animations:ScaleAnimation PositionIn="Center"
+                                   PositionOut="Center"
+                                   ScaleIn="1.2"
+                                   ScaleOut="0.8"
+                                   DurationIn="400"
+                                   DurationOut="300"
+                                   EasingIn="SinOut"
+                                   EasingOut="SinIn"
+                                   HasBackgroundAnimation="True" />
+    </pages:PopupPage.Animation>
+
+    <Frame Padding="0"
+           BorderColor="Silver"
+           BackgroundColor="{AppThemeBinding Dark={StaticResource BckgroundDarkColor},
+                   Light={StaticResource BackgroundLigthColor}}"
+           IsClippedToBounds="True"
+           VerticalOptions="Center">
+
+        <StackLayout Padding="10">
+            <Entry Keyboard="Email"
+                   Placeholder="{translate:Translate Email}"
+                   Style="{StaticResource EntrySyle}"
+                   Text="{Binding User.Email}" />
+
+            <Entry Placeholder="{translate:Translate Password}"
+                   Style="{StaticResource EntrySyle}"
+                   Text="{Binding User.Password}" />
+
+            <Entry Placeholder="{translate:Translate Confirm password}"
+                   Style="{StaticResource EntrySyle}"
+                   Text="{Binding User.Password}" />
+
+            <Button Padding="5"
+                    Style="{StaticResource ButonStyle}"
+                    Command="{Binding Register}"
+                    FontSize="Medium"
+                    Text="{translate:Translate Register}" />
+        </StackLayout>
+    </Frame>
+
+</pages:PopupPage>
