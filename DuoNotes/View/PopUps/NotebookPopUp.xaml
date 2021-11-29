@@ -56,6 +56,10 @@
                                  Style="{StaticResource ChipCollection}"
                                  ItemsSource="{Binding Colors}"
                                  SelectedItem="{Binding SelectedColor}">
+                <buttons:SfChipGroup.Behaviors>
+                    <community:EventToCommandBehavior EventName="SelectionChanged"
+                                                      Command="{Binding SelectedColorCommand}" />
+                </buttons:SfChipGroup.Behaviors>
                 <buttons:SfChipGroup.ItemTemplate>
                     <DataTemplate>
                         <StackLayout>

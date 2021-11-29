@@ -46,8 +46,6 @@ namespace DuoNotes.ViewModel.PopUps {
             if (SelectedColor == null) {
                 return;
             }
-
-            Console.WriteLine(SelectedColor.Hue);
         }
 
         private void CreateNewNotebook() {
