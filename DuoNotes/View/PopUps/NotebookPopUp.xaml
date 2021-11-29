@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                 xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+                 xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+                 xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+                 x:Class="DuoNotes.View.PopUps.NotebookPopUp"
+                 xmlns:translate="clr-namespace:DuoNotes.Utils"
+                 xmlns:community="http://xamarin.com/schemas/2020/toolkit"
+                 xmlns:vm="clr-namespace:DuoNotes.ViewModel.PopUps"
+                 xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+                 Padding="20">
+
+    <pages:PopupPage.BindingContext>
+        <vm:NewNotebookPopUpViewModel />
+    </pages:PopupPage.BindingContext>
+
+    <pages:PopupPage.Animation>
+        <animations:ScaleAnimation PositionIn="Center"
+                                   PositionOut="Center"
+                                   ScaleIn="1.2"
+                                   ScaleOut="0.8"
+                                   DurationIn="400"
+                                   DurationOut="300"
+                                   EasingIn="SinOut"
+                                   EasingOut="SinIn"
+                                   HasBackgroundAnimation="True" />
+    </pages:PopupPage.Animation>
+
+    <Frame Style="{StaticResource FrameContainer}">
+        <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto"
+              Padding="10">
+
+            <Label Style="{StaticResource CloseStyle}"
+                   community:TouchEffect.Command="{Binding Close}" />
+
+            <Label Text="{translate:Translate NoteBookData}"
+                   Style="{StaticResource HeadersStyle}"
+                   HorizontalTextAlignment="Start"
+                   Grid.Row="1" />
+
+            <Entry Placeholder="{translate:Translate NoteBookName}"
+                   Style="{StaticResource EntrySyle}"
+                   Grid.Row="2" />
+
+            <Entry Placeholder="{translate:Translate NotebookUsage}"
+                   Style="{StaticResource EntrySyle}"
+                   Grid.Row="3" />
+
+            <Label Style="{StaticResource HeadersStyle}"
+                   HorizontalTextAlignment="Start"
+                   Text="{translate:Translate NotebookColor}"
+                   Grid.Row="4" />
+
+            <buttons:SfChipGroup Grid.Row="5"
+                                 Style="{StaticResource ChipCollection}"
+                                 ItemsSource="{Binding Colors}"
+                                 SelectedItem="{Binding SelectedColor}">
+                <buttons:SfChipGroup.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout>
+                            <border:SfBorder CornerRadius="20"
+                                             WidthRequest="60"
+                                             BorderWidth="5"
+                                             BorderColor="Transparent"
+                                             HeightRequest="60">
+                                <Ellipse Fill="{Binding .}"
+                                         HeightRequest="60"
+                                         WidthRequest="60" />
+                            </border:SfBorder>
+                        </StackLayout>
+                    </DataTemplate>
+                </buttons:SfChipGroup.ItemTemplate>
+            </buttons:SfChipGroup>
+
+            <Button Padding="10"
+                    Style="{StaticResource ButonStyle}"
+                    Text="{translate:Translate NewNotebook}"
+                    Grid.Row="6" />
+        </Grid>
+    </Frame>
+</pages:PopupPage>

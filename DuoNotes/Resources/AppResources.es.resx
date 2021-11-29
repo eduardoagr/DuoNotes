@@ -132,6 +132,9 @@
   <data name="HaveAccount" xml:space="preserve">
     <value>¿No tienes una cuenta? regístrese aquí</value>
   </data>
+  <data name="INVALID_PASSWORD" xml:space="preserve">
+    <value>Contraseña incorrecta</value>
+  </data>
   <data name="Loading" xml:space="preserve">
     <value>Espere porfavor</value>
   </data>
@@ -139,7 +142,7 @@
     <value>Iniciar sesión</value>
   </data>
   <data name="NewNote" xml:space="preserve">
-    <value>Nueva Nota</value>
+    <value>Nueva nota</value>
   </data>
   <data name="NewNotebook" xml:space="preserve">
     <value>Nuevo cuaderno</value>
@@ -147,11 +150,20 @@
   <data name="NewUser" xml:space="preserve">
     <value>Nuevo usuario</value>
   </data>
-  <data name="NoteBookName" xml:space="preserve">
-    <value>Nombre del cuaderno</value>
+  <data name="NotebookColor" xml:space="preserve">
+    <value>Color del cuaderno</value>
+  </data>
+  <data name="NoteBookData" xml:space="preserve">
+    <value>Informacion del cuaderno</value>
   </data>
   <data name="Notebooks" xml:space="preserve">
     <value>Cuadernos</value>
+  </data>
+  <data name="NoteBookTitle" xml:space="preserve">
+    <value>Titulo</value>
+  </data>
+  <data name="NotebookUsage" xml:space="preserve">
+    <value>Qué vas a almacenar en este cuaderno</value>
   </data>
   <data name="Notes" xml:space="preserve">
     <value>Notas</value>
@@ -163,7 +175,7 @@
     <value>Contraseña</value>
   </data>
   <data name="Register" xml:space="preserve">
-    <value>Registrese</value>
+    <value>Registro</value>
   </data>
   <data name="ServerError" xml:space="preserve">
     <value>Error del servidor</value>

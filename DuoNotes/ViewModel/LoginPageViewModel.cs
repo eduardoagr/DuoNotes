@@ -1,23 +1,13 @@
-﻿
-using Acr.UserDialogs;
-
-using DuoNotes.Model;
-using DuoNotes.Resources;
-using DuoNotes.Services;
-using DuoNotes.Utils;
+﻿using DuoNotes.Services;
 using DuoNotes.View.PopUps;
-
-using Firebase.Auth;
 
 using PropertyChanged;
 
 using Rg.Plugins.Popup.Services;
 
-using System;
 using System.ComponentModel.DataAnnotations;
 using System.Windows.Input;
 
-using Xamarin.Essentials;
 using Xamarin.Forms;
 
 using User = DuoNotes.Model.User;

@@ -3,6 +3,9 @@ using FFImageLoading.Forms.Platform;
 
 using Foundation;
 
+using Syncfusion.XForms.iOS.Buttons;
+using Syncfusion.XForms.iOS.ComboBox;
+
 using UIKit;
 
 using Xamarin.Forms;
@@ -24,7 +27,11 @@ namespace DuoNotes.iOS {
         public override bool FinishedLaunching(UIApplication app, NSDictionary options) {
             Forms.Init();
             CachedImageRenderer.Init();
+            SfComboBoxRenderer.Init();
             FormsMaterial.Init();
+            SfChipGroupRenderer.Init();
+            SfChipRenderer.Init();
+
             Rg.Plugins.Popup.Popup.Init();
             LoadApplication(new App());
 

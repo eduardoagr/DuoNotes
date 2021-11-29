@@ -1,10 +1,9 @@
 ﻿using DuoNotes.Model;
-using DuoNotes.Resources;
 using DuoNotes.Services;
+using DuoNotes.View.PopUps;
 
-using Firebase.Database;
+using Rg.Plugins.Popup.Services;
 
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -23,50 +22,31 @@ namespace DuoNotes.ViewModel {
 
         public ObservableCollection<Notebook> FireBaseNotebooks { get; set; }
 
-        public ObservableCollection<FirebaseObject<NotebookNote>> FirebaseObjects { get; set; }
-
         public ICommand Logout { get; set; }
 
         public MainPageViewModel() {
 
             Servces = new FirebaseServices();
 
-            FirebaseObjects = new ObservableCollection<FirebaseObject<NotebookNote>>();
-
             FireBaseNotebooks = new ObservableCollection<Notebook>();
 
             Logout = new Command(LogOut);
 
-            CreateNotebook = new Command(NewNotebookAsync);
+            CreateNotebook = new Command(OpenCreateNewNotebookPopUp);
 
-            CallNotebookAssync();
+            CallNotebookAsync();
+
         }
 
-        private async void NewNotebookAsync() {
-            Page mainPage = Application.Current.MainPage;
-            string notebookName;
-            notebookName = await mainPage.DisplayPromptAsync(
-                AppResources.NewNotebook,
-                AppResources.NoteBookName);
-
-            if (!string.IsNullOrEmpty(notebookName)) {
-                Notebook notebook = new Notebook() {
-                    Name = notebookName,
-                    UserID = App.UserID,
-                    CreatedDate = DateTime.Now
-                };
-
-                await Servces.InsertAsync(notebook, ChildName);
-            }
-
-            CallNotebookAssync();
+        private async void OpenCreateNewNotebookPopUp() {
+            await PopupNavigation.Instance.PushAsync(new NotebookPopUp(), true);
         }
 
         private void LogOut(object obj) {
             Servces.LogOut();
         }
 
-        private async void CallNotebookAssync() {
+        public async void CallNotebookAsync() {
             var collection = await Servces.ReadAsync(ChildName);
             var NotebookCollection = new List<Notebook>();
             foreach (var item in collection) {
@@ -76,6 +56,8 @@ namespace DuoNotes.ViewModel {
                     Id = item.Key,
                     Name = item.Object.Name,
                     CreatedDate = item.Object.CreatedDate,
+                    Color = item.Object.Color,
+                    Desc = item.Object.Desc
                 };
                 NotebookCollection.Add(notebook);
             }

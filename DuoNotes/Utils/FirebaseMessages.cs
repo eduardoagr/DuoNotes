@@ -36,6 +36,14 @@ namespace DuoNotes.Utils {
                        AppResources.EMAIL_NOT_FOUND,
                        AppResources.OK);
                     break;
+
+                case "INVALID_PASSWORD":
+                    App.Current.MainPage.DisplayAlert(
+                      AppResources.ServerError,
+                      AppResources.INVALID_PASSWORD,
+                      AppResources.OK);
+                    break;
+
                 default:
                     break;
             }

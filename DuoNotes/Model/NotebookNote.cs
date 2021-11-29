@@ -6,6 +6,10 @@ namespace DuoNotes.Model {
 
         public string Name { get; set; }
 
-        public DateTime CreatedDate { get; set; }
+        public string CreatedDate { get; set; }
+
+        public string Color { get; set; }
+
+        public string Desc { get; set; }
     }
 }

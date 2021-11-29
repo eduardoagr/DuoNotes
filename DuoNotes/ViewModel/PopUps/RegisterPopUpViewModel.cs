@@ -3,10 +3,9 @@ using DuoNotes.Services;
 
 using PropertyChanged;
 
-using System;
-using System.Collections.Generic;
+using Rg.Plugins.Popup.Services;
+
 using System.ComponentModel.DataAnnotations;
-using System.Text;
 using System.Windows.Input;
 
 using Xamarin.Forms;
@@ -19,6 +18,8 @@ namespace DuoNotes.ViewModel.PopUps {
         readonly FirebaseServices Services;
 
         public ICommand Register { get; set; }
+
+        public ICommand Close { get; set; }
 
         public User User { get; set; }
 
@@ -34,6 +35,8 @@ namespace DuoNotes.ViewModel.PopUps {
             Services = new FirebaseServices();
 
             Register = new Command(RegisterActionAsync, CanPreformAction);
+
+            Close = new Command(PerformClose);
         }
 
         private bool CanPreformAction() {
@@ -49,5 +52,9 @@ namespace DuoNotes.ViewModel.PopUps {
             await Services.RegisterAsync(User);
         }
 
+        private async void PerformClose() {
+
+            await PopupNavigation.Instance.PopAsync();
+        }
     }
 }

@@ -1,6 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Application x:Class="DuoNotes.App"
              xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+             xmlns:icon="clr-namespace:DuoNotes.Fonts"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
     <Application.Resources>
@@ -40,9 +42,62 @@
                 <Setter Property="HorizontalOptions"
                         Value="Fill" />
                 <Setter Property="FontSize"
-                        Value="Small" />
+                        Value="Medium" />
                 <Setter Property="VerticalOptions"
                         Value="Fill" />
+            </Style>
+
+            <Style TargetType="Label"
+                   x:Key="CloseStyle">
+                <Setter Property="Text"
+                        Value="{Static icon:Material.Close}" />
+                <Setter Property="TextColor"
+                        Value="Red" />
+                <Setter Property="HorizontalTextAlignment"
+                        Value="End" />
+                <Setter Property="FontFamily"
+                        Value="mat" />
+            </Style>
+
+            <Style TargetType="Label"
+                   x:Key="HeadersStyle"
+                   BasedOn="{StaticResource LabelStyle}">
+                <Setter Property="FontAttributes"
+                        Value="Bold" />
+                <Setter Property="FontSize"
+                        Value="Title" />
+                <Setter Property="HorizontalTextAlignment"
+                        Value="Center" />
+            </Style>
+
+            <Style TargetType="Frame"
+                   x:Key="FrameContainer">
+                <Setter Property="Padding"
+                        Value="0" />
+                <Setter Property="BorderColor"
+                        Value="Silver" />
+                <Setter Property="BackgroundColor"
+                        Value="{AppThemeBinding Dark={StaticResource BckgroundDarkColor},
+                        Light={StaticResource BackgroundLigthColor}}" />
+                <Setter Property="IsClippedToBounds"
+                        Value="True" />
+                <Setter Property="VerticalOptions"
+                        Value="Center" />
+            </Style>
+
+            <Style TargetType="buttons:SfChipGroup"
+                   x:Key="ChipCollection">
+                <Setter Property="ChipImageWidth"
+                        Value="60" />
+                <Setter Property="ChipBackgroundColor"
+                        Value="Transparent" />
+                <Setter Property="SelectedChipBackgroundColor"
+                        Value="{AppThemeBinding Dark={StaticResource BackgroundLigthColor},
+                        Light={StaticResource BckgroundDarkColor}}" />
+                <Setter Property="Type"
+                        Value="Choice" />
+                <Setter Property="HeightRequest"
+                        Value="60" />
             </Style>
         </ResourceDictionary>
     </Application.Resources>

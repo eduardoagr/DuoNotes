@@ -25,11 +25,7 @@
                                               WidthRequest="120" />
 
             <Frame Grid.Row="1"
-                   Padding="0"
-                   BorderColor="Silver"
-                   BackgroundColor="{AppThemeBinding Dark={StaticResource BckgroundDarkColor},
-                   Light={StaticResource BackgroundLigthColor}}"
-                   IsClippedToBounds="True"
+                   Style="{StaticResource FrameContainer}"
                    VerticalOptions="FillAndExpand">
 
                 <StackLayout Padding="10">
@@ -42,7 +38,7 @@
                            Style="{StaticResource EntrySyle}"
                            Text="{Binding User.Password}" />
 
-                    <Button Padding="5"
+                    <Button Padding="10"
                             Style="{StaticResource ButonStyle}"
                             Command="{Binding Login}"
                             FontSize="Medium"

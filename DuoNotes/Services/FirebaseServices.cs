@@ -73,7 +73,7 @@ namespace DuoNotes.Services {
 
         public async Task InsertAsync(NotebookNote element, string ChildName) {
             if (element is null) {
-                throw new ArgumentNullException(nameof(element));
+                return;
             }
             await Client.Child(ChildName)
                 .PostAsync(JsonConvert.SerializeObject(element));
@@ -93,6 +93,4 @@ namespace DuoNotes.Services {
         }
 
     }
-
-
 }
