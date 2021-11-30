@@ -98,6 +98,8 @@ namespace DuoNotes.Services {
 
         public async void ReadAsync(string ChildName) {
 
+            System.Console.WriteLine(App.UserID);
+
             var list = await Client.Child(ChildName)
                 .OnceAsync<NotebookNote>();
 

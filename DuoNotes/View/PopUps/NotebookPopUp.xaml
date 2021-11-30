@@ -46,6 +46,7 @@
 
             <Entry Placeholder="{translate:Translate NotebookUsage}"
                    Style="{StaticResource EntrySyle}"
+                   Text="{Binding Notebook.Desc}"
                    Grid.Row="3" />
 
             <Label Style="{StaticResource HeadersStyle}"

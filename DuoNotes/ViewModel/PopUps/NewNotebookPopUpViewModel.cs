@@ -9,6 +9,7 @@ using Rg.Plugins.Popup.Services;
 
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Windows.Input;
 
 using Xamarin.Forms;
@@ -44,16 +45,8 @@ namespace DuoNotes.ViewModel.PopUps {
 
             SelectedColorCommand = new Command(SelectColorAction);
 
-            CreateNotebook();
-        }
-        private void CreateNotebook() {
-            Notebook = new Notebook {
-                Name = Notebook.Name,
-                Color = SelectedColor.ToHex(),
-                CreatedDate = Notebook.CreatedDate,
-                Desc = Notebook.Desc,
-                UserID = App.UserID
-            };
+            Notebook = new Notebook();
+
         }
 
         private void SelectColorAction() {
@@ -66,6 +59,13 @@ namespace DuoNotes.ViewModel.PopUps {
             if (Notebook == null) {
                 return;
             }
+            DateTime dt = new DateTime();
+            var result = dt.ToString("D", new CultureInfo(App.languages));
+            Notebook.CreatedDate = result;
+            Notebook.UserID = App.UserID;
+            Notebook.Name = Notebook.Name;
+            Notebook.Desc = Notebook.Desc;
+            Notebook.Color = SelectedColor.ToHex();
             await Services.InsertAsync(Notebook, "Notebook");
             Services.ReadAsync("Notebook");
         }

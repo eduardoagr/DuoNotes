@@ -16,9 +16,6 @@ namespace DuoNotes.ViewModel {
 
         readonly FirebaseServices services;
 
-
-        readonly string ChildName = "Notebooks";
-
         public ICommand CreateNotebook { get; set; }
 
         public ObservableCollection<NotebookNote> FireBaseNotebooks { get; set; }
@@ -35,7 +32,7 @@ namespace DuoNotes.ViewModel {
 
             CreateNotebook = new Command(OpenCreateNewNotebookPopUp);
 
-            services.ReadAsync(ChildName);
+            services.ReadAsync("Notebook");
         }
 
         private async void OpenCreateNewNotebookPopUp() {
