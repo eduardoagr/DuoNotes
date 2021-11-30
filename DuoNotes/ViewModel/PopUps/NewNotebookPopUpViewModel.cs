@@ -59,9 +59,7 @@ namespace DuoNotes.ViewModel.PopUps {
             if (Notebook == null) {
                 return;
             }
-            DateTime dt = new DateTime();
-            var result = dt.ToString("D", new CultureInfo(App.languages));
-            Notebook.CreatedDate = result;
+            Notebook.CreatedDate = DateTime.Now.ToString("D", new CultureInfo(App.languages));
             Notebook.UserID = App.UserID;
             Notebook.Name = Notebook.Name;
             Notebook.Desc = Notebook.Desc;

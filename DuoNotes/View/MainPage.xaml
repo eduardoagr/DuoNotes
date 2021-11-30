@@ -22,9 +22,10 @@
         <CollectionView ItemsSource="{Binding FireBaseNotebooks}">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="model:Notebook">
-                    <Grid>
+                    <StackLayout>
                         <Label Text="{Binding Name, StringFormat='Notebook name: {0}'}" />
-                    </Grid>
+                        <Label Text="{Binding CreatedDate, StringFormat='Notebook date: {0}'}" />
+                    </StackLayout>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
 
