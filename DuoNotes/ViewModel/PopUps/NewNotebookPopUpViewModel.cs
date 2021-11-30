@@ -1,5 +1,6 @@
 ﻿
 
+using DuoNotes.Model;
 using DuoNotes.Services;
 
 using PropertyChanged;
@@ -23,6 +24,8 @@ namespace DuoNotes.ViewModel.PopUps {
 
         public Color SelectedColor { get; set; }
 
+        public Notebook Notebook { get; set; }
+
         public ICommand NewNotebook { get; set; }
 
         public ICommand Close { get; set; }
@@ -40,6 +43,17 @@ namespace DuoNotes.ViewModel.PopUps {
             Colors = ColorServices.GetItems();
 
             SelectedColorCommand = new Command(SelectColorAction);
+
+            CreateNotebook();
+        }
+        private void CreateNotebook() {
+            Notebook = new Notebook {
+                Name = Notebook.Name,
+                Color = SelectedColor.ToHex(),
+                CreatedDate = Notebook.CreatedDate,
+                Desc = Notebook.Desc,
+                UserID = App.UserID
+            };
         }
 
         private void SelectColorAction() {
@@ -48,8 +62,12 @@ namespace DuoNotes.ViewModel.PopUps {
             }
         }
 
-        private void CreateNewNotebook() {
-            throw new NotImplementedException();
+        private async void CreateNewNotebook() {
+            if (Notebook == null) {
+                return;
+            }
+            await Services.InsertAsync(Notebook, "Notebook");
+            Services.ReadAsync("Notebook");
         }
 
         private async void PerformClose() {

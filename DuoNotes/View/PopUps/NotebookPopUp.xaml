@@ -41,6 +41,7 @@
 
             <Entry Placeholder="{translate:Translate NoteBookName}"
                    Style="{StaticResource EntrySyle}"
+                   Text="{Binding Notebook.Name}"
                    Grid.Row="2" />
 
             <Entry Placeholder="{translate:Translate NotebookUsage}"
@@ -80,6 +81,7 @@
             <Button Padding="10"
                     Style="{StaticResource ButonStyle}"
                     Text="{translate:Translate NewNotebook}"
+                    Command="{Binding NewNotebook}"
                     Grid.Row="6" />
         </Grid>
     </Frame>

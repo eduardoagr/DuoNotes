@@ -12,8 +12,10 @@ using Newtonsoft.Json;
 
 using Rg.Plugins.Popup.Services;
 
-using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 
 using Xamarin.Essentials;
@@ -24,12 +26,14 @@ using User = DuoNotes.Model.User;
 namespace DuoNotes.Services {
     public class FirebaseServices {
 
+        public ObservableCollection<NotebookNote> FireBaseNotebooks { get; set; }
         readonly FirebaseAuthProvider AuthProvider;
         readonly FirebaseClient Client;
         readonly string BASE_URL = "https://duonotes-f2b77-default-rtdb.europe-west1.firebasedatabase.app/";
 
-        public FirebaseServices() {
+        public FirebaseServices([Optional] ObservableCollection<NotebookNote> notebookNotes) {
 
+            FireBaseNotebooks = notebookNotes;
             AuthProvider = new FirebaseAuthProvider(new FirebaseConfig(App.WEB_API_KEY));
             Client = new FirebaseClient(BASE_URL);
         }
@@ -79,18 +83,48 @@ namespace DuoNotes.Services {
                 .PostAsync(JsonConvert.SerializeObject(element));
         }
 
-        public async Task<List<FirebaseObject<NotebookNote>>> ReadAsync(string ChildName) {
+        //public async Task<ObservableCollection<FirebaseObject<NotebookNote>>> ReadAsync(string ChildName) {
 
-            var listNotebooks = new List<FirebaseObject<NotebookNote>>();
+        //    var listNotebooks = new ObservableCollection<FirebaseObject<NotebookNote>>();
+
+        //    var list = await Client.Child(ChildName)
+        //        .OnceAsync<NotebookNote>();
+
+        //    foreach (var item in list) {
+        //        listNotebooks.Add(item);
+        //    }
+        //    return listNotebooks;
+        //}
+
+        public async void ReadAsync(string ChildName) {
 
             var list = await Client.Child(ChildName)
                 .OnceAsync<NotebookNote>();
 
-            foreach (var item in list) {
-                listNotebooks.Add(item);
-            }
-            return listNotebooks;
-        }
+            var NotebookCollection = new List<Notebook>();
 
+            foreach (var item in list) {
+                //collection.Add(item);
+                Notebook notebook = new Notebook {
+                    UserID = item.Object.UserID,
+                    Id = item.Key,
+                    Name = item.Object.Name,
+                    CreatedDate = item.Object.CreatedDate,
+                    Color = item.Object.Color,
+                    Desc = item.Object.Desc
+                };
+                NotebookCollection.Add(notebook);
+            }
+            //var collection = await ReadAsync(ChildName);
+
+
+            NotebookCollection = NotebookCollection.Where(n => n.UserID == App.UserID).ToList();
+
+            FireBaseNotebooks.Clear();
+            foreach (var element in NotebookCollection) {
+                FireBaseNotebooks.Add(element);
+            }
+
+        }
     }
 }

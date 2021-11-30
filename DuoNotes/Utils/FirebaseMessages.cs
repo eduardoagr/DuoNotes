@@ -43,7 +43,6 @@ namespace DuoNotes.Utils {
                       AppResources.INVALID_PASSWORD,
                       AppResources.OK);
                     break;
-
                 default:
                     break;
             }

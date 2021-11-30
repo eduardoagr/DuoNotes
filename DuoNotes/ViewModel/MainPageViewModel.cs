@@ -14,62 +14,62 @@ using Xamarin.Forms;
 namespace DuoNotes.ViewModel {
     public class MainPageViewModel {
 
-        readonly FirebaseServices Servces;
+        readonly FirebaseServices services;
+
 
         readonly string ChildName = "Notebooks";
 
         public ICommand CreateNotebook { get; set; }
 
-        public ObservableCollection<Notebook> FireBaseNotebooks { get; set; }
+        public ObservableCollection<NotebookNote> FireBaseNotebooks { get; set; }
 
         public ICommand Logout { get; set; }
 
         public MainPageViewModel() {
 
-            Servces = new FirebaseServices();
+            FireBaseNotebooks = new ObservableCollection<NotebookNote>();
 
-            FireBaseNotebooks = new ObservableCollection<Notebook>();
+            services = new FirebaseServices(FireBaseNotebooks);
 
             Logout = new Command(LogOut);
 
             CreateNotebook = new Command(OpenCreateNewNotebookPopUp);
 
-            CallNotebookAsync();
-
+            services.ReadAsync(ChildName);
         }
 
         private async void OpenCreateNewNotebookPopUp() {
-            await PopupNavigation.Instance.PushAsync(new NotebookPopUp(), true);
+            await PopupNavigation.Instance.PushAsync(new NotebookPopUp());
         }
 
         private void LogOut(object obj) {
-            Servces.LogOut();
+            services.LogOut();
         }
 
-        public async void CallNotebookAsync() {
-            var collection = await Servces.ReadAsync(ChildName);
-            var NotebookCollection = new List<Notebook>();
-            foreach (var item in collection) {
+        //public async void FirebseReadAsync() {
+        //     var collection = await Servces.ReadAsync(ChildName);
+        //     var NotebookCollection = new List<Notebook>();
+        //     foreach (var item in collection) {
 
-                Notebook notebook = new Notebook {
-                    UserID = item.Object.UserID,
-                    Id = item.Key,
-                    Name = item.Object.Name,
-                    CreatedDate = item.Object.CreatedDate,
-                    Color = item.Object.Color,
-                    Desc = item.Object.Desc
-                };
-                NotebookCollection.Add(notebook);
-            }
+        //         Notebook notebook = new Notebook {
+        //             UserID = item.Object.UserID,
+        //             Id = item.Key,
+        //             Name = item.Object.Name,
+        //             CreatedDate = item.Object.CreatedDate,
+        //             Color = item.Object.Color,
+        //             Desc = item.Object.Desc
+        //         };
+        //         NotebookCollection.Add(notebook);
+        //     }
 
-            NotebookCollection = NotebookCollection.Where(n => n.UserID == App.UserID).ToList();
+        //     NotebookCollection = NotebookCollection.Where(n => n.UserID == App.UserID).ToList();
 
-            FireBaseNotebooks.Clear();
-            foreach (var element in NotebookCollection) {
-                FireBaseNotebooks.Add(element);
-            }
+        //     FireBaseNotebooks.Clear();
+        //     foreach (var element in NotebookCollection) {
+        //         FireBaseNotebooks.Add(element);
+        //     }
 
-        }
+        // }
     }
 
 }
