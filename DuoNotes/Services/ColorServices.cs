@@ -13,12 +13,20 @@ namespace DuoNotes.Services {
         public static List<Color> GetItems() {
 
             return new List<Color>() {
-                 Color.Red,
-                 Color.Green,
-                 Color.Blue,
-                 Color.Yellow,
-                 Color.Orange,
-                 Color.Pink
+                Color.Red,
+                Color.Green,
+                Color.Blue,
+                Color.Magenta,
+                Color.Orange,
+                Color.Purple,
+                Color.Pink,
+                Color.CornflowerBlue,
+                Color.DarkViolet,
+                Color.DarkRed,
+                Color.DarkGreen,
+                Color.DarkGray,
+                Color.OrangeRed,
+                Color.GreenYellow
             };
         }
     }

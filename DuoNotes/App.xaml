@@ -53,6 +53,8 @@
                         Value="{Static icon:Material.Close}" />
                 <Setter Property="TextColor"
                         Value="Red" />
+                <Setter Property="FontSize"
+                        Value="30" />
                 <Setter Property="HorizontalTextAlignment"
                         Value="End" />
                 <Setter Property="FontFamily"

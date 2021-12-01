@@ -36,6 +36,7 @@
 
                     <Entry Placeholder="{translate:Translate Password}"
                            Style="{StaticResource EntrySyle}"
+                           IsPassword="True"
                            Text="{Binding User.Password}" />
 
                     <Button Padding="10"

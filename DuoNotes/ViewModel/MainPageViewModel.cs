@@ -32,7 +32,7 @@ namespace DuoNotes.ViewModel {
 
             CreateNotebook = new Command(OpenCreateNewNotebookPopUp);
 
-            services.ReadAsync("Notebook");
+            services.ReadAsync("Notebooks");
         }
 
         private async void OpenCreateNewNotebookPopUp() {

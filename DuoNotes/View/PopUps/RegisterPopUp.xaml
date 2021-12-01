@@ -47,11 +47,13 @@
                 <Entry Style="{StaticResource EntrySyle}"
                        Placeholder="{translate:Translate Password}"
                        Text="{Binding User.Password}"
+                       IsPassword="True"
                        Grid.Row="3" />
 
                 <Entry Style="{StaticResource EntrySyle}"
                        Placeholder="{translate:Translate Password}"
                        Text="{Binding User.Password}"
+                       IsPassword="True"
                        Grid.Row="4" />
 
                 <Button Padding="10"

@@ -54,30 +54,33 @@
                    Text="{translate:Translate NotebookColor}"
                    Grid.Row="4" />
 
-            <buttons:SfChipGroup Grid.Row="5"
-                                 Style="{StaticResource ChipCollection}"
-                                 ItemsSource="{Binding Colors}"
-                                 SelectedItem="{Binding SelectedColor}">
-                <buttons:SfChipGroup.Behaviors>
-                    <community:EventToCommandBehavior EventName="SelectionChanged"
-                                                      Command="{Binding SelectedColorCommand}" />
-                </buttons:SfChipGroup.Behaviors>
-                <buttons:SfChipGroup.ItemTemplate>
-                    <DataTemplate>
-                        <StackLayout>
-                            <border:SfBorder CornerRadius="20"
-                                             WidthRequest="60"
-                                             BorderWidth="5"
-                                             BorderColor="Transparent"
-                                             HeightRequest="60">
-                                <Ellipse Fill="{Binding .}"
-                                         HeightRequest="60"
-                                         WidthRequest="60" />
-                            </border:SfBorder>
-                        </StackLayout>
-                    </DataTemplate>
-                </buttons:SfChipGroup.ItemTemplate>
-            </buttons:SfChipGroup>
+            <ScrollView Grid.Row="5"
+                        HorizontalScrollBarVisibility="Never"
+                        Orientation="Horizontal">
+                <buttons:SfChipGroup  Style="{StaticResource ChipCollection}"
+                                      ItemsSource="{Binding Colors}"
+                                      SelectedItem="{Binding SelectedColor}">
+                    <buttons:SfChipGroup.Behaviors>
+                        <community:EventToCommandBehavior EventName="SelectionChanged"
+                                                          Command="{Binding SelectedColorCommand}" />
+                    </buttons:SfChipGroup.Behaviors>
+                    <buttons:SfChipGroup.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout>
+                                <border:SfBorder CornerRadius="20"
+                                                 WidthRequest="60"
+                                                 BorderWidth="5"
+                                                 BorderColor="Transparent"
+                                                 HeightRequest="60">
+                                    <Ellipse Fill="{Binding .}"
+                                             HeightRequest="60"
+                                             WidthRequest="60" />
+                                </border:SfBorder>
+                            </StackLayout>
+                        </DataTemplate>
+                    </buttons:SfChipGroup.ItemTemplate>
+                </buttons:SfChipGroup>
+            </ScrollView>
 
             <Button Padding="10"
                     Style="{StaticResource ButonStyle}"

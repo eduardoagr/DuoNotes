@@ -63,19 +63,19 @@
 
                     <Label Text="{Static icon:Material.Add}"
                            Rotation="180"
-                           FontSize="Title"
+                           FontSize="30"
                            community:TouchEffect.Command="{Binding CreateNotebook}"
                            FontFamily="mat" />
 
                     <Label Text="{Static icon:Material.Person}"
                            Rotation="180"
-                           FontSize="Title"
+                           FontSize="30"
                            FontFamily="mat" />
 
 
                     <Label Text="{Static icon:Material.Logout}"
                            Rotation="180"
-                           FontSize="Title"
+                           FontSize="30"
                            Margin="0,20,0,5"
                            TextColor="Black"
                            community:TouchEffect.Command="{Binding Logout}"
