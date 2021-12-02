@@ -32,10 +32,16 @@
                     <Entry Keyboard="Email"
                            Placeholder="{translate:Translate Email}"
                            Style="{StaticResource EntrySyle}"
-                           Text="{Binding User.Email}" />
+                           ReturnType="Next"
+                           Text="{Binding User.Email}">
+                        <Entry.Behaviors>
+                            <translate:OnEntryCompletedBehavior TargetElement="{x:Reference PassEntry}" />
+                        </Entry.Behaviors>
+                    </Entry>
 
                     <Entry Placeholder="{translate:Translate Password}"
                            Style="{StaticResource EntrySyle}"
+                           x:Name="PassEntry"
                            IsPassword="True"
                            Text="{Binding User.Password}" />
 

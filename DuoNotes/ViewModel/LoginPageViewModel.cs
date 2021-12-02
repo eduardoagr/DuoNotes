@@ -5,6 +5,7 @@ using PropertyChanged;
 
 using Rg.Plugins.Popup.Services;
 
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.Windows.Input;
 

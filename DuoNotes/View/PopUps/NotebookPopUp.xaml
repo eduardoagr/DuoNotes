@@ -42,9 +42,14 @@
             <Entry Placeholder="{translate:Translate NoteBookName}"
                    Style="{StaticResource EntrySyle}"
                    Text="{Binding Notebook.Name}"
-                   Grid.Row="2" />
+                   Grid.Row="2">
+                <Entry.Behaviors>
+                    <translate:OnEntryCompletedBehavior TargetElement="{x:Reference NotebookUsage}" />
+                </Entry.Behaviors>
+            </Entry>
 
             <Entry Placeholder="{translate:Translate NotebookUsage}"
+                   x:Name="NotebookUsage"
                    Style="{StaticResource EntrySyle}"
                    Text="{Binding Notebook.Desc}"
                    Grid.Row="3" />

@@ -30,7 +30,8 @@
         <Frame Style="{StaticResource FrameContainer}">
 
             <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto"
-                  Padding="20" RowSpacing="10">
+                  Padding="20"
+                  RowSpacing="10">
 
                 <Label Style="{StaticResource CloseStyle}"
                        community:TouchEffect.Command="{Binding Close}" />
@@ -42,9 +43,14 @@
                 <Entry Style="{StaticResource EntrySyle}"
                        Placeholder="{translate:Translate Email}"
                        Text="{Binding User.Email}"
-                       Grid.Row="2" />
+                       Grid.Row="2">
+                    <Entry.Behaviors>
+                        <translate:OnEntryCompletedBehavior TargetElement="{x:Reference PassEntry}" />
+                    </Entry.Behaviors>
+                </Entry>
 
                 <Entry Style="{StaticResource EntrySyle}"
+                       x:Name="PassEntry"
                        Placeholder="{translate:Translate Password}"
                        Text="{Binding User.Password}"
                        IsPassword="True"
