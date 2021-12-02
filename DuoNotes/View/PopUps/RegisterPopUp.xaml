@@ -43,6 +43,7 @@
                 <Entry Style="{StaticResource EntrySyle}"
                        Placeholder="{translate:Translate Email}"
                        Text="{Binding User.Email}"
+                       ReturnType="Next"
                        Grid.Row="2">
                     <Entry.Behaviors>
                         <translate:OnEntryCompletedBehavior TargetElement="{x:Reference PassEntry}" />

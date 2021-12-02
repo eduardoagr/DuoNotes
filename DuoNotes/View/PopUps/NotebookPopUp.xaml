@@ -42,6 +42,7 @@
             <Entry Placeholder="{translate:Translate NoteBookName}"
                    Style="{StaticResource EntrySyle}"
                    Text="{Binding Notebook.Name}"
+                   ReturnType="Next"
                    Grid.Row="2">
                 <Entry.Behaviors>
                     <translate:OnEntryCompletedBehavior TargetElement="{x:Reference NotebookUsage}" />
