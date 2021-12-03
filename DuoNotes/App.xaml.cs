@@ -1,4 +1,5 @@
-﻿using DuoNotes.View;
+﻿using DuoNotes.Services;
+using DuoNotes.View;
 
 using Syncfusion.Licensing;
 
@@ -19,6 +20,8 @@ namespace DuoNotes {
         public static string languages = CultureInfo.CurrentCulture.Name;
 
         public static string UserID = string.Empty;
+
+        public static FirebaseServices services;
 
         public App() {
 

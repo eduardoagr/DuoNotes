@@ -15,7 +15,6 @@ using Rg.Plugins.Popup.Services;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 
 using Xamarin.Essentials;
@@ -31,7 +30,7 @@ namespace DuoNotes.Services {
         readonly FirebaseClient Client;
         readonly string BASE_URL = "https://duonotes-f2b77-default-rtdb.europe-west1.firebasedatabase.app/";
 
-        public FirebaseServices([Optional] ObservableCollection<NotebookNote> notebookNotes) {
+        public FirebaseServices(ObservableCollection<NotebookNote> notebookNotes = null) {
 
             FireBaseNotebooks = notebookNotes;
             AuthProvider = new FirebaseAuthProvider(new FirebaseConfig(App.WEB_API_KEY));
@@ -122,6 +121,11 @@ namespace DuoNotes.Services {
 
             NotebookCollection = NotebookCollection.Where(n => n.UserID == App.UserID).ToList();
 
+           
+
+            if (FireBaseNotebooks == null) {
+                FireBaseNotebooks = new ObservableCollection<NotebookNote>();
+            }
             FireBaseNotebooks.Clear();
             foreach (var element in NotebookCollection) {
                 FireBaseNotebooks.Add(element);

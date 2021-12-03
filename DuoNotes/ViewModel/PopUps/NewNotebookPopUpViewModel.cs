@@ -9,6 +9,7 @@ using Rg.Plugins.Popup.Services;
 
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Windows.Input;
 
@@ -25,6 +26,8 @@ namespace DuoNotes.ViewModel.PopUps {
 
         public Color SelectedColor { get; set; }
 
+        //public ObservableCollection<NotebookNote> FireBaseNotebooks { get; set; }
+
         public Notebook Notebook { get; set; }
 
         public ICommand NewNotebook { get; set; }
@@ -35,7 +38,9 @@ namespace DuoNotes.ViewModel.PopUps {
 
         public NewNotebookPopUpViewModel() {
 
-            Services = new FirebaseServices();
+            //FireBaseNotebooks = new ObservableCollection<NotebookNote>();
+
+            Services = App.services;//new FirebaseServices();
 
             Notebook = new Notebook {
                 OnAnyPropertiesChanged = () => {
@@ -51,8 +56,6 @@ namespace DuoNotes.ViewModel.PopUps {
             Colors = ColorServices.GetItems();
 
             SelectedColorCommand = new Command(SelectColorAction);
-
-
 
         }
 
@@ -72,12 +75,14 @@ namespace DuoNotes.ViewModel.PopUps {
             if (Notebook == null) {
                 return;
             }
+
             Notebook.CreatedDate = DateTime.Now.ToString("D", new CultureInfo(App.languages));
             Notebook.UserID = App.UserID;
             Notebook.Name = Notebook.Name;
             Notebook.Desc = Notebook.Desc;
 
             await Services.InsertAsync(Notebook, "Notebooks");
+            await PopupNavigation.Instance.PopAsync();
             Services.ReadAsync("Notebooks");
         }
 
