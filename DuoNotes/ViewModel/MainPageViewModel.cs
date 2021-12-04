@@ -12,8 +12,6 @@ using Xamarin.Forms;
 namespace DuoNotes.ViewModel {
     public class MainPageViewModel {
 
-
-
         public ICommand CreateNotebook { get; set; }
 
         public ObservableCollection<NotebookNote> FireBaseNotebooks { get; set; }

@@ -82,30 +82,15 @@ namespace DuoNotes.Services {
                 .PostAsync(JsonConvert.SerializeObject(element));
         }
 
-        //public async Task<ObservableCollection<FirebaseObject<NotebookNote>>> ReadAsync(string ChildName) {
-
-        //    var listNotebooks = new ObservableCollection<FirebaseObject<NotebookNote>>();
-
-        //    var list = await Client.Child(ChildName)
-        //        .OnceAsync<NotebookNote>();
-
-        //    foreach (var item in list) {
-        //        listNotebooks.Add(item);
-        //    }
-        //    return listNotebooks;
-        //}
-
         public async void ReadAsync(string ChildName) {
 
-            System.Console.WriteLine(App.UserID);
-
             var list = await Client.Child(ChildName)
-                .OnceAsync<NotebookNote>();
+                 .OnceAsync<NotebookNote>();
 
             var NotebookCollection = new List<Notebook>();
 
             foreach (var item in list) {
-                //collection.Add(item);
+
                 Notebook notebook = new Notebook {
                     UserID = item.Object.UserID,
                     Id = item.Key,
@@ -116,16 +101,9 @@ namespace DuoNotes.Services {
                 };
                 NotebookCollection.Add(notebook);
             }
-            //var collection = await ReadAsync(ChildName);
-
 
             NotebookCollection = NotebookCollection.Where(n => n.UserID == App.UserID).ToList();
 
-           
-
-            if (FireBaseNotebooks == null) {
-                FireBaseNotebooks = new ObservableCollection<NotebookNote>();
-            }
             FireBaseNotebooks.Clear();
             foreach (var element in NotebookCollection) {
                 FireBaseNotebooks.Add(element);

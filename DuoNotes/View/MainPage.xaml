@@ -63,26 +63,23 @@
 
                     <Label Text="{Static icon:Material.Add}"
                            Rotation="180"
-                           FontSize="30"
+                           FontSize="Title"
                            community:TouchEffect.Command="{Binding CreateNotebook}"
                            FontFamily="mat" />
 
                     <Label Text="{Static icon:Material.Person}"
                            Rotation="180"
-                           FontSize="30"
+                           FontSize="Title"
                            FontFamily="mat" />
 
 
                     <Label Text="{Static icon:Material.Logout}"
                            Rotation="180"
-                           FontSize="30"
+                           FontSize="Title"
                            Margin="0,20,0,5"
                            TextColor="Black"
                            community:TouchEffect.Command="{Binding Logout}"
                            FontFamily="mat" />
-
-
-
                 </StackLayout>
             </xct:Expander>
         </pancakeview:PancakeView>
