@@ -22,6 +22,8 @@
     <Grid>
         <syncfusion:SfListView x:Name="listView"
                                ItemsSource="{Binding FireBaseNotebooks}"
+                               SelectedItem="{Binding SelectedNotebookNote}"
+                               SelectionChangedCommand="{Binding SeletedItemCommand}"
                                ItemSize="150">
             <syncfusion:SfListView.LayoutManager>
                 <syncfusion:GridLayout SpanCount="2" />
