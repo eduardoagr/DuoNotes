@@ -27,6 +27,7 @@
                 <syncfusion:GridLayout SpanCount="2" />
             </syncfusion:SfListView.LayoutManager>
             <syncfusion:SfListView.ItemTemplate>
+
                 <DataTemplate x:DataType="model:Notebook">
 
                     <Grid Padding="10"
@@ -57,8 +58,6 @@
 
                         <Label Text="{Binding Desc}"
                                Grid.Row="3" />
-
-
 
                     </Grid>
                 </DataTemplate>

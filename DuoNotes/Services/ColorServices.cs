@@ -21,12 +21,9 @@ namespace DuoNotes.Services {
                 Color.Purple,
                 Color.Pink,
                 Color.CornflowerBlue,
-                Color.DarkViolet,
-                Color.DarkRed,
-                Color.DarkGreen,
-                Color.DarkGray,
-                Color.OrangeRed,
-                Color.GreenYellow
+                Color.Violet,
+                Color.DarkOrange,
+                Color.DarkViolet
             };
         }
     }
