@@ -183,6 +183,9 @@
   <data name="ServerError" xml:space="preserve">
     <value>Server error</value>
   </data>
+  <data name="Usage" xml:space="preserve">
+    <value>This notebook has:</value>
+  </data>
   <data name="UserInserted" xml:space="preserve">
     <value>User created successfully</value>
   </data>

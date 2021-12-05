@@ -3,8 +3,10 @@ using FFImageLoading.Forms.Platform;
 
 using Foundation;
 
+using Syncfusion.ListView.XForms.iOS;
 using Syncfusion.XForms.iOS.Buttons;
 using Syncfusion.XForms.iOS.ComboBox;
+using Syncfusion.XForms.iOS.EffectsView;
 
 using UIKit;
 
@@ -29,6 +31,8 @@ namespace DuoNotes.iOS {
             CachedImageRenderer.Init();
             SfComboBoxRenderer.Init();
             FormsMaterial.Init();
+            SfListViewRenderer.Init();
+            SfEffectsViewRenderer.Init();
             SfChipGroupRenderer.Init();
             SfChipRenderer.Init();
 

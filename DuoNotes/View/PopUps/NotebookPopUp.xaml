@@ -42,6 +42,7 @@
             <Entry Placeholder="{translate:Translate NoteBookName}"
                    Style="{StaticResource EntrySyle}"
                    Text="{Binding Notebook.Name}"
+                   MaxLength="25"
                    ReturnType="Next"
                    Grid.Row="2">
                 <Entry.Behaviors>
@@ -53,6 +54,7 @@
                    x:Name="NotebookUsage"
                    Style="{StaticResource EntrySyle}"
                    Text="{Binding Notebook.Desc}"
+                   MaxLength="25"
                    Grid.Row="3" />
 
             <Label Style="{StaticResource HeadersStyle}"
