@@ -35,7 +35,6 @@ namespace DuoNotes.iOS {
             SfEffectsViewRenderer.Init();
             SfChipGroupRenderer.Init();
             SfChipRenderer.Init();
-
             Rg.Plugins.Popup.Popup.Init();
             LoadApplication(new App());
 

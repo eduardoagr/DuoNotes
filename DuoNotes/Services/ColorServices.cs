@@ -1,10 +1,4 @@
-﻿using DuoNotes.Model;
-
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-
-using System.Text;
+﻿using System.Collections.Generic;
 
 using Xamarin.Forms;
 
@@ -16,14 +10,9 @@ namespace DuoNotes.Services {
                 Color.Red,
                 Color.Green,
                 Color.Blue,
-                Color.Magenta,
+                Color.DarkGray,
                 Color.Orange,
                 Color.Purple,
-                Color.Pink,
-                Color.CornflowerBlue,
-                Color.Violet,
-                Color.DarkOrange,
-                Color.DarkViolet
             };
         }
     }

@@ -20,9 +20,9 @@ namespace DuoNotes.ViewModel {
 
         readonly FirebaseServices Services;
 
-        public ICommand NavigateToRegister { get; set; }
+        public ICommand NavigateToRegisterCommand { get; set; }
 
-        public ICommand Login { get; set; }
+        public ICommand LoginCommand { get; set; }
 
         public User User { get; set; }
 
@@ -34,19 +34,19 @@ namespace DuoNotes.ViewModel {
             User = new User {
                 OnAnyPropertiesChanged = () => {
 
-                    (Login as Command).ChangeCanExecute();
+                    (LoginCommand as Command).ChangeCanExecute();
                 }
             };
 
-            NavigateToRegister = new Command(OpenRegisterPopUp);
+            NavigateToRegisterCommand = new Command(OpenRegisterPopUpAction);
 
             Services = new FirebaseServices();
 
-            Login = new Command(LoginAction, CanPreformAction);
+            LoginCommand = new Command(LoginAction, CanPreformAction);
 
         }
 
-        private async void OpenRegisterPopUp() {
+        private async void OpenRegisterPopUpAction() {
             await PopupNavigation.Instance.PushAsync(new RegisterPopUp());
         }
 

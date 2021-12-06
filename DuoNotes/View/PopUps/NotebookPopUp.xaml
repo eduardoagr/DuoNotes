@@ -32,7 +32,7 @@
               Padding="10">
 
             <Label Style="{StaticResource CloseStyle}"
-                   community:TouchEffect.Command="{Binding Close}" />
+                   community:TouchEffect.Command="{Binding CloseCommand}" />
 
             <Label Text="{translate:Translate NoteBookData}"
                    Style="{StaticResource HeadersStyle}"
@@ -42,8 +42,6 @@
             <Entry Placeholder="{translate:Translate NoteBookName}"
                    Style="{StaticResource EntrySyle}"
                    Text="{Binding Notebook.Name}"
-                   MaxLength="25"
-                   ReturnType="Next"
                    Grid.Row="2">
                 <Entry.Behaviors>
                     <translate:OnEntryCompletedBehavior TargetElement="{x:Reference NotebookUsage}" />
@@ -54,7 +52,6 @@
                    x:Name="NotebookUsage"
                    Style="{StaticResource EntrySyle}"
                    Text="{Binding Notebook.Desc}"
-                   MaxLength="25"
                    Grid.Row="3" />
 
             <Label Style="{StaticResource HeadersStyle}"
@@ -89,7 +86,7 @@
             <Button Padding="10"
                     Style="{StaticResource ButonStyle}"
                     Text="{translate:Translate NewNotebook}"
-                    Command="{Binding NewNotebook}"
+                    Command="{Binding NewNotebookCommand}"
                     Grid.Row="6" />
         </Grid>
     </Frame>

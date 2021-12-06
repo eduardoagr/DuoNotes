@@ -32,7 +32,6 @@
                     <Entry Keyboard="Email"
                            Placeholder="{translate:Translate Email}"
                            Style="{StaticResource EntrySyle}"
-                           ReturnType="Next"
                            Text="{Binding User.Email}">
                         <Entry.Behaviors>
                             <translate:OnEntryCompletedBehavior TargetElement="{x:Reference PassEntry}" />
@@ -47,7 +46,7 @@
 
                     <Button Padding="10"
                             Style="{StaticResource ButonStyle}"
-                            Command="{Binding Login}"
+                            Command="{Binding LoginCommand}"
                             FontSize="Medium"
                             Text="{translate:Translate Login}" />
                 </StackLayout>
@@ -57,7 +56,7 @@
                    HorizontalOptions="End"
                    Style="{StaticResource LabelStyle}"
                    Text="{translate:Translate HaveAccount}"
-                   community:TouchEffect.Command="{Binding NavigateToRegister}">
+                   community:TouchEffect.Command="{Binding NavigateToRegisterCommand}">
             </Label>
 
 

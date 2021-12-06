@@ -22,6 +22,10 @@
                         Value="#A9A9A9" />
                 <Setter Property="Visual"
                         Value="Material" />
+                <Setter Property="MaxLength"
+                        Value="25" />
+                <Setter Property="ReturnType"
+                        Value="Next" />
             </Style>
 
             <Style x:Key="LabelStyle"
@@ -51,7 +55,7 @@
             <Style TargetType="Label"
                    x:Key="CloseStyle">
                 <Setter Property="Text"
-                        Value="{Static icon:Material.Close}" />
+                        Value="{Static icon:MaterialIcons.CloseCircle}" />
                 <Setter Property="TextColor"
                         Value="Red" />
                 <Setter Property="FontSize"
@@ -115,6 +119,40 @@
                         Value="60" />
                 <Setter Property="BorderColor"
                         Value="Transparent" />
+            </Style>
+
+            <Style TargetType="Label"
+                   x:Key="PlusStyle">
+                <Setter Property="Text"
+                        Value="{Static icon:IconFont.Plus}" />
+                <Setter Property="FontSize"
+                        Value="Title" />
+                <Setter Property="HorizontalTextAlignment"
+                        Value="Center" />
+                <Setter Property="VerticalTextAlignment"
+                        Value="Center" />
+                <Setter Property="FontFamily"
+                        Value="fa" />
+            </Style>
+
+            <Style TargetType="Frame"
+                   x:Key="FabButton">
+                <Setter Property="Padding"
+                        Value="10" />
+                <Setter Property="Margin"
+                        Value="12" />
+                <Setter Property="CornerRadius"
+                        Value="30" />
+                <Setter Property="WidthRequest"
+                        Value="30" />
+                <Setter Property="HeightRequest"
+                        Value="30" />
+                <Setter Property="VerticalOptions"
+                        Value="End" />
+                <Setter Property="HorizontalOptions"
+                        Value="End" />
+                <Setter Property="BackgroundColor"
+                        Value="CornflowerBlue" />
             </Style>
 
 

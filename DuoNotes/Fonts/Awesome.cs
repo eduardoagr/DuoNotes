@@ -7,6 +7,7 @@ namespace DuoNotes.Fonts {
     // If you change the class to 'public' in order to use it outside its assembly
     //  you should also change the fields from 'const' to 'public static readonly'
     static class IconFont {
+
         public const string Space = "\u0020";
         public const string Exclamation = "\u0021";
         public const string Hashtag = "\u0023";

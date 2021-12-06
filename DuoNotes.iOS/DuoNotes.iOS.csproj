@@ -178,7 +178,4 @@
   <ItemGroup>
     <BundleResource Include="Resources\book.svg" />
   </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\signOut.svg" />
-  </ItemGroup>
 </Project>

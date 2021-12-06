@@ -33,7 +33,7 @@
                   RowSpacing="10">
 
                 <Label Style="{StaticResource CloseStyle}"
-                       community:TouchEffect.Command="{Binding Close}" />
+                       community:TouchEffect.Command="{Binding CloseCommand}" />
 
                 <Label Text="{translate:Translate Register}"
                        Style="{StaticResource HeadersStyle}"
@@ -42,7 +42,6 @@
                 <Entry Style="{StaticResource EntrySyle}"
                        Placeholder="{translate:Translate Email}"
                        Text="{Binding User.Email}"
-                       ReturnType="Next"
                        Grid.Row="2">
                     <Entry.Behaviors>
                         <translate:OnEntryCompletedBehavior TargetElement="{x:Reference PassEntry}" />
@@ -64,7 +63,7 @@
 
                 <Button Padding="10"
                         Style="{StaticResource ButonStyle}"
-                        Command="{Binding Register}"
+                        Command="{Binding RegisterCommand}"
                         Text="{translate:Translate Register}"
                         Grid.Row="5" />
 

@@ -17,9 +17,9 @@ namespace DuoNotes.ViewModel.PopUps {
 
         readonly FirebaseServices Services;
 
-        public ICommand Register { get; set; }
+        public ICommand RegisterCommand { get; set; }
 
-        public ICommand Close { get; set; }
+        public ICommand CloseCommand { get; set; }
 
         public User User { get; set; }
 
@@ -28,15 +28,15 @@ namespace DuoNotes.ViewModel.PopUps {
             User = new User {
                 OnAnyPropertiesChanged = () => {
 
-                    (Register as Command).ChangeCanExecute();
+                    (RegisterCommand as Command).ChangeCanExecute();
                 }
             };
 
             Services = new FirebaseServices();
 
-            Register = new Command(RegisterActionAsync, CanPreformAction);
+            RegisterCommand = new Command(RegisterActionAsync, CanPreformAction);
 
-            Close = new Command(PerformClose);
+            CloseCommand = new Command(PerformCloseAction);
         }
 
         private bool CanPreformAction() {
@@ -52,7 +52,7 @@ namespace DuoNotes.ViewModel.PopUps {
             await Services.RegisterAsync(User);
         }
 
-        private async void PerformClose() {
+        private async void PerformCloseAction() {
 
             await PopupNavigation.Instance.PopAsync();
         }

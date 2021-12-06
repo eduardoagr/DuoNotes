@@ -2,22 +2,30 @@
 <ContentPage x:Class="DuoNotes.MainPage"
              xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:community="http://xamarin.com/schemas/2020/toolkit"
              xmlns:icon="clr-namespace:DuoNotes.Fonts"
-             xmlns:xct="clr-namespace:Xamarin.CommunityToolkit.UI.Views;assembly=Xamarin.CommunityToolkit"
              xmlns:translate="clr-namespace:DuoNotes.Utils"
              xmlns:vm="clr-namespace:DuoNotes.ViewModel"
              xmlns:model="clr-namespace:DuoNotes.Model"
+             xmlns:community="http://xamarin.com/schemas/2020/toolkit"
              Title="{translate:Translate Notebooks}"
-             xmlns:pancakeview="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              xmlns:syncfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
              BackgroundColor="{AppThemeBinding Dark={StaticResource BckgroundDarkColor},
                                       Light={StaticResource BackgroundLigthColor}}">
+
 
     <ContentPage.BindingContext>
         <vm:MainPageViewModel />
     </ContentPage.BindingContext>
 
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Order="Secondary"
+                     Text="Logout"
+                     Command="{Binding LogoutCommand}"
+                     Priority="1" />
+        <ToolbarItem Order="Secondary"
+                     Text="profile"
+                     Priority="1" />
+    </ContentPage.ToolbarItems>
 
     <Grid>
         <syncfusion:SfListView x:Name="listView"
@@ -66,59 +74,13 @@
             </syncfusion:SfListView.ItemTemplate>
         </syncfusion:SfListView>
 
-        <pancakeview:PancakeView HorizontalOptions="End"
-                                 VerticalOptions="End"
-                                 Margin="30"
-                                 CornerRadius="40"
-                                 Padding="15"
-                                 BackgroundColor="CornflowerBlue">
+        <Frame Style="{StaticResource FabButton}"
+               x:Name="Fab">
 
-            <xct:Expander HorizontalOptions="Start"
-                          Rotation="180"
-                          VerticalOptions="End">
-                <xct:Expander.Header>
-                    <Label Text="{Static icon:IconFont.BoxOpen}"
-                           Rotation="180"
-                           FontSize="Title"
-                           FontFamily="fa">
-                        <Label.Triggers>
-                            <DataTrigger TargetType="Label"
-                                         Binding="{Binding Source={RelativeSource AncestorType={x:Type xct:Expander}}, Path=IsExpanded}"
-                                         Value="False">
-                                <Setter Property="Text"
-                                        Value="{Static icon:IconFont.Box}">
-                                </Setter>
-                            </DataTrigger>
-                        </Label.Triggers>
-                    </Label>
-                </xct:Expander.Header>
-
-                <StackLayout Spacing="30"
-                             Margin="0,30,0,0"
-                             HorizontalOptions="Center">
-
-                    <Label Text="{Static icon:Material.Add}"
-                           Rotation="180"
-                           FontSize="Title"
-                           community:TouchEffect.Command="{Binding CreateNotebook}"
-                           FontFamily="mat" />
-
-                    <Label Text="{Static icon:Material.Person}"
-                           Rotation="180"
-                           FontSize="Title"
-                           FontFamily="mat" />
-
-
-                    <Label Text="{Static icon:Material.Logout}"
-                           Rotation="180"
-                           FontSize="Title"
-                           Margin="0,20,0,5"
-                           TextColor="Black"
-                           community:TouchEffect.Command="{Binding Logout}"
-                           FontFamily="mat" />
-                </StackLayout>
-            </xct:Expander>
-        </pancakeview:PancakeView>
+            <Label Text="{Static icon:IconFont.Plus}"
+                   Style="{StaticResource PlusStyle}"
+                   community:TouchEffect.Command="{Binding FabAnimationCommmand}"
+                   community:TouchEffect.CommandParameter="{Reference Fab}" />
+        </Frame>
     </Grid>
-
 </ContentPage>

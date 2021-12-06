@@ -26,32 +26,30 @@ namespace DuoNotes.ViewModel.PopUps {
 
         public Color SelectedColor { get; set; }
 
-        //public ObservableCollection<NotebookNote> FireBaseNotebooks { get; set; }
 
         public Notebook Notebook { get; set; }
 
-        public ICommand NewNotebook { get; set; }
+        public ICommand NewNotebookCommand { get; set; }
 
-        public ICommand Close { get; set; }
+        public ICommand CloseCommand { get; set; }
 
         public ICommand SelectedColorCommand { get; set; }
 
         public NewNotebookPopUpViewModel() {
 
-            //FireBaseNotebooks = new ObservableCollection<NotebookNote>();
 
-            Services = App.services;//new FirebaseServices();
+            Services = App.services;
 
             Notebook = new Notebook {
                 OnAnyPropertiesChanged = () => {
 
-                    (NewNotebook as Command).ChangeCanExecute();
+                    (NewNotebookCommand as Command).ChangeCanExecute();
                 }
             };
 
-            NewNotebook = new Command(CreateNewNotebook, CanCreateNotebook);
+            NewNotebookCommand = new Command(CreateNewNotebookAsync, CanCreateNotebook);
 
-            Close = new Command(PerformClose);
+            CloseCommand = new Command(PerformCloseAction);
 
             Colors = ColorServices.GetItems();
 
@@ -59,7 +57,7 @@ namespace DuoNotes.ViewModel.PopUps {
 
         }
 
-        private async void PerformClose() {
+        private async void PerformCloseAction() {
             await PopupNavigation.Instance.PopAsync();
         }
 
@@ -71,7 +69,7 @@ namespace DuoNotes.ViewModel.PopUps {
             Notebook.Color = SelectedColor.ToHex();
         }
 
-        private async void CreateNewNotebook() {
+        private async void CreateNewNotebookAsync() {
             if (Notebook == null) {
                 return;
             }

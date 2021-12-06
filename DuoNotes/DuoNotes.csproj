@@ -13,13 +13,13 @@
 
   <ItemGroup>
     <None Remove="Fonts\FontAwesome.otf" />
-    <None Remove="Fonts\MaterialIcons-Regular.ttf" />
+    <None Remove="Fonts\materialdesignicons.ttf" />
     <None Remove="Resources\fa_Solid.otf" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="Fonts\FontAwesome.otf" />
-    <EmbeddedResource Include="Fonts\MaterialIcons-Regular.ttf" />
+    <EmbeddedResource Include="Fonts\materialdesignicons.ttf" />
   </ItemGroup>
 
   <ItemGroup>
