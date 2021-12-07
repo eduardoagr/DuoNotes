@@ -22,9 +22,6 @@
                      Text="Logout"
                      Command="{Binding LogoutCommand}"
                      Priority="1" />
-        <ToolbarItem Order="Secondary"
-                     Text="profile"
-                     Priority="1" />
     </ContentPage.ToolbarItems>
 
     <Grid>

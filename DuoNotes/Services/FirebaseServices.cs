@@ -61,6 +61,7 @@ namespace DuoNotes.Services {
                 var auth = await AuthProvider.SignInWithEmailAndPasswordAsync(users.Email, users.Password);
                 App.UserID = auth.User.LocalId;
                 Preferences.Set(App.UID, App.UserID);
+                Preferences.Set(App.FirebaseToken, auth.FirebaseToken);
                 UserDialogs.Instance.HideLoading();
                 Application.Current.MainPage = new NavigationPage(new MainPage());
             } catch (FirebaseAuthException ex) {
@@ -68,6 +69,19 @@ namespace DuoNotes.Services {
             }
             UserDialogs.Instance.HideLoading();
         }
+
+        //public async Task UpdateProfile(string FirebaseToken, string DisplayName, string PhotoUri) {
+
+        //    try {
+
+        //        var auth = await AuthProvider.UpdateProfileAsync(FirebaseToken, DisplayName, PhotoUri);
+
+        //    } catch (System.Exception ex) {
+
+        //        System.Console.WriteLine(ex.Message);
+        //    }
+
+        //}
 
         public void LogOut() {
             Preferences.Clear();

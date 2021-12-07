@@ -1,4 +1,5 @@
-﻿using DuoNotes.Model;
+﻿
+using DuoNotes.Model;
 using DuoNotes.Services;
 using DuoNotes.View.PopUps;
 

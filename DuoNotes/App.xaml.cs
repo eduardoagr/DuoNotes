@@ -23,6 +23,8 @@ namespace DuoNotes {
 
         public static FirebaseServices services;
 
+        public const string FirebaseToken = "FirebaseToken";
+
         public App() {
 
             SyncfusionLicenseProvider.RegisterLicense(KEY);
