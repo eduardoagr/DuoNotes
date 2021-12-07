@@ -61,6 +61,15 @@ namespace DuoNotes.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Log out.
+        /// </summary>
+        internal static string CloseSession {
+            get {
+                return ResourceManager.GetString("CloseSession", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Confirm password.
         /// </summary>
         internal static string Confirm_password {
@@ -75,6 +84,15 @@ namespace DuoNotes.Resources {
         internal static string CreateNotebook {
             get {
                 return ResourceManager.GetString("CreateNotebook", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit profile.
+        /// </summary>
+        internal static string EditProfile {
+            get {
+                return ResourceManager.GetString("EditProfile", resourceCulture);
             }
         }
         

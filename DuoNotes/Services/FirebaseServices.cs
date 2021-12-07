@@ -53,7 +53,6 @@ namespace DuoNotes.Services {
             UserDialogs.Instance.HideLoading();
         }
 
-
         public async Task LoginAsync(User users) {
 
             try {
@@ -69,18 +68,6 @@ namespace DuoNotes.Services {
             }
             UserDialogs.Instance.HideLoading();
         }
-
-        //public async Task UpdateProfile(string FirebaseToken, string DisplayName, string PhotoUri) {
-        //    try {
-
-        //        var auth = await AuthProvider.UpdateProfileAsync(FirebaseToken, DisplayName, PhotoUri);
-
-        //    } catch (System.Exception ex) {
-
-        //        System.Console.WriteLine(ex.Message);
-        //    }
-
-        //}
 
         public void LogOut() {
             Preferences.Clear();

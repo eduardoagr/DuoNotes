@@ -19,9 +19,9 @@
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Order="Secondary"
-                     Text="Logout"
+                     Text="{translate:Translate CloseSession}"
                      Command="{Binding LogoutCommand}"
-                     Priority="1" />
+                     Priority="1"/>
     </ContentPage.ToolbarItems>
 
     <Grid>
