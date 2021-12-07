@@ -71,7 +71,6 @@ namespace DuoNotes.Services {
         }
 
         //public async Task UpdateProfile(string FirebaseToken, string DisplayName, string PhotoUri) {
-
         //    try {
 
         //        var auth = await AuthProvider.UpdateProfileAsync(FirebaseToken, DisplayName, PhotoUri);
