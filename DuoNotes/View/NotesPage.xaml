@@ -1,20 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage x:Class="DuoNotes.MainPage"
-             xmlns="http://xamarin.com/schemas/2014/forms"
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:syncfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+             x:Class="DuoNotes.View.NotesPage"
              xmlns:icon="clr-namespace:DuoNotes.Fonts"
              xmlns:translate="clr-namespace:DuoNotes.Utils"
              xmlns:vm="clr-namespace:DuoNotes.ViewModel"
              xmlns:model="clr-namespace:DuoNotes.Model"
              xmlns:community="http://xamarin.com/schemas/2020/toolkit"
-             Title="{translate:Translate Notebooks}"
-             xmlns:syncfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+             Title="{translate:Translate Notes}"
              BackgroundColor="{AppThemeBinding Dark={StaticResource BckgroundDarkColor},
                                       Light={StaticResource BackgroundLigthColor}}">
 
-
     <ContentPage.BindingContext>
-        <vm:MainPageViewModel />
+        <vm:NotesPageViewModel />
     </ContentPage.BindingContext>
 
     <ContentPage.ToolbarItems>
@@ -38,7 +37,7 @@
             </syncfusion:SfListView.LayoutManager>
             <syncfusion:SfListView.ItemTemplate>
 
-                <DataTemplate x:DataType="model:Notebook">
+                <DataTemplate x:DataType="model:Note">
 
                     <Grid Padding="10"
                           HeightRequest="20"
@@ -53,7 +52,7 @@
                         <Label TextColor="{Binding Color}"
                                Style="{StaticResource LabelStyle}"
                                Grid.Row="1"
-                               Text="{Static icon:IconFont.Book}"
+                               Text="{Static icon:IconFont.NoteSticky}"
                                HorizontalOptions="Start"
                                FontSize="Title"
                                FontFamily="fa" />
@@ -61,13 +60,6 @@
                         <Label Text="{Binding Name}"
                                Grid.Row="1"
                                Margin="25,0,0,0" />
-
-                        <Label Text="{translate:Translate Usage}"
-                               Grid.Row="2"
-                               FontAttributes="Bold" />
-
-                        <Label Text="{Binding Desc}"
-                               Grid.Row="3" />
 
                     </Grid>
                 </DataTemplate>

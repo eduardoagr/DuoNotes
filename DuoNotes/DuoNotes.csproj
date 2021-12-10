@@ -63,8 +63,14 @@
 		<EmbeddedResource Update="View\LoginPage.xaml">
 			<Generator>MSBuild:UpdateDesignTimeXaml</Generator>
 		</EmbeddedResource>
+		<EmbeddedResource Update="View\NotesPage.xaml">
+		  <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+		</EmbeddedResource>
 		<EmbeddedResource Update="View\PopUps\NotebookPopUp.xaml">
 			<Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+		</EmbeddedResource>
+		<EmbeddedResource Update="View\PopUps\NotesPopUp.xaml">
+		  <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
 		</EmbeddedResource>
 		<EmbeddedResource Update="View\PopUps\RegisterPopUp.xaml">
 			<Generator>MSBuild:UpdateDesignTimeXaml</Generator>

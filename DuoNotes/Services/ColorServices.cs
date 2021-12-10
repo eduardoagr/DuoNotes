@@ -10,9 +10,20 @@ namespace DuoNotes.Services {
                 Color.Red,
                 Color.Green,
                 Color.Blue,
-                Color.DarkGray,
                 Color.Orange,
                 Color.Purple,
+                Color.Violet,
+                Color.YellowGreen,
+                Color.DarkBlue,
+                Color.Chocolate,
+                Color.DarkGray,
+                Color.DarkOliveGreen,
+                Color.DarkRed,
+                Color.DarkGreen,
+                Color.Aquamarine,
+                Color.Beige,
+                Color.Bisque,
+                Color.Maroon,
             };
         }
     }

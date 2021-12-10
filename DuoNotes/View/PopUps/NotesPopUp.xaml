@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns:pages="http://rotorgames.com"
+                 xmlns="http://xamarin.com/schemas/2014/forms"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                 xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+                 xmlns:translate="clr-namespace:DuoNotes.Utils"
+                 xmlns:community="http://xamarin.com/schemas/2020/toolkit"
+                 xmlns:vm="clr-namespace:DuoNotes.ViewModel.PopUps"
+                 xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+                 Padding="20"
+                 x:Class="DuoNotes.View.PopUps.NotesPopUp">
+
+    <pages:PopupPage.BindingContext>
+        <vm:NewNotePopUpViewModel />
+    </pages:PopupPage.BindingContext>
+
+
+    <pages:PopupPage.Animation>
+        <animations:ScaleAnimation PositionIn="Center"
+                                   PositionOut="Center"
+                                   ScaleIn="1.2"
+                                   ScaleOut="0.8"
+                                   DurationIn="400"
+                                   DurationOut="300"
+                                   EasingIn="SinOut"
+                                   EasingOut="SinIn"
+                                   HasBackgroundAnimation="True" />
+    </pages:PopupPage.Animation>
+
+    <Frame Style="{StaticResource FrameContainer}">
+        <Grid RowDefinitions="Auto,Auto,Auto"
+              Padding="10">
+
+            <Label Style="{StaticResource CloseStyle}"
+                   community:TouchEffect.Command="{Binding CloseCommand}" />
+
+            <Label Text="{translate:Translate NotesData}"
+                   Style="{StaticResource HeadersStyle}"
+                   HorizontalTextAlignment="Start"
+                   Grid.Row="1" />
+
+            <Entry Placeholder="{translate:Translate NoteBookTitle}"
+                   Style="{StaticResource EntrySyle}"
+                   Text="{Binding Note.Name}"
+                   Grid.Row="2" />
+
+            <Button Padding="10"
+                    Style="{StaticResource ButonStyle}"
+                    Text="{translate:Translate NewNote}"
+                    Command="{Binding NewNoteCommand}"
+                    IsEnabled="True"
+                    Grid.Row="3" />
+        </Grid>
+    </Frame>
+</pages:PopupPage>

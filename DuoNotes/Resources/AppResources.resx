@@ -177,6 +177,9 @@
   <data name="Notes" xml:space="preserve">
     <value>Notes</value>
   </data>
+  <data name="NotesData" xml:space="preserve">
+    <value>Notes information</value>
+  </data>
   <data name="OK" xml:space="preserve">
     <value>Ok</value>
   </data>

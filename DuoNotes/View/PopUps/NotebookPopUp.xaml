@@ -39,7 +39,7 @@
                    HorizontalTextAlignment="Start"
                    Grid.Row="1" />
 
-            <Entry Placeholder="{translate:Translate NoteBookName}"
+            <Entry Placeholder="{translate:Translate NoteBookTitle}"
                    Style="{StaticResource EntrySyle}"
                    Text="{Binding Notebook.Name}"
                    Grid.Row="2">

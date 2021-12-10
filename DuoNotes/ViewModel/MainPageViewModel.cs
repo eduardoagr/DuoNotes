@@ -1,6 +1,7 @@
 ﻿
 using DuoNotes.Model;
 using DuoNotes.Services;
+using DuoNotes.View;
 using DuoNotes.View.PopUps;
 
 using PropertyChanged;
@@ -38,7 +39,7 @@ namespace DuoNotes.ViewModel {
 
             LogoutCommand = new Command(LogOutAction);
 
-            SeletedItemCommand = new Command(SeletedItemAction);
+            SeletedItemCommand = new Command(SeletedItemActionAsync);
 
             FabAnimationCommmand = new Command<Frame>(AnimateButtonCommand);
 
@@ -56,12 +57,13 @@ namespace DuoNotes.ViewModel {
 
         }
 
-        private void SeletedItemAction() {
+        private async void SeletedItemActionAsync() {
             if (SelectedNotebookNote == null) {
                 return;
             }
 
-            //Todo: Navigte to new page and mke this null
+            await App.Current.MainPage.Navigation.PushAsync(new NotesPage());
+            SelectedNotebookNote = null;
         }
 
         private void LogOutAction() {

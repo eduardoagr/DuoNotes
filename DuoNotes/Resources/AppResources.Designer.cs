@@ -241,6 +241,15 @@ namespace DuoNotes.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Notes information.
+        /// </summary>
+        internal static string NotesData {
+            get {
+                return ResourceManager.GetString("NotesData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ok.
         /// </summary>
         internal static string OK {

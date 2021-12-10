@@ -87,19 +87,12 @@ namespace DuoNotes.Services {
             var list = await Client.Child(ChildName)
                  .OnceAsync<NotebookNote>();
 
-            var NotebookCollection = new List<Notebook>();
+            var NotebookCollection = new List<NotebookNote>();
 
             foreach (var item in list) {
-
-                Notebook notebook = new Notebook {
-                    UserID = item.Object.UserID,
-                    Id = item.Key,
-                    Name = item.Object.Name,
-                    CreatedDate = item.Object.CreatedDate,
-                    Color = item.Object.Color,
-                    Desc = item.Object.Desc
-                };
-                NotebookCollection.Add(notebook);
+                NotebookNote notebookNote = null;
+                notebookNote = Convert(ChildName, item);
+                NotebookCollection.Add(notebookNote);
             }
 
             NotebookCollection = NotebookCollection.Where(n => n.UserID == App.UserID).ToList();
@@ -109,6 +102,31 @@ namespace DuoNotes.Services {
                 FireBaseNotebooks.Add(element);
             }
 
+        }
+
+        private static NotebookNote Convert(string ChildName, FirebaseObject<NotebookNote> item) {
+            NotebookNote notebookNote;
+            if (ChildName.Equals("Notebook")) {
+                notebookNote = new Notebook {
+                    UserID = item.Object.UserID,
+                    Id = item.Key,
+                    Name = item.Object.Name,
+                    CreatedDate = item.Object.CreatedDate,
+                    Color = item.Object.Color,
+                    Desc = item.Object.Desc
+                };
+            } else {
+                notebookNote = new Note {
+                    UserID = item.Object.UserID,
+                    Id = item.Key,
+                    Name = item.Object.Name,
+                    CreatedDate = item.Object.CreatedDate,
+                    Color = item.Object.Color,
+                    Desc = item.Object.Desc
+                };
+            }
+
+            return notebookNote;
         }
     }
 }

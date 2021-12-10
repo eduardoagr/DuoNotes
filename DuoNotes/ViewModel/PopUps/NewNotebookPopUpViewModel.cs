@@ -9,7 +9,6 @@ using Rg.Plugins.Popup.Services;
 
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Windows.Input;
 
@@ -20,12 +19,11 @@ namespace DuoNotes.ViewModel.PopUps {
     [AddINotifyPropertyChangedInterface]
     public class NewNotebookPopUpViewModel {
 
-        FirebaseServices Services;
+        readonly FirebaseServices Services;
 
         public List<Color> Colors { get; set; }
 
         public Color SelectedColor { get; set; }
-
 
         public Notebook Notebook { get; set; }
 
@@ -78,6 +76,7 @@ namespace DuoNotes.ViewModel.PopUps {
             Notebook.UserID = App.UserID;
             Notebook.Name = Notebook.Name;
             Notebook.Desc = Notebook.Desc;
+
 
             await Services.InsertAsync(Notebook, "Notebooks");
             await PopupNavigation.Instance.PopAsync();
