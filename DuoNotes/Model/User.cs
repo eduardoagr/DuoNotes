@@ -19,6 +19,8 @@ namespace DuoNotes.Model {
 
         public string Name { get; set; }
 
+        public string PhotoUri { get; set; }
+
         [JsonIgnore]
         public Action OnAnyPropertiesChanged { get; set; }
         private void OnPropertyChanged() {

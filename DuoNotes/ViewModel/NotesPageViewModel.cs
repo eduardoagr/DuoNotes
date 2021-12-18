@@ -1,5 +1,6 @@
 ﻿using DuoNotes.Model;
 using DuoNotes.View.PopUps;
+using DuoNotes.ViewModel.PopUps;
 
 using Rg.Plugins.Popup.Services;
 
@@ -13,11 +14,20 @@ namespace DuoNotes.ViewModel {
 
         public new Command<Frame> FabAnimationCommmand { get; set; }
 
+        public Action<Notebook> RecivedSelectedNotebookAccion { get; set; }
+
+        public Notebook RecivedSelectedNotebook { get; set; }
+
         public NotesPageViewModel() {
 
-            App.services.ReadAsync("Notes");
+            App.services.ReadAsync(App.Notes);
 
             FabAnimationCommmand = new Command<Frame>(AnimateButtonCommand);
+
+            RecivedSelectedNotebookAccion = (SelectedObject) => {
+
+                RecivedSelectedNotebook = SelectedObject;
+            };
         }
 
         private async void AnimateButtonCommand(Frame obj) {
@@ -27,7 +37,12 @@ namespace DuoNotes.ViewModel {
             await Task.Delay(100);
             //Scale to normal
             await obj.ScaleTo(1, 50, Easing.Linear);
-            await PopupNavigation.Instance.PushAsync(new NotesPopUp());
+            var notesPopUp = new NotesPopUp();
+            await PopupNavigation.Instance.PushAsync(notesPopUp);
+            var viewModel = notesPopUp.BindingContext as NewNotePopUpViewModel;
+            viewModel.RecivedSelectedNotebookAccion(RecivedSelectedNotebook);
+
+
         }
     }
 }

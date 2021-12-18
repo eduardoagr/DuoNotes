@@ -186,11 +186,17 @@
   <data name="Password" xml:space="preserve">
     <value>Password</value>
   </data>
+  <data name="Profile" xml:space="preserve">
+    <value>Profile</value>
+  </data>
   <data name="Register" xml:space="preserve">
     <value>Register</value>
   </data>
   <data name="ServerError" xml:space="preserve">
     <value>Server error</value>
+  </data>
+  <data name="String1" xml:space="preserve">
+    <value>Profile</value>
   </data>
   <data name="Usage" xml:space="preserve">
     <value>This notebook has:</value>

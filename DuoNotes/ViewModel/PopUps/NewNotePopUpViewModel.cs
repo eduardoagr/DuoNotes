@@ -20,6 +20,10 @@ namespace DuoNotes.ViewModel.PopUps {
 
         public Note Note { get; set; }
 
+        public Action<Notebook> RecivedSelectedNotebookAccion { get; set; }
+
+        public Notebook RecivedSelectedNotebook { get; set; }
+
         public ICommand NewNoteCommand { get; set; }
 
         public NewNotePopUpViewModel() {
@@ -32,6 +36,11 @@ namespace DuoNotes.ViewModel.PopUps {
 
                     (NewNoteCommand as Command).ChangeCanExecute();
                 }
+            };
+
+            RecivedSelectedNotebookAccion = (SelectedObject) => {
+
+                RecivedSelectedNotebook = SelectedObject;
             };
 
             NewNoteCommand = new Command(CreateNewNoteAsync, CanCreateNote);
@@ -49,11 +58,12 @@ namespace DuoNotes.ViewModel.PopUps {
             }
 
             Note.CreatedDate = DateTime.Now.ToString("D", new CultureInfo(App.languages));
+            Note.NotebookId = RecivedSelectedNotebook.Id;
             Note.Name = Note.Name;
 
-            await Services.InsertAsync(Note, "Notes");
+            await Services.InsertAsync(Note, App.Notes);
             await PopupNavigation.Instance.PopAsync();
-            Services.ReadAsync("Notes");
+            Services.ReadAsync(App.Notes);
         }
 
 

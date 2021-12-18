@@ -49,8 +49,7 @@
                                Style="{StaticResource LabelStyle}"
                                HorizontalTextAlignment="Start" />
 
-                        <Label TextColor="{Binding Color}"
-                               Style="{StaticResource LabelStyle}"
+                        <Label Style="{StaticResource LabelStyle}"
                                Grid.Row="1"
                                Text="{Static icon:IconFont.NoteSticky}"
                                HorizontalOptions="Start"

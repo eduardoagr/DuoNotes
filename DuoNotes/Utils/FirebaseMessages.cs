@@ -1,12 +1,9 @@
 ﻿using DuoNotes.Model;
 using DuoNotes.Resources;
-using DuoNotes.View.PopUps;
 
 using Firebase.Auth;
 
 using Newtonsoft.Json;
-
-using Rg.Plugins.Popup.Services;
 
 namespace DuoNotes.Utils {
     class Firebasemessages {

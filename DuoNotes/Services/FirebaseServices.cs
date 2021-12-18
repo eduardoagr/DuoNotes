@@ -25,11 +25,10 @@ using User = DuoNotes.Model.User;
 namespace DuoNotes.Services {
     public class FirebaseServices {
 
-        public ObservableCollection<NotebookNote> FireBaseNotebooks { get; set; }
-        readonly FirebaseAuthProvider AuthProvider;
-        readonly FirebaseClient Client;
-        readonly string BASE_URL = "https://duonotes-f2b77-default-rtdb.europe-west1.firebasedatabase.app/";
-
+        private ObservableCollection<NotebookNote> FireBaseNotebooks { get; set; }
+        private readonly FirebaseAuthProvider AuthProvider;
+        private readonly FirebaseClient Client;
+        const string BASE_URL = "https://duonotes-f2b77-default-rtdb.europe-west1.firebasedatabase.app/";
         public FirebaseServices(ObservableCollection<NotebookNote> notebookNotes = null) {
 
             FireBaseNotebooks = notebookNotes;
@@ -42,10 +41,7 @@ namespace DuoNotes.Services {
             try {
                 UserDialogs.Instance.ShowLoading(AppResources.Loading);
                 var auth = await AuthProvider.CreateUserWithEmailAndPasswordAsync(users.Email, users.Password);
-                await Application.Current.MainPage.DisplayAlert(
-                AppResources.NewUser,
-              AppResources.UserInserted, "OK");
-                UserDialogs.Instance.HideLoading();
+                Application.Current.MainPage = new NavigationPage(new MainPage());
                 await PopupNavigation.Instance.PopAsync(true);
             } catch (FirebaseAuthException ex) {
                 Firebasemessages.GetMessages(ex);
@@ -67,6 +63,12 @@ namespace DuoNotes.Services {
                 Firebasemessages.GetMessages(ex);
             }
             UserDialogs.Instance.HideLoading();
+        }
+
+        public async Task<Firebase.Auth.User> GetPrefileAsync() {
+
+            var FirebaseUser = await AuthProvider.GetUserAsync(Preferences.Get(App.FirebaseToken, string.Empty));
+            return FirebaseUser;
         }
 
         public void LogOut() {
@@ -104,9 +106,10 @@ namespace DuoNotes.Services {
 
         }
 
+        //This method will convert whatever we passed, to a specific object, based on the childname
         private static NotebookNote Convert(string ChildName, FirebaseObject<NotebookNote> item) {
             NotebookNote notebookNote;
-            if (ChildName.Equals("Notebook")) {
+            if (ChildName.Equals(App.Notebooks)) {
                 notebookNote = new Notebook {
                     UserID = item.Object.UserID,
                     Id = item.Key,

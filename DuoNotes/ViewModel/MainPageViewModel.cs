@@ -8,6 +8,7 @@ using PropertyChanged;
 
 using Rg.Plugins.Popup.Services;
 
+using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -19,7 +20,7 @@ namespace DuoNotes.ViewModel {
     [AddINotifyPropertyChangedInterface]
     public class MainPageViewModel {
 
-        public NotebookNote SelectedNotebookNote { get; set; }
+        public Notebook SelectedNotebook { get; set; }
 
         public ObservableCollection<NotebookNote> FireBaseNotebooks { get; set; }
 
@@ -43,7 +44,14 @@ namespace DuoNotes.ViewModel {
 
             FabAnimationCommmand = new Command<Frame>(AnimateButtonCommand);
 
-            App.services.ReadAsync("Notebooks");
+            ProfileCommand = new Command(OpenProfilePopp);
+
+            App.services.ReadAsync(App.Notebooks);
+        }
+
+        private async void OpenProfilePopp() {
+
+            await App.services.GetPrefileAsync();
         }
 
         private async void AnimateButtonCommand(Frame obj) {
@@ -58,17 +66,19 @@ namespace DuoNotes.ViewModel {
         }
 
         private async void SeletedItemActionAsync() {
-            if (SelectedNotebookNote == null) {
+            if (SelectedNotebook == null) {
                 return;
             }
 
-            await App.Current.MainPage.Navigation.PushAsync(new NotesPage());
-            SelectedNotebookNote = null;
+            NotesPage notesPage = new NotesPage();
+            await App.Current.MainPage.Navigation.PushAsync(notesPage, true);
+            var viewModel = notesPage.BindingContext as NotesPageViewModel;
+            viewModel.RecivedSelectedNotebookAccion(SelectedNotebook);
+            SelectedNotebook = null;
         }
 
         private void LogOutAction() {
             App.services.LogOut();
         }
     }
-
 }

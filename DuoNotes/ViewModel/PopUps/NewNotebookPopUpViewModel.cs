@@ -78,9 +78,9 @@ namespace DuoNotes.ViewModel.PopUps {
             Notebook.Desc = Notebook.Desc;
 
 
-            await Services.InsertAsync(Notebook, "Notebooks");
+            await Services.InsertAsync(Notebook, App.Notebooks);
             await PopupNavigation.Instance.PopAsync();
-            Services.ReadAsync("Notebooks");
+            Services.ReadAsync(App.Notebooks);
         }
 
 

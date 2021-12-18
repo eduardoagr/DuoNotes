@@ -24,13 +24,18 @@
                      Command="{Binding LogoutCommand}"
                      Priority="1" />
 
+        <ToolbarItem Order="Secondary"
+                     Text="{translate:Translate Profile}"
+                     Command="{Binding ProfileCommand}"
+                     Priority="1" />
+
     </ContentPage.ToolbarItems>
 
 
     <Grid>
         <syncfusion:SfListView x:Name="listView"
                                ItemsSource="{Binding FireBaseNotebooks}"
-                               SelectedItem="{Binding SelectedNotebookNote}"
+                               SelectedItem="{Binding SelectedNotebook}"
                                SelectionChangedCommand="{Binding SeletedItemCommand}"
                                ItemSize="200">
             <syncfusion:SfListView.LayoutManager>

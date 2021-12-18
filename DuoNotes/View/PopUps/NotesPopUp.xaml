@@ -6,7 +6,6 @@
                  xmlns:translate="clr-namespace:DuoNotes.Utils"
                  xmlns:community="http://xamarin.com/schemas/2020/toolkit"
                  xmlns:vm="clr-namespace:DuoNotes.ViewModel.PopUps"
-                 xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
                  Padding="20"
                  x:Class="DuoNotes.View.PopUps.NotesPopUp">
 
@@ -16,14 +15,14 @@
 
 
     <pages:PopupPage.Animation>
-        <animations:ScaleAnimation PositionIn="Center"
-                                   PositionOut="Center"
+        <animations:ScaleAnimation PositionIn="Bottom"
+                                   PositionOut="Bottom"
                                    ScaleIn="1.2"
                                    ScaleOut="0.8"
-                                   DurationIn="400"
-                                   DurationOut="300"
-                                   EasingIn="SinOut"
-                                   EasingOut="SinIn"
+                                   DurationIn="500"
+                                   DurationOut="500"
+                                   EasingIn="Linear"
+                                   EasingOut="Linear"
                                    HasBackgroundAnimation="True" />
     </pages:PopupPage.Animation>
 

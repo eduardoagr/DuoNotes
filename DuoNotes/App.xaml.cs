@@ -25,6 +25,10 @@ namespace DuoNotes {
 
         public const string FirebaseToken = "FirebaseToken";
 
+        public const string Notebooks = "Notebooks";
+
+        public const string Notes = "Notes";
+
         public App() {
 
             SyncfusionLicenseProvider.RegisterLicense(KEY);
@@ -32,8 +36,6 @@ namespace DuoNotes {
             InitializeComponent();
 
             UserID = Preferences.Get(UID, string.Empty);
-
-            System.Console.WriteLine(App.UserID);
 
             if (!string.IsNullOrEmpty(UserID)) {
                 MainPage = new NavigationPage(new MainPage());

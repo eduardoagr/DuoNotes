@@ -14,14 +14,14 @@
     </pages:PopupPage.BindingContext>
 
     <pages:PopupPage.Animation>
-        <animations:ScaleAnimation PositionIn="Center"
-                                   PositionOut="Center"
+        <animations:ScaleAnimation PositionIn="Bottom"
+                                   PositionOut="Bottom"
                                    ScaleIn="1.2"
                                    ScaleOut="0.8"
-                                   DurationIn="400"
-                                   DurationOut="300"
-                                   EasingIn="SinOut"
-                                   EasingOut="SinIn"
+                                   DurationIn="500"
+                                   DurationOut="500"
+                                   EasingIn="Linear"
+                                   EasingOut="Linear"
                                    HasBackgroundAnimation="True" />
     </pages:PopupPage.Animation>
 
