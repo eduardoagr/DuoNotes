@@ -20,14 +20,14 @@ namespace DuoNotes.ViewModel {
 
         public NotesPageViewModel() {
 
-            App.services.ReadAsync(App.Notes);
-
             FabAnimationCommmand = new Command<Frame>(AnimateButtonCommand);
 
             RecivedSelectedNotebookAccion = (SelectedObject) => {
 
                 RecivedSelectedNotebook = SelectedObject;
             };
+
+            // App.services.ReadAsync(App.Notes, RecivedSelectedNotebook.Id);
         }
 
         private async void AnimateButtonCommand(Frame obj) {
@@ -41,8 +41,6 @@ namespace DuoNotes.ViewModel {
             await PopupNavigation.Instance.PushAsync(notesPopUp);
             var viewModel = notesPopUp.BindingContext as NewNotePopUpViewModel;
             viewModel.RecivedSelectedNotebookAccion(RecivedSelectedNotebook);
-
-
         }
     }
 }
