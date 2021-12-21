@@ -14,18 +14,11 @@ namespace DuoNotes.ViewModel {
 
         public new Command<Frame> FabAnimationCommmand { get; set; }
 
-        public Action<Notebook> RecivedSelectedNotebookAccion { get; set; }
-
         public Notebook RecivedSelectedNotebook { get; set; }
 
         public NotesPageViewModel() {
 
             FabAnimationCommmand = new Command<Frame>(AnimateButtonCommand);
-
-            RecivedSelectedNotebookAccion = (SelectedObject) => {
-
-                RecivedSelectedNotebook = SelectedObject;
-            };
 
             // App.services.ReadAsync(App.Notes, RecivedSelectedNotebook.Id);
         }
