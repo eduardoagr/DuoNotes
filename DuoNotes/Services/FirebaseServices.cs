@@ -89,18 +89,18 @@ namespace DuoNotes.Services {
             var list = await Client.Child(ChildName)
                  .OnceAsync<NotebookNote>();
 
-            var NotebookCollection = new List<NotebookNote>();
+            var collection = new List<NotebookNote>();
 
             foreach (var item in list) {
                 NotebookNote notebookNote = null;
                 notebookNote = Convert(ChildName, item);
-                NotebookCollection.Add(notebookNote);
+                collection.Add(notebookNote);
             }
 
-            NotebookCollection = NotebookCollection.Where(n => n.UserID == App.UserID).ToList();
+            collection = collection.Where(n => n.UserID == App.UserID).ToList();
 
             FireBaseNotebooks.Clear();
-            foreach (var element in NotebookCollection) {
+            foreach (var element in collection) {
                 FireBaseNotebooks.Add(element);
             }
 
