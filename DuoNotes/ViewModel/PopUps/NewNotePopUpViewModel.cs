@@ -60,6 +60,7 @@ namespace DuoNotes.ViewModel.PopUps {
             Note.CreatedDate = DateTime.Now.ToString("D", new CultureInfo(App.languages));
             Note.NotebookId = RecivedSelectedNotebook.Id;
             Note.Name = Note.Name;
+            Note.Id = Note.Id;
 
             await Services.InsertAsync(Note, App.Notes);
             await PopupNavigation.Instance.PopAsync();
