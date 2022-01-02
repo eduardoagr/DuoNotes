@@ -166,7 +166,7 @@
     <value>Cuadernos</value>
   </data>
   <data name="NoteBookTitle" xml:space="preserve">
-    <value>Titulo</value>
+    <value>Titulo del cuaderno</value>
   </data>
   <data name="NotebookUsage" xml:space="preserve">
     <value>Qué vas a almacenar en este cuaderno</value>
@@ -176,6 +176,9 @@
   </data>
   <data name="NotesData" xml:space="preserve">
     <value>Informacion de la note</value>
+  </data>
+  <data name="NoteTite" xml:space="preserve">
+    <value>Titulo de la nota</value>
   </data>
   <data name="OK" xml:space="preserve">
     <value>OK</value>
@@ -192,14 +195,14 @@
   <data name="ServerError" xml:space="preserve">
     <value>Error del servidor</value>
   </data>
-  <data name="String1" xml:space="preserve">
-    <value>Perfil</value>
-  </data>
   <data name="Usage" xml:space="preserve">
-    <value>Este cuderno contiene:</value>
+    <value>Este cuderno contiene</value>
   </data>
   <data name="UserInserted" xml:space="preserve">
     <value>Usuario creado satifactoriamente</value>
+  </data>
+  <data name="userProfile" xml:space="preserve">
+    <value>Perfil</value>
   </data>
   <data name="WEAK_PASSWORD : Password should be at least 6 characters" xml:space="preserve">
     <value>La contraseña debe tener al menos 6 caracteres</value>

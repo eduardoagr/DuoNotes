@@ -205,7 +205,7 @@ namespace DuoNotes.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Title.
+        ///   Looks up a localized string similar to Notebook title.
         /// </summary>
         internal static string NoteBookName {
             get {
@@ -241,11 +241,11 @@ namespace DuoNotes.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Notes information.
+        ///   Looks up a localized string similar to Note Title.
         /// </summary>
-        internal static string NotesData {
+        internal static string NoteTite {
             get {
-                return ResourceManager.GetString("NotesData", resourceCulture);
+                return ResourceManager.GetString("NoteTite", resourceCulture);
             }
         }
         
@@ -295,15 +295,6 @@ namespace DuoNotes.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Profile.
-        /// </summary>
-        internal static string String1 {
-            get {
-                return ResourceManager.GetString("String1", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to This notebook has:.
         /// </summary>
         internal static string Usage {
@@ -318,6 +309,15 @@ namespace DuoNotes.Resources {
         internal static string UserInserted {
             get {
                 return ResourceManager.GetString("UserInserted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Profile.
+        /// </summary>
+        internal static string userProfile {
+            get {
+                return ResourceManager.GetString("userProfile", resourceCulture);
             }
         }
         

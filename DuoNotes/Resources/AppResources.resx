@@ -166,7 +166,7 @@
     <value>Notebook information</value>
   </data>
   <data name="NoteBookName" xml:space="preserve">
-    <value>Title</value>
+    <value>Notebook title</value>
   </data>
   <data name="Notebooks" xml:space="preserve">
     <value>Notebooks</value>
@@ -177,8 +177,8 @@
   <data name="Notes" xml:space="preserve">
     <value>Notes</value>
   </data>
-  <data name="NotesData" xml:space="preserve">
-    <value>Notes information</value>
+  <data name="NoteTite" xml:space="preserve">
+    <value>Note Title</value>
   </data>
   <data name="OK" xml:space="preserve">
     <value>Ok</value>
@@ -195,14 +195,14 @@
   <data name="ServerError" xml:space="preserve">
     <value>Server error</value>
   </data>
-  <data name="String1" xml:space="preserve">
-    <value>Profile</value>
-  </data>
   <data name="Usage" xml:space="preserve">
     <value>This notebook has:</value>
   </data>
   <data name="UserInserted" xml:space="preserve">
     <value>User created successfully</value>
+  </data>
+  <data name="userProfile" xml:space="preserve">
+    <value>Profile</value>
   </data>
   <data name="WEAK_PASSWORD : Password should be at least 6 characters" xml:space="preserve">
     <value>Password should be at least 6 characters</value>

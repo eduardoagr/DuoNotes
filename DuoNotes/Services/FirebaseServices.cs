@@ -65,11 +65,6 @@ namespace DuoNotes.Services {
             UserDialogs.Instance.HideLoading();
         }
 
-        public async Task<Firebase.Auth.User> GetPrefileAsync() {
-
-            var FirebaseUser = await AuthProvider.GetUserAsync(Preferences.Get(App.FirebaseToken, string.Empty));
-            return FirebaseUser;
-        }
 
         public void LogOut() {
             Preferences.Clear();

@@ -63,7 +63,7 @@
                 <Setter Property="HorizontalTextAlignment"
                         Value="End" />
                 <Setter Property="FontFamily"
-                        Value="mat" />
+                        Value="ma" />
             </Style>
 
             <Style TargetType="Label"

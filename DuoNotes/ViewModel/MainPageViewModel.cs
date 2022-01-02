@@ -44,14 +44,10 @@ namespace DuoNotes.ViewModel {
 
             FabAnimationCommmand = new Command<Frame>(AnimateButtonCommand);
 
-            ProfileCommand = new Command(OpenProfilePopp);
+            //ProfileCommand = new Command(OpenProfilePopp);
 
             App.services.ReadAsync(App.Notebooks);
-        }
 
-        private async void OpenProfilePopp() {
-
-            await App.services.GetPrefileAsync();
         }
 
         private async void AnimateButtonCommand(Frame obj) {

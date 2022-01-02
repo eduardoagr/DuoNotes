@@ -5,10 +5,8 @@
              xmlns:icon="clr-namespace:DuoNotes.Fonts"
              xmlns:translate="clr-namespace:DuoNotes.Utils"
              xmlns:vm="clr-namespace:DuoNotes.ViewModel"
-             xmlns:model="clr-namespace:DuoNotes.Model"
              xmlns:community="http://xamarin.com/schemas/2020/toolkit"
              Title="{translate:Translate Notebooks}"
-             xmlns:syncfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
              BackgroundColor="{AppThemeBinding Dark={StaticResource BckgroundDarkColor},
                                       Light={StaticResource BackgroundLigthColor}}">
 
@@ -18,12 +16,6 @@
     </ContentPage.BindingContext>
 
     <ContentPage.ToolbarItems>
-
-        <ToolbarItem Order="Secondary"
-                     Text="{translate:Translate CloseSession}"
-                     Command="{Binding LogoutCommand}"
-                     Priority="1" />
-
         <ToolbarItem Order="Secondary"
                      Text="{translate:Translate Profile}"
                      Command="{Binding ProfileCommand}"
@@ -33,51 +25,62 @@
 
 
     <Grid>
-        <syncfusion:SfListView x:Name="listView"
-                               ItemsSource="{Binding FireBaseNotebooks}"
-                               SelectedItem="{Binding SelectedNotebook}"
-                               SelectionChangedCommand="{Binding SeletedItemCommand}"
-                               ItemSize="200">
-            <syncfusion:SfListView.LayoutManager>
-                <syncfusion:GridLayout SpanCount="2" />
-            </syncfusion:SfListView.LayoutManager>
-            <syncfusion:SfListView.ItemTemplate>
+        <CollectionView ItemsSource="{Binding FireBaseNotebooks}"
+                        SelectionMode="Single"
+                        Margin="10"
+                        SelectedItem="{Binding SelectedNotebook}"
+                        SelectionChangedCommand="{Binding SeletedItemCommand}">
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout Orientation="Horizontal"
+                                 Span="2" />
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
 
-                <DataTemplate x:DataType="model:Notebook">
+                    <StackLayout Margin="5"
+                                 Spacing="2">
 
-                    <Grid Padding="10"
-                          HeightRequest="20"
-                          Margin="12"
-                          RowDefinitions="Auto,Auto,Auto,Auto,Auto"
-                          ColumnDefinitions="Auto,Auto">
+                        <Label Text="{Static icon:IconFont.Book}"
+                               FontFamily="fa"
+                               TextColor="{Binding Color}"
+                               FontSize="Medium" />
 
                         <Label Text="{Binding CreatedDate}"
                                Style="{StaticResource LabelStyle}"
+                               FontSize="Medium"
+                               FontAttributes="Bold"
                                HorizontalTextAlignment="Start" />
 
-                        <Label TextColor="{Binding Color}"
-                               Style="{StaticResource LabelStyle}"
-                               Grid.Row="1"
-                               Text="{Static icon:IconFont.Book}"
-                               HorizontalOptions="Start"
-                               FontSize="Title"
-                               FontFamily="fa" />
+                        <Label FontAttributes="Bold"
+                               FontSize="Medium">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="{translate:Translate NoteBookTitle}" />
+                                    <Span Text=": " />
+                                    <Span Text="{Binding Name}" />
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
 
-                        <Label Text="{Binding Name}"
-                               Grid.Row="1"
-                               Margin="25,0,0,0" />
+                        <Label FontAttributes="Bold"
+                               FontSize="Medium">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="{translate:Translate Usage}" />
+                                    <Span Text=": " />
+                                    <Span Text="{Binding Desc}" />
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
 
-                        <Label Text="{translate:Translate Usage}"
-                               Grid.Row="2"
-                               FontAttributes="Bold" />
 
-                        <Label Text="{Binding Desc}"
-                               Grid.Row="3" />
+                    </StackLayout>
 
-                    </Grid>
+
                 </DataTemplate>
-            </syncfusion:SfListView.ItemTemplate>
-        </syncfusion:SfListView>
+            </CollectionView.ItemTemplate>
+
+        </CollectionView>
 
         <Frame Style="{StaticResource FabButton}"
                x:Name="Fab">

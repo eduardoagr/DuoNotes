@@ -1,11 +1,9 @@
 ﻿using Newtonsoft.Json;
 
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace DuoNotes.Model {
-    public class ErrorMsg {
+    internal class ErrorMsg {
 
         [JsonProperty("domain")]
         public string Domain { get; set; }
@@ -17,7 +15,7 @@ namespace DuoNotes.Model {
         public string Message { get; set; }
     }
 
-    public class Error {
+    internal class Error {
 
         [JsonProperty("errors")]
         public IList<Error> Errors { get; set; }
@@ -29,7 +27,7 @@ namespace DuoNotes.Model {
         public string Message { get; set; }
     }
 
-    public class Response {
+    internal class Response {
 
         [JsonProperty("error")]
         public Error Error { get; set; }

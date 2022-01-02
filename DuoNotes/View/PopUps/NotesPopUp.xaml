@@ -38,7 +38,7 @@
                    HorizontalTextAlignment="Start"
                    Grid.Row="1" />
 
-            <Entry Placeholder="{translate:Translate NoteBookTitle}"
+            <Entry Placeholder="{translate:Translate NoteTite}"
                    Style="{StaticResource EntrySyle}"
                    Text="{Binding Note.Name}"
                    Grid.Row="2" />

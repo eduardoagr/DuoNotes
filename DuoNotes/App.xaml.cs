@@ -35,9 +35,9 @@ namespace DuoNotes {
 
             InitializeComponent();
 
-            UserID = Preferences.Get(UID, string.Empty);
+            var UID = Preferences.Get(App.UID, string.Empty);
 
-            if (!string.IsNullOrEmpty(UserID)) {
+            if (!string.IsNullOrEmpty(UID)) {
                 MainPage = new NavigationPage(new MainPage());
             } else {
                 MainPage = new NavigationPage(new LoginPage());

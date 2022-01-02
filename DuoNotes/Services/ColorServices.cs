@@ -3,8 +3,8 @@
 using Xamarin.Forms;
 
 namespace DuoNotes.Services {
-    public class ColorServices {
-        public static List<Color> GetItems() {
+    internal class ColorServices {
+        internal static List<Color> GetItems() {
 
             return new List<Color>() {
                 Color.Red,
@@ -20,10 +20,6 @@ namespace DuoNotes.Services {
                 Color.DarkOliveGreen,
                 Color.DarkRed,
                 Color.DarkGreen,
-                Color.Aquamarine,
-                Color.Beige,
-                Color.Bisque,
-                Color.Maroon,
             };
         }
     }
