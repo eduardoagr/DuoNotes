@@ -12,6 +12,7 @@ using Newtonsoft.Json;
 
 using Rg.Plugins.Popup.Services;
 
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -54,9 +55,11 @@ namespace DuoNotes.Services {
             try {
                 UserDialogs.Instance.ShowLoading(AppResources.Loading);
                 var auth = await AuthProvider.SignInWithEmailAndPasswordAsync(users.Email, users.Password);
+                var content = await auth.GetFreshAuthAsync();
+                var serializedcontnet = JsonConvert.SerializeObject(content);
                 App.UserID = auth.User.LocalId;
                 Preferences.Set(App.UID, App.UserID);
-                Preferences.Set(App.FirebaseToken, auth.FirebaseToken);
+                Preferences.Set(App.FirebaseRefreshToken, serializedcontnet);
                 UserDialogs.Instance.HideLoading();
                 Application.Current.MainPage = new NavigationPage(new MainPage());
             } catch (FirebaseAuthException ex) {
@@ -65,10 +68,20 @@ namespace DuoNotes.Services {
             UserDialogs.Instance.HideLoading();
         }
 
-
         public void LogOut() {
             Preferences.Clear();
             Application.Current.MainPage = new NavigationPage(new LoginPage());
+        }
+
+        public async Task<Firebase.Auth.User> GetProfileInformationAndRefreshToken() {
+
+            //This is the saved firebaseauthentication that was saved during the time of login
+            var savedfirebaseauth = JsonConvert.DeserializeObject<FirebaseAuth>(Preferences.Get(App.FirebaseRefreshToken, string.Empty));
+            //Here we are Refreshing the token
+            var RefreshedContent = await AuthProvider.RefreshAuthAsync(savedfirebaseauth);
+            Preferences.Set(App.FirebaseRefreshToken, JsonConvert.SerializeObject(RefreshedContent));
+            //Now lets grab user information
+            return savedfirebaseauth.User;
         }
 
         public async Task InsertAsync(NotebookNote element, string ChildName) {

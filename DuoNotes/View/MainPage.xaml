@@ -6,6 +6,7 @@
              xmlns:translate="clr-namespace:DuoNotes.Utils"
              xmlns:vm="clr-namespace:DuoNotes.ViewModel"
              xmlns:community="http://xamarin.com/schemas/2020/toolkit"
+             xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
              Title="{translate:Translate Notebooks}"
              BackgroundColor="{AppThemeBinding Dark={StaticResource BckgroundDarkColor},
                                       Light={StaticResource BackgroundLigthColor}}">
@@ -15,30 +16,46 @@
         <vm:MainPageViewModel />
     </ContentPage.BindingContext>
 
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Order="Secondary"
-                     Text="{translate:Translate Profile}"
-                     Command="{Binding ProfileCommand}"
-                     Priority="1" />
+    <NavigationPage.TitleView>
+        <StackLayout Orientation="Horizontal">
+            <ffimageloadingsvg:SvgCachedImage Source="boy.svg"
+                                              WidthRequest="40"
+                                              HeightRequest="40" />
 
-    </ContentPage.ToolbarItems>
+            <Label Text="{Binding FireUser.Email}"
+                   VerticalOptions="Center"
+                   FontSize="Medium"
+                   FontAttributes="Bold" />
 
+        </StackLayout>
+    </NavigationPage.TitleView>
 
-    <Grid>
+    <StackLayout>
+
+        <StackLayout Orientation="Horizontal"
+                     HorizontalOptions="Center"
+                     Margin="5">
+
+        </StackLayout>
+
         <CollectionView ItemsSource="{Binding FireBaseNotebooks}"
                         SelectionMode="Single"
-                        Margin="10"
+                        Grid.Row="1"
                         SelectedItem="{Binding SelectedNotebook}"
                         SelectionChangedCommand="{Binding SeletedItemCommand}">
+
             <CollectionView.ItemsLayout>
+
                 <GridItemsLayout Orientation="Horizontal"
-                                 Span="2" />
+                                 Span="4" />
+
             </CollectionView.ItemsLayout>
+
             <CollectionView.ItemTemplate>
                 <DataTemplate>
 
-                    <StackLayout Margin="5"
-                                 Spacing="2">
+
+                    <StackLayout Padding="10">
 
                         <Label Text="{Static icon:IconFont.Book}"
                                FontFamily="fa"
@@ -52,7 +69,7 @@
                                HorizontalTextAlignment="Start" />
 
                         <Label FontAttributes="Bold"
-                               FontSize="Medium">
+                               FontSize="Subtitle">
                             <Label.FormattedText>
                                 <FormattedString>
                                     <Span Text="{translate:Translate NoteBookTitle}" />
@@ -63,7 +80,7 @@
                         </Label>
 
                         <Label FontAttributes="Bold"
-                               FontSize="Medium">
+                               FontSize="Subtitle">
                             <Label.FormattedText>
                                 <FormattedString>
                                     <Span Text="{translate:Translate Usage}" />
@@ -72,10 +89,7 @@
                                 </FormattedString>
                             </Label.FormattedText>
                         </Label>
-
-
                     </StackLayout>
-
 
                 </DataTemplate>
             </CollectionView.ItemTemplate>
@@ -83,6 +97,7 @@
         </CollectionView>
 
         <Frame Style="{StaticResource FabButton}"
+               Grid.Row="1"
                x:Name="Fab">
 
             <Label Text="{Static icon:IconFont.Plus}"
@@ -90,5 +105,5 @@
                    community:TouchEffect.Command="{Binding FabAnimationCommmand}"
                    community:TouchEffect.CommandParameter="{Reference Fab}" />
         </Frame>
-    </Grid>
+    </StackLayout>
 </ContentPage>

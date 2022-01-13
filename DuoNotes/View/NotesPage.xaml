@@ -27,43 +27,7 @@
 
 
     <Grid>
-        <syncfusion:SfListView x:Name="listView"
-                               ItemsSource="{Binding FireBaseNotebooks}"
-                               SelectedItem="{Binding SelectedNotebookNote}"
-                               SelectionChangedCommand="{Binding SeletedItemCommand}"
-                               ItemSize="200">
-            <syncfusion:SfListView.LayoutManager>
-                <syncfusion:GridLayout SpanCount="2" />
-            </syncfusion:SfListView.LayoutManager>
-            <syncfusion:SfListView.ItemTemplate>
-
-                <DataTemplate x:DataType="model:Note">
-
-                    <Grid Padding="10"
-                          HeightRequest="20"
-                          Margin="12"
-                          RowDefinitions="Auto,Auto,Auto,Auto,Auto"
-                          ColumnDefinitions="Auto,Auto">
-
-                        <Label Text="{Binding CreatedDate}"
-                               Style="{StaticResource LabelStyle}"
-                               HorizontalTextAlignment="Start" />
-
-                        <Label Style="{StaticResource LabelStyle}"
-                               Grid.Row="1"
-                               Text="{Static icon:IconFont.NoteSticky}"
-                               HorizontalOptions="Start"
-                               FontSize="Title"
-                               FontFamily="fa" />
-
-                        <Label Text="{Binding Name}"
-                               Grid.Row="1"
-                               Margin="25,0,0,0" />
-
-                    </Grid>
-                </DataTemplate>
-            </syncfusion:SfListView.ItemTemplate>
-        </syncfusion:SfListView>
+     
 
         <Frame Style="{StaticResource FabButton}"
                x:Name="Fab">

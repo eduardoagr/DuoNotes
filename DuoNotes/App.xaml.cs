@@ -11,7 +11,7 @@ using Xamarin.Forms;
 namespace DuoNotes {
     public partial class App : Application {
 
-        private const string KEY = "NTEzNDUzQDMxMzkyZTMzMmUzMEFHQ1hQZVBJa1ppRWFJYk1QU0xrbDF6bTNTVjFRNTV3dTgvZEVZK3ByTW89";
+        private const string KEY = "NTY0Njk3QDMxMzkyZTM0MmUzMEVJRzNEYmRZQnZhdjIyeXRDY3JpMXgwUUg1MnBoQ1AxMWFYZlF6Z2dIVEE9";
 
         public const string WEB_API_KEY = "AIzaSyAxdD4aXTmGRN-BwLX4ItYusIc35r4_VVQ";
 
@@ -23,7 +23,7 @@ namespace DuoNotes {
 
         public static FirebaseServices services;
 
-        public const string FirebaseToken = "FirebaseToken";
+        public const string FirebaseRefreshToken = "FirebaseRefreshToken";
 
         public const string Notebooks = "Notebooks";
 

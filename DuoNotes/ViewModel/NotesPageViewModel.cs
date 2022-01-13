@@ -26,8 +26,6 @@ namespace DuoNotes.ViewModel {
 
                 RecivedSelectedNotebook = SelectedObject;
             };
-
-            // App.services.ReadAsync(App.Notes, RecivedSelectedNotebook.Id);
         }
 
         private async void AnimateButtonCommand(Frame obj) {

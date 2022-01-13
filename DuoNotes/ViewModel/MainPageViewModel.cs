@@ -30,7 +30,7 @@ namespace DuoNotes.ViewModel {
 
         public Command<Frame> FabAnimationCommmand { get; set; }
 
-        public ICommand ProfileCommand { get; set; }
+        public Firebase.Auth.User FireUser { get; set; }
 
         public MainPageViewModel() {
 
@@ -44,10 +44,14 @@ namespace DuoNotes.ViewModel {
 
             FabAnimationCommmand = new Command<Frame>(AnimateButtonCommand);
 
-            //ProfileCommand = new Command(OpenProfilePopp);
-
             App.services.ReadAsync(App.Notebooks);
 
+            GetUserData();
+
+        }
+
+        private async void GetUserData() {
+            FireUser = await App.services.GetProfileInformationAndRefreshToken();
         }
 
         private async void AnimateButtonCommand(Frame obj) {

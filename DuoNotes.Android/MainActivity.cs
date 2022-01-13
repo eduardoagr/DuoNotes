@@ -7,6 +7,7 @@ using Android.OS;
 using Android.Runtime;
 
 using FFImageLoading.Forms.Platform;
+using FFImageLoading.Svg.Forms;
 
 using Xamarin.Forms;
 using Xamarin.Forms.DualScreen;
