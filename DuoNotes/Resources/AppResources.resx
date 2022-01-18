@@ -171,6 +171,9 @@
   <data name="Notebooks" xml:space="preserve">
     <value>Notebooks</value>
   </data>
+  <data name="NoteBookTitle" xml:space="preserve">
+    <value>Notebook title</value>
+  </data>
   <data name="NotebookUsage" xml:space="preserve">
     <value>What are you going to store in this notebook</value>
   </data>

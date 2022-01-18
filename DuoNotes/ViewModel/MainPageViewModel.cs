@@ -20,13 +20,15 @@ namespace DuoNotes.ViewModel {
     [AddINotifyPropertyChangedInterface]
     public class MainPageViewModel {
 
-        public Notebook SelectedNotebook { get; set; }
-
-        public ObservableCollection<NotebookNote> FireBaseNotebooks { get; set; }
-
         public ICommand SeletedItemCommand { get; set; }
 
         public ICommand LogoutCommand { get; set; }
+
+        public ICommand ProfileCommnd { get; set; }
+
+        public Notebook SelectedNotebook { get; set; }
+
+        public ObservableCollection<NotebookNote> FireBaseNotebooks { get; set; }
 
         public Command<Frame> FabAnimationCommmand { get; set; }
 
@@ -44,10 +46,16 @@ namespace DuoNotes.ViewModel {
 
             FabAnimationCommmand = new Command<Frame>(AnimateButtonCommand);
 
+            ProfileCommnd = new Command(NavigateCommandAsync);
+
             App.services.ReadAsync(App.Notebooks);
 
             GetUserData();
 
+        }
+
+        private async void NavigateCommandAsync() {
+            await Application.Current.MainPage.Navigation.PushAsync(new ProfilePage());
         }
 
         private async void GetUserData() {
@@ -66,15 +74,14 @@ namespace DuoNotes.ViewModel {
         }
 
         private async void SeletedItemActionAsync() {
-            if (SelectedNotebook == null) {
-                return;
-            }
+
 
             NotesPage notesPage = new NotesPage();
             await App.Current.MainPage.Navigation.PushAsync(notesPage, true);
             var viewModel = notesPage.BindingContext as NotesPageViewModel;
             viewModel.RecivedSelectedNotebookAccion(SelectedNotebook);
             SelectedNotebook = null;
+
         }
 
         private void LogOutAction() {

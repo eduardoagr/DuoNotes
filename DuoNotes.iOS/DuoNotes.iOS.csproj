@@ -178,21 +178,153 @@
     <BundleResource Include="Resources\book.svg" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\girl.svg" />
+    <BundleResource Include="Resources\Girl03.svg" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\man.svg" />
+    <BundleResource Include="Resources\Girl04.svg" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\mexican.svg" />
+    <BundleResource Include="Resources\Girl05.svg" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\pirates.svg" />
+    <BundleResource Include="Resources\Girl06.svg" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\boy.svg" />
+    <BundleResource Include="Resources\Girl07.svg" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\chinese.svg" />
+    <BundleResource Include="Resources\Girl08.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Girl09.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Girl10.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Boy01.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Boy02.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Boy03.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Boy04.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Boy05.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Boy06.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Boy07.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Boy08.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Boy09.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Boy10.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Girl01.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Girl02.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\andywarhol.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\barackobama.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\batman.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\braziliannativeman.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\braziliannativewoman.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\charliechaplin.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\constructionworkerblackwoman.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\dalailama.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\davegrohl.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\footballercristianoronaldo.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\footballerluissuarez.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\footballerneymarjr.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\girlinballcap.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\mahatmagandhi.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\malcolmx.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\matrixtrinity.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\mickjagger.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\muslimman.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\muslimwoman.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\nikolatesla.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\robot01.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\robot02.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\robot03.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\superheroblackpanther.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\traditionajapaneseman.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\traditionalafricanman.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\traditionalafricanwoman.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\traditionalindianman.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\traditionalindianwoman.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\traditionaljapanesewoman.svg" />
   </ItemGroup>
 </Project>

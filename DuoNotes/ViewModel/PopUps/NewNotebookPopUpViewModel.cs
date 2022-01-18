@@ -19,6 +19,13 @@ namespace DuoNotes.ViewModel.PopUps {
     [AddINotifyPropertyChangedInterface]
     public class NewNotebookPopUpViewModel {
 
+        public ICommand NewNotebookCommand { get; set; }
+
+        public ICommand CloseCommand { get; set; }
+
+        public ICommand SelectedColorCommand { get; set; }
+
+
         readonly FirebaseServices Services;
 
         public List<Color> Colors { get; set; }
@@ -26,12 +33,6 @@ namespace DuoNotes.ViewModel.PopUps {
         public Color SelectedColor { get; set; }
 
         public Notebook Notebook { get; set; }
-
-        public ICommand NewNotebookCommand { get; set; }
-
-        public ICommand CloseCommand { get; set; }
-
-        public ICommand SelectedColorCommand { get; set; }
 
         public NewNotebookPopUpViewModel() {
 
@@ -49,7 +50,7 @@ namespace DuoNotes.ViewModel.PopUps {
 
             CloseCommand = new Command(PerformCloseAction);
 
-            Colors = ColorServices.GetItems();
+            Colors = ColorServices.GetColors();
 
             SelectedColorCommand = new Command(SelectColorAction);
 

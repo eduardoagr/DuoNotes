@@ -12,7 +12,6 @@ using Newtonsoft.Json;
 
 using Rg.Plugins.Popup.Services;
 
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -75,13 +74,16 @@ namespace DuoNotes.Services {
 
         public async Task<Firebase.Auth.User> GetProfileInformationAndRefreshToken() {
 
-            //This is the saved firebaseauthentication that was saved during the time of login
             var savedfirebaseauth = JsonConvert.DeserializeObject<FirebaseAuth>(Preferences.Get(App.FirebaseRefreshToken, string.Empty));
-            //Here we are Refreshing the token
             var RefreshedContent = await AuthProvider.RefreshAuthAsync(savedfirebaseauth);
             Preferences.Set(App.FirebaseRefreshToken, JsonConvert.SerializeObject(RefreshedContent));
-            //Now lets grab user information
             return savedfirebaseauth.User;
+
+        }
+
+        public async void UpdateUserData(string PhotoUri, string DisplyName) {
+            await AuthProvider.UpdateProfileAsync(Preferences.Get(App.FirebaseRefreshToken, string.Empty),
+                DisplyName, PhotoUri);
         }
 
         public async Task InsertAsync(NotebookNote element, string ChildName) {

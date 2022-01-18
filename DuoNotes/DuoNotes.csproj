@@ -75,5 +75,8 @@
 		<EmbeddedResource Update="View\PopUps\RegisterPopUp.xaml">
 			<Generator>MSBuild:UpdateDesignTimeXaml</Generator>
 		</EmbeddedResource>
+		<EmbeddedResource Update="View\ProfilePage.xaml">
+		  <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+		</EmbeddedResource>
 	</ItemGroup>
 </Project>

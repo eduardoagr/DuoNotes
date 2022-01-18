@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DuoNotes.View.ProfilePage"
+             xmlns:translate="clr-namespace:DuoNotes.Utils"
+             xmlns:vm="clr-namespace:DuoNotes.ViewModel"
+             xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             BackgroundColor="{AppThemeBinding Dark={StaticResource BckgroundDarkColor},
+                                      Light={StaticResource BackgroundLigthColor}}"
+             Title="{translate:Translate userProfile}">
+
+    <ContentPage.BindingContext>
+        <vm:ProfilePageViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <Grid RowDefinitions="60,*">
+            <CollectionView ItemsSource="{Binding Avatars}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <ffimageloadingsvg:SvgCachedImage HeightRequest="60"
+                                                          Source="{Binding .}"
+                                                          WidthRequest="60" />
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

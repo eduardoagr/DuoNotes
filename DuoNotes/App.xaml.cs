@@ -25,6 +25,8 @@ namespace DuoNotes {
 
         public const string FirebaseRefreshToken = "FirebaseRefreshToken";
 
+        public const string FirebaseToken = "FirebaseToken";
+
         public const string Notebooks = "Notebooks";
 
         public const string Notes = "Notes";

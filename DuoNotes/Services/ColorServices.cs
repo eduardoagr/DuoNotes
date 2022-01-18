@@ -4,7 +4,7 @@ using Xamarin.Forms;
 
 namespace DuoNotes.Services {
     internal class ColorServices {
-        internal static List<Color> GetItems() {
+        internal static List<Color> GetColors() {
 
             return new List<Color>() {
                 Color.Red,

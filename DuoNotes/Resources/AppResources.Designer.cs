@@ -223,6 +223,15 @@ namespace DuoNotes.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Notebook title.
+        /// </summary>
+        internal static string NoteBookTitle {
+            get {
+                return ResourceManager.GetString("NoteBookTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to What are you going to store in this notebook.
         /// </summary>
         internal static string NotebookUsage {

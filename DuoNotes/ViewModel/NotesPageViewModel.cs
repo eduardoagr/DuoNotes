@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace DuoNotes.ViewModel {
+
     public class NotesPageViewModel : MainPageViewModel {
 
         public new Command<Frame> FabAnimationCommmand { get; set; }

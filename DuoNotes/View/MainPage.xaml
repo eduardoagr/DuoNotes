@@ -17,8 +17,10 @@
     </ContentPage.BindingContext>
 
     <NavigationPage.TitleView>
-        <StackLayout Orientation="Horizontal">
-            <ffimageloadingsvg:SvgCachedImage Source="boy.svg"
+        <StackLayout Orientation="Horizontal"
+                     community:TouchEffect.Command="{Binding ProfileCommnd}"
+                     HorizontalOptions="Start">
+            <ffimageloadingsvg:SvgCachedImage Source="{Binding FireUser.PhotoUrl}"
                                               WidthRequest="40"
                                               HeightRequest="40" />
 
@@ -31,12 +33,6 @@
     </NavigationPage.TitleView>
 
     <StackLayout>
-
-        <StackLayout Orientation="Horizontal"
-                     HorizontalOptions="Center"
-                     Margin="5">
-
-        </StackLayout>
 
         <CollectionView ItemsSource="{Binding FireBaseNotebooks}"
                         SelectionMode="Single"
@@ -53,8 +49,6 @@
 
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-
-
                     <StackLayout Padding="10">
 
                         <Label Text="{Static icon:IconFont.Book}"

@@ -18,13 +18,13 @@ namespace DuoNotes.ViewModel.PopUps {
 
         readonly FirebaseServices Services;
 
-        public Note Note { get; set; }
+        public ICommand NewNoteCommand { get; set; }
 
         public Action<Notebook> RecivedSelectedNotebookAccion { get; set; }
 
         public Notebook RecivedSelectedNotebook { get; set; }
 
-        public ICommand NewNoteCommand { get; set; }
+        public Note Note { get; set; }
 
         public NewNotePopUpViewModel() {
 
