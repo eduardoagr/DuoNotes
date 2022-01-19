@@ -18,8 +18,10 @@
 
     <NavigationPage.TitleView>
         <StackLayout Orientation="Horizontal"
-                     community:TouchEffect.Command="{Binding ProfileCommnd}"
                      HorizontalOptions="Start">
+            <StackLayout.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding ProfileCommnd}" />
+            </StackLayout.GestureRecognizers>
             <ffimageloadingsvg:SvgCachedImage Source="{Binding FireUser.PhotoUrl}"
                                               WidthRequest="40"
                                               HeightRequest="40" />

@@ -77,6 +77,7 @@ namespace DuoNotes.Services {
             var savedfirebaseauth = JsonConvert.DeserializeObject<FirebaseAuth>(Preferences.Get(App.FirebaseRefreshToken, string.Empty));
             var RefreshedContent = await AuthProvider.RefreshAuthAsync(savedfirebaseauth);
             Preferences.Set(App.FirebaseRefreshToken, JsonConvert.SerializeObject(RefreshedContent));
+            //savedfirebaseauth.User.PhotoUrl = //Get th Url from msn.svg
             return savedfirebaseauth.User;
 
         }

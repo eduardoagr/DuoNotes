@@ -175,69 +175,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\book.svg" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\Girl03.svg" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\Girl04.svg" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\Girl05.svg" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\Girl06.svg" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\Girl07.svg" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\Girl08.svg" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\Girl09.svg" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\Girl10.svg" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\Boy01.svg" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\Boy02.svg" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\Boy03.svg" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\Boy04.svg" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\Boy05.svg" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\Boy06.svg" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\Boy07.svg" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\Boy08.svg" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\Boy09.svg" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\Boy10.svg" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\Girl01.svg" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\Girl02.svg" />
-  </ItemGroup>
-  <ItemGroup>
     <BundleResource Include="Resources\andywarhol.svg" />
   </ItemGroup>
   <ItemGroup>
@@ -245,6 +182,9 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\batman.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\book.svg" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\braziliannativeman.svg" />
@@ -287,6 +227,9 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\mickjagger.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\msn.svg" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\muslimman.svg" />

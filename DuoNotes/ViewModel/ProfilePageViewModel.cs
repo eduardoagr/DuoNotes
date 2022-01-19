@@ -13,9 +13,6 @@ namespace DuoNotes.ViewModel {
     [AddINotifyPropertyChangedInterface]
     internal class ProfilePageViewModel {
 
-
-        readonly FirebaseServices Services;
-
         public ICommand SelectedAvatarCommand { get; set; }
 
         public Firebase.Auth.User FireUser { get; set; }
@@ -40,7 +37,7 @@ namespace DuoNotes.ViewModel {
         }
 
         private void SelectAvatarAction() {
-            throw new NotImplementedException();
+
         }
 
         private async void GetUserData() {

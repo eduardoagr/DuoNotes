@@ -233,6 +233,9 @@
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\traditionaljapanesewoman.svg" />
   </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\msn.svg" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
