@@ -57,6 +57,7 @@ namespace DuoNotes.Services {
                 var content = await auth.GetFreshAuthAsync();
                 var serializedcontnet = JsonConvert.SerializeObject(content);
                 App.UserID = auth.User.LocalId;
+                Preferences.Set(App.FirebaseToken, auth.FirebaseToken);
                 Preferences.Set(App.UserID, App.UserID);
                 Preferences.Set(App.FirebaseRefreshToken, serializedcontnet);
                 UserDialogs.Instance.HideLoading();
@@ -82,9 +83,14 @@ namespace DuoNotes.Services {
 
         }
 
-        public async void UpdateUserData(string PhotoUri, string DisplyName) {
-            await AuthProvider.UpdateProfileAsync(Preferences.Get(App.FirebaseRefreshToken, string.Empty),
+        public async Task<Firebase.Auth.User> UpdateUserData(string PhotoUri, string DisplyName) {
+
+            var savedfirebaseauth = JsonConvert.DeserializeObject<FirebaseAuth>(Preferences.Get(App.FirebaseRefreshToken, string.Empty));
+            var RefreshedContent = await AuthProvider.RefreshAuthAsync(savedfirebaseauth);
+            Preferences.Set(App.FirebaseRefreshToken, JsonConvert.SerializeObject(RefreshedContent));
+            var newUser = await AuthProvider.UpdateProfileAsync(Preferences.Get(App.FirebaseToken, string.Empty),
                 DisplyName, PhotoUri);
+            return newUser.User;
         }
 
         public async Task InsertAsync(NotebookNote element, string ChildName) {

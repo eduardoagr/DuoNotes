@@ -21,9 +21,7 @@ namespace DuoNotes.ViewModel {
 
         public string SelectedAvatar { get; set; }
 
-        public string DisplaName { get; set; }
-
-        public Uri AvatarUri { get; set; }
+        public string DisplayName { get; set; }
 
         public ProfilePageViewModel() {
 
@@ -36,12 +34,20 @@ namespace DuoNotes.ViewModel {
             GetUserData();
         }
 
-        private void SelectAvatarAction() {
+        private async void SelectAvatarAction() {
 
+            await App.services.UpdateUserData(SelectedAvatar, DisplayName);
+
+            Console.WriteLine(FireUser.PhotoUrl);
         }
 
         private async void GetUserData() {
             FireUser = await App.services.GetProfileInformationAndRefreshToken();
+            if (string.IsNullOrEmpty(FireUser.DisplayName)) {
+                DisplayName = Resources.AppResources.User;
+            } else {
+                DisplayName = FireUser.DisplayName;
+            }
         }
 
     }

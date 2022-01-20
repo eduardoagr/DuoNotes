@@ -34,6 +34,8 @@ namespace DuoNotes.ViewModel {
 
         public Firebase.Auth.User FireUser { get; set; }
 
+        public string DisplayName { get; set; }
+
         public MainPageViewModel() {
 
             FireBaseNotebooks = new ObservableCollection<NotebookNote>();
@@ -60,6 +62,12 @@ namespace DuoNotes.ViewModel {
 
         private async void GetUserData() {
             FireUser = await App.services.GetProfileInformationAndRefreshToken();
+            if (string.IsNullOrEmpty(FireUser.DisplayName)) {
+                DisplayName = Resources.AppResources.User;
+            } else {
+                DisplayName = FireUser.DisplayName;
+            }
+
         }
 
         private async void AnimateButtonCommand(Frame obj) {

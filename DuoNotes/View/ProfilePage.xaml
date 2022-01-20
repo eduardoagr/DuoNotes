@@ -1,12 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage x:Class="DuoNotes.View.ProfilePage"
-             xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
-             xmlns:translate="clr-namespace:DuoNotes.Utils"
-             xmlns:vm="clr-namespace:DuoNotes.ViewModel"
-             Title="{translate:Translate userProfile}"
-             BackgroundColor="{AppThemeBinding Dark={StaticResource BckgroundDarkColor},
+<ContentPage
+    x:Class="DuoNotes.View.ProfilePage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+    xmlns:translate="clr-namespace:DuoNotes.Utils"
+    xmlns:vm="clr-namespace:DuoNotes.ViewModel"
+    Title="{translate:Translate userProfile}"
+    BackgroundColor="{AppThemeBinding Dark={StaticResource BckgroundDarkColor},
                                       Light={StaticResource BackgroundLigthColor}}">
 
     <ContentPage.BindingContext>
@@ -15,33 +16,49 @@
 
     <Grid RowDefinitions="Auto,*">
 
-        <StackLayout Padding="10"
-                     BackgroundColor="DarkGreen"
-                     HorizontalOptions="Start"
-                     Orientation="Horizontal">
+        <StackLayout Padding="10" Orientation="Horizontal">
 
-            <ffimageloadingsvg:SvgCachedImage HeightRequest="40"
-                                              Source="{Binding FireUser.PhotoUrl}"
-                                              WidthRequest="40" />
+            <ffimageloadingsvg:SvgCachedImage
+                HeightRequest="40"
+                Source="{Binding FireUser.PhotoUrl}"
+                WidthRequest="40" />
 
-            <Label FontAttributes="Bold"
-                   FontSize="Medium"
-                   Text="{Binding FireUser.Email}"
-                   VerticalOptions="Center" />
+            <Entry
+                FontAttributes="Bold"
+                FontSize="Medium"
+                HorizontalOptions="FillAndExpand"
+                Placeholder="{Binding DisplayName}" />
 
         </StackLayout>
 
-        <CollectionView Grid.Row="1"
-                        ItemsSource="{Binding Avatars}"
-                        SelectedItem="{Binding SelectedAvatar}"
-                        SelectionChangedCommand="{Binding SelectedAvatarCommand}"
-                        SelectionMode="Single">
+        <BoxView
+            BackgroundColor="{AppThemeBinding Dark={StaticResource BackgroundLigthColor},
+                                              Light={StaticResource BckgroundDarkColor}}"
+            HeightRequest="1"
+            VerticalOptions="EndAndExpand" />
+
+        <CollectionView
+            Grid.Row="1"
+            Margin="20"
+            ItemsSource="{Binding Avatars}"
+            SelectedItem="{Binding SelectedAvatar}"
+            SelectionChangedCommand="{Binding SelectedAvatarCommand}"
+            SelectionMode="Single">
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout
+                    HorizontalItemSpacing="5"
+                    Orientation="Vertical"
+                    Span="2"
+                    VerticalItemSpacing="5" />
+            </CollectionView.ItemsLayout>
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <ffimageloadingsvg:SvgCachedImage HeightRequest="40"
-                                                      HorizontalOptions="Start"
-                                                      Source="{Binding .}"
-                                                      WidthRequest="40" />
+                    <ffimageloadingsvg:SvgCachedImage
+                        Margin="5"
+                        HeightRequest="40"
+                        HorizontalOptions="Start"
+                        Source="{Binding .}"
+                        WidthRequest="40" />
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>

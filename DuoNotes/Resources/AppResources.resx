@@ -201,6 +201,9 @@
   <data name="Usage" xml:space="preserve">
     <value>This notebook has:</value>
   </data>
+  <data name="User" xml:space="preserve">
+    <value>User</value>
+  </data>
   <data name="UserInserted" xml:space="preserve">
     <value>User created successfully</value>
   </data>
