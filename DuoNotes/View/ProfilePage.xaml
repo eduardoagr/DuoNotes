@@ -1,41 +1,49 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<ContentPage x:Class="DuoNotes.View.ProfilePage"
+             xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="DuoNotes.View.ProfilePage"
+             xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
              xmlns:translate="clr-namespace:DuoNotes.Utils"
              xmlns:vm="clr-namespace:DuoNotes.ViewModel"
-             xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             Title="{translate:Translate userProfile}"
              BackgroundColor="{AppThemeBinding Dark={StaticResource BckgroundDarkColor},
-                                      Light={StaticResource BackgroundLigthColor}}"
-             Title="{translate:Translate userProfile}">
+                                      Light={StaticResource BackgroundLigthColor}}">
 
     <ContentPage.BindingContext>
         <vm:ProfilePageViewModel />
     </ContentPage.BindingContext>
 
-    <Grid RowDefinitions="40,*">
+    <Grid RowDefinitions="Auto,*">
 
-        <StackLayout Orientation="Horizontal">
+        <StackLayout Padding="10"
+                     BackgroundColor="DarkGreen"
+                     HorizontalOptions="Start"
+                     Orientation="Horizontal">
+
+            <ffimageloadingsvg:SvgCachedImage HeightRequest="40"
+                                              Source="{Binding FireUser.PhotoUrl}"
+                                              WidthRequest="40" />
+
+            <Label FontAttributes="Bold"
+                   FontSize="Medium"
+                   Text="{Binding FireUser.Email}"
+                   VerticalOptions="Center" />
 
         </StackLayout>
 
-        <CollectionView ItemsSource="{Binding Avatars}"
+        <CollectionView Grid.Row="1"
+                        ItemsSource="{Binding Avatars}"
                         SelectedItem="{Binding SelectedAvatar}"
                         SelectionChangedCommand="{Binding SelectedAvatarCommand}"
-                        SelectionMode="Single"
-                        Grid.Row="1">
-            <CollectionView.ItemsLayout>
-                <GridItemsLayout Orientation="Horizontal"
-                                 Span="4" />
-            </CollectionView.ItemsLayout>
+                        SelectionMode="Single">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <ffimageloadingsvg:SvgCachedImage Source="{Binding .}"
-                                                      WidthRequest="40"
-                                                      HeightRequest="40" />
+                    <ffimageloadingsvg:SvgCachedImage HeightRequest="40"
+                                                      HorizontalOptions="Start"
+                                                      Source="{Binding .}"
+                                                      WidthRequest="40" />
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-
     </Grid>
 </ContentPage>

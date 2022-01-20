@@ -57,7 +57,7 @@ namespace DuoNotes.Services {
                 var content = await auth.GetFreshAuthAsync();
                 var serializedcontnet = JsonConvert.SerializeObject(content);
                 App.UserID = auth.User.LocalId;
-                Preferences.Set(App.UID, App.UserID);
+                Preferences.Set(App.UserID, App.UserID);
                 Preferences.Set(App.FirebaseRefreshToken, serializedcontnet);
                 UserDialogs.Instance.HideLoading();
                 Application.Current.MainPage = new NavigationPage(new MainPage());
@@ -77,7 +77,7 @@ namespace DuoNotes.Services {
             var savedfirebaseauth = JsonConvert.DeserializeObject<FirebaseAuth>(Preferences.Get(App.FirebaseRefreshToken, string.Empty));
             var RefreshedContent = await AuthProvider.RefreshAuthAsync(savedfirebaseauth);
             Preferences.Set(App.FirebaseRefreshToken, JsonConvert.SerializeObject(RefreshedContent));
-            //savedfirebaseauth.User.PhotoUrl = //Get th Url from msn.svg
+            savedfirebaseauth.User.PhotoUrl = "msn.svg";
             return savedfirebaseauth.User;
 
         }
@@ -108,6 +108,9 @@ namespace DuoNotes.Services {
                 collection.Add(notebookNote);
             }
 
+
+            var x = Preferences.Get(App.UserID, string.Empty);
+            System.Console.WriteLine(x);
             collection = collection.Where(n => n.UserID == App.UserID).ToList();
 
             FireBaseNotebooks.Clear();

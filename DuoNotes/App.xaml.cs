@@ -19,7 +19,7 @@ namespace DuoNotes {
 
         public static string languages = CultureInfo.CurrentCulture.Name;
 
-        public static string UserID = string.Empty;
+        public static string UserID = "UserID";
 
         public static FirebaseServices services;
 
@@ -37,9 +37,9 @@ namespace DuoNotes {
 
             InitializeComponent();
 
-            var UID = Preferences.Get(App.UID, string.Empty);
+            var UserId = Preferences.Get(UserID, string.Empty);
 
-            if (!string.IsNullOrEmpty(UID)) {
+            if (!string.IsNullOrEmpty(UserId)) {
                 MainPage = new NavigationPage(new MainPage());
             } else {
                 MainPage = new NavigationPage(new LoginPage());
