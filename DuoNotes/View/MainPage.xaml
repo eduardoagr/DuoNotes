@@ -28,11 +28,16 @@
 
             <Label FontAttributes="Bold"
                    FontSize="Medium"
-                   Text="{Binding DisplayName}"
+                   Text="{Binding FireUser.DisplayName}"
                    VerticalOptions="Center" />
 
         </StackLayout>
     </NavigationPage.TitleView>
+
+    <ContentPage.Behaviors>
+        <community:EventToCommandBehavior EventName="Appearing"
+                                          Command="{Binding PageAppearCommand}" />
+    </ContentPage.Behaviors>
 
     <StackLayout>
 

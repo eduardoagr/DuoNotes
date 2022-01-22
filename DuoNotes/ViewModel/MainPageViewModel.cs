@@ -26,6 +26,8 @@ namespace DuoNotes.ViewModel {
 
         public ICommand ProfileCommnd { get; set; }
 
+        public ICommand PageAppearCommand { get; set; }
+
         public Notebook SelectedNotebook { get; set; }
 
         public ObservableCollection<NotebookNote> FireBaseNotebooks { get; set; }
@@ -42,6 +44,8 @@ namespace DuoNotes.ViewModel {
 
             App.services = new FirebaseServices(FireBaseNotebooks);
 
+            PageAppearCommand = new Command(AppearAction);
+
             LogoutCommand = new Command(LogOutAction);
 
             SeletedItemCommand = new Command(SeletedItemActionAsync);
@@ -52,22 +56,15 @@ namespace DuoNotes.ViewModel {
 
             App.services.ReadAsync(App.Notebooks);
 
-            GetUserData();
 
+        }
+
+        private async void AppearAction() {
+            FireUser = await App.services.GetProfileInformationAndRefreshToken();
         }
 
         private async void NavigateCommandAsync() {
             await Application.Current.MainPage.Navigation.PushAsync(new ProfilePage());
-        }
-
-        private async void GetUserData() {
-            FireUser = await App.services.GetProfileInformationAndRefreshToken();
-            if (string.IsNullOrEmpty(FireUser.DisplayName)) {
-                DisplayName = Resources.AppResources.User;
-            } else {
-                DisplayName = FireUser.DisplayName;
-            }
-
         }
 
         private async void AnimateButtonCommand(Frame obj) {

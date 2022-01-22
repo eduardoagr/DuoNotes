@@ -15,13 +15,13 @@ namespace DuoNotes.ViewModel {
 
         public ICommand SelectedAvatarCommand { get; set; }
 
+        public ICommand UpdateCommand { get; set; }
+
         public Firebase.Auth.User FireUser { get; set; }
 
         public List<string> Avatars { get; set; }
 
         public string SelectedAvatar { get; set; }
-
-        public string DisplayName { get; set; }
 
         public ProfilePageViewModel() {
 
@@ -31,23 +31,24 @@ namespace DuoNotes.ViewModel {
 
             SelectedAvatarCommand = new Command(SelectAvatarAction);
 
+            UpdateCommand = new Command(SaveProfile);
+
             GetUserData();
         }
 
-        private async void SelectAvatarAction() {
+        private async void SaveProfile() {
+            FireUser = await App.services.UpdateUserData(SelectedAvatar, FireUser.DisplayName);
+            await Application.Current.MainPage.Navigation.PopAsync();
+        }
 
-            await App.services.UpdateUserData(SelectedAvatar, DisplayName);
-
-            Console.WriteLine(FireUser.PhotoUrl);
+        private void SelectAvatarAction() {
+            if (SelectedAvatar == null) {
+                return;
+            }
         }
 
         private async void GetUserData() {
             FireUser = await App.services.GetProfileInformationAndRefreshToken();
-            if (string.IsNullOrEmpty(FireUser.DisplayName)) {
-                DisplayName = Resources.AppResources.User;
-            } else {
-                DisplayName = FireUser.DisplayName;
-            }
         }
 
     }
