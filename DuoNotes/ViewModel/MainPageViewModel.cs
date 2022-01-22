@@ -82,7 +82,7 @@ namespace DuoNotes.ViewModel {
 
 
             NotesPage notesPage = new NotesPage();
-            await App.Current.MainPage.Navigation.PushAsync(notesPage, true);
+            await App.Current.MainPage.Navigation.PushAsync(notesPage);
             var viewModel = notesPage.BindingContext as NotesPageViewModel;
             viewModel.RecivedSelectedNotebookAccion(SelectedNotebook);
             SelectedNotebook = null;
