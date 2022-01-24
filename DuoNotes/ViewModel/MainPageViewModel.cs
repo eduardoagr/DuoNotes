@@ -80,6 +80,9 @@ namespace DuoNotes.ViewModel {
 
         private async void SeletedItemActionAsync() {
 
+            if (SelectedNotebook == null) {
+                return;
+            }
 
             NotesPage notesPage = new NotesPage();
             await App.Current.MainPage.Navigation.PushAsync(notesPage);

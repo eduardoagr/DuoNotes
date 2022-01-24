@@ -270,4 +270,7 @@
   <ItemGroup>
     <BundleResource Include="Resources\traditionaljapanesewoman.svg" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\mailchimp.svg" />
+  </ItemGroup>
 </Project>

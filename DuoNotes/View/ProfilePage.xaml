@@ -36,7 +36,7 @@
             <Entry FontAttributes="Bold"
                    FontSize="Medium"
                    HorizontalOptions="FillAndExpand"
-                   Text="{Binding FireUser.DisplayName}" />
+                   Placeholder="{Binding FireUser.DisplayName}" />
 
         </StackLayout>
 
@@ -54,7 +54,7 @@
             <CollectionView.ItemsLayout>
                 <GridItemsLayout HorizontalItemSpacing="5"
                                  Orientation="Vertical"
-                                 Span="1"
+                                 Span="2"
                                  VerticalItemSpacing="5" />
             </CollectionView.ItemsLayout>
             <CollectionView.ItemTemplate>

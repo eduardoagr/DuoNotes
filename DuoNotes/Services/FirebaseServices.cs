@@ -81,7 +81,7 @@ namespace DuoNotes.Services {
             if (string.IsNullOrEmpty(savedfirebaseauth.User.PhotoUrl) ||
                 string.IsNullOrEmpty(savedfirebaseauth.User.DisplayName)) {
 
-                savedfirebaseauth.User.PhotoUrl = "msn.svg";
+                savedfirebaseauth.User.PhotoUrl = "mailchimp.svg";
                 savedfirebaseauth.User.DisplayName = AppResources.User;
             }
             return savedfirebaseauth.User;
