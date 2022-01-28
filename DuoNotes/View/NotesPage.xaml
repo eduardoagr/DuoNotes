@@ -65,7 +65,7 @@
                                 </FormattedString>
                             </Label.FormattedText>
                         </Label>
-
+                    </StackLayout>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
 
