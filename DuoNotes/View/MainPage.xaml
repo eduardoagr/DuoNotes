@@ -41,8 +41,7 @@
 
     <StackLayout>
 
-        <CollectionView Grid.Row="1"
-                        ItemsSource="{Binding FireBaseNotebooks}"
+        <CollectionView ItemsSource="{Binding FireBaseNotebooks}"
                         SelectedItem="{Binding SelectedNotebook}"
                         SelectionChangedCommand="{Binding SeletedItemCommand}"
                         SelectionMode="Single">

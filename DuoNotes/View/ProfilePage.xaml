@@ -36,6 +36,7 @@
             <Entry FontAttributes="Bold"
                    FontSize="Medium"
                    HorizontalOptions="FillAndExpand"
+                   Text="{Binding DisplayName}"
                    Placeholder="{Binding FireUser.DisplayName}" />
 
         </StackLayout>

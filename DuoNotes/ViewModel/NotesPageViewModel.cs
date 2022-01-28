@@ -19,6 +19,8 @@ namespace DuoNotes.ViewModel {
 
         public Notebook RecivedSelectedNotebook { get; set; }
 
+        public Note SeletedNote { get; set; }
+
         public NotesPageViewModel() {
 
             FabAnimationCommmand = new Command<Frame>(AnimateButtonCommand);
@@ -40,6 +42,12 @@ namespace DuoNotes.ViewModel {
             await PopupNavigation.Instance.PushAsync(notesPopUp);
             var viewModel = notesPopUp.BindingContext as NewNotePopUpViewModel;
             viewModel.RecivedSelectedNotebookAccion(RecivedSelectedNotebook);
+        }
+
+        public override async void SeletedItemActionAsync() {
+            base.SeletedItemActionAsync();
+
+            await Application.Current.MainPage.DisplayAlert(String.Empty, "I have to do my own implementation", "OK");
         }
     }
 }

@@ -61,10 +61,11 @@ namespace DuoNotes.ViewModel.PopUps {
             Note.NotebookId = RecivedSelectedNotebook.Id;
             Note.Name = Note.Name;
             Note.Id = Note.Id;
+            Note.FileLocation = string.Empty;
 
             await Services.InsertAsync(Note, App.Notes);
             await PopupNavigation.Instance.PopAsync();
-            Services.ReadAsync(App.Notes);
+            Services.ReadAsync(App.Notes, RecivedSelectedNotebook.Id);
         }
 
 

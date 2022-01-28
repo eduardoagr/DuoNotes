@@ -36,8 +36,6 @@ namespace DuoNotes.ViewModel {
 
         public Firebase.Auth.User FireUser { get; set; }
 
-        public string DisplayName { get; set; }
-
         public MainPageViewModel() {
 
             FireBaseNotebooks = new ObservableCollection<NotebookNote>();
@@ -78,7 +76,7 @@ namespace DuoNotes.ViewModel {
 
         }
 
-        private async void SeletedItemActionAsync() {
+        public async virtual void SeletedItemActionAsync() {
 
             if (SelectedNotebook == null) {
                 return;

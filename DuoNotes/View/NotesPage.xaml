@@ -26,8 +26,51 @@
     </ContentPage.ToolbarItems>
 
 
-    <Grid>
-     
+    <StackLayout>
+
+        <CollectionView ItemsSource="{Binding FireBaseNotebooks}"
+                        SelectedItem="{Binding SeletedNote}"
+                        SelectionChangedCommand="{Binding SeletedItemCommand}"
+                        SelectionMode="Single">
+
+            <CollectionView.ItemsLayout>
+
+                <GridItemsLayout Orientation="Horizontal"
+                                 Span="4" />
+
+            </CollectionView.ItemsLayout>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout Padding="10">
+
+                        <Label FontFamily="ma"
+                               FontSize="Medium"
+                               Text="{Static icon:MaterialIcons.Note}"
+                               TextColor="{Binding Color}" />
+
+                        <Label FontAttributes="Bold"
+                               FontSize="Medium"
+                               HorizontalTextAlignment="Start"
+                               Style="{StaticResource LabelStyle}"
+                               Text="{Binding CreatedDate}" />
+
+                        <Label FontAttributes="Bold"
+                               FontSize="Subtitle">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="{translate:Translate NoteTite}" />
+                                    <Span Text=": " />
+                                    <Span Text="{Binding Name}" />
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+
+        </CollectionView>
+
 
         <Frame Style="{StaticResource FabButton}"
                x:Name="Fab">
@@ -37,5 +80,5 @@
                    community:TouchEffect.Command="{Binding FabAnimationCommmand}"
                    community:TouchEffect.CommandParameter="{Reference Fab}" />
         </Frame>
-    </Grid>
+    </StackLayout>
 </ContentPage>

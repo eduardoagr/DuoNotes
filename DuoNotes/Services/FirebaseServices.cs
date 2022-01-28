@@ -81,7 +81,7 @@ namespace DuoNotes.Services {
             if (string.IsNullOrEmpty(savedfirebaseauth.User.PhotoUrl) ||
                 string.IsNullOrEmpty(savedfirebaseauth.User.DisplayName)) {
 
-                savedfirebaseauth.User.PhotoUrl = "mailchimp.svg";
+                savedfirebaseauth.User.PhotoUrl = "msn.svg";
                 savedfirebaseauth.User.DisplayName = AppResources.User;
             }
             return savedfirebaseauth.User;
@@ -112,7 +112,7 @@ namespace DuoNotes.Services {
                 .PostAsync(JsonConvert.SerializeObject(element));
         }
 
-        public async void ReadAsync(string ChildName) {
+        public async void ReadAsync(string ChildName, string NotebookId = "") {
 
             var list = await Client.Child(ChildName)
                  .OnceAsync<NotebookNote>();
@@ -124,8 +124,12 @@ namespace DuoNotes.Services {
                 notebookNote = Convert(ChildName, item);
                 collection.Add(notebookNote);
             }
-            collection = collection.Where(n => n.UserID == Preferences.Get(App.UserID, string.Empty)).ToList();
 
+            if (ChildName.Equals(App.Notes)) {
+                collection.Where(n => ((Note)n).NotebookId == NotebookId).ToList();
+            } else {
+                collection = collection.Where(n => n.UserID == Preferences.Get(App.UserID, string.Empty)).ToList();
+            }
             FireBaseNotebooks.Clear();
             foreach (var element in collection) {
                 FireBaseNotebooks.Add(element);
@@ -152,7 +156,7 @@ namespace DuoNotes.Services {
                     Name = item.Object.Name,
                     CreatedDate = item.Object.CreatedDate,
                     Color = item.Object.Color,
-                    Desc = item.Object.Desc
+                    Desc = item.Object.Desc,
                 };
             }
 
