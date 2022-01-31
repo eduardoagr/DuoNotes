@@ -28,7 +28,6 @@ namespace DuoNotes.ViewModel.PopUps {
 
         public NewNotePopUpViewModel() {
 
-
             Services = App.services;
 
             Note = new Note {
@@ -45,11 +44,7 @@ namespace DuoNotes.ViewModel.PopUps {
 
             NewNoteCommand = new Command(CreateNewNoteAsync, CanCreateNote);
 
-            CloseCommand = new Command(PerformCloseAction);
-        }
-
-        private async void PerformCloseAction() {
-            await PopupNavigation.Instance.PopAsync();
+            //Services.ReadAsync(App.Notes, RecivedSelectedNotebook.Id); // RecivedSelectedNotebook is null
         }
 
         private async void CreateNewNoteAsync() {
@@ -65,6 +60,9 @@ namespace DuoNotes.ViewModel.PopUps {
 
             await Services.InsertAsync(Note, App.Notes);
             await PopupNavigation.Instance.PopAsync();
+
+            Console.WriteLine($"This is the notebookID, that is sttoring this new Note: {RecivedSelectedNotebook.Id}");
+
             Services.ReadAsync(App.Notes, RecivedSelectedNotebook.Id);
         }
 

@@ -40,6 +40,8 @@ namespace DuoNotes.ViewModel.PopUps {
 
             Services = App.services;
 
+            Services.ReadAsync(App.Notebooks);
+
             Notebook = new Notebook {
                 OnAnyPropertiesChanged = () => {
 
