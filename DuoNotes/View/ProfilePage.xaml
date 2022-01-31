@@ -5,6 +5,7 @@
              xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
              xmlns:icon="clr-namespace:DuoNotes.Fonts"
              xmlns:translate="clr-namespace:DuoNotes.Utils"
+             xmlns:renders="clr-namespace:DuoNotes.Renders"
              xmlns:vm="clr-namespace:DuoNotes.ViewModel"
              Title="{translate:Translate userProfile}"
              BackgroundColor="{AppThemeBinding Dark={StaticResource BckgroundDarkColor},
@@ -46,12 +47,12 @@
                  HeightRequest="1"
                  VerticalOptions="EndAndExpand" />
 
-        <CollectionView Grid.Row="1"
-                        Margin="20"
-                        ItemsSource="{Binding Avatars}"
-                        SelectedItem="{Binding SelectedAvatar}"
-                        SelectionChangedCommand="{Binding SelectedAvatarCommand}"
-                        SelectionMode="Single">
+        <renders:CollectionViewRender Grid.Row="1"
+                                      Margin="20"
+                                      ItemsSource="{Binding Avatars}"
+                                      SelectedItem="{Binding SelectedAvatar}"
+                                      SelectionChangedCommand="{Binding SelectedAvatarCommand}"
+                                      SelectionMode="Single">
             <CollectionView.ItemsLayout>
                 <GridItemsLayout HorizontalItemSpacing="5"
                                  Orientation="Vertical"
@@ -67,6 +68,6 @@
                                                       WidthRequest="40" />
                 </DataTemplate>
             </CollectionView.ItemTemplate>
-        </CollectionView>
+        </renders:CollectionViewRender>
     </Grid>
 </ContentPage>

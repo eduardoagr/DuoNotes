@@ -1,9 +1,10 @@
 ﻿using DuoNotes.iOS.Renders;
+using DuoNotes.Renders;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 
-[assembly: ExportRenderer(typeof(CollectionView), typeof(NativeIOSCollectionViewRenderer))]
+[assembly: ExportRenderer(typeof(CollectionViewRender), typeof(NativeIOSCollectionViewRenderer))]
 namespace DuoNotes.iOS.Renders {
     internal class NativeIOSCollectionViewRenderer : CollectionViewRenderer {
 

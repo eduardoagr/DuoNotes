@@ -4,8 +4,9 @@ using DuoNotes.Droid.Renders;
 using Android.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
+using DuoNotes.Renders;
 
-[assembly: ExportRenderer(typeof(CollectionView), typeof(NativeAndroidCollectionViewRenderer))]
+[assembly: ExportRenderer(typeof(CollectionViewRender), typeof(NativeAndroidCollectionViewRenderer))]
 namespace DuoNotes.Droid.Renders {
     internal class NativeAndroidCollectionViewRenderer : CollectionViewRenderer {
         public NativeAndroidCollectionViewRenderer(Context context) : base(context) {
