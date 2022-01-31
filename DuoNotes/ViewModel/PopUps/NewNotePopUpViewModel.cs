@@ -28,6 +28,8 @@ namespace DuoNotes.ViewModel.PopUps {
 
         public NewNotePopUpViewModel() {
 
+            Services = App.services;
+
             Note = new Note {
                 OnAnyPropertiesChanged = () => {
 
@@ -41,6 +43,8 @@ namespace DuoNotes.ViewModel.PopUps {
             };
 
             NewNoteCommand = new Command(CreateNewNoteAsync, CanCreateNote);
+
+            //Services.ReadAsync(App.Notes, RecivedSelectedNotebook.Id); // RecivedSelectedNotebook is null
         }
 
         private async void CreateNewNoteAsync() {

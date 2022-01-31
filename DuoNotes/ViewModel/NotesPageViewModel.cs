@@ -14,6 +14,7 @@ namespace DuoNotes.ViewModel {
 
     public class NotesPageViewModel : MainPageViewModel {
 
+
         readonly FirebaseServices Services;
 
         public new Command<Frame> FabAnimationCommmand { get; set; }
@@ -26,6 +27,8 @@ namespace DuoNotes.ViewModel {
 
         public NotesPageViewModel() {
 
+            Services = App.services;
+
             FabAnimationCommmand = new Command<Frame>(AnimateButtonCommand);
 
             RecivedSelectedNotebookAccion = (SelectedObject) => {
@@ -35,8 +38,6 @@ namespace DuoNotes.ViewModel {
 
             Services.ReadAsync(App.Notes, RecivedSelectedNotebook.Id);
         }
-
-
 
         private async void AnimateButtonCommand(Frame obj) {
 
