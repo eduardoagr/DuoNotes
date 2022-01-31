@@ -1,4 +1,5 @@
 ﻿using DuoNotes.Model;
+using DuoNotes.Services;
 using DuoNotes.View.PopUps;
 using DuoNotes.ViewModel.PopUps;
 
@@ -12,6 +13,8 @@ using Xamarin.Forms;
 namespace DuoNotes.ViewModel {
 
     public class NotesPageViewModel : MainPageViewModel {
+
+        readonly FirebaseServices Services;
 
         public new Command<Frame> FabAnimationCommmand { get; set; }
 
@@ -29,7 +32,11 @@ namespace DuoNotes.ViewModel {
 
                 RecivedSelectedNotebook = SelectedObject;
             };
+
+            Services.ReadAsync(App.Notes, RecivedSelectedNotebook.Id);
         }
+
+
 
         private async void AnimateButtonCommand(Frame obj) {
 
