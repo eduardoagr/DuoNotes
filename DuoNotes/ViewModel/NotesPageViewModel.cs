@@ -19,7 +19,6 @@ namespace DuoNotes.ViewModel {
 
         public new Command<Frame> FabAnimationCommmand { get; set; }
 
-        public Action<Notebook> RecivedSelectedNotebookAccion { get; set; }
 
         public Notebook RecivedSelectedNotebook { get; set; }
 
@@ -31,12 +30,15 @@ namespace DuoNotes.ViewModel {
 
             FabAnimationCommmand = new Command<Frame>(AnimateButtonCommand);
 
-            RecivedSelectedNotebookAccion = (SelectedObject) => {
+            MessagingCenter.Subscribe<MainPageViewModel, Notebook>(this, App.NotebookID, (sender, value) => {
+                RecivedSelectedNotebook = value;
+                Services.ReadAsync(App.Notes, RecivedSelectedNotebook.Id);
 
-                RecivedSelectedNotebook = SelectedObject;
-            };
+                MessagingCenter.Unsubscribe<MainPageViewModel, Notebook>(this, App.NotebookID);
+            });
 
-            Services.ReadAsync(App.Notes, RecivedSelectedNotebook.Id);
+
+
         }
 
         private async void AnimateButtonCommand(Frame obj) {
@@ -56,6 +58,7 @@ namespace DuoNotes.ViewModel {
             base.SeletedItemActionAsync();
 
             await Application.Current.MainPage.DisplayAlert(String.Empty, "I have to do my own implementation", "OK");
+
         }
     }
 }

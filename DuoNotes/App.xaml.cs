@@ -31,6 +31,8 @@ namespace DuoNotes {
 
         public const string Notes = "Notes";
 
+        public const string NotebookID = "NotebookID";
+
         public App() {
 
             SyncfusionLicenseProvider.RegisterLicense(KEY);
