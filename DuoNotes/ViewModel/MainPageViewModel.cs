@@ -54,11 +54,12 @@ namespace DuoNotes.ViewModel {
 
             App.services.ReadAsync(App.Notebooks);
 
-
         }
 
-        private async void AppearAction() {
+        public virtual async void AppearAction() {
             FireUser = await App.services.GetProfileInformationAndRefreshToken();
+
+
         }
 
         private async void NavigateCommandAsync() {
@@ -82,10 +83,10 @@ namespace DuoNotes.ViewModel {
                 return;
             }
 
-            NotesPage notesPage = new NotesPage();
-            await App.Current.MainPage.Navigation.PushAsync(notesPage);
-            MessagingCenter.Send(this, App.NotebookID, SelectedNotebook);
+            NotesPage notesPage = new NotesPage(SelectedNotebook.Id);
+            await Application.Current.MainPage.Navigation.PushAsync(notesPage);
             SelectedNotebook = null;
+
 
         }
 

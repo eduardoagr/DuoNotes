@@ -1,44 +1,35 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage
-    x:Class="DuoNotes.View.NotesPage"
-    xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:community="http://xamarin.com/schemas/2020/toolkit"
-    xmlns:icon="clr-namespace:DuoNotes.Fonts"
-    xmlns:model="clr-namespace:DuoNotes.Model"
-    xmlns:syncfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
-    xmlns:translate="clr-namespace:DuoNotes.Utils"
-    xmlns:vm="clr-namespace:DuoNotes.ViewModel"
-    Title="{translate:Translate Notes}"
-    BackgroundColor="{AppThemeBinding Dark={StaticResource BckgroundDarkColor},
+<ContentPage x:Class="DuoNotes.View.NotesPage"
+             xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:community="http://xamarin.com/schemas/2020/toolkit"
+             xmlns:icon="clr-namespace:DuoNotes.Fonts"
+             xmlns:translate="clr-namespace:DuoNotes.Utils"
+             Title="{translate:Translate Notes}"
+             BackgroundColor="{AppThemeBinding Dark={StaticResource BckgroundDarkColor},
                                       Light={StaticResource BackgroundLigthColor}}">
-
-    <ContentPage.BindingContext>
-        <vm:NotesPageViewModel />
-    </ContentPage.BindingContext>
 
     <ContentPage.ToolbarItems>
 
-        <ToolbarItem
-            Command="{Binding LogoutCommand}"
-            Order="Secondary"
-            Priority="1"
-            Text="{translate:Translate CloseSession}" />
+        <ToolbarItem Command="{Binding LogoutCommand}"
+                     Order="Secondary"
+                     Priority="1"
+                     Text="{translate:Translate CloseSession}" />
 
     </ContentPage.ToolbarItems>
 
 
     <StackLayout>
 
-        <CollectionView
-            ItemsSource="{Binding FireBaseNotebooks}"
-            SelectedItem="{Binding SeletedNote}"
-            SelectionChangedCommand="{Binding SeletedItemCommand}"
-            SelectionMode="Single">
+        <CollectionView ItemsSource="{Binding FireBaseNotebooks}"
+                        SelectedItem="{Binding SeletedNote}"
+                        SelectionChangedCommand="{Binding SeletedItemCommand}"
+                        SelectionMode="Single">
 
             <CollectionView.ItemsLayout>
 
-                <GridItemsLayout Orientation="Horizontal" Span="4" />
+                <GridItemsLayout Orientation="Horizontal"
+                                 Span="4" />
 
             </CollectionView.ItemsLayout>
 
@@ -46,14 +37,14 @@
                 <DataTemplate>
                     <StackLayout Padding="10">
 
-                        <Label
-                            FontAttributes="Bold"
-                            FontSize="Medium"
-                            HorizontalTextAlignment="Start"
-                            Style="{StaticResource LabelStyle}"
-                            Text="{Binding CreatedDate}" />
+                        <Label FontAttributes="Bold"
+                               FontSize="Medium"
+                               HorizontalTextAlignment="Start"
+                               Style="{StaticResource LabelStyle}"
+                               Text="{Binding CreatedDate}" />
 
-                        <Label FontAttributes="Bold" FontSize="Subtitle">
+                        <Label FontAttributes="Bold"
+                               FontSize="Subtitle">
                             <Label.FormattedText>
                                 <FormattedString>
                                     <Span Text="{translate:Translate NoteTite}" />
@@ -69,13 +60,13 @@
         </CollectionView>
 
 
-        <Frame x:Name="Fab" Style="{StaticResource FabButton}">
+        <Frame x:Name="Fab"
+               Style="{StaticResource FabButton}">
 
-            <Label
-                community:TouchEffect.Command="{Binding FabAnimationCommmand}"
-                community:TouchEffect.CommandParameter="{Reference Fab}"
-                Style="{StaticResource PlusStyle}"
-                Text="{Static icon:IconFont.Plus}" />
+            <Label community:TouchEffect.Command="{Binding FabAnimationCommmand}"
+                   community:TouchEffect.CommandParameter="{Reference Fab}"
+                   Style="{StaticResource PlusStyle}"
+                   Text="{Static icon:IconFont.Plus}" />
         </Frame>
     </StackLayout>
 </ContentPage>

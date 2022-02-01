@@ -9,11 +9,6 @@
                  Padding="20"
                  x:Class="DuoNotes.View.PopUps.NotesPopUp">
 
-    <pages:PopupPage.BindingContext>
-        <vm:NewNotePopUpViewModel />
-    </pages:PopupPage.BindingContext>
-
-
     <pages:PopupPage.Animation>
         <animations:ScaleAnimation PositionIn="Bottom"
                                    PositionOut="Bottom"

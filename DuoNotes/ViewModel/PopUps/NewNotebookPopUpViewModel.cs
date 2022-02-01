@@ -57,9 +57,11 @@ namespace DuoNotes.ViewModel.PopUps {
 
             SelectedColorCommand = new Command(SelectColorAction);
 
+            Services.ReadAsync(App.Notebooks);
+
         }
 
-        private async void PerformCloseAction() {
+        public virtual async void PerformCloseAction() {
             await PopupNavigation.Instance.PopAsync();
         }
 

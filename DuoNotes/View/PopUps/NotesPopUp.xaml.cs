@@ -1,4 +1,7 @@
-﻿using Rg.Plugins.Popup.Pages;
+﻿using DuoNotes.Model;
+using DuoNotes.ViewModel.PopUps;
+
+using Rg.Plugins.Popup.Pages;
 
 using Xamarin.Forms.Xaml;
 
@@ -7,6 +10,15 @@ namespace DuoNotes.View.PopUps {
     public partial class NotesPopUp : PopupPage {
         public NotesPopUp() {
             InitializeComponent();
+        }
+
+        public NotesPopUp(string Id) {
+            InitializeComponent();
+
+            var viewMode = new NewNotePopUpViewModel {
+                RecivedSelectedNotebookID = Id
+            };
+            BindingContext = viewMode;
         }
 
         protected override bool OnBackButtonPressed() {

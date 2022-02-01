@@ -20,9 +20,7 @@ namespace DuoNotes.ViewModel.PopUps {
 
         public ICommand NewNoteCommand { get; set; }
 
-        public Action<Notebook> RecivedSelectedNotebookAccion { get; set; }
-
-        public Notebook RecivedSelectedNotebook { get; set; }
+        public string RecivedSelectedNotebookID { get; set; }
 
         public Note Note { get; set; }
 
@@ -37,21 +35,25 @@ namespace DuoNotes.ViewModel.PopUps {
                 }
             };
 
-            RecivedSelectedNotebookAccion = (SelectedObject) => {
-
-                RecivedSelectedNotebook = SelectedObject;
-            };
-
             NewNoteCommand = new Command(CreateNewNoteAsync, CanCreateNote);
+
+            Services.ReadAsync(App.Notes, RecivedSelectedNotebookID);
         }
 
+        public override void PerformCloseAction() {
+            base.PerformCloseAction();
+
+            PopupNavigation.Instance.PopAsync();
+
+            Services.ReadAsync(App.Notes, RecivedSelectedNotebookID);
+        }
         private async void CreateNewNoteAsync() {
             if (Note == null) {
                 return;
             }
 
             Note.CreatedDate = DateTime.Now.ToString("D", new CultureInfo(App.languages));
-            Note.NotebookId = RecivedSelectedNotebook.Id;
+            Note.NotebookId = RecivedSelectedNotebookID;
             Note.Name = Note.Name;
             Note.Id = Note.Id;
             Note.FileLocation = string.Empty;
@@ -59,7 +61,7 @@ namespace DuoNotes.ViewModel.PopUps {
             await Services.InsertAsync(Note, App.Notes);
             await PopupNavigation.Instance.PopAsync();
 
-            Services.ReadAsync(App.Notes, RecivedSelectedNotebook.Id);
+            Services.ReadAsync(App.Notes, RecivedSelectedNotebookID);
         }
 
 

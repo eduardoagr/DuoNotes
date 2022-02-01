@@ -7,6 +7,7 @@ using Rg.Plugins.Popup.Services;
 
 using System;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 using Xamarin.Forms;
 
@@ -19,8 +20,7 @@ namespace DuoNotes.ViewModel {
 
         public new Command<Frame> FabAnimationCommmand { get; set; }
 
-
-        public Notebook RecivedSelectedNotebook { get; set; }
+        public string RecivedSelectedNotebookID { get; set; }
 
         public Note SeletedNote { get; set; }
 
@@ -30,27 +30,21 @@ namespace DuoNotes.ViewModel {
 
             FabAnimationCommmand = new Command<Frame>(AnimateButtonCommand);
 
-            MessagingCenter.Subscribe<MainPageViewModel, Notebook>(this, App.NotebookID, (sender, value) => {
-                RecivedSelectedNotebook = value;
-                Services.ReadAsync(App.Notes, RecivedSelectedNotebook.Id);
-                MessagingCenter.Unsubscribe<MainPageViewModel, Notebook>(this, App.NotebookID);
-            });
-
-
+            Services.ReadAsync(App.Notes, RecivedSelectedNotebookID);
 
         }
 
         private async void AnimateButtonCommand(Frame obj) {
+
+            Services.ReadAsync(App.Notes, RecivedSelectedNotebookID);
 
             await obj.ScaleTo(0.8, 50, Easing.Linear);
             //Wait a moment
             await Task.Delay(100);
             //Scale to normal
             await obj.ScaleTo(1, 50, Easing.Linear);
-            var notesPopUp = new NotesPopUp();
+            var notesPopUp = new NotesPopUp(RecivedSelectedNotebookID);
             await PopupNavigation.Instance.PushAsync(notesPopUp);
-            var viewModel = notesPopUp.BindingContext as NewNotePopUpViewModel;
-            viewModel.RecivedSelectedNotebookAccion(RecivedSelectedNotebook);
         }
 
         public override async void SeletedItemActionAsync() {
