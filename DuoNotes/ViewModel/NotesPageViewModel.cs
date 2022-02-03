@@ -28,21 +28,15 @@ namespace DuoNotes.ViewModel {
             Services = App.services;
 
             FabAnimationCommmand = new Command<Frame>(AnimateButtonCommand);
-        }
-
-        public override void AppearAction() {
-            base.AppearAction();
-
 
             MessagingCenter.Subscribe<MainPageViewModel, string>(this, App.NotebookID, (sender, val) => {
 
                 RecivedSelectedNotebookID = val;
-                Services.ReadAsync(App.Notes, RecivedSelectedNotebookID);
 
                 MessagingCenter.Unsubscribe<MainPageViewModel, string>(this, App.NotebookID);
             });
 
-
+            Services.ReadAsync(App.Notes, RecivedSelectedNotebookID);
         }
 
         private async void AnimateButtonCommand(Frame obj) {

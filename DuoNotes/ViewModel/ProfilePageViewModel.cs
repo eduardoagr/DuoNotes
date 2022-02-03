@@ -38,7 +38,11 @@ namespace DuoNotes.ViewModel {
         }
 
         private async void SaveProfile() {
-            FireUser = await App.services.UpdateUserData(SelectedAvatar, DisplayName);
+            if (string.IsNullOrEmpty(SelectedAvatar) || string.IsNullOrEmpty(DisplayName)) {
+                GetUserData();
+            } else {
+                FireUser = await App.services.UpdateUserData(SelectedAvatar, DisplayName);
+            }
             await Application.Current.MainPage.Navigation.PopAsync();
         }
 
