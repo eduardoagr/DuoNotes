@@ -4,10 +4,15 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:community="http://xamarin.com/schemas/2020/toolkit"
              xmlns:icon="clr-namespace:DuoNotes.Fonts"
+             xmlns:vm="clr-namespace:DuoNotes.ViewModel"
              xmlns:translate="clr-namespace:DuoNotes.Utils"
              Title="{translate:Translate Notes}"
              BackgroundColor="{AppThemeBinding Dark={StaticResource BckgroundDarkColor},
                                       Light={StaticResource BackgroundLigthColor}}">
+
+    <ContentPage.BindingContext>
+        <vm:NotesPageViewModel />
+    </ContentPage.BindingContext>
 
     <ContentPage.ToolbarItems>
 
@@ -18,6 +23,10 @@
 
     </ContentPage.ToolbarItems>
 
+    <ContentPage.Behaviors>
+        <community:EventToCommandBehavior EventName="Appearing"
+                                          Command="{Binding PageAppearCommand}" />
+    </ContentPage.Behaviors>
 
     <StackLayout>
 

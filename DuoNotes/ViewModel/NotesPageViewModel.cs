@@ -15,7 +15,6 @@ namespace DuoNotes.ViewModel {
 
     public class NotesPageViewModel : MainPageViewModel {
 
-
         readonly FirebaseServices Services;
 
         public new Command<Frame> FabAnimationCommmand { get; set; }
@@ -29,22 +28,34 @@ namespace DuoNotes.ViewModel {
             Services = App.services;
 
             FabAnimationCommmand = new Command<Frame>(AnimateButtonCommand);
+        }
+
+        public override void AppearAction() {
+            base.AppearAction();
+
+
+            MessagingCenter.Subscribe<MainPageViewModel, string>(this, App.NotebookID, (sender, val) => {
+
+                RecivedSelectedNotebookID = val;
+
+                MessagingCenter.Unsubscribe<MainPageViewModel, string>(this, App.NotebookID);
+            });
 
             Services.ReadAsync(App.Notes, RecivedSelectedNotebookID);
-
         }
 
         private async void AnimateButtonCommand(Frame obj) {
-
-            Services.ReadAsync(App.Notes, RecivedSelectedNotebookID);
 
             await obj.ScaleTo(0.8, 50, Easing.Linear);
             //Wait a moment
             await Task.Delay(100);
             //Scale to normal
             await obj.ScaleTo(1, 50, Easing.Linear);
-            var notesPopUp = new NotesPopUp(RecivedSelectedNotebookID);
+            var notesPopUp = new NotesPopUp();
             await PopupNavigation.Instance.PushAsync(notesPopUp);
+            var viewModel = notesPopUp.BindingContext as NewNotePopUpViewModel;
+            viewModel.NotebookkIdAction(RecivedSelectedNotebookID);
+            SelectedNotebook = null;
         }
 
         public override async void SeletedItemActionAsync() {

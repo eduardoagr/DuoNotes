@@ -10,15 +10,7 @@ namespace DuoNotes.View.PopUps {
     public partial class NotesPopUp : PopupPage {
         public NotesPopUp() {
             InitializeComponent();
-        }
 
-        public NotesPopUp(string Id) {
-            InitializeComponent();
-
-            var viewMode = new NewNotePopUpViewModel {
-                RecivedSelectedNotebookID = Id
-            };
-            BindingContext = viewMode;
         }
 
         protected override bool OnBackButtonPressed() {

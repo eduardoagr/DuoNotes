@@ -84,6 +84,7 @@ namespace DuoNotes.Services {
                 savedfirebaseauth.User.PhotoUrl = "msn.svg";
                 savedfirebaseauth.User.DisplayName = AppResources.User;
             }
+
             return savedfirebaseauth.User;
 
         }

@@ -57,8 +57,6 @@ namespace DuoNotes.ViewModel.PopUps {
 
             SelectedColorCommand = new Command(SelectColorAction);
 
-            Services.ReadAsync(App.Notebooks);
-
         }
 
         public virtual async void PerformCloseAction() {
@@ -78,10 +76,15 @@ namespace DuoNotes.ViewModel.PopUps {
                 return;
             }
             var id = Preferences.Get(App.UserID, string.Empty);
-            Notebook.CreatedDate = DateTime.Now.ToString("D", new CultureInfo(App.languages));
-            Notebook.UserID = id;
-            Notebook.Name = Notebook.Name;
-            Notebook.Desc = Notebook.Desc;
+
+            Notebook = new Notebook {
+                CreatedDate = DateTime.Now.ToString("D", new CultureInfo(App.languages)),
+                UserID = id,
+                Name = Notebook.Name,
+                Desc = Notebook.Desc,
+                Color = Notebook.Color,
+            };
+
 
 
             await Services.InsertAsync(Notebook, App.Notebooks);

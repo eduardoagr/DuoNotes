@@ -9,15 +9,5 @@ namespace DuoNotes.View {
         public NotesPage() {
             InitializeComponent();
         }
-
-        public NotesPage(string Id) {
-            InitializeComponent();
-
-            var vm = new NotesPageViewModel {
-                RecivedSelectedNotebookID = Id
-            };
-
-            BindingContext = vm;
-        }
     }
 }

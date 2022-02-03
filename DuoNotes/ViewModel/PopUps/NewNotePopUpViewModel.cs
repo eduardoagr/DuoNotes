@@ -13,14 +13,16 @@ using Xamarin.Forms;
 
 namespace DuoNotes.ViewModel.PopUps {
 
-    [AddINotifyPropertyChangedInterface]
     public class NewNotePopUpViewModel : NewNotebookPopUpViewModel {
 
         readonly FirebaseServices Services;
 
         public ICommand NewNoteCommand { get; set; }
 
-        public string RecivedSelectedNotebookID { get; set; }
+        public Action<string> NotebookkIdAction { get; set; }
+
+        public string NotebookId { get; set; }
+
 
         public Note Note { get; set; }
 
@@ -37,31 +39,31 @@ namespace DuoNotes.ViewModel.PopUps {
 
             NewNoteCommand = new Command(CreateNewNoteAsync, CanCreateNote);
 
-            Services.ReadAsync(App.Notes, RecivedSelectedNotebookID);
+
+            NotebookkIdAction = (id) => {
+
+                NotebookId = id;
+            };
+
         }
 
-        public override void PerformCloseAction() {
-            base.PerformCloseAction();
-
-            PopupNavigation.Instance.PopAsync();
-
-            Services.ReadAsync(App.Notes, RecivedSelectedNotebookID);
-        }
         private async void CreateNewNoteAsync() {
             if (Note == null) {
                 return;
             }
 
-            Note.CreatedDate = DateTime.Now.ToString("D", new CultureInfo(App.languages));
-            Note.NotebookId = RecivedSelectedNotebookID;
-            Note.Name = Note.Name;
-            Note.Id = Note.Id;
-            Note.FileLocation = string.Empty;
+            Note = new Note() {
+                CreatedDate = DateTime.Now.ToString("D", new CultureInfo(App.languages)),
+                NotebookId = NotebookId,
+                Name = Note.Name,
+                Id = Note.Id,
+                FileLocation = string.Empty
+            };
 
             await Services.InsertAsync(Note, App.Notes);
             await PopupNavigation.Instance.PopAsync();
 
-            Services.ReadAsync(App.Notes, RecivedSelectedNotebookID);
+            Services.ReadAsync(App.Notes, NotebookId);
         }
 
 
