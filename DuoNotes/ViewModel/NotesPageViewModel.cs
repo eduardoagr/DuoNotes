@@ -33,10 +33,10 @@ namespace DuoNotes.ViewModel {
 
                 RecivedSelectedNotebookID = val;
 
+                Services.ReadAsync(App.Notes, RecivedSelectedNotebookID);
+
                 MessagingCenter.Unsubscribe<MainPageViewModel, string>(this, App.NotebookID);
             });
-
-            Services.ReadAsync(App.Notes, RecivedSelectedNotebookID);
         }
 
         private async void AnimateButtonCommand(Frame obj) {

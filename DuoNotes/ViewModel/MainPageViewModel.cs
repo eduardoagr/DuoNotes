@@ -51,14 +51,12 @@ namespace DuoNotes.ViewModel {
             FabAnimationCommmand = new Command<Frame>(AnimateButtonCommand);
 
             ProfileCommnd = new Command(NavigateCommandAsync);
-
+            App.services.ReadAsync(App.Notebooks);
         }
 
-        public virtual async void AppearAction() {
-            App.services.ReadAsync(App.Notebooks);
+        public async void AppearAction() {
+
             FireUser = await App.services.GetProfileInformationAndRefreshToken();
-
-
         }
 
         private async void NavigateCommandAsync() {
@@ -86,7 +84,6 @@ namespace DuoNotes.ViewModel {
             MessagingCenter.Send(this, App.NotebookID, SelectedNotebook.Id);
             await Application.Current.MainPage.Navigation.PushAsync(notesPage);
             SelectedNotebook = null;
-
 
         }
 

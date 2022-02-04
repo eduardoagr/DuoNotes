@@ -127,7 +127,7 @@ namespace DuoNotes.Services {
             }
 
             if (ChildName.Equals(App.Notes)) {
-                collection.Where(n => ((Note)n).NotebookId == NotebookId).ToList();
+                collection = collection.Where(n => ((Note)n).NotebookId == NotebookId).ToList();
             } else {
                 collection = collection.Where(n => n.UserID == Preferences.Get(App.UserID, string.Empty)).ToList();
             }
