@@ -286,7 +286,7 @@ namespace DuoNotes.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This notebook has:.
+        ///   Looks up a localized string similar to Contenido.
         /// </summary>
         internal static string Usage {
             get {

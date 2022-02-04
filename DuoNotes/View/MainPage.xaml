@@ -84,7 +84,7 @@
                             <Label.FormattedText>
                                 <FormattedString>
                                     <Span Text="{translate:Translate Usage}" />
-                                    <Span Text=" " />
+                                    <Span Text=": " />
                                     <Span Text="{Binding Desc}" />
                                 </FormattedString>
                             </Label.FormattedText>

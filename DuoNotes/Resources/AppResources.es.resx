@@ -171,9 +171,6 @@
   <data name="Notes" xml:space="preserve">
     <value>Notas</value>
   </data>
-  <data name="NotesData" xml:space="preserve">
-    <value>Informacion de la note</value>
-  </data>
   <data name="NoteTite" xml:space="preserve">
     <value>Titulo</value>
   </data>
@@ -193,7 +190,7 @@
     <value>Error del servidor</value>
   </data>
   <data name="Usage" xml:space="preserve">
-    <value>Este cuderno contiene</value>
+    <value>Content</value>
   </data>
   <data name="User" xml:space="preserve">
     <value>Usuario</value>
