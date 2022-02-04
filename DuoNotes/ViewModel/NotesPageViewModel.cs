@@ -33,9 +33,10 @@ namespace DuoNotes.ViewModel {
 
                 RecivedSelectedNotebookID = val;
 
-                Services.ReadAsync(App.Notes, RecivedSelectedNotebookID);
-
-                MessagingCenter.Unsubscribe<MainPageViewModel, string>(this, App.NotebookID);
+                if (!string.IsNullOrEmpty(RecivedSelectedNotebookID)) {
+                    Services.ReadAsync(App.Notes, RecivedSelectedNotebookID);
+                    MessagingCenter.Unsubscribe<MainPageViewModel, string>(this, App.NotebookID);
+                }
             });
         }
 

@@ -157,16 +157,13 @@
     <value>Nuevo usuario</value>
   </data>
   <data name="NotebookColor" xml:space="preserve">
-    <value>Color del cuaderno</value>
-  </data>
-  <data name="NoteBookData" xml:space="preserve">
-    <value>Informacion del cuaderno</value>
+    <value>Color</value>
   </data>
   <data name="Notebooks" xml:space="preserve">
     <value>Cuadernos</value>
   </data>
   <data name="NoteBookTitle" xml:space="preserve">
-    <value>Titulo del cuaderno</value>
+    <value>Titulo</value>
   </data>
   <data name="NotebookUsage" xml:space="preserve">
     <value>Qué vas a almacenar en este cuaderno</value>
@@ -178,7 +175,7 @@
     <value>Informacion de la note</value>
   </data>
   <data name="NoteTite" xml:space="preserve">
-    <value>Titulo de la nota</value>
+    <value>Titulo</value>
   </data>
   <data name="OK" xml:space="preserve">
     <value>OK</value>

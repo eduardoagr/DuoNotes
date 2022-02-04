@@ -159,20 +159,14 @@
   <data name="NewUser" xml:space="preserve">
     <value>New user</value>
   </data>
-  <data name="NotebookColor" xml:space="preserve">
-    <value>Notebook color</value>
-  </data>
-  <data name="NoteBookData" xml:space="preserve">
-    <value>Notebook information</value>
-  </data>
   <data name="NoteBookName" xml:space="preserve">
-    <value>Notebook title</value>
+    <value>title</value>
   </data>
   <data name="Notebooks" xml:space="preserve">
     <value>Notebooks</value>
   </data>
   <data name="NoteBookTitle" xml:space="preserve">
-    <value>Notebook title</value>
+    <value>title</value>
   </data>
   <data name="NotebookUsage" xml:space="preserve">
     <value>What are you going to store in this notebook</value>
@@ -181,7 +175,7 @@
     <value>Notes</value>
   </data>
   <data name="NoteTite" xml:space="preserve">
-    <value>Note Title</value>
+    <value>Title</value>
   </data>
   <data name="OK" xml:space="preserve">
     <value>Ok</value>

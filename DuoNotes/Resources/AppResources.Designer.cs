@@ -187,25 +187,7 @@ namespace DuoNotes.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Notebook color.
-        /// </summary>
-        internal static string NotebookColor {
-            get {
-                return ResourceManager.GetString("NotebookColor", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Notebook information.
-        /// </summary>
-        internal static string NoteBookData {
-            get {
-                return ResourceManager.GetString("NoteBookData", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Notebook title.
+        ///   Looks up a localized string similar to title.
         /// </summary>
         internal static string NoteBookName {
             get {
@@ -223,7 +205,7 @@ namespace DuoNotes.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Notebook title.
+        ///   Looks up a localized string similar to title.
         /// </summary>
         internal static string NoteBookTitle {
             get {
@@ -250,7 +232,7 @@ namespace DuoNotes.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Note Title.
+        ///   Looks up a localized string similar to Title.
         /// </summary>
         internal static string NoteTite {
             get {

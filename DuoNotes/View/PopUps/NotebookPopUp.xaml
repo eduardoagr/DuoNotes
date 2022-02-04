@@ -15,16 +15,11 @@
     </pages:PopupPage.BindingContext>
 
     <Frame Style="{StaticResource FrameContainer}">
-        <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto"
+        <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto"
               Padding="10">
 
             <Label Style="{StaticResource CloseStyle}"
                    community:TouchEffect.Command="{Binding CloseCommand}" />
-
-            <Label Text="{translate:Translate NoteBookData}"
-                   Style="{StaticResource HeadersStyle}"
-                   HorizontalTextAlignment="Start"
-                   Grid.Row="1" />
 
             <Entry Placeholder="{translate:Translate NoteBookTitle}"
                    Style="{StaticResource EntrySyle}"
