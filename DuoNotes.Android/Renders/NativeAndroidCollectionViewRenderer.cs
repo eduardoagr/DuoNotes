@@ -11,12 +11,12 @@ namespace DuoNotes.Droid.Renders {
     internal class NativeAndroidCollectionViewRenderer : CollectionViewRenderer {
         public NativeAndroidCollectionViewRenderer(Context context) : base(context) {
         }
-        protected override void OnElementChanged(ElementChangedEventArgs<ItemsView> elementChangedEvent) {
-            base.OnElementChanged(elementChangedEvent);
+        public override bool OnInterceptTouchEvent(MotionEvent ev) {
+            return false;
+        }
 
-            if (elementChangedEvent.NewElement != null) {
-                this.OverScrollMode = OverScrollMode.Never;
-            }
+        public override bool OnTouchEvent(MotionEvent ev) {
+            return false;
         }
     }
 }
