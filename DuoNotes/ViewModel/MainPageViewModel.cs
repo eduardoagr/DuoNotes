@@ -52,11 +52,6 @@ namespace DuoNotes.ViewModel {
 
             ProfileCommnd = new Command(NavigateCommandAsync);
 
-            ReadData();
-        }
-
-        public void ReadData() {
-
             App.services.ReadAsync(App.Notebooks);
         }
 
