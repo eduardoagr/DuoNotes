@@ -156,9 +156,6 @@
   <data name="NewUser" xml:space="preserve">
     <value>Nuevo usuario</value>
   </data>
-  <data name="NotebookColor" xml:space="preserve">
-    <value>Color</value>
-  </data>
   <data name="Notebooks" xml:space="preserve">
     <value>Cuadernos</value>
   </data>
