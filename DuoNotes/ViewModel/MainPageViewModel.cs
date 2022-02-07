@@ -50,12 +50,14 @@ namespace DuoNotes.ViewModel {
 
             FabAnimationCommmand = new Command<Frame>(AnimateButtonCommand);
 
+            App.services.ReadAsync(App.Notebooks);
+
             ProfileCommnd = new Command(NavigateCommandAsync);
         }
 
         public async void AppearAction() {
             FireUser = await App.services.GetProfileInformationAndRefreshToken();
-            App.services.ReadAsync(App.Notebooks);
+
         }
 
 
