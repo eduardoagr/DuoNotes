@@ -97,8 +97,8 @@ namespace DuoNotes.Services {
             var newUser = await AuthProvider.UpdateProfileAsync(savedfirebaseauth.FirebaseToken, DisplyName,
                 PhotoUri);
 
-            savedfirebaseauth.User.DisplayName = DisplyName;
-            savedfirebaseauth.User.PhotoUrl = PhotoUri;
+            savedfirebaseauth.User.DisplayName = string.IsNullOrEmpty(DisplyName) ? savedfirebaseauth.User.DisplayName : DisplyName;
+            savedfirebaseauth.User.PhotoUrl = string.IsNullOrEmpty(PhotoUri) ? savedfirebaseauth.User.PhotoUrl : PhotoUri;
 
             var RefreshedContent = await AuthProvider.RefreshAuthAsync(savedfirebaseauth);
             Preferences.Set(App.FirebaseRefreshToken, JsonConvert.SerializeObject(RefreshedContent));

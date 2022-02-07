@@ -37,11 +37,6 @@ namespace DuoNotes.ViewModel.PopUps {
 
         public NewNotebookPopUpViewModel() {
 
-
-            Services = App.services;
-
-            Services.ReadAsync(App.Notebooks);
-
             Notebook = new Notebook {
                 OnAnyPropertiesChanged = () => {
 
@@ -89,7 +84,6 @@ namespace DuoNotes.ViewModel.PopUps {
 
             await Services.InsertAsync(Notebook, App.Notebooks);
             await PopupNavigation.Instance.PopAsync();
-            Services.ReadAsync(App.Notebooks);
         }
 
 
