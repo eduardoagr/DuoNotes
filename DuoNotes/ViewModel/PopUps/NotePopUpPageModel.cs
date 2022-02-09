@@ -1,8 +1,6 @@
 ﻿using DuoNotes.Model;
 using DuoNotes.Services;
 
-using PropertyChanged;
-
 using Rg.Plugins.Popup.Services;
 
 using System;

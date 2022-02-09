@@ -22,7 +22,9 @@ using Xamarin.Forms;
 namespace DuoNotes.ViewModel.PopUps {
 
     [AddINotifyPropertyChangedInterface]
-    public class NotebookPopUpPageModel : Popup {
+    public class NotebookPopUpPageModel {
+
+        public FirebaseServices FirebaseServices { get; set; }
 
         public ICommand NewNotebookCommand { get; set; }
 
@@ -32,8 +34,6 @@ namespace DuoNotes.ViewModel.PopUps {
 
         public ICommand DismissPopUpCommand { get; set; }
 
-        public EventHandler<string> Handler { get; set; }
-
         public List<Color> Colors { get; set; }
 
         public Color SelectedColor { get; set; }
@@ -42,6 +42,7 @@ namespace DuoNotes.ViewModel.PopUps {
 
         public NotebookPopUpPageModel() {
 
+            FirebaseServices = App.services;
 
             Notebook = new Notebook {
                 OnAnyPropertiesChanged = () => {
@@ -85,8 +86,8 @@ namespace DuoNotes.ViewModel.PopUps {
                 Color = Notebook.Color,
             };
 
-            Handler?.Invoke(this, JsonConvert.SerializeObject(Notebook));
-
+            await FirebaseServices.InsertAsync(Notebook, App.Notebooks);
+            FirebaseServices.ReadAsync(App.Notebooks);
             await PopupNavigation.Instance.PopAsync();
         }
 

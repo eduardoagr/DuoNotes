@@ -9,5 +9,13 @@ namespace DuoNotes.View.PopUps {
         public NotebookPopUp() {
             InitializeComponent();
         }
+
+        protected override bool OnBackButtonPressed() {
+            return true;
+        }
+
+        protected override bool OnBackgroundClicked() {
+            return false;
+        }
     }
 }

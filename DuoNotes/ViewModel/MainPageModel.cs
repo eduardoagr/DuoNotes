@@ -3,19 +3,14 @@ using DuoNotes.Model;
 using DuoNotes.Services;
 using DuoNotes.View;
 using DuoNotes.View.PopUps;
-using DuoNotes.ViewModel.PopUps;
-
-using Newtonsoft.Json;
 
 using PropertyChanged;
 
 using Rg.Plugins.Popup.Services;
 
 using System.Collections.ObjectModel;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
-using Xamarin.CommunityToolkit.Extensions;
 using Xamarin.Forms;
 
 namespace DuoNotes.ViewModel {

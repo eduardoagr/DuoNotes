@@ -41,8 +41,8 @@ namespace DuoNotes.Services {
             try {
                 UserDialogs.Instance.ShowLoading(AppResources.Loading);
                 var auth = await AuthProvider.CreateUserWithEmailAndPasswordAsync(users.Email, users.Password);
-                await PopupNavigation.Instance.PopAsync(true);
                 await App.Current.MainPage.DisplayAlert(string.Empty, AppResources.UserInserted, "OK");
+                await PopupNavigation.Instance.PopAsync(true);
             } catch (FirebaseAuthException ex) {
                 Firebasemessages.GetMessages(ex);
             }
@@ -106,7 +106,7 @@ namespace DuoNotes.Services {
         }
 
         public async Task InsertAsync(NotebookNote element, string ChildName) {
-            if (element is null) {
+            if (element == null || ChildName == null) {
                 return;
             }
             await Client.Child(ChildName)
