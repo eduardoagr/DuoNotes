@@ -84,10 +84,10 @@ namespace DuoNotes.ViewModel.PopUps {
             MainPageViewModel mainPageViewModel = new MainPageViewModel();
 
             await Services.InsertAsync(Notebook, App.Notebooks);
-            mainPageViewModel.AppearAction();
+
             await PopupNavigation.Instance.PopAsync();
 
-
+            mainPageViewModel.ReadData();
         }
 
 
