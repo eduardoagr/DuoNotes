@@ -10,7 +10,7 @@
                  Padding="20">
 
     <pages:PopupPage.BindingContext>
-        <vm:RegisterPopUpViewModel />
+        <vm:RegisterPopUpPageModel />
     </pages:PopupPage.BindingContext>
 
     <pages:PopupPage.Animation>

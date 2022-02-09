@@ -9,7 +9,7 @@
                  x:Class="DuoNotes.View.PopUps.NotesPopUp">
 
     <pages:PopupPage.BindingContext>
-        <vm:NewNotePopUpViewModel />
+        <vm:NotePopUpPageModel />
     </pages:PopupPage.BindingContext>
 
     <Frame Style="{StaticResource FrameContainer}">
@@ -17,7 +17,7 @@
               Padding="10">
 
             <Label Style="{StaticResource CloseStyle}"
-                   community:TouchEffect.Command="{Binding CloseCommand}" />
+                   community:TouchEffect.Command="{Binding DismissPopUpCommand}" />
 
             <Entry Placeholder="{translate:Translate NoteTite}"
                    Style="{StaticResource EntrySyle}"

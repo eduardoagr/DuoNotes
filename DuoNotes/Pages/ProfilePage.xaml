@@ -12,7 +12,7 @@
                                       Light={StaticResource BackgroundLigthColor}}">
 
     <ContentPage.BindingContext>
-        <vm:ProfilePageViewModel />
+        <vm:ProfilePageModel />
     </ContentPage.BindingContext>
 
     <ContentPage.ToolbarItems>

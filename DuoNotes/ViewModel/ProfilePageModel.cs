@@ -10,7 +10,7 @@ using Xamarin.Forms;
 namespace DuoNotes.ViewModel {
 
     [AddINotifyPropertyChangedInterface]
-    internal class ProfilePageViewModel {
+    internal class ProfilePageModel {
 
         public ICommand SelectedAvatarCommand { get; set; }
 
@@ -24,7 +24,7 @@ namespace DuoNotes.ViewModel {
 
         public string DisplayName { get; set; }
 
-        public ProfilePageViewModel() {
+        public ProfilePageModel() {
 
             App.services = new FirebaseServices();
 
@@ -38,7 +38,7 @@ namespace DuoNotes.ViewModel {
         }
 
         private async void SaveProfile() {
-            if (string.IsNullOrEmpty(SelectedAvatar) || string.IsNullOrEmpty(DisplayName)) {
+            if (!string.IsNullOrEmpty(SelectedAvatar) || !string.IsNullOrEmpty(DisplayName)) {
                 FireUser = await App.services.UpdateUserData(SelectedAvatar, DisplayName);
             } else {
                 GetUserData();

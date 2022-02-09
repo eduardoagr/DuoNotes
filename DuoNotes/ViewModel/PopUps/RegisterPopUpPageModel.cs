@@ -13,7 +13,7 @@ using Xamarin.Forms;
 namespace DuoNotes.ViewModel.PopUps {
 
     [AddINotifyPropertyChangedInterface]
-    public class RegisterPopUpViewModel {
+    public class RegisterPopUpPageModel {
 
         readonly FirebaseServices Services;
 
@@ -23,7 +23,7 @@ namespace DuoNotes.ViewModel.PopUps {
 
         public User User { get; set; }
 
-        public RegisterPopUpViewModel() {
+        public RegisterPopUpPageModel() {
 
             User = new User {
                 OnAnyPropertiesChanged = () => {

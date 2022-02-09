@@ -13,7 +13,8 @@ using Xamarin.Forms;
 
 namespace DuoNotes.ViewModel.PopUps {
 
-    public class NewNotePopUpViewModel : NewNotebookPopUpViewModel {
+    public class NotePopUpPageModel : NotebookPopUpPageModel {
+
 
         readonly FirebaseServices Services;
 
@@ -26,7 +27,7 @@ namespace DuoNotes.ViewModel.PopUps {
 
         public Note Note { get; set; }
 
-        public NewNotePopUpViewModel() {
+        public NotePopUpPageModel() {
 
             Services = App.services;
 

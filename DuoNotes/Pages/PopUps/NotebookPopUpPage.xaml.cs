@@ -1,5 +1,6 @@
 ﻿using Rg.Plugins.Popup.Pages;
 
+using Xamarin.CommunityToolkit.UI.Views;
 using Xamarin.Forms.Xaml;
 
 namespace DuoNotes.View.PopUps {
@@ -7,14 +8,6 @@ namespace DuoNotes.View.PopUps {
     public partial class NotebookPopUp : PopupPage {
         public NotebookPopUp() {
             InitializeComponent();
-        }
-
-        protected override bool OnBackButtonPressed() {
-            return true;
-        }
-
-        protected override bool OnBackgroundClicked() {
-            return false;
         }
     }
 }

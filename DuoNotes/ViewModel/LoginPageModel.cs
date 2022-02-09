@@ -16,7 +16,7 @@ using User = DuoNotes.Model.User;
 namespace DuoNotes.ViewModel {
 
     [AddINotifyPropertyChangedInterface]
-    public class LoginPageViewModel {
+    public class LoginPageModel {
 
         readonly FirebaseServices Services;
 
@@ -29,7 +29,7 @@ namespace DuoNotes.ViewModel {
         public bool IsRegisterAllowed { get; set; }
 
 
-        public LoginPageViewModel() {
+        public LoginPageModel() {
 
             User = new User {
                 OnAnyPropertiesChanged = () => {

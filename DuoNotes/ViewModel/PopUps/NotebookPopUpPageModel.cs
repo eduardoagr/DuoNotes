@@ -3,6 +3,8 @@
 using DuoNotes.Model;
 using DuoNotes.Services;
 
+using Newtonsoft.Json;
+
 using PropertyChanged;
 
 using Rg.Plugins.Popup.Services;
@@ -12,15 +14,15 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Windows.Input;
 
+using Xamarin.CommunityToolkit.Extensions;
+using Xamarin.CommunityToolkit.UI.Views;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace DuoNotes.ViewModel.PopUps {
 
     [AddINotifyPropertyChangedInterface]
-    public class NewNotebookPopUpViewModel {
-
-        readonly FirebaseServices Services;
+    public class NotebookPopUpPageModel : Popup {
 
         public ICommand NewNotebookCommand { get; set; }
 
@@ -28,15 +30,18 @@ namespace DuoNotes.ViewModel.PopUps {
 
         public ICommand SelectedColorCommand { get; set; }
 
+        public ICommand DismissPopUpCommand { get; set; }
+
+        public EventHandler<string> Handler { get; set; }
+
         public List<Color> Colors { get; set; }
 
         public Color SelectedColor { get; set; }
 
         public Notebook Notebook { get; set; }
 
-        public NewNotebookPopUpViewModel() {
+        public NotebookPopUpPageModel() {
 
-            Services = App.services;
 
             Notebook = new Notebook {
                 OnAnyPropertiesChanged = () => {
@@ -47,16 +52,16 @@ namespace DuoNotes.ViewModel.PopUps {
 
             NewNotebookCommand = new Command(CreateNewNotebookAsync, CanCreateNotebook);
 
-            CloseCommand = new Command(PerformCloseAction);
-
             Colors = ColorServices.GetColors();
 
             SelectedColorCommand = new Command(SelectColorAction);
 
+            DismissPopUpCommand = new Command(ClosePopUpAction);
+
         }
 
-        public virtual async void PerformCloseAction() {
-            await PopupNavigation.Instance.PopAsync();
+        private void ClosePopUpAction() {
+            PopupNavigation.Instance.PopAsync();
         }
 
         private void SelectColorAction() {
@@ -71,23 +76,18 @@ namespace DuoNotes.ViewModel.PopUps {
             if (Notebook == null) {
                 return;
             }
-            var id = Preferences.Get(App.UserID, string.Empty);
 
             Notebook = new Notebook {
                 CreatedDate = DateTime.Now.ToString("D", new CultureInfo(App.languages)),
-                UserID = id,
+                UserID = Preferences.Get(App.UserID, string.Empty),
                 Name = Notebook.Name,
                 Desc = Notebook.Desc,
                 Color = Notebook.Color,
             };
 
-            MainPageViewModel mainPageViewModel = new MainPageViewModel();
-
-            await Services.InsertAsync(Notebook, App.Notebooks);
+            Handler?.Invoke(this, JsonConvert.SerializeObject(Notebook));
 
             await PopupNavigation.Instance.PopAsync();
-
-            mainPageViewModel.ReadData();
         }
 
 

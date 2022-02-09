@@ -1,38 +1,27 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage x:Class="DuoNotes.MainPage"
+<ContentPage x:Class="DuoNotes.View.NotesPage"
              xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:community="http://xamarin.com/schemas/2020/toolkit"
-             xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
              xmlns:icon="clr-namespace:DuoNotes.Fonts"
-             xmlns:translate="clr-namespace:DuoNotes.Utils"
              xmlns:vm="clr-namespace:DuoNotes.ViewModel"
-             Title="{translate:Translate Notebooks}"
+             xmlns:translate="clr-namespace:DuoNotes.Utils"
+             Title="{translate:Translate Notes}"
              BackgroundColor="{AppThemeBinding Dark={StaticResource BckgroundDarkColor},
                                       Light={StaticResource BackgroundLigthColor}}">
 
-
     <ContentPage.BindingContext>
-        <vm:MainPageViewModel />
+        <vm:NotesPageModel />
     </ContentPage.BindingContext>
 
-    <NavigationPage.TitleView>
-        <StackLayout HorizontalOptions="Start"
-                     Orientation="Horizontal">
-            <StackLayout.GestureRecognizers>
-                <TapGestureRecognizer Command="{Binding ProfileCommnd}" />
-            </StackLayout.GestureRecognizers>
-            <ffimageloadingsvg:SvgCachedImage HeightRequest="40"
-                                              Source="{Binding FireUser.PhotoUrl}"
-                                              WidthRequest="40" />
+    <ContentPage.ToolbarItems>
 
-            <Label FontAttributes="Bold"
-                   FontSize="Medium"
-                   Text="{Binding FireUser.DisplayName}"
-                   VerticalOptions="Center" />
+        <ToolbarItem Command="{Binding LogoutCommand}"
+                     Order="Secondary"
+                     Priority="1"
+                     Text="{translate:Translate CloseSession}" />
 
-        </StackLayout>
-    </NavigationPage.TitleView>
+    </ContentPage.ToolbarItems>
 
     <ContentPage.Behaviors>
         <community:EventToCommandBehavior EventName="Appearing"
@@ -42,7 +31,7 @@
     <StackLayout>
 
         <CollectionView ItemsSource="{Binding FireBaseNotebooks}"
-                        SelectedItem="{Binding SelectedNotebook}"
+                        SelectedItem="{Binding SeletedNote}"
                         SelectionChangedCommand="{Binding SeletedItemCommand}"
                         SelectionMode="Single">
 
@@ -57,11 +46,6 @@
                 <DataTemplate>
                     <StackLayout Padding="10">
 
-                        <Label FontFamily="fa"
-                               FontSize="Medium"
-                               Text="{Static icon:IconFont.Book}"
-                               TextColor="{Binding Color}" />
-
                         <Label FontAttributes="Bold"
                                FontSize="Medium"
                                HorizontalTextAlignment="Start"
@@ -72,32 +56,20 @@
                                FontSize="Subtitle">
                             <Label.FormattedText>
                                 <FormattedString>
-                                    <Span Text="{translate:Translate NoteBookTitle}" />
+                                    <Span Text="{translate:Translate NoteTite}" />
                                     <Span Text=": " />
                                     <Span Text="{Binding Name}" />
                                 </FormattedString>
                             </Label.FormattedText>
                         </Label>
-
-                        <Label FontAttributes="Bold"
-                               FontSize="Subtitle">
-                            <Label.FormattedText>
-                                <FormattedString>
-                                    <Span Text="{translate:Translate Usage}" />
-                                    <Span Text=": " />
-                                    <Span Text="{Binding Desc}" />
-                                </FormattedString>
-                            </Label.FormattedText>
-                        </Label>
                     </StackLayout>
-
                 </DataTemplate>
             </CollectionView.ItemTemplate>
 
         </CollectionView>
 
+
         <Frame x:Name="Fab"
-               Grid.Row="1"
                Style="{StaticResource FabButton}">
 
             <Label community:TouchEffect.Command="{Binding FabAnimationCommmand}"

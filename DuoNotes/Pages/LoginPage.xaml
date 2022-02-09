@@ -11,7 +11,7 @@
                                       Light={StaticResource BackgroundLigthColor}}">
 
     <ContentPage.BindingContext>
-        <vm:LoginPageViewModel />
+        <vm:LoginPageModel />
     </ContentPage.BindingContext>
 
     <ScrollView>

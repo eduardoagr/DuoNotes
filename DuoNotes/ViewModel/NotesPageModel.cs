@@ -13,7 +13,7 @@ using Xamarin.Forms;
 
 namespace DuoNotes.ViewModel {
 
-    public class NotesPageViewModel : MainPageViewModel {
+    public class NotesPageModel : MainPageModel {
 
         readonly FirebaseServices Services;
 
@@ -23,19 +23,19 @@ namespace DuoNotes.ViewModel {
 
         public Note SeletedNote { get; set; }
 
-        public NotesPageViewModel() {
+        public NotesPageModel() {
 
             Services = App.services;
 
             FabAnimationCommmand = new Command<Frame>(AnimateButtonCommand);
 
-            MessagingCenter.Subscribe<MainPageViewModel, string>(this, App.NotebookID, (sender, val) => {
+            MessagingCenter.Subscribe<MainPageModel, string>(this, App.NotebookID, (sender, val) => {
 
                 RecivedSelectedNotebookID = val;
 
                 if (!string.IsNullOrEmpty(RecivedSelectedNotebookID)) {
                     Services.ReadAsync(App.Notes, RecivedSelectedNotebookID);
-                    MessagingCenter.Unsubscribe<MainPageViewModel, string>(this, App.NotebookID);
+                    MessagingCenter.Unsubscribe<MainPageModel, string>(this, App.NotebookID);
                 }
             });
         }
@@ -49,7 +49,7 @@ namespace DuoNotes.ViewModel {
             await obj.ScaleTo(1, 50, Easing.Linear);
             var notesPopUp = new NotesPopUp();
             await PopupNavigation.Instance.PushAsync(notesPopUp);
-            var viewModel = notesPopUp.BindingContext as NewNotePopUpViewModel;
+            var viewModel = notesPopUp.BindingContext as NotePopUpPageModel;
             viewModel.NotebookkIdAction(RecivedSelectedNotebookID);
             SelectedNotebook = null;
         }

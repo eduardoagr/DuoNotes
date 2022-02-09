@@ -48,6 +48,15 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<Compile Update="Pages\PopUps\NotebookPopUpPage.xaml.cs">
+		  <DependentUpon>NotebookPopUpPage.xaml</DependentUpon>
+		</Compile>
+		<Compile Update="Pages\PopUps\NotesPopUpPage.xaml.cs">
+		  <DependentUpon>NotesPopUpPage.xaml</DependentUpon>
+		</Compile>
+		<Compile Update="Pages\PopUps\RegisterPopUpPage.xaml.cs">
+		  <DependentUpon>RegisterPopUpPage.xaml</DependentUpon>
+		</Compile>
 		<Compile Update="Resources\AppResources.Designer.cs">
 			<DesignTime>True</DesignTime>
 			<AutoGen>True</AutoGen>
@@ -60,22 +69,22 @@
 			<Generator>ResXFileCodeGenerator</Generator>
 			<LastGenOutput>AppResources.Designer.cs</LastGenOutput>
 		</EmbeddedResource>
-		<EmbeddedResource Update="View\LoginPage.xaml">
+		<EmbeddedResource Update="Pages\LoginPage.xaml">
 			<Generator>MSBuild:UpdateDesignTimeXaml</Generator>
 		</EmbeddedResource>
-		<EmbeddedResource Update="View\NotesPage.xaml">
+		<EmbeddedResource Update="Pages\NotesPage.xaml">
 		  <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
 		</EmbeddedResource>
-		<EmbeddedResource Update="View\PopUps\NotebookPopUp.xaml">
+		<EmbeddedResource Update="Pages\PopUps\NotebookPopUpPage.xaml">
 			<Generator>MSBuild:UpdateDesignTimeXaml</Generator>
 		</EmbeddedResource>
-		<EmbeddedResource Update="View\PopUps\NotesPopUp.xaml">
+		<EmbeddedResource Update="Pages\PopUps\NotesPopUpPage.xaml">
 		  <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
 		</EmbeddedResource>
-		<EmbeddedResource Update="View\PopUps\RegisterPopUp.xaml">
+		<EmbeddedResource Update="Pages\PopUps\RegisterPopUpPage.xaml">
 			<Generator>MSBuild:UpdateDesignTimeXaml</Generator>
 		</EmbeddedResource>
-		<EmbeddedResource Update="View\ProfilePage.xaml">
+		<EmbeddedResource Update="Pages\ProfilePage.xaml">
 		  <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
 		</EmbeddedResource>
 	</ItemGroup>
