@@ -8,6 +8,7 @@ using PropertyChanged;
 
 using Rg.Plugins.Popup.Services;
 
+using System;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 
@@ -50,11 +51,15 @@ namespace DuoNotes.ViewModel {
 
             ProfileCommnd = new Command(NavigateCommandAsync);
 
-            App.services.ReadAsync(App.Notebooks);
+            GetProfile();
         }
 
-        public async void AppearAction() {
+        private async void GetProfile() {
             FireUser = await App.services.GetProfileInformationAndRefreshToken();
+        }
+
+        public void AppearAction() {
+            App.services.ReadAsync(App.Notebooks, string.Empty);
         }
 
 
@@ -65,6 +70,8 @@ namespace DuoNotes.ViewModel {
         private async void AnimateButtonCommand(Frame obj) {
 
             await obj.ScaleTo(0.8, 50, Easing.Linear);
+            //Scale to normal
+            await obj.ScaleTo(1, 50, Easing.Linear);
 
             await PopupNavigation.Instance.PushAsync(new NotebookPopUp());
 
@@ -72,15 +79,13 @@ namespace DuoNotes.ViewModel {
 
         public async virtual void SeletedItemActionAsync() {
 
-            if (SelectedNotebook == null) {
-                return;
+            if (SelectedNotebook != null) {
+
+                NotesPage notesPage = new NotesPage();
+                MessagingCenter.Send(this, App.NotebookID, SelectedNotebook.Id);
+                await Application.Current.MainPage.Navigation.PushAsync(notesPage);
+                SelectedNotebook = null;
             }
-
-            NotesPage notesPage = new NotesPage();
-            MessagingCenter.Send(this, App.NotebookID, SelectedNotebook.Id);
-            await Application.Current.MainPage.Navigation.PushAsync(notesPage);
-            SelectedNotebook = null;
-
         }
 
         private void LogOutAction() {

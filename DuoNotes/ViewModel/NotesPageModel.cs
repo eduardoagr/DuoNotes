@@ -15,6 +15,7 @@ namespace DuoNotes.ViewModel {
 
     public class NotesPageModel : MainPageModel {
 
+
         readonly FirebaseServices Services;
 
         public new Command<Frame> FabAnimationCommmand { get; set; }
@@ -33,18 +34,18 @@ namespace DuoNotes.ViewModel {
 
                 RecivedSelectedNotebookID = val;
 
-                if (!string.IsNullOrEmpty(RecivedSelectedNotebookID)) {
-                    Services.ReadAsync(App.Notes, RecivedSelectedNotebookID);
-                    MessagingCenter.Unsubscribe<MainPageModel, string>(this, App.NotebookID);
-                }
+                MessagingCenter.Unsubscribe<MainPageModel, string>(this, App.NotebookID);
+
+                Services.ReadAsync(App.Notes, RecivedSelectedNotebookID);
             });
+
+
         }
+
 
         private async void AnimateButtonCommand(Frame obj) {
 
             await obj.ScaleTo(0.8, 50, Easing.Linear);
-            //Wait a moment
-            await Task.Delay(100);
             //Scale to normal
             await obj.ScaleTo(1, 50, Easing.Linear);
             var notesPopUp = new NotesPopUp();

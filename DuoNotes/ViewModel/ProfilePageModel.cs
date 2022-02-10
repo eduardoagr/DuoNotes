@@ -54,6 +54,7 @@ namespace DuoNotes.ViewModel {
 
         private async void GetUserData() {
             FireUser = await App.services.GetProfileInformationAndRefreshToken();
+            SelectedAvatar = FireUser.PhotoUrl;
         }
 
     }

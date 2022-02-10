@@ -31,7 +31,7 @@
                      Orientation="Horizontal">
 
             <ffimageloadingsvg:SvgCachedImage HeightRequest="40"
-                                              Source="{Binding FireUser.PhotoUrl}"
+                                              Source="{Binding SelectedAvatar}"
                                               WidthRequest="40" />
 
             <Entry FontAttributes="Bold"
