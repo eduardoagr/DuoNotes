@@ -12,6 +12,8 @@ namespace DuoNotes.ViewModel {
     [AddINotifyPropertyChangedInterface]
     internal class ProfilePageModel {
 
+        readonly FirebaseServices Services;
+
         public ICommand SelectedAvatarCommand { get; set; }
 
         public ICommand UpdateCommand { get; set; }
@@ -26,7 +28,7 @@ namespace DuoNotes.ViewModel {
 
         public ProfilePageModel() {
 
-            App.services = new FirebaseServices();
+            Services = App.services;
 
             Avatars = AvaarServices.GetAvatars();
 
