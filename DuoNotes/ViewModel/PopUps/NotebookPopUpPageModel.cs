@@ -34,6 +34,10 @@ namespace DuoNotes.ViewModel.PopUps {
 
         public ICommand DismissPopUpCommand { get; set; }
 
+        public ICommand PageDisappearingCommand { get; set; }
+
+        public EventHandler handler { get; set; }
+
         public List<Color> Colors { get; set; }
 
         public Color SelectedColor { get; set; }
@@ -59,6 +63,12 @@ namespace DuoNotes.ViewModel.PopUps {
 
             DismissPopUpCommand = new Command(ClosePopUpAction);
 
+            PageDisappearingCommand = new Command(PageDisapearAction);
+
+        }
+
+        private void PageDisapearAction() {
+            handler?.Invoke(this, EventArgs.Empty);
         }
 
         private void ClosePopUpAction() {

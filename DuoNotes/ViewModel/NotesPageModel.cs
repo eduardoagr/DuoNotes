@@ -18,8 +18,6 @@ namespace DuoNotes.ViewModel {
 
         readonly FirebaseServices Services;
 
-        public new Command<Frame> FabAnimationCommmand { get; set; }
-
         public string RecivedSelectedNotebookID { get; set; }
 
         public Note SeletedNote { get; set; }

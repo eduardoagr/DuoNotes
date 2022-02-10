@@ -3,6 +3,7 @@ using DuoNotes.Model;
 using DuoNotes.Services;
 using DuoNotes.View;
 using DuoNotes.View.PopUps;
+using DuoNotes.ViewModel.PopUps;
 
 using PropertyChanged;
 
@@ -62,14 +63,23 @@ namespace DuoNotes.ViewModel {
             await Application.Current.MainPage.Navigation.PushAsync(new ProfilePage());
         }
 
-        private async void AnimateButtonCommand(Frame obj) {
+        public virtual async void AnimateButtonCommand(Frame obj) {
 
             await obj.ScaleTo(0.8, 50, Easing.Linear);
             //Scale to normal
             await obj.ScaleTo(1, 50, Easing.Linear);
 
+            var notebookPopUpVM = new NotebookPopUpPageModel();
+
+            notebookPopUpVM.handler += NotebookPopUp_PopPageClosed;
+
             await PopupNavigation.Instance.PushAsync(new NotebookPopUp());
 
+        }
+
+        //if the PopUp page closed, get the data again
+        private void NotebookPopUp_PopPageClosed(object sender, EventArgs e) {
+            App.services.ReadAsync(App.Notebooks);
         }
 
         public async virtual void SeletedItemActionAsync() {
