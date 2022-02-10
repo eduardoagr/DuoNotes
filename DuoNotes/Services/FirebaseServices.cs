@@ -103,6 +103,7 @@ namespace DuoNotes.Services {
 
             var RefreshedContent = await AuthProvider.RefreshAuthAsync(savedfirebaseauth);
             Preferences.Set(App.FirebaseRefreshToken, JsonConvert.SerializeObject(RefreshedContent));
+
             return newUser.User;
         }
 

@@ -32,7 +32,8 @@
 
             <ffimageloadingsvg:SvgCachedImage HeightRequest="40"
                                               Source="{Binding SelectedAvatar}"
-                                              WidthRequest="40" />
+                                              WidthRequest="40"
+                                              LoadingPlaceholder="{Binding FireUser.PhotoUrl}"/>
 
             <Entry FontAttributes="Bold"
                    FontSize="Medium"
