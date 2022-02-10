@@ -41,9 +41,8 @@ namespace DuoNotes.Services {
             try {
                 UserDialogs.Instance.ShowLoading(AppResources.Loading);
                 var auth = await AuthProvider.CreateUserWithEmailAndPasswordAsync(users.Email, users.Password);
-                await App.Current.MainPage.DisplayAlert(string.Empty, AppResources.UserInserted, "OK");
                 await PopupNavigation.Instance.PopAsync(true);
-                UserDialogs.Instance.HideLoading();
+                await App.Current.MainPage.DisplayAlert(string.Empty, AppResources.UserInserted, "OK");
             } catch (FirebaseAuthException ex) {
                 Firebasemessages.GetMessages(ex);
             }

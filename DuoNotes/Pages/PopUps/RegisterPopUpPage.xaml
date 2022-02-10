@@ -2,7 +2,6 @@
 <pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                  xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
-                 xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
                  x:Class="DuoNotes.View.PopUps.RegisterPopUp"
                  xmlns:community="http://xamarin.com/schemas/2020/toolkit"
                  xmlns:vm="clr-namespace:DuoNotes.ViewModel.PopUps"
@@ -12,18 +11,6 @@
     <pages:PopupPage.BindingContext>
         <vm:RegisterPopUpPageModel />
     </pages:PopupPage.BindingContext>
-
-    <pages:PopupPage.Animation>
-        <animations:ScaleAnimation PositionIn="Bottom"
-                                   PositionOut="Bottom"
-                                   ScaleIn="1.2"
-                                   ScaleOut="0.8"
-                                   DurationIn="500"
-                                   DurationOut="500"
-                                   EasingIn="Linear"
-                                   EasingOut="Linear"
-                                   HasBackgroundAnimation="True" />
-    </pages:PopupPage.Animation>
 
     <Grid>
         <Frame Style="{StaticResource FrameContainer}">

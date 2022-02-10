@@ -97,7 +97,6 @@ namespace DuoNotes.ViewModel.PopUps {
             };
 
             await FirebaseServices.InsertAsync(Notebook, App.Notebooks);
-            FirebaseServices.ReadAsync(App.Notebooks);
             await PopupNavigation.Instance.PopAsync();
         }
 

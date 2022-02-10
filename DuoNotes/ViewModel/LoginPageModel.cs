@@ -47,7 +47,7 @@ namespace DuoNotes.ViewModel {
         }
 
         private async void OpenRegisterPopUpAction() {
-            await PopupNavigation.Instance.PushAsync(new RegisterPopUp());
+            await PopupNavigation.Instance.PushAsync(new RegisterPopUp(), true);
         }
 
         private bool CanPreformAction() {
