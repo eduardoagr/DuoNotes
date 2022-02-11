@@ -41,17 +41,16 @@ namespace DuoNotes.ViewModel.PopUps {
         }
 
         private async void CreateNewNoteAsync() {
-            if (Note == null) {
-                return;
-            }
+            if (Note != null) {
 
-            Note = new Note() {
-                CreatedDate = DateTime.Now.ToString("D", new CultureInfo(App.languages)),
-                NotebookId = NotebookId,
-                Name = Note.Name,
-                Id = Note.Id,
-                FileLocation = string.Empty
-            };
+                Note = new Note() {
+                    CreatedDate = DateTime.Now.ToString("D", new CultureInfo(App.languages)),
+                    NotebookId = NotebookId,
+                    Name = Note.Name,
+                    Id = Note.Id,
+                    FileLocation = string.Empty
+                };
+            }
 
             await App.services.InsertAsync(Note, App.Notes);
             await PopupNavigation.Instance.PopAsync();

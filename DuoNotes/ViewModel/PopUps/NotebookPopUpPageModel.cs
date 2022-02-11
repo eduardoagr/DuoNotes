@@ -76,17 +76,16 @@ namespace DuoNotes.ViewModel.PopUps {
         }
 
         private async void CreateNewNotebookAsync() {
-            if (Notebook == null) {
-                return;
-            }
+            if (Notebook != null) {
 
-            Notebook = new Notebook {
-                CreatedDate = DateTime.Now.ToString("D", new CultureInfo(App.languages)),
-                UserID = Preferences.Get(App.UserID, string.Empty),
-                Name = Notebook.Name,
-                Desc = Notebook.Desc,
-                Color = Notebook.Color,
-            };
+                Notebook = new Notebook {
+                    CreatedDate = DateTime.Now.ToString("D", new CultureInfo(App.languages)),
+                    UserID = Preferences.Get(App.UserID, string.Empty),
+                    Name = Notebook.Name,
+                    Desc = Notebook.Desc,
+                    Color = Notebook.Color,
+                };
+            }
 
             await App.services.InsertAsync(Notebook, App.Notebooks);
             App.services.ReadAsync(App.Notebooks);
