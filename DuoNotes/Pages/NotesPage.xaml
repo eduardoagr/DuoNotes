@@ -23,11 +23,6 @@
 
     </ContentPage.ToolbarItems>
 
-    <ContentPage.Behaviors>
-        <community:EventToCommandBehavior EventName="Appearing"
-                                          Command="{Binding PageAppearCommand}" />
-    </ContentPage.Behaviors>
-
     <StackLayout>
 
         <CollectionView ItemsSource="{Binding FireBaseNotebooks}"

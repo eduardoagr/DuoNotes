@@ -18,8 +18,6 @@ namespace DuoNotes.ViewModel {
     [AddINotifyPropertyChangedInterface]
     public class LoginPageModel {
 
-        readonly FirebaseServices Services;
-
         public ICommand NavigateToRegisterCommand { get; set; }
 
         public ICommand LoginCommand { get; set; }
@@ -40,8 +38,6 @@ namespace DuoNotes.ViewModel {
 
             NavigateToRegisterCommand = new Command(OpenRegisterPopUpAction);
 
-            Services = new FirebaseServices();
-
             LoginCommand = new Command(LoginAction, CanPreformAction);
 
         }
@@ -58,7 +54,7 @@ namespace DuoNotes.ViewModel {
         }
 
         private async void LoginAction() {
-            await Services.LoginAsync(User);
+            await App.services.LoginAsync(User);
 
         }
     }

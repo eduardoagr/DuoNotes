@@ -13,21 +13,15 @@ namespace DuoNotes.ViewModel.PopUps {
 
     public class NotePopUpPageModel : NotebookPopUpPageModel {
 
-
-        readonly FirebaseServices Services;
-
         public ICommand NewNoteCommand { get; set; }
 
-        public Action<string> NotebookkIdAction { get; set; }
+        public Action<string> NotebookAction { get; set; }
 
         public string NotebookId { get; set; }
-
 
         public Note Note { get; set; }
 
         public NotePopUpPageModel() {
-
-            Services = App.services;
 
             Note = new Note {
                 OnAnyPropertiesChanged = () => {
@@ -39,7 +33,7 @@ namespace DuoNotes.ViewModel.PopUps {
             NewNoteCommand = new Command(CreateNewNoteAsync, CanCreateNote);
 
 
-            NotebookkIdAction = (id) => {
+            NotebookAction = (id) => {
 
                 NotebookId = id;
             };
@@ -59,7 +53,7 @@ namespace DuoNotes.ViewModel.PopUps {
                 FileLocation = string.Empty
             };
 
-            await Services.InsertAsync(Note, App.Notes);
+            await App.services.InsertAsync(Note, App.Notes);
             await PopupNavigation.Instance.PopAsync();
         }
 

@@ -15,8 +15,6 @@ namespace DuoNotes.ViewModel.PopUps {
     [AddINotifyPropertyChangedInterface]
     public class RegisterPopUpPageModel {
 
-        readonly FirebaseServices Services;
-
         public ICommand RegisterCommand { get; set; }
 
         public ICommand CloseCommand { get; set; }
@@ -31,8 +29,6 @@ namespace DuoNotes.ViewModel.PopUps {
                     (RegisterCommand as Command).ChangeCanExecute();
                 }
             };
-
-            Services = new FirebaseServices();
 
             RegisterCommand = new Command(RegisterActionAsync, CanPreformAction);
 
@@ -49,7 +45,7 @@ namespace DuoNotes.ViewModel.PopUps {
 
         private async void RegisterActionAsync() {
 
-            await Services.RegisterAsync(User);
+            await App.services.RegisterAsync(User);
         }
 
         private async void PerformCloseAction() {
