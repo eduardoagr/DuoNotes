@@ -4,16 +4,19 @@ using DuoNotes.View;
 
 using Syncfusion.Licensing;
 
-using System.Globalization;
-
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace DuoNotes {
     public partial class App : Application {
+
+        public static FirebaseServices FirebaseServices { get; set; }
+
         public App() {
 
             SyncfusionLicenseProvider.RegisterLicense(AppConstant.KEY);
+
+            FirebaseServices = new FirebaseServices();
 
             InitializeComponent();
 

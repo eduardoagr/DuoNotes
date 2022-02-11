@@ -53,8 +53,8 @@ namespace DuoNotes.ViewModel.PopUps {
                 };
             }
 
-            await AppConstant.services.InsertAsync(Note, AppConstant.Notes);
-            AppConstant.services.ReadAsync(AppConstant.Notes, NotebookId);
+            await App.FirebaseServices.InsertAsync(Note, AppConstant.Notes);
+            App.FirebaseServices.ReadAsync(AppConstant.Notes, NotebookId);
             await PopupNavigation.Instance.PopAsync();
         }
 

@@ -15,8 +15,6 @@ namespace DuoNotes.Constants {
 
         public static string UserID = "UserID";
 
-        public static FirebaseServices services;
-
         public const string FirebaseRefreshToken = "FirebaseRefreshToken";
 
         public const string FirebaseToken = "FirebaseToken";

@@ -39,7 +39,7 @@ namespace DuoNotes.ViewModel {
 
             FireBaseNotebooks = new ObservableCollection<NotebookNote>();
 
-            AppConstant.services = new FirebaseServices(FireBaseNotebooks);
+            App.FirebaseServices = new FirebaseServices(FireBaseNotebooks);
 
             PageAppearCommand = new Command(AppearAction);
 
@@ -60,8 +60,8 @@ namespace DuoNotes.ViewModel {
         }
 
         public virtual async void AppearAction() {
-            FireUser = await AppConstant.services.GetProfileInformationAndRefreshToken();
-            AppConstant.services.ReadAsync(AppConstant.Notebooks);
+            FireUser = await App.FirebaseServices.GetProfileInformationAndRefreshToken();
+            App.FirebaseServices.ReadAsync(AppConstant.Notebooks);
         }
 
 
@@ -91,7 +91,7 @@ namespace DuoNotes.ViewModel {
         }
 
         private void LogOutAction() {
-            AppConstant.services.LogOut();
+            App.FirebaseServices.LogOut();
         }
     }
 }

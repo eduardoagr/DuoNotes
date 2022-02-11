@@ -31,7 +31,7 @@ namespace DuoNotes.ViewModel {
                 NotebookId = id;
 
                 if (!string.IsNullOrEmpty(NotebookId)) {
-                    AppConstant.services.ReadAsync(AppConstant.Notes, NotebookId);
+                    App.FirebaseServices.ReadAsync(AppConstant.Notes, NotebookId);
                 }
             };
         }
