@@ -6,6 +6,7 @@ using DuoNotes.ViewModel.PopUps;
 using Rg.Plugins.Popup.Services;
 
 using System;
+using System.Windows.Input;
 
 using Xamarin.Forms;
 
@@ -13,25 +14,24 @@ namespace DuoNotes.ViewModel {
 
     public class NotesPageModel : MainPageModel {
 
-        public Action<string> NotebookAction { get; set; }
-
         public string NotebookId { get; set; }
 
         public Note SeletedNote { get; set; }
+
+        public ICommand PageDisappearCommand { get; set; }
 
         public NotesPageModel() : base() {
 
             FabAnimationCommmand = new Command<Frame>(AnimateButtonCommand);
 
-            NotebookAction = (id) => {
+            if (Application.Current.Properties.ContainsKey(AppConstant.NotebookID)) {
 
-                NotebookId = id;
+                NotebookId = Application.Current.Properties[AppConstant.NotebookID] as string;
 
                 AppConstant.services.ReadAsync(AppConstant.Notes, NotebookId);
-            };
+            }
 
         }
-
 
         public override async void AnimateButtonCommand(Frame obj) {
 

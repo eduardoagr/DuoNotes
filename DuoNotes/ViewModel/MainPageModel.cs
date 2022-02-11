@@ -29,7 +29,7 @@ namespace DuoNotes.ViewModel {
 
         public Notebook SelectedNotebook { get; set; }
 
-        public ObservableCollection<NotebookNote> FireBaseNotebooks { get; set; } = new ObservableCollection<NotebookNote>();
+        public ObservableCollection<NotebookNote> FireBaseNotebooks { get; set; }
 
         public Command<Frame> FabAnimationCommmand { get; set; }
 
@@ -37,7 +37,7 @@ namespace DuoNotes.ViewModel {
 
         public MainPageModel() {
 
-            //FireBaseNotebooks = new ObservableCollection<NotebookNote>();
+            FireBaseNotebooks = new ObservableCollection<NotebookNote>();
 
             AppConstant.services = new FirebaseServices(FireBaseNotebooks);
 
@@ -82,8 +82,8 @@ namespace DuoNotes.ViewModel {
 
             if (SelectedNotebook != null) {
 
+                Application.Current.Properties[AppConstant.NotebookID] = SelectedNotebook.Id;
                 NotesPage notesPage = new NotesPage();
-                MessagingCenter.Send(this, AppConstant.NotebookID, SelectedNotebook.Id);
                 await Application.Current.MainPage.Navigation.PushAsync(notesPage);
                 SelectedNotebook = null;
             }
