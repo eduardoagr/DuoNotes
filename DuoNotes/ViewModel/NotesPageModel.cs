@@ -14,23 +14,26 @@ namespace DuoNotes.ViewModel {
 
     public class NotesPageModel : MainPageModel {
 
+        public Action<string> NotebookAction { get; set; }
+
         public string NotebookId { get; set; }
 
         public Note SeletedNote { get; set; }
 
         public ICommand PageDisappearCommand { get; set; }
 
-        public NotesPageModel() : base() {
+        public NotesPageModel() : base(null) {
 
             FabAnimationCommmand = new Command<Frame>(AnimateButtonCommand);
 
-            if (Application.Current.Properties.ContainsKey(AppConstant.NotebookID)) {
+            NotebookAction = (id) => {
 
-                NotebookId = Application.Current.Properties[AppConstant.NotebookID] as string;
+                NotebookId = id;
 
-                AppConstant.services.ReadAsync(AppConstant.Notes, NotebookId);
-            }
-
+                if (!string.IsNullOrEmpty(NotebookId)) {
+                    AppConstant.services.ReadAsync(AppConstant.Notes, NotebookId);
+                }
+            };
         }
 
         public override async void AnimateButtonCommand(Frame obj) {
@@ -42,7 +45,6 @@ namespace DuoNotes.ViewModel {
             await PopupNavigation.Instance.PushAsync(notesPopUp);
             var viewModel = notesPopUp.BindingContext as NotePopUpPageModel;
             viewModel.NotebookAction(NotebookId);
-            SelectedNotebook = null;
         }
 
         public override async void SeletedItemActionAsync() {

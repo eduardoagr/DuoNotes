@@ -82,9 +82,10 @@ namespace DuoNotes.ViewModel {
 
             if (SelectedNotebook != null) {
 
-                Application.Current.Properties[AppConstant.NotebookID] = SelectedNotebook.Id;
                 NotesPage notesPage = new NotesPage();
                 await Application.Current.MainPage.Navigation.PushAsync(notesPage);
+                var viewModel = notesPage.BindingContext as NotesPageModel;
+                viewModel.NotebookAction(SelectedNotebook.Id);
                 SelectedNotebook = null;
             }
         }
