@@ -31,8 +31,6 @@ namespace DuoNotes.ViewModel.PopUps {
 
         public ICommand PageDisappearingCommand { get; set; }
 
-        public EventHandler handler { get; set; }
-
         public List<Color> Colors { get; set; }
 
         public Color SelectedColor { get; set; }
@@ -52,16 +50,12 @@ namespace DuoNotes.ViewModel.PopUps {
 
             Colors = ColorServices.GetColors();
 
+
             SelectedColorCommand = new Command(SelectColorAction);
+
 
             DismissPopUpCommand = new Command(ClosePopUpAction);
 
-            PageDisappearingCommand = new Command(PageDisapearAction);
-
-        }
-
-        private void PageDisapearAction() {
-            handler?.Invoke(this, EventArgs.Empty);
         }
 
         private void ClosePopUpAction() {
@@ -69,11 +63,9 @@ namespace DuoNotes.ViewModel.PopUps {
         }
 
         private void SelectColorAction() {
-            if (SelectedColor == null) {
-                return;
+            if (SelectedColor != null) {
+                Notebook.Color = SelectedColor.ToHex();
             }
-
-            Notebook.Color = SelectedColor.ToHex();
         }
 
         private async void CreateNewNotebookAsync() {
@@ -89,8 +81,8 @@ namespace DuoNotes.ViewModel.PopUps {
             }
 
             await AppConstant.services.InsertAsync(Notebook, AppConstant.Notebooks);
-            AppConstant.services.ReadAsync(AppConstant.Notebooks);
             await PopupNavigation.Instance.PopAsync();
+            AppConstant.services.ReadAsync(AppConstant.Notebooks);
         }
 
 

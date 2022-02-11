@@ -54,6 +54,7 @@ namespace DuoNotes.ViewModel.PopUps {
             }
 
             await AppConstant.services.InsertAsync(Note, AppConstant.Notes);
+            AppConstant.services.ReadAsync(AppConstant.Notes, NotebookId);
             await PopupNavigation.Instance.PopAsync();
         }
 

@@ -1,4 +1,5 @@
-﻿using DuoNotes.Model;
+﻿using DuoNotes.Constants;
+using DuoNotes.Model;
 using DuoNotes.View.PopUps;
 using DuoNotes.ViewModel.PopUps;
 
@@ -18,13 +19,15 @@ namespace DuoNotes.ViewModel {
 
         public Note SeletedNote { get; set; }
 
-        public NotesPageModel() {
+        public NotesPageModel() : base() {
 
             FabAnimationCommmand = new Command<Frame>(AnimateButtonCommand);
 
             NotebookAction = (id) => {
 
                 NotebookId = id;
+
+                AppConstant.services.ReadAsync(AppConstant.Notes, NotebookId);
             };
 
         }

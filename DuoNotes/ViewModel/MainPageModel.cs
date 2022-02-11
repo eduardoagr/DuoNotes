@@ -4,13 +4,11 @@ using DuoNotes.Model;
 using DuoNotes.Services;
 using DuoNotes.View;
 using DuoNotes.View.PopUps;
-using DuoNotes.ViewModel.PopUps;
 
 using PropertyChanged;
 
 using Rg.Plugins.Popup.Services;
 
-using System;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 
@@ -31,7 +29,7 @@ namespace DuoNotes.ViewModel {
 
         public Notebook SelectedNotebook { get; set; }
 
-        public ObservableCollection<NotebookNote> FireBaseNotebooks { get; set; }
+        public ObservableCollection<NotebookNote> FireBaseNotebooks { get; set; } = new ObservableCollection<NotebookNote>();
 
         public Command<Frame> FabAnimationCommmand { get; set; }
 
@@ -39,7 +37,7 @@ namespace DuoNotes.ViewModel {
 
         public MainPageModel() {
 
-            FireBaseNotebooks = new ObservableCollection<NotebookNote>();
+            //FireBaseNotebooks = new ObservableCollection<NotebookNote>();
 
             AppConstant.services = new FirebaseServices(FireBaseNotebooks);
 
@@ -52,12 +50,18 @@ namespace DuoNotes.ViewModel {
             FabAnimationCommmand = new Command<Frame>(AnimateButtonCommand);
 
             ProfileCommnd = new Command(NavigateCommandAsync);
-
-            AppConstant.services.ReadAsync(AppConstant.Notebooks, string.Empty);
         }
 
-        public async void AppearAction() {
+        public MainPageModel(object o) {
+
+            //FireBaseNotebooks = new ObservableCollection<NotebookNote>();
+
+            // AppConstant.services = new FirebaseServices(FireBaseNotebooks);
+        }
+
+        public virtual async void AppearAction() {
             FireUser = await AppConstant.services.GetProfileInformationAndRefreshToken();
+            AppConstant.services.ReadAsync(AppConstant.Notebooks);
         }
 
 
@@ -70,18 +74,8 @@ namespace DuoNotes.ViewModel {
             await obj.ScaleTo(0.8, 50, Easing.Linear);
             //Scale to normal
             await obj.ScaleTo(1, 50, Easing.Linear);
-
-            var notebookPopUpVM = new NotebookPopUpPageModel();
-
-            notebookPopUpVM.handler += NotebookPopUp_PopPageClosed;
-
             await PopupNavigation.Instance.PushAsync(new NotebookPopUp());
 
-        }
-
-        //if the PopUp page closed, get the data again
-        private void NotebookPopUp_PopPageClosed(object sender, EventArgs e) {
-            AppConstant.services.ReadAsync(AppConstant.Notebooks);
         }
 
         public async virtual void SeletedItemActionAsync() {
@@ -89,9 +83,8 @@ namespace DuoNotes.ViewModel {
             if (SelectedNotebook != null) {
 
                 NotesPage notesPage = new NotesPage();
+                MessagingCenter.Send(this, AppConstant.NotebookID, SelectedNotebook.Id);
                 await Application.Current.MainPage.Navigation.PushAsync(notesPage);
-                var viewModel = notesPage.BindingContext as NotesPageModel;
-                viewModel.NotebookAction(SelectedNotebook.Id);
                 SelectedNotebook = null;
             }
         }
