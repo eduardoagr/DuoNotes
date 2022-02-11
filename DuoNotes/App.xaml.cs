@@ -1,4 +1,5 @@
-﻿using DuoNotes.Services;
+﻿using DuoNotes.Constants;
+using DuoNotes.Services;
 using DuoNotes.View;
 
 using Syncfusion.Licensing;
@@ -10,36 +11,13 @@ using Xamarin.Forms;
 
 namespace DuoNotes {
     public partial class App : Application {
-
-        private const string KEY = "NTY0Njk3QDMxMzkyZTM0MmUzMEVJRzNEYmRZQnZhdjIyeXRDY3JpMXgwUUg1MnBoQ1AxMWFYZlF6Z2dIVEE9";
-
-        public const string WEB_API_KEY = "AIzaSyAxdD4aXTmGRN-BwLX4ItYusIc35r4_VVQ";
-
-        public const string UID = "UID";
-
-        public static string languages = CultureInfo.CurrentCulture.Name;
-
-        public static string UserID = "UserID";
-
-        public static FirebaseServices services;
-
-        public const string FirebaseRefreshToken = "FirebaseRefreshToken";
-
-        public const string FirebaseToken = "FirebaseToken";
-
-        public const string Notebooks = "Notebooks";
-
-        public const string Notes = "Notes";
-
-        public const string NotebookID = "NotebookID";
-
         public App() {
 
-            SyncfusionLicenseProvider.RegisterLicense(KEY);
+            SyncfusionLicenseProvider.RegisterLicense(AppConstant.KEY);
 
             InitializeComponent();
 
-            var UserId = Preferences.Get(UserID, string.Empty);
+            var UserId = Preferences.Get(AppConstant.UserID, string.Empty);
 
             if (!string.IsNullOrEmpty(UserId)) {
                 MainPage = new NavigationPage(new MainPage());

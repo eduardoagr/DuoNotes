@@ -1,4 +1,5 @@
-﻿using DuoNotes.Model;
+﻿using DuoNotes.Constants;
+using DuoNotes.Model;
 using DuoNotes.Services;
 
 using Rg.Plugins.Popup.Services;
@@ -44,7 +45,7 @@ namespace DuoNotes.ViewModel.PopUps {
             if (Note != null) {
 
                 Note = new Note() {
-                    CreatedDate = DateTime.Now.ToString("D", new CultureInfo(App.languages)),
+                    CreatedDate = DateTime.Now.ToString("D", new CultureInfo(AppConstant.languages)),
                     NotebookId = NotebookId,
                     Name = Note.Name,
                     Id = Note.Id,
@@ -52,7 +53,7 @@ namespace DuoNotes.ViewModel.PopUps {
                 };
             }
 
-            await App.services.InsertAsync(Note, App.Notes);
+            await AppConstant.services.InsertAsync(Note, AppConstant.Notes);
             await PopupNavigation.Instance.PopAsync();
         }
 

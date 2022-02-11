@@ -1,4 +1,5 @@
-﻿using DuoNotes.Services;
+﻿using DuoNotes.Constants;
+using DuoNotes.Services;
 using DuoNotes.View.PopUps;
 
 using PropertyChanged;
@@ -54,7 +55,7 @@ namespace DuoNotes.ViewModel {
         }
 
         private async void LoginAction() {
-            await App.services.LoginAsync(User);
+            await AppConstant.services.LoginAsync(User);
 
         }
     }

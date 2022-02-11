@@ -1,5 +1,6 @@
 ﻿using Acr.UserDialogs;
 
+using DuoNotes.Constants;
 using DuoNotes.Model;
 using DuoNotes.Resources;
 using DuoNotes.Utils;
@@ -32,7 +33,7 @@ namespace DuoNotes.Services {
         public FirebaseServices(ObservableCollection<NotebookNote> notebookNotes = null) {
 
             FireBaseNotebooks = notebookNotes;
-            AuthProvider = new FirebaseAuthProvider(new FirebaseConfig(App.WEB_API_KEY));
+            AuthProvider = new FirebaseAuthProvider(new FirebaseConfig(AppConstant.WEB_API_KEY));
             Client = new FirebaseClient(BASE_URL);
         }
 
@@ -56,9 +57,9 @@ namespace DuoNotes.Services {
                 var auth = await AuthProvider.SignInWithEmailAndPasswordAsync(users.Email, users.Password);
                 var content = await auth.GetFreshAuthAsync();
                 var serializedcontnet = JsonConvert.SerializeObject(content);
-                Preferences.Set(App.FirebaseToken, auth.FirebaseToken);
-                Preferences.Set(App.UserID, auth.User.LocalId);
-                Preferences.Set(App.FirebaseRefreshToken, serializedcontnet);
+                Preferences.Set(AppConstant.FirebaseToken, auth.FirebaseToken);
+                Preferences.Set(AppConstant.UserID, auth.User.LocalId);
+                Preferences.Set(AppConstant.FirebaseRefreshToken, serializedcontnet);
                 UserDialogs.Instance.HideLoading();
                 Application.Current.MainPage = new NavigationPage(new MainPage());
             } catch (FirebaseAuthException ex) {
@@ -74,9 +75,9 @@ namespace DuoNotes.Services {
 
         public async Task<Firebase.Auth.User> GetProfileInformationAndRefreshToken() {
 
-            var savedfirebaseauth = JsonConvert.DeserializeObject<FirebaseAuth>(Preferences.Get(App.FirebaseRefreshToken, string.Empty));
+            var savedfirebaseauth = JsonConvert.DeserializeObject<FirebaseAuth>(Preferences.Get(AppConstant.FirebaseRefreshToken, string.Empty));
             var RefreshedContent = await AuthProvider.RefreshAuthAsync(savedfirebaseauth);
-            Preferences.Set(App.FirebaseRefreshToken, JsonConvert.SerializeObject(RefreshedContent));
+            Preferences.Set(AppConstant.FirebaseRefreshToken, JsonConvert.SerializeObject(RefreshedContent));
 
             if (string.IsNullOrEmpty(savedfirebaseauth.User.PhotoUrl) ||
                 string.IsNullOrEmpty(savedfirebaseauth.User.DisplayName)) {
@@ -91,7 +92,7 @@ namespace DuoNotes.Services {
 
         public async Task<Firebase.Auth.User> UpdateUserData(string PhotoUri, string DisplyName) {
 
-            var savedfirebaseauth = JsonConvert.DeserializeObject<FirebaseAuth>(Preferences.Get(App.FirebaseRefreshToken,
+            var savedfirebaseauth = JsonConvert.DeserializeObject<FirebaseAuth>(Preferences.Get(AppConstant.FirebaseRefreshToken,
                 string.Empty));
 
             var newUser = await AuthProvider.UpdateProfileAsync(savedfirebaseauth.FirebaseToken, DisplyName,
@@ -101,7 +102,7 @@ namespace DuoNotes.Services {
             savedfirebaseauth.User.PhotoUrl = string.IsNullOrEmpty(PhotoUri) ? savedfirebaseauth.User.PhotoUrl : PhotoUri;
 
             var RefreshedContent = await AuthProvider.RefreshAuthAsync(savedfirebaseauth);
-            Preferences.Set(App.FirebaseRefreshToken, JsonConvert.SerializeObject(RefreshedContent));
+            Preferences.Set(AppConstant.FirebaseRefreshToken, JsonConvert.SerializeObject(RefreshedContent));
 
             return newUser.User;
         }
@@ -127,10 +128,10 @@ namespace DuoNotes.Services {
                 collection.Add(notebookNote);
             }
 
-            if (ChildName.Equals(App.Notes)) {
+            if (ChildName.Equals(AppConstant.Notes)) {
                 collection = collection.Where(n => ((Note)n).NotebookId == NotebookId).ToList();
             } else {
-                collection = collection.Where(n => n.UserID == Preferences.Get(App.UserID, string.Empty)).ToList();
+                collection = collection.Where(n => n.UserID == Preferences.Get(AppConstant.UserID, string.Empty)).ToList();
             }
             FireBaseNotebooks.Clear();
             foreach (var element in collection) {
@@ -142,7 +143,7 @@ namespace DuoNotes.Services {
         //This method will convert whatever we passed, to a specific object, based on the childname
         private static NotebookNote Convert(string ChildName, FirebaseObject<NotebookNote> item) {
             NotebookNote notebookNote;
-            if (ChildName.Equals(App.Notebooks)) {
+            if (ChildName.Equals(AppConstant.Notebooks)) {
                 notebookNote = new Notebook {
                     UserID = item.Object.UserID,
                     Id = item.Key,

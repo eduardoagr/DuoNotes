@@ -1,4 +1,5 @@
 ﻿
+using DuoNotes.Constants;
 using DuoNotes.Model;
 using DuoNotes.Services;
 using DuoNotes.View;
@@ -40,7 +41,7 @@ namespace DuoNotes.ViewModel {
 
             FireBaseNotebooks = new ObservableCollection<NotebookNote>();
 
-            App.services = new FirebaseServices(FireBaseNotebooks);
+            AppConstant.services = new FirebaseServices(FireBaseNotebooks);
 
             PageAppearCommand = new Command(AppearAction);
 
@@ -52,11 +53,11 @@ namespace DuoNotes.ViewModel {
 
             ProfileCommnd = new Command(NavigateCommandAsync);
 
-            App.services.ReadAsync(App.Notebooks, string.Empty);
+            AppConstant.services.ReadAsync(AppConstant.Notebooks, string.Empty);
         }
 
         public async void AppearAction() {
-            FireUser = await App.services.GetProfileInformationAndRefreshToken();
+            FireUser = await AppConstant.services.GetProfileInformationAndRefreshToken();
         }
 
 
@@ -80,7 +81,7 @@ namespace DuoNotes.ViewModel {
 
         //if the PopUp page closed, get the data again
         private void NotebookPopUp_PopPageClosed(object sender, EventArgs e) {
-            App.services.ReadAsync(App.Notebooks);
+            AppConstant.services.ReadAsync(AppConstant.Notebooks);
         }
 
         public async virtual void SeletedItemActionAsync() {
@@ -96,7 +97,7 @@ namespace DuoNotes.ViewModel {
         }
 
         private void LogOutAction() {
-            App.services.LogOut();
+            AppConstant.services.LogOut();
         }
     }
 }

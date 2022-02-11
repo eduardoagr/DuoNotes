@@ -1,4 +1,5 @@
-﻿using DuoNotes.Services;
+﻿using DuoNotes.Constants;
+using DuoNotes.Services;
 
 using PropertyChanged;
 
@@ -37,7 +38,7 @@ namespace DuoNotes.ViewModel {
 
         private async void SaveProfile() {
             if (!string.IsNullOrEmpty(SelectedAvatar) || string.IsNullOrEmpty(DisplayName)) {
-                FireUser = await App.services.UpdateUserData(SelectedAvatar, DisplayName);
+                FireUser = await AppConstant.services.UpdateUserData(SelectedAvatar, DisplayName);
             } else {
                 GetUserData();
             }
@@ -51,7 +52,7 @@ namespace DuoNotes.ViewModel {
         }
 
         private async void GetUserData() {
-            FireUser = await App.services.GetProfileInformationAndRefreshToken();
+            FireUser = await AppConstant.services.GetProfileInformationAndRefreshToken();
             SelectedAvatar = FireUser.PhotoUrl;
         }
 

@@ -1,4 +1,5 @@
-﻿using DuoNotes.Model;
+﻿using DuoNotes.Constants;
+using DuoNotes.Model;
 using DuoNotes.Services;
 
 using PropertyChanged;
@@ -45,7 +46,7 @@ namespace DuoNotes.ViewModel.PopUps {
 
         private async void RegisterActionAsync() {
 
-            await App.services.RegisterAsync(User);
+            await AppConstant.services.RegisterAsync(User);
         }
 
         private async void PerformCloseAction() {

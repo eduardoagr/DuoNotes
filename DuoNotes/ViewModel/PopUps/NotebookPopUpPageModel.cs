@@ -1,5 +1,6 @@
 ﻿
 
+using DuoNotes.Constants;
 using DuoNotes.Model;
 using DuoNotes.Services;
 
@@ -79,16 +80,16 @@ namespace DuoNotes.ViewModel.PopUps {
             if (Notebook != null) {
 
                 Notebook = new Notebook {
-                    CreatedDate = DateTime.Now.ToString("D", new CultureInfo(App.languages)),
-                    UserID = Preferences.Get(App.UserID, string.Empty),
+                    CreatedDate = DateTime.Now.ToString("D", new CultureInfo(AppConstant.languages)),
+                    UserID = Preferences.Get(AppConstant.UserID, string.Empty),
                     Name = Notebook.Name,
                     Desc = Notebook.Desc,
                     Color = Notebook.Color,
                 };
             }
 
-            await App.services.InsertAsync(Notebook, App.Notebooks);
-            App.services.ReadAsync(App.Notebooks);
+            await AppConstant.services.InsertAsync(Notebook, AppConstant.Notebooks);
+            AppConstant.services.ReadAsync(AppConstant.Notebooks);
             await PopupNavigation.Instance.PopAsync();
         }
 
