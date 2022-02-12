@@ -1,11 +1,8 @@
 ﻿using DuoNotes.Constants;
-using DuoNotes.Model;
 using DuoNotes.Services;
 using DuoNotes.View;
 
 using Syncfusion.Licensing;
-
-using System.Collections.ObjectModel;
 
 using Xamarin.Essentials;
 using Xamarin.Forms;

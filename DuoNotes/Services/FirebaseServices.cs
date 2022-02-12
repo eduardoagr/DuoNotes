@@ -140,6 +140,14 @@ namespace DuoNotes.Services {
 
         }
 
+        public async void UpdateNotebookNoten(string OD) {
+            //TODO: Update the Note file location
+        }
+
+        public async void DeleteNotebookNote(string ID) {
+
+        }
+
         //This method will convert whatever we passed, to a specific object, based on the childname
         private static NotebookNote Convert(string ChildName, FirebaseObject<NotebookNote> item) {
             NotebookNote notebookNote;

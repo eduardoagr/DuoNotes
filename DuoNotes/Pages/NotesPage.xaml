@@ -41,7 +41,10 @@
 
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <StackLayout Padding="10">
+                    <StackLayout Padding="10"
+                                 community:TouchEffect.LongPressCommand="{Binding Source={RelativeSource AncestorType={x:Type vm:MainPageModel}}, Path=LongPressCommand}}"
+                                 community:TouchEffect.LongPressDuration="200">
+
 
                         <Label FontAttributes="Bold"
                                FontSize="Medium"

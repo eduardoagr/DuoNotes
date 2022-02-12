@@ -9,6 +9,7 @@ using PropertyChanged;
 
 using Rg.Plugins.Popup.Services;
 
+using System;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 
@@ -21,11 +22,11 @@ namespace DuoNotes.ViewModel {
 
         public ICommand SeletedItemCommand { get; set; }
 
-        public ICommand LogoutCommand { get; set; }
-
         public ICommand ProfileCommnd { get; set; }
 
         public ICommand PageAppearCommand { get; set; }
+
+        public ICommand LongPressCommand { get; set; }
 
         public Notebook SelectedNotebook { get; set; }
 
@@ -43,14 +44,16 @@ namespace DuoNotes.ViewModel {
 
             PageAppearCommand = new Command(AppearAction);
 
-            LogoutCommand = new Command(LogOutAction);
-
             SeletedItemCommand = new Command(SeletedItemActionAsync);
 
             FabAnimationCommmand = new Command<Frame>(AnimateButtonCommand);
 
             ProfileCommnd = new Command(NavigateCommandAsync);
+
+            LongPressCommand = new Command(LongPressAction);
         }
+
+
 
         /* Becouse we are my notes ppge is inheriting from this page, I created a custom constructor, so it will call this as the base,
          * this way I prevent the daabase to read twice and fix the error whe inserting noteooks */
@@ -59,6 +62,10 @@ namespace DuoNotes.ViewModel {
         public virtual async void AppearAction() {
             FireUser = await App.FirebaseServices.GetProfileInformationAndRefreshToken();
             App.FirebaseServices.ReadAsync(AppConstant.Notebooks);
+        }
+
+        private async void LongPressAction() {
+            await App.Current.MainPage.DisplayAlert("Hola", "Listo para borrar", "OK");
         }
 
 
@@ -85,10 +92,6 @@ namespace DuoNotes.ViewModel {
                 viewModel.NotebookAction(SelectedNotebook.Id);
                 SelectedNotebook = null;
             }
-        }
-
-        private void LogOutAction() {
-            App.FirebaseServices.LogOut();
         }
     }
 }
