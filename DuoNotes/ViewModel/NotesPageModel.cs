@@ -22,6 +22,8 @@ namespace DuoNotes.ViewModel {
 
         public ICommand PageDisappearCommand { get; set; }
 
+
+
         public NotesPageModel() : base(null) {
 
             FabAnimationCommmand = new Command<Frame>(AnimateButtonCommand);
@@ -35,6 +37,9 @@ namespace DuoNotes.ViewModel {
                 }
             };
         }
+
+
+
 
         public override async void AnimateButtonCommand(Frame obj) {
 

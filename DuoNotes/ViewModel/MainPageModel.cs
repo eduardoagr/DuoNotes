@@ -52,12 +52,9 @@ namespace DuoNotes.ViewModel {
             ProfileCommnd = new Command(NavigateCommandAsync);
         }
 
-        public MainPageModel(object o) {
-
-            //FireBaseNotebooks = new ObservableCollection<NotebookNote>();
-
-            // AppConstant.services = new FirebaseServices(FireBaseNotebooks);
-        }
+        /* Becouse we are my notes ppge is inheriting from this page, I created a custom constructor, so it will call this as the base,
+         * this way I prevent the daabase to read twice and fix the error whe inserting noteooks */
+        public MainPageModel(object o) { }
 
         public virtual async void AppearAction() {
             FireUser = await App.FirebaseServices.GetProfileInformationAndRefreshToken();

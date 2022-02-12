@@ -1,8 +1,11 @@
 ﻿using DuoNotes.Constants;
+using DuoNotes.Model;
 using DuoNotes.Services;
 using DuoNotes.View;
 
 using Syncfusion.Licensing;
+
+using System.Collections.ObjectModel;
 
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -14,9 +17,9 @@ namespace DuoNotes {
 
         public App() {
 
-            SyncfusionLicenseProvider.RegisterLicense(AppConstant.KEY);
-
             FirebaseServices = new FirebaseServices();
+
+            SyncfusionLicenseProvider.RegisterLicense(AppConstant.KEY);
 
             InitializeComponent();
 
