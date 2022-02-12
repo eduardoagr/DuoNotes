@@ -15,12 +15,14 @@
     </ContentPage.BindingContext>
 
     <ContentPage.ToolbarItems>
-
-        <ToolbarItem Command="{Binding LogoutCommand}"
-                     Order="Secondary"
-                     Priority="1"
-                     Text="{translate:Translate CloseSession}" />
-
+        <ToolbarItem Order="Primary"
+                     Command="{Binding ShareCommand}">
+            <ToolbarItem.IconImageSource>
+                <FontImageSource FontFamily="ma"
+                                 Size="Subtitle"
+                                 Glyph="{x:Static icon:MaterialIcons.ShareVariant}" />
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
     </ContentPage.ToolbarItems>
 
     <StackLayout>
