@@ -64,7 +64,7 @@ namespace DuoNotes.ViewModel {
             App.FirebaseServices.ReadAsync(AppConstant.Notebooks);
         }
 
-        private async void LongPressAction() {
+        public virtual async void LongPressAction() {
             await App.Current.MainPage.DisplayAlert("Hola", "Listo para borrar", "OK");
         }
 

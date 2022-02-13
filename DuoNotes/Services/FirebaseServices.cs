@@ -145,7 +145,7 @@ namespace DuoNotes.Services {
         }
 
         public async void DeleteNotebookNote(string ID) {
-
+            //TODO: Delete 
         }
 
         //This method will convert whatever we passed, to a specific object, based on the childname
