@@ -4,7 +4,6 @@ using DuoNotes.View.PopUps;
 using DuoNotes.ViewModel.PopUps;
 
 using Rg.Plugins.Popup.Services;
-
 using System;
 using System.Windows.Input;
 
@@ -23,7 +22,6 @@ namespace DuoNotes.ViewModel {
         public ICommand PageDisappearCommand { get; set; }
 
         public NotesPageModel() {
-
             FabAnimationCommmand = new Command<Frame>(AnimateButtonCommand);
 
             NotebookAction = async (id) => {
