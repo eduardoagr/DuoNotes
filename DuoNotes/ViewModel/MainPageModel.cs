@@ -38,9 +38,7 @@ namespace DuoNotes.ViewModel {
 
         public MainPageModel() {
 
-            FireBaseNotebooks = new ObservableCollection<NotebookNote>();
-
-            App.FirebaseServices = new FirebaseServices(FireBaseNotebooks);
+            FireBaseNotebooks = new ObservableCollection<NotebookNote>(); 
 
             PageAppearCommand = new Command(AppearAction);
 
@@ -53,15 +51,9 @@ namespace DuoNotes.ViewModel {
             LongPressCommand = new Command(LongPressAction);
         }
 
-
-
-        /* Becouse we are my notes ppge is inheriting from this page, I created a custom constructor, so it will call this as the base,
-         * this way I prevent the daabase to read twice and fix the error whe inserting noteooks */
-        public MainPageModel(object o) { }
-
         public virtual async void AppearAction() {
             FireUser = await App.FirebaseServices.GetProfileInformationAndRefreshToken();
-            App.FirebaseServices.ReadAsync(AppConstant.Notebooks);
+            FireBaseNotebooks = await App.FirebaseServices.ReadAsync(AppConstant.Notebooks);
         }
 
         public virtual async void LongPressAction() {

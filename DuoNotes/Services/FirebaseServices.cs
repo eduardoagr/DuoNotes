@@ -30,9 +30,9 @@ namespace DuoNotes.Services {
         private readonly FirebaseAuthProvider AuthProvider;
         private readonly FirebaseClient Client;
         const string BASE_URL = "https://duonotes-f2b77-default-rtdb.europe-west1.firebasedatabase.app/";
-        public FirebaseServices(ObservableCollection<NotebookNote> notebookNotes = null) {
+        public FirebaseServices() {
 
-            FireBaseNotebooks = notebookNotes;
+            FireBaseNotebooks = new ObservableCollection<NotebookNote>();
             AuthProvider = new FirebaseAuthProvider(new FirebaseConfig(AppConstant.WEB_API_KEY));
             Client = new FirebaseClient(BASE_URL);
         }
@@ -115,7 +115,7 @@ namespace DuoNotes.Services {
                 .PostAsync(JsonConvert.SerializeObject(element));
         }
 
-        public async void ReadAsync(string ChildName, string NotebookId = "") {
+        public async Task<ObservableCollection<NotebookNote>> ReadAsync(string ChildName, string NotebookId = "") {
 
             var list = await Client.Child(ChildName)
                  .OnceAsync<NotebookNote>();
@@ -138,6 +138,7 @@ namespace DuoNotes.Services {
                 FireBaseNotebooks.Add(element);
             }
 
+            return FireBaseNotebooks;
         }
 
         public async void UpdateNotebookNoten(string OD) {

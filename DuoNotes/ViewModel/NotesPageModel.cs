@@ -22,16 +22,16 @@ namespace DuoNotes.ViewModel {
 
         public ICommand PageDisappearCommand { get; set; }
 
-        public NotesPageModel() : base(null) {
+        public NotesPageModel() {
 
             FabAnimationCommmand = new Command<Frame>(AnimateButtonCommand);
 
-            NotebookAction = (id) => {
+            NotebookAction = async (id) => {
 
                 NotebookId = id;
 
                 if (!string.IsNullOrEmpty(NotebookId)) {
-                    App.FirebaseServices.ReadAsync(AppConstant.Notes, NotebookId);
+                   await App.FirebaseServices.ReadAsync(AppConstant.Notes, NotebookId);
                 }
             };
         }
