@@ -17,9 +17,6 @@ namespace DuoNotes.Model {
         [OnChangedMethod(nameof(OnPropertyChanged))]
         public string Password { get; set; }
 
-        public string Name { get; set; }
-
-        public string PhotoUri { get; set; }
 
         [JsonIgnore]
         public Action OnAnyPropertiesChanged { get; set; }

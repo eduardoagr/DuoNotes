@@ -1,12 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
-                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-                 xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
-                 x:Class="DuoNotes.View.PopUps.RegisterPopUp"
-                 xmlns:community="http://xamarin.com/schemas/2020/toolkit"
-                 xmlns:vm="clr-namespace:DuoNotes.ViewModel.PopUps"
-                 xmlns:translate="clr-namespace:DuoNotes.Utils"
-                 Padding="20">
+<pages:PopupPage
+    x:Class="DuoNotes.View.PopUps.RegisterPopUp"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:community="http://xamarin.com/schemas/2020/toolkit"
+    xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+    xmlns:translate="clr-namespace:DuoNotes.Utils"
+    xmlns:vm="clr-namespace:DuoNotes.ViewModel.PopUps"
+    Padding="20">
 
     <pages:PopupPage.BindingContext>
         <vm:RegisterPopUpPageModel />
@@ -15,44 +16,49 @@
     <Grid>
         <Frame Style="{StaticResource FrameContainer}">
 
-            <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto"
-                  Padding="20"
-                  RowSpacing="10">
+            <Grid
+                Padding="20"
+                RowDefinitions="Auto,Auto,Auto,Auto,Auto"
+                RowSpacing="10">
 
-                <Label Style="{StaticResource CloseStyle}"
-                       community:TouchEffect.Command="{Binding CloseCommand}" />
+                <Label community:TouchEffect.Command="{Binding CloseCommand}" Style="{StaticResource CloseStyle}" />
 
-                <Label Text="{translate:Translate Register}"
-                       Style="{StaticResource HeadersStyle}"
-                       Grid.Row="1" />
+                <Label
+                    Grid.Row="1"
+                    Style="{StaticResource HeadersStyle}"
+                    Text="{translate:Translate Register}" />
 
-                <Entry Style="{StaticResource EntrySyle}"
-                       Placeholder="{translate:Translate Email}"
-                       Text="{Binding User.Email}"
-                       Grid.Row="2">
+                <Entry
+                    Grid.Row="2"
+                    Placeholder="{translate:Translate Email}"
+                    Style="{StaticResource EntrySyle}"
+                    Text="{Binding User.Email}">
                     <Entry.Behaviors>
                         <translate:OnEntryCompletedBehavior TargetElement="{x:Reference PassEntry}" />
                     </Entry.Behaviors>
                 </Entry>
 
-                <Entry Style="{StaticResource EntrySyle}"
-                       x:Name="PassEntry"
-                       Placeholder="{translate:Translate Password}"
-                       Text="{Binding User.Password}"
-                       IsPassword="True"
-                       Grid.Row="3" />
+                <Entry
+                    x:Name="PassEntry"
+                    Grid.Row="3"
+                    IsPassword="True"
+                    Placeholder="{translate:Translate Password}"
+                    Style="{StaticResource EntrySyle}"
+                    Text="{Binding User.Password}" />
 
-                <Entry Style="{StaticResource EntrySyle}"
-                       Placeholder="{translate:Translate Password}"
-                       Text="{Binding User.Password}"
-                       IsPassword="True"
-                       Grid.Row="4" />
+                <Entry
+                    Grid.Row="4"
+                    IsPassword="True"
+                    Placeholder="{translate:Translate Password}"
+                    Style="{StaticResource EntrySyle}"
+                    Text="{Binding User.Password}" />
 
-                <Button Padding="10"
-                        Style="{StaticResource ButonStyle}"
-                        Command="{Binding RegisterCommand}"
-                        Text="{translate:Translate Register}"
-                        Grid.Row="5" />
+                <Button
+                    Grid.Row="5"
+                    Padding="10"
+                    Command="{Binding RegisterCommand}"
+                    Style="{StaticResource ButonStyle}"
+                    Text="{translate:Translate Register}" />
 
             </Grid>
         </Frame>

@@ -1,10 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<Application x:Class="DuoNotes.App"
-             xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
-             xmlns:icon="clr-namespace:DuoNotes.Fonts"
-             xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+<Application
+    x:Class="DuoNotes.App"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+    xmlns:icon="clr-namespace:DuoNotes.Fonts">
 
     <Application.Resources>
         <ResourceDictionary>
@@ -14,145 +15,86 @@
             <Color x:Key="BckgroundDarkColor">#000</Color>
 
             <!--  styles  -->
-            <Style x:Key="EntrySyle"
-                   TargetType="Entry">
-                <Setter Property="TextColor"
-                        Value="{AppThemeBinding Dark={StaticResource BackgroundLigthColor}, Light={StaticResource BckgroundDarkColor}}" />
-                <Setter Property="PlaceholderColor"
-                        Value="#A9A9A9" />
-                <Setter Property="Visual"
-                        Value="Material" />
-                <Setter Property="MaxLength"
-                        Value="25" />
-                <Setter Property="ReturnType"
-                        Value="Next" />
+            <Style x:Key="EntrySyle" TargetType="Entry">
+                <Setter Property="TextColor" Value="{AppThemeBinding Dark={StaticResource BackgroundLigthColor}, Light={StaticResource BckgroundDarkColor}}" />
+                <Setter Property="PlaceholderColor" Value="#A9A9A9" />
+                <Setter Property="Visual" Value="Material" />
+                <Setter Property="MaxLength" Value="25" />
+                <Setter Property="ReturnType" Value="Next" />
             </Style>
 
-            <Style x:Key="LabelStyle"
-                   TargetType="Label">
-                <Setter Property="TextColor"
-                        Value="{AppThemeBinding Dark={StaticResource BackgroundLigthColor}, Light={StaticResource BckgroundDarkColor}}" />
-                <Setter Property="HorizontalTextAlignment"
-                        Value="Center" />
-                <Setter Property="FontSize"
-                        Value="Small" />
-                <Setter Property="VerticalTextAlignment"
-                        Value="Center" />
+            <Style x:Key="LabelStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="{AppThemeBinding Dark={StaticResource BackgroundLigthColor}, Light={StaticResource BckgroundDarkColor}}" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="FontSize" Value="Small" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
             </Style>
 
-            <Style x:Key="ButonStyle"
-                   TargetType="Button">
-                <Setter Property="TextColor"
-                        Value="{AppThemeBinding Dark={StaticResource BackgroundLigthColor}, Light={StaticResource BckgroundDarkColor}}" />
-                <Setter Property="HorizontalOptions"
-                        Value="Fill" />
-                <Setter Property="FontSize"
-                        Value="Medium" />
-                <Setter Property="VerticalOptions"
-                        Value="Fill" />
+            <Style x:Key="ButonStyle" TargetType="Button">
+                <Setter Property="TextColor" Value="{AppThemeBinding Dark={StaticResource BackgroundLigthColor}, Light={StaticResource BckgroundDarkColor}}" />
+                <Setter Property="HorizontalOptions" Value="Fill" />
+                <Setter Property="FontSize" Value="Medium" />
+                <Setter Property="VerticalOptions" Value="Fill" />
             </Style>
 
-            <Style TargetType="Label"
-                   x:Key="CloseStyle">
-                <Setter Property="Text"
-                        Value="{Static icon:MaterialIcons.CloseCircle}" />
-                <Setter Property="TextColor"
-                        Value="Red" />
-                <Setter Property="FontSize"
-                        Value="30" />
-                <Setter Property="HorizontalTextAlignment"
-                        Value="End" />
-                <Setter Property="FontFamily"
-                        Value="ma" />
+            <Style x:Key="CloseStyle" TargetType="Label">
+                <Setter Property="Text" Value="{Static icon:MaterialIcons.CloseCircle}" />
+                <Setter Property="TextColor" Value="Red" />
+                <Setter Property="FontSize" Value="30" />
+                <Setter Property="HorizontalTextAlignment" Value="End" />
+                <Setter Property="FontFamily" Value="ma" />
             </Style>
 
-            <Style TargetType="Label"
-                   x:Key="HeadersStyle"
-                   BasedOn="{StaticResource LabelStyle}">
-                <Setter Property="FontAttributes"
-                        Value="Bold" />
-                <Setter Property="FontSize"
-                        Value="Title" />
-                <Setter Property="HorizontalTextAlignment"
-                        Value="Center" />
+            <Style
+                x:Key="HeadersStyle"
+                BasedOn="{StaticResource LabelStyle}"
+                TargetType="Label">
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="FontSize" Value="Title" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
             </Style>
 
-            <Style TargetType="Frame"
-                   x:Key="FrameContainer">
-                <Setter Property="Padding"
-                        Value="0" />
-                <Setter Property="BorderColor"
-                        Value="Silver" />
-                <Setter Property="BackgroundColor"
-                        Value="{AppThemeBinding Dark={StaticResource BckgroundDarkColor},
-                        Light={StaticResource BackgroundLigthColor}}" />
-                <Setter Property="IsClippedToBounds"
-                        Value="True" />
-                <Setter Property="VerticalOptions"
-                        Value="Center" />
+            <Style x:Key="FrameContainer" TargetType="Frame">
+                <Setter Property="Padding" Value="0" />
+                <Setter Property="BorderColor" Value="Silver" />
+                <Setter Property="BackgroundColor" Value="{AppThemeBinding Dark={StaticResource BckgroundDarkColor}, Light={StaticResource BackgroundLigthColor}}" />
+                <Setter Property="IsClippedToBounds" Value="True" />
+                <Setter Property="VerticalOptions" Value="Center" />
             </Style>
 
-            <Style TargetType="buttons:SfChipGroup"
-                   x:Key="ChipCollection">
-                <Setter Property="ChipImageWidth"
-                        Value="60" />
-                <Setter Property="ChipBackgroundColor"
-                        Value="Transparent" />
-                <Setter Property="SelectedChipBackgroundColor"
-                        Value="{AppThemeBinding Dark={StaticResource BackgroundLigthColor},
-                        Light={StaticResource BckgroundDarkColor}}" />
-                <Setter Property="Type"
-                        Value="Choice" />
-                <Setter Property="HeightRequest"
-                        Value="60" />
+            <Style x:Key="ChipCollection" TargetType="buttons:SfChipGroup">
+                <Setter Property="ChipImageWidth" Value="60" />
+                <Setter Property="ChipBackgroundColor" Value="Transparent" />
+                <Setter Property="SelectedChipBackgroundColor" Value="{AppThemeBinding Dark={StaticResource BackgroundLigthColor}, Light={StaticResource BckgroundDarkColor}}" />
+                <Setter Property="Type" Value="Choice" />
+                <Setter Property="HeightRequest" Value="60" />
             </Style>
 
-            <Style TargetType="border:SfBorder"
-                   x:Key="ChipCollectionBoder">
-                <Setter Property="CornerRadius"
-                        Value="20" />
-                <Setter Property="WidthRequest"
-                        Value="60" />
-                <Setter Property="BorderWidth"
-                        Value="5" />
-                <Setter Property="HeightRequest"
-                        Value="60" />
-                <Setter Property="BorderColor"
-                        Value="Transparent" />
+            <Style x:Key="ChipCollectionBoder" TargetType="border:SfBorder">
+                <Setter Property="CornerRadius" Value="20" />
+                <Setter Property="WidthRequest" Value="60" />
+                <Setter Property="BorderWidth" Value="5" />
+                <Setter Property="HeightRequest" Value="60" />
+                <Setter Property="BorderColor" Value="Transparent" />
             </Style>
 
-            <Style TargetType="Label"
-                   x:Key="PlusStyle">
-                <Setter Property="Text"
-                        Value="{Static icon:IconFont.Plus}" />
-                <Setter Property="FontSize"
-                        Value="Title" />
-                <Setter Property="HorizontalTextAlignment"
-                        Value="Center" />
-                <Setter Property="VerticalTextAlignment"
-                        Value="Center" />
-                <Setter Property="FontFamily"
-                        Value="fa" />
+            <Style x:Key="PlusStyle" TargetType="Label">
+                <Setter Property="Text" Value="{Static icon:IconFont.Plus}" />
+                <Setter Property="FontSize" Value="Title" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="FontFamily" Value="fa" />
             </Style>
 
-            <Style TargetType="Frame"
-                   x:Key="FabButton">
-                <Setter Property="Padding"
-                        Value="10" />
-                <Setter Property="Margin"
-                        Value="12" />
-                <Setter Property="CornerRadius"
-                        Value="30" />
-                <Setter Property="WidthRequest"
-                        Value="30" />
-                <Setter Property="HeightRequest"
-                        Value="30" />
-                <Setter Property="VerticalOptions"
-                        Value="End" />
-                <Setter Property="HorizontalOptions"
-                        Value="End" />
-                <Setter Property="BackgroundColor"
-                        Value="CornflowerBlue" />
+            <Style x:Key="FabButton" TargetType="Frame">
+                <Setter Property="Padding" Value="10" />
+                <Setter Property="Margin" Value="12" />
+                <Setter Property="CornerRadius" Value="30" />
+                <Setter Property="WidthRequest" Value="30" />
+                <Setter Property="HeightRequest" Value="30" />
+                <Setter Property="VerticalOptions" Value="End" />
+                <Setter Property="HorizontalOptions" Value="End" />
+                <Setter Property="BackgroundColor" Value="CornflowerBlue" />
             </Style>
 
 
