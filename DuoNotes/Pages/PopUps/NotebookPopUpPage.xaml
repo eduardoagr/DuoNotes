@@ -23,7 +23,7 @@
 
     <Frame Style="{StaticResource FrameContainer}">
         <Grid Padding="10"
-              RowDefinitions="Auto,Auto,Auto,Auto">
+              RowDefinitions="Auto,Auto,Auto">
 
             <Label community:TouchEffect.Command="{Binding DismissPopUpCommand}"
                    Style="{StaticResource CloseStyle}" />
@@ -31,19 +31,9 @@
             <Entry Grid.Row="1"
                    Placeholder="{translate:Translate NoteBookTitle}"
                    Style="{StaticResource EntrySyle}"
-                   Text="{Binding Notebook.Name}">
-                <Entry.Behaviors>
-                    <translate:OnEntryCompletedBehavior TargetElement="{x:Reference NotebookUsage}" />
-                </Entry.Behaviors>
-            </Entry>
+                   Text="{Binding Notebook.Name}" />
 
-            <Entry x:Name="NotebookUsage"
-                   Grid.Row="2"
-                   Placeholder="{translate:Translate NotebookUsage}"
-                   Style="{StaticResource EntrySyle}"
-                   Text="{Binding Notebook.Desc}" />
-
-            <ScrollView Grid.Row="3"
+            <ScrollView Grid.Row="2"
                         HorizontalScrollBarVisibility="Never"
                         Orientation="Horizontal">
                 <buttons:SfChipGroup ItemsSource="{Binding Colors}"
@@ -67,7 +57,7 @@
                 </buttons:SfChipGroup>
             </ScrollView>
 
-            <Button Grid.Row="4"
+            <Button Grid.Row="3"
                     Padding="10"
                     Command="{Binding NewNotebookCommand}"
                     Style="{StaticResource ButonStyle}"

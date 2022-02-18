@@ -88,6 +88,15 @@ namespace DuoNotes.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Delete.
+        /// </summary>
+        internal static string Delete {
+            get {
+                return ResourceManager.GetString("Delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Edit profile.
         /// </summary>
         internal static string EditProfile {
@@ -210,15 +219,6 @@ namespace DuoNotes.Resources {
         internal static string NoteBookTitle {
             get {
                 return ResourceManager.GetString("NoteBookTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to What are you going to store in this notebook.
-        /// </summary>
-        internal static string NotebookUsage {
-            get {
-                return ResourceManager.GetString("NotebookUsage", resourceCulture);
             }
         }
         

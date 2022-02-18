@@ -21,9 +21,6 @@ namespace DuoNotes.Model {
         [OnChangedMethod(nameof(OnPropertyChanged))]
         public string Color { get; set; }
 
-        [OnChangedMethod(nameof(OnPropertyChanged))]
-        public string Desc { get; set; }
-
         [JsonIgnore]
         public Action OnAnyPropertiesChanged { get; set; }
         private void OnPropertyChanged() {

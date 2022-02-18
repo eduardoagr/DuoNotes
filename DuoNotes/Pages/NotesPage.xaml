@@ -1,13 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage x:Class="DuoNotes.View.NotesPage"
-             xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:community="http://xamarin.com/schemas/2020/toolkit"
-             xmlns:icon="clr-namespace:DuoNotes.Fonts"
-             xmlns:translate="clr-namespace:DuoNotes.Utils"
-             xmlns:vm="clr-namespace:DuoNotes.ViewModel"
-             Title="{translate:Translate Notes}"
-             BackgroundColor="{AppThemeBinding Dark={StaticResource BckgroundDarkColor},
+<ContentPage
+    x:Class="DuoNotes.View.NotesPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:community="http://xamarin.com/schemas/2020/toolkit"
+    xmlns:icon="clr-namespace:DuoNotes.Fonts"
+    xmlns:translate="clr-namespace:DuoNotes.Utils"
+    xmlns:vm="clr-namespace:DuoNotes.ViewModel"
+    Title="{translate:Translate Notes}"
+    BackgroundColor="{AppThemeBinding Dark={StaticResource BckgroundDarkColor},
                                       Light={StaticResource BackgroundLigthColor}}">
 
     <ContentPage.BindingContext>
@@ -15,73 +16,72 @@
     </ContentPage.BindingContext>
 
     <ContentPage.Behaviors>
-        <community:EventToCommandBehavior EventName="Disappearing"
-                                          Command="{Binding PageDisappearCommand}" />
+        <community:EventToCommandBehavior Command="{Binding PageDisappearCommand}" EventName="Disappearing" />
     </ContentPage.Behaviors>
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Order="Primary"
-                     Command="{Binding ShareCommand}">
+        <ToolbarItem Command="{Binding ShareCommand}" Order="Primary">
             <ToolbarItem.IconImageSource>
-                <FontImageSource FontFamily="ma"
-                                 Size="Subtitle"
-                                 Glyph="{x:Static icon:MaterialIcons.ShareVariant}" />
+                <FontImageSource
+                    FontFamily="ma"
+                    Glyph="{x:Static icon:MaterialIcons.ShareVariant}"
+                    Size="Large" />
             </ToolbarItem.IconImageSource>
         </ToolbarItem>
     </ContentPage.ToolbarItems>
 
     <StackLayout>
 
-        <CollectionView ItemsSource="{Binding FireBaseNotebooks}"
-                        SelectedItem="{Binding SeletedNote}"
-                        SelectionChangedCommand="{Binding SeletedItemCommand}"
-                        SelectionMode="Single">
+        <CollectionView
+            ItemsSource="{Binding FireBaseNotebooks}"
+            SelectedItem="{Binding SeletedNote}"
+            SelectionChangedCommand="{Binding SeletedItemCommand}"
+            SelectionMode="Single">
 
-            <CollectionView.ItemsLayout>
+            <!--<CollectionView.ItemsLayout>
 
                 <GridItemsLayout Orientation="Horizontal"
                                  Span="4" />
 
-            </CollectionView.ItemsLayout>
+            </CollectionView.ItemsLayout>-->
 
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <StackLayout Padding="10"
-                                 community:TouchEffect.LongPressCommand="{Binding Source={RelativeSource AncestorType={x:Type vm:MainPageModel}}, Path=LongPressCommand}}"
-                                 community:TouchEffect.LongPressDuration="200"
-                                 community:TouchEffect.CommandParameter="{Binding .}">
+                    <SwipeView Padding="10">
+                        <SwipeView.LeftItems>
+                            <SwipeItems Mode="Execute">
+                                <SwipeItem
+                                    BackgroundColor="#FF981838"
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MainPageModel}}, Path=DeleteItemCommand}}"
+                                    CommandParameter="{Binding .}"
+                                    IconImageSource="{Binding Source={RelativeSource AncestorType={x:Type vm:MainPageModel}}, Path=Glyph}"
+                                    Text="{translate:Translate Delete}" />
+                            </SwipeItems>
+                        </SwipeView.LeftItems>
 
+                        <Grid Padding="10" RowDefinitions="Auto,Auto">
 
-                        <Label FontAttributes="Bold"
-                               FontSize="Medium"
-                               HorizontalTextAlignment="Start"
-                               Style="{StaticResource LabelStyle}"
-                               Text="{Binding CreatedDate}" />
+                            <Label Style="{StaticResource DateLabelStyle}" Text="{Binding CreatedDate}" />
 
-                        <Label FontAttributes="Bold"
-                               FontSize="Subtitle">
-                            <Label.FormattedText>
-                                <FormattedString>
-                                    <Span Text="{translate:Translate NoteTite}" />
-                                    <Span Text=": " />
-                                    <Span Text="{Binding Name}" />
-                                </FormattedString>
-                            </Label.FormattedText>
-                        </Label>
-                    </StackLayout>
+                            <Label
+                                Grid.Row="1"
+                                FontAttributes="Bold"
+                                Text="{Binding Name}" />
+                        </Grid>
+                    </SwipeView>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
 
         </CollectionView>
 
 
-        <Frame x:Name="Fab"
-               Style="{StaticResource FabButton}">
+        <Frame x:Name="Fab" Style="{StaticResource FabButton}">
 
-            <Label community:TouchEffect.Command="{Binding FabAnimationCommmand}"
-                   community:TouchEffect.CommandParameter="{Reference Fab}"
-                   Style="{StaticResource PlusStyle}"
-                   Text="{Static icon:IconFont.Plus}" />
+            <Label
+                community:TouchEffect.Command="{Binding FabAnimationCommmand}"
+                community:TouchEffect.CommandParameter="{Reference Fab}"
+                Style="{StaticResource PlusStyle}"
+                Text="{Static icon:IconFont.Plus}" />
         </Frame>
     </StackLayout>
 </ContentPage>

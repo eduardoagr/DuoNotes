@@ -123,6 +123,9 @@
   <data name="Confirm password" xml:space="preserve">
     <value>Confirmar contraseña</value>
   </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Borrar</value>
+  </data>
   <data name="EditProfile" xml:space="preserve">
     <value>Editar perfil</value>
   </data>
@@ -161,9 +164,6 @@
   </data>
   <data name="NoteBookTitle" xml:space="preserve">
     <value>Titulo</value>
-  </data>
-  <data name="NotebookUsage" xml:space="preserve">
-    <value>Qué vas a almacenar en este cuaderno</value>
   </data>
   <data name="Notes" xml:space="preserve">
     <value>Notas</value>

@@ -160,21 +160,18 @@ namespace DuoNotes.Services {
                 notebookNote = new Notebook {
                     UserID = item.Object.UserID,
                     Id = item.Key,
-                    Name = item.Object.Name,
+                    Name = $"{AppResources.NoteBookName}: {item.Object.Name}",
                     CreatedDate = item.Object.CreatedDate,
                     Color = item.Object.Color,
-                    Desc = item.Object.Desc
                 };
             } else {
                 notebookNote = new Note {
-                    // TODO: coger el notbookid
                     NotebookId = item.Object.NotebookId,
                     UserID = item.Object.UserID,
                     Id = item.Key,
-                    Name = item.Object.Name,
+                    Name = $"{AppResources.NoteTite}: {item.Object.Name}",
                     CreatedDate = item.Object.CreatedDate,
                     Color = item.Object.Color,
-                    Desc = item.Object.Desc,
                 };
             }
 

@@ -1,7 +1,7 @@
 ﻿
 using DuoNotes.Constants;
+using DuoNotes.Fonts;
 using DuoNotes.Model;
-using DuoNotes.Services;
 using DuoNotes.View;
 using DuoNotes.View.PopUps;
 
@@ -11,7 +11,6 @@ using Rg.Plugins.Popup.Services;
 
 using System;
 using System.Collections.ObjectModel;
-using System.Windows.Input;
 
 using Xamarin.Forms;
 
@@ -26,7 +25,7 @@ namespace DuoNotes.ViewModel {
 
         public Command PageAppearCommand { get; set; }
 
-        public Command LongPressCommand { get; set; }
+        public Command<Notebook> DeleteItemCommand { get; set; }
 
         public Notebook SelectedNotebook { get; set; }
 
@@ -35,6 +34,8 @@ namespace DuoNotes.ViewModel {
         public Command<Frame> FabAnimationCommmand { get; set; }
 
         public Firebase.Auth.User FireUser { get; set; }
+
+        public FontImageSource Glyph { get; set; }
 
         public MainPageModel() {
 
@@ -48,21 +49,25 @@ namespace DuoNotes.ViewModel {
 
             ProfileCommnd = new Command(NavigateCommandAsync);
 
-            LongPressCommand = new Command(LongPressAction);
+            DeleteItemCommand = new Command<Notebook>(DeleteItemAction);
+
+            GetGlyph();
+
+        }
+
+
+        private void GetGlyph() {
+            Glyph = new FontImageSource() {
+                Glyph = IconFont.TrashCan,
+                FontFamily = "fa",
+                Size = 44
+            };
         }
 
         public virtual async void AppearAction() {
             FireUser = await App.FirebaseServices.GetProfileInformationAndRefreshToken();
             FireBaseNotebooks = await App.FirebaseServices.ReadAsync(AppConstant.Notebooks);
         }
-
-        public virtual void LongPressAction() {
-            Console.WriteLine(SelectedNotebook);
-            this.SelectedNotebook =
-            App.FirebaseServices.DeleteNotebookNote(SelectedNotebook.Id, AppConstant.Notebooks);
-        }
-
-
         private async void NavigateCommandAsync() {
             await Application.Current.MainPage.Navigation.PushAsync(new ProfilePage());
         }
@@ -86,6 +91,10 @@ namespace DuoNotes.ViewModel {
                 viewModel.NotebookAction(SelectedNotebook.Id);
                 SelectedNotebook = null;
             }
+        }
+
+        private void DeleteItemAction(Notebook obj) {
+            App.Current.MainPage.DisplayAlert("Item", $"deleted {obj.Name}", "OK");
         }
     }
 }

@@ -43,11 +43,6 @@ namespace DuoNotes.ViewModel {
             FireBaseNotebooks.Clear();
         }
 
-        public override void LongPressAction() {
-
-            //TODO, delete the note
-            base.LongPressAction();
-        }
         public override async void AnimateButtonCommand(Frame obj) {
 
             await obj.ScaleTo(0.8, 50, Easing.Linear);

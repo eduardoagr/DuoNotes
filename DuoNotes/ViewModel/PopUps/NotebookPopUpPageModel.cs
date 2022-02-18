@@ -75,7 +75,6 @@ namespace DuoNotes.ViewModel.PopUps {
                     CreatedDate = DateTime.Now.ToString("D", new CultureInfo(AppConstant.languages)),
                     UserID = Preferences.Get(AppConstant.UserID, string.Empty),
                     Name = Notebook.Name,
-                    Desc = Notebook.Desc,
                     Color = Notebook.Color,
                 };
             }
@@ -89,7 +88,6 @@ namespace DuoNotes.ViewModel.PopUps {
         private bool CanCreateNotebook() {
 
             return Notebook != null && !string.IsNullOrEmpty(Notebook.Name)
-                && !string.IsNullOrEmpty(Notebook.Desc)
                 && !string.IsNullOrEmpty(Notebook.Color);
         }
     }

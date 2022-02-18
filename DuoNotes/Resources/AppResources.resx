@@ -126,6 +126,9 @@
   <data name="CreateNotebook" xml:space="preserve">
     <value>Ceate notebook</value>
   </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
   <data name="EditProfile" xml:space="preserve">
     <value>Edit profile</value>
   </data>
@@ -167,9 +170,6 @@
   </data>
   <data name="NoteBookTitle" xml:space="preserve">
     <value>title</value>
-  </data>
-  <data name="NotebookUsage" xml:space="preserve">
-    <value>What are you going to store in this notebook</value>
   </data>
   <data name="Notes" xml:space="preserve">
     <value>Notes</value>
