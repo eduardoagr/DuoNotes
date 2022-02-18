@@ -8,6 +8,7 @@ using DuoNotes.View;
 
 using Firebase.Auth;
 using Firebase.Database;
+using Firebase.Database.Query;
 
 using Newtonsoft.Json;
 
@@ -28,13 +29,13 @@ namespace DuoNotes.Services {
 
         private ObservableCollection<NotebookNote> FireBaseNotebooks { get; set; }
         private readonly FirebaseAuthProvider AuthProvider;
-        private readonly FirebaseClient Client;
+        private readonly FirebaseClient firebaseClient;
         const string BASE_URL = "https://duonotes-f2b77-default-rtdb.europe-west1.firebasedatabase.app/";
         public FirebaseServices() {
 
             FireBaseNotebooks = new ObservableCollection<NotebookNote>();
             AuthProvider = new FirebaseAuthProvider(new FirebaseConfig(AppConstant.WEB_API_KEY));
-            Client = new FirebaseClient(BASE_URL);
+            firebaseClient = new FirebaseClient(BASE_URL);
         }
 
         public async Task RegisterAsync(User users) {
@@ -111,13 +112,13 @@ namespace DuoNotes.Services {
             if (element == null || ChildName == null) {
                 return;
             }
-            await Client.Child(ChildName)
+            await firebaseClient.Child(ChildName)
                 .PostAsync(JsonConvert.SerializeObject(element));
         }
 
         public async Task<ObservableCollection<NotebookNote>> ReadAsync(string ChildName, string NotebookId = "") {
 
-            var list = await Client.Child(ChildName)
+            var list = await firebaseClient.Child(ChildName)
                  .OnceAsync<NotebookNote>();
 
             var collection = new List<NotebookNote>();
@@ -145,8 +146,11 @@ namespace DuoNotes.Services {
             //TODO: Update the Note file location
         }
 
-        public async void DeleteNotebookNote(string ID) {
-            //TODO: Delete 
+        public async void DeleteNotebookNote(string ID, string ChildName) {
+            var NotebookNote = (await firebaseClient
+               .Child(ChildName)
+               .OnceAsync<Notebook>()).Where(n => n.Object.NotebookId == ID).FirstOrDefault();
+            await firebaseClient.Child(ChildName).Child(NotebookNote.Key).DeleteAsync();
         }
 
         //This method will convert whatever we passed, to a specific object, based on the childname
@@ -163,6 +167,8 @@ namespace DuoNotes.Services {
                 };
             } else {
                 notebookNote = new Note {
+                    // TODO: coger el notbookid
+                    NotebookId = item.Object.NotebookId,
                     UserID = item.Object.UserID,
                     Id = item.Key,
                     Name = item.Object.Name,

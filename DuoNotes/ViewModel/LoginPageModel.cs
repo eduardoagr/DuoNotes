@@ -19,14 +19,13 @@ namespace DuoNotes.ViewModel {
     [AddINotifyPropertyChangedInterface]
     public class LoginPageModel {
 
-        public ICommand NavigateToRegisterCommand { get; set; }
+        public Command NavigateToRegisterCommand { get; set; }
 
-        public ICommand LoginCommand { get; set; }
+        public Command LoginCommand { get; set; }
 
         public User User { get; set; }
 
         public bool IsRegisterAllowed { get; set; }
-
 
         public LoginPageModel() {
 

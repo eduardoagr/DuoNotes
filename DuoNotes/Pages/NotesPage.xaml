@@ -14,6 +14,11 @@
         <vm:NotesPageModel />
     </ContentPage.BindingContext>
 
+    <ContentPage.Behaviors>
+        <community:EventToCommandBehavior EventName="Disappearing"
+                                          Command="{Binding PageDisappearCommand}" />
+    </ContentPage.Behaviors>
+
     <ContentPage.ToolbarItems>
         <ToolbarItem Order="Primary"
                      Command="{Binding ShareCommand}">
@@ -43,7 +48,8 @@
                 <DataTemplate>
                     <StackLayout Padding="10"
                                  community:TouchEffect.LongPressCommand="{Binding Source={RelativeSource AncestorType={x:Type vm:MainPageModel}}, Path=LongPressCommand}}"
-                                 community:TouchEffect.LongPressDuration="200">
+                                 community:TouchEffect.LongPressDuration="200"
+                                 community:TouchEffect.CommandParameter="{Binding .}">
 
 
                         <Label FontAttributes="Bold"

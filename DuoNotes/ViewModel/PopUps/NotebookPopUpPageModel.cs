@@ -21,15 +21,15 @@ namespace DuoNotes.ViewModel.PopUps {
     [AddINotifyPropertyChangedInterface]
     public class NotebookPopUpPageModel {
 
-        public ICommand NewNotebookCommand { get; set; }
+        public Command NewNotebookCommand { get; set; }
 
-        public ICommand CloseCommand { get; set; }
+        public Command CloseCommand { get; set; }
 
-        public ICommand SelectedColorCommand { get; set; }
+        public Command SelectedColorCommand { get; set; }
 
-        public ICommand DismissPopUpCommand { get; set; }
+        public Command DismissPopUpCommand { get; set; }
 
-        public ICommand PageDisappearingCommand { get; set; }
+        public Command PageDisappearingCommand { get; set; }
 
         public List<Color> Colors { get; set; }
 

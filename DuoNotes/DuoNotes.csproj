@@ -33,9 +33,9 @@
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
 		<PackageReference Include="PropertyChanged.Fody" Version="3.4.0" PrivateAssets="All" />
 		<PackageReference Include="Rg.Plugins.Popup" Version="2.1.0" />
-		<PackageReference Include="Syncfusion.Licensing" Version="19.4.0.50" />
-		<PackageReference Include="Syncfusion.Xamarin.Buttons" Version="19.4.0.50" />
-		<PackageReference Include="Syncfusion.Xamarin.SfRichTextEditor" Version="19.4.0.50" />
+		<PackageReference Include="Syncfusion.Licensing" Version="19.4.0.52" />
+		<PackageReference Include="Syncfusion.Xamarin.Buttons" Version="19.4.0.52" />
+		<PackageReference Include="Syncfusion.Xamarin.SfRichTextEditor" Version="19.4.0.52" />
 		<PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
 		<PackageReference Include="Xamarin.CommunityToolkit" Version="2.0.0" />
 		<PackageReference Include="Xamarin.FFImageLoading.Svg.Forms" Version="2.4.11.982" />

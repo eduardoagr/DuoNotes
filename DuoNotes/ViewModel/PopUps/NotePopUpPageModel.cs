@@ -14,7 +14,7 @@ namespace DuoNotes.ViewModel.PopUps {
 
     public class NotePopUpPageModel : NotebookPopUpPageModel {
 
-        public ICommand NewNoteCommand { get; set; }
+        public Command NewNoteCommand { get; set; }
 
         public Action<string> NotebookAction { get; set; }
 

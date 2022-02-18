@@ -16,9 +16,9 @@ namespace DuoNotes.ViewModel.PopUps {
     [AddINotifyPropertyChangedInterface]
     public class RegisterPopUpPageModel {
 
-        public ICommand RegisterCommand { get; set; }
+        public Command RegisterCommand { get; set; }
 
-        public ICommand CloseCommand { get; set; }
+        public Command CloseCommand { get; set; }
 
         public User User { get; set; }
 

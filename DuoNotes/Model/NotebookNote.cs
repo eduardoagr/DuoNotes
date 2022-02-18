@@ -8,6 +8,9 @@ namespace DuoNotes.Model {
 
     [AddINotifyPropertyChangedInterface]
     public class NotebookNote {
+
+        public string NotebookId { get; set; }
+
         public string UserID { get; set; }
 
         [OnChangedMethod(nameof(OnPropertyChanged))]

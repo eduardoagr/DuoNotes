@@ -20,13 +20,13 @@ namespace DuoNotes.ViewModel {
     [AddINotifyPropertyChangedInterface]
     public class MainPageModel {
 
-        public ICommand SeletedItemCommand { get; set; }
+        public Command SeletedItemCommand { get; set; }
 
-        public ICommand ProfileCommnd { get; set; }
+        public Command ProfileCommnd { get; set; }
 
-        public ICommand PageAppearCommand { get; set; }
+        public Command PageAppearCommand { get; set; }
 
-        public ICommand LongPressCommand { get; set; }
+        public Command LongPressCommand { get; set; }
 
         public Notebook SelectedNotebook { get; set; }
 
@@ -38,7 +38,7 @@ namespace DuoNotes.ViewModel {
 
         public MainPageModel() {
 
-            FireBaseNotebooks = new ObservableCollection<NotebookNote>(); 
+            FireBaseNotebooks = new ObservableCollection<NotebookNote>();
 
             PageAppearCommand = new Command(AppearAction);
 
@@ -56,8 +56,10 @@ namespace DuoNotes.ViewModel {
             FireBaseNotebooks = await App.FirebaseServices.ReadAsync(AppConstant.Notebooks);
         }
 
-        public virtual async void LongPressAction() {
-            await App.Current.MainPage.DisplayAlert("Hola", "Listo para borrar", "OK");
+        public virtual void LongPressAction() {
+            Console.WriteLine(SelectedNotebook);
+            this.SelectedNotebook =
+            App.FirebaseServices.DeleteNotebookNote(SelectedNotebook.Id, AppConstant.Notebooks);
         }
 
 
@@ -79,7 +81,7 @@ namespace DuoNotes.ViewModel {
             if (SelectedNotebook != null) {
 
                 NotesPage notesPage = new NotesPage();
-                await Application.Current.MainPage.Navigation.PushAsync(notesPage);
+                await Application.Current.MainPage.Navigation.PushAsync(notesPage, true);
                 var viewModel = notesPage.BindingContext as NotesPageModel;
                 viewModel.NotebookAction(SelectedNotebook.Id);
                 SelectedNotebook = null;

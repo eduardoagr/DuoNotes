@@ -4,6 +4,7 @@ using DuoNotes.View.PopUps;
 using DuoNotes.ViewModel.PopUps;
 
 using Rg.Plugins.Popup.Services;
+
 using System;
 using System.Windows.Input;
 
@@ -19,19 +20,27 @@ namespace DuoNotes.ViewModel {
 
         public Note SeletedNote { get; set; }
 
-        public ICommand PageDisappearCommand { get; set; }
+        public Command PageDisappearCommand { get; set; }
 
         public NotesPageModel() {
+
+
             FabAnimationCommmand = new Command<Frame>(AnimateButtonCommand);
+
+            PageDisappearCommand = new Command(PageDisappearAction);
 
             NotebookAction = async (id) => {
 
                 NotebookId = id;
 
                 if (!string.IsNullOrEmpty(NotebookId)) {
-                   await App.FirebaseServices.ReadAsync(AppConstant.Notes, NotebookId);
+                    FireBaseNotebooks = await App.FirebaseServices.ReadAsync(AppConstant.Notes, NotebookId);
                 }
             };
+        }
+
+        private void PageDisappearAction() {
+            FireBaseNotebooks.Clear();
         }
 
         public override void LongPressAction() {
@@ -45,7 +54,7 @@ namespace DuoNotes.ViewModel {
             //Scale to normal
             await obj.ScaleTo(1, 50, Easing.Linear);
             var notesPopUp = new NotesPopUp();
-            await PopupNavigation.Instance.PushAsync(notesPopUp);
+            await PopupNavigation.Instance.PushAsync(notesPopUp, true);
             var viewModel = notesPopUp.BindingContext as NotePopUpPageModel;
             viewModel.NotebookAction(NotebookId);
         }
