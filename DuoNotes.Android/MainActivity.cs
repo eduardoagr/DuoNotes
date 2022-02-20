@@ -13,7 +13,7 @@ using Xamarin.Forms.Platform.Android;
 
 namespace DuoNotes.Droid {
 
-    [Activity(Label = "XamNotes", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true,
+    [Activity(Label = "XamNotes", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ScreenOrientation = ScreenOrientation.Portrait,
      ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation
    | ConfigChanges.ScreenLayout | ConfigChanges.SmallestScreenSize)]
 
