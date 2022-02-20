@@ -1,11 +1,11 @@
 ﻿
+using Acr.UserDialogs;
+
 using FFImageLoading.Forms.Platform;
 
 using Foundation;
 
-using Syncfusion.ListView.XForms.iOS;
 using Syncfusion.XForms.iOS.Buttons;
-using Syncfusion.XForms.iOS.ComboBox;
 using Syncfusion.XForms.iOS.EffectsView;
 
 using UIKit;
@@ -27,11 +27,10 @@ namespace DuoNotes.iOS {
         // You have 17 seconds to return from this method, or iOS will terminate your application.
         //
         public override bool FinishedLaunching(UIApplication app, NSDictionary options) {
+
             Forms.Init();
             CachedImageRenderer.Init();
-            SfComboBoxRenderer.Init();
             FormsMaterial.Init();
-            SfListViewRenderer.Init();
             SfEffectsViewRenderer.Init();
             SfChipGroupRenderer.Init();
             SfChipRenderer.Init();

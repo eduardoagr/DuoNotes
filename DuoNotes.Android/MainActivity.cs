@@ -7,18 +7,13 @@ using Android.OS;
 using Android.Runtime;
 
 using FFImageLoading.Forms.Platform;
-using FFImageLoading.Svg.Forms;
-
-using Lottie.Forms;
-using Lottie.Forms.Platforms.Android;
 
 using Xamarin.Forms;
-using Xamarin.Forms.DualScreen;
 using Xamarin.Forms.Platform.Android;
 
 namespace DuoNotes.Droid {
 
-    [Activity(Label = "DuoNotes", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true,
+    [Activity(Label = "XamNotes", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true,
      ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation
    | ConfigChanges.ScreenLayout | ConfigChanges.SmallestScreenSize)]
 
@@ -28,7 +23,6 @@ namespace DuoNotes.Droid {
 
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             UserDialogs.Init(this);
-            DualScreenService.Init(this);
             Forms.Init(this, savedInstanceState);
             CachedImageRenderer.Init(true);
             FormsMaterial.Init(this, savedInstanceState);
