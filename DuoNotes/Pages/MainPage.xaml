@@ -42,24 +42,18 @@
 
     <StackLayout>
 
-        <CollectionView ItemsSource="{Binding FireBaseNotebooks}"
+        <CollectionView BackgroundColor="White"
+                        ItemsSource="{Binding FireBaseNotebooks}"
                         SelectedItem="{Binding SelectedNotebook}"
                         SelectionChangedCommand="{Binding SeletedItemCommand}"
                         SelectionMode="Single">
-
-            <!--<CollectionView.ItemsLayout>
-
-                <GridItemsLayout Orientation="Horizontal"
-                                 Span="4" />
-
-            </CollectionView.ItemsLayout>-->
 
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <SwipeView Padding="10">
                         <SwipeView.LeftItems>
                             <SwipeItems Mode="Execute">
-                                <SwipeItem BackgroundColor="#FF981838"
+                                <SwipeItem BackgroundColor="{StaticResource DeleteItemColor}"
                                            Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MainPageModel}}, Path=DeleteItemCommand}}"
                                            CommandParameter="{Binding .}"
                                            IconImageSource="{Binding Source={RelativeSource AncestorType={x:Type vm:MainPageModel}}, Path=Glyph}"
@@ -67,20 +61,24 @@
                             </SwipeItems>
                         </SwipeView.LeftItems>
 
-                        <Grid Padding="10"
-                              RowDefinitions="Auto,Auto">
+                        <Frame community:TouchEffect.PressedBackgroundColor="{StaticResource PressedItems}"
+                               Style="{StaticResource FrameContainer}">
+                            <Grid Padding="10"
+                                  RowDefinitions="Auto,Auto">
 
-                            <Label Style="{StaticResource BookIconStyle}"
-                                   TextColor="{Binding Color}" />
+                                <Label Style="{StaticResource BookIconStyle}"
+                                       TextColor="{Binding Color}" />
 
-                            <Label Margin="20,0,0,0"
-                                   Style="{StaticResource DateLabelStyle}"
-                                   Text="{Binding CreatedDate}" />
+                                <Label Margin="20,0,0,0"
+                                       Style="{StaticResource DateLabelStyle}"
+                                       Text="{Binding CreatedDate}" />
 
-                            <Label Grid.Row="1"
-                                   FontAttributes="Bold"
-                                   Text="{Binding Name}" />
-                        </Grid>
+                                <Label Grid.Row="1"
+                                       FontAttributes="Bold"
+                                       Text="{Binding Name}" />
+                            </Grid>
+                        </Frame>
+
                     </SwipeView>
                 </DataTemplate>
             </CollectionView.ItemTemplate>

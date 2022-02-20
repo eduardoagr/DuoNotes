@@ -9,6 +9,9 @@ using Android.Runtime;
 using FFImageLoading.Forms.Platform;
 using FFImageLoading.Svg.Forms;
 
+using Lottie.Forms;
+using Lottie.Forms.Platforms.Android;
+
 using Xamarin.Forms;
 using Xamarin.Forms.DualScreen;
 using Xamarin.Forms.Platform.Android;

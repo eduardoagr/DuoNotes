@@ -1,13 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage x:Class="DuoNotes.View.LoginPage"
-             xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
-             xmlns:translate="clr-namespace:DuoNotes.Utils"
-             xmlns:vm="clr-namespace:DuoNotes.ViewModel"
-             xmlns:community="http://xamarin.com/schemas/2020/toolkit"
-             Title="DuoNotes"
-             BackgroundColor="{AppThemeBinding Dark={StaticResource BckgroundDarkColor},
+<ContentPage
+    x:Class="DuoNotes.View.LoginPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:community="http://xamarin.com/schemas/2020/toolkit"
+    xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+    xmlns:forms="clr-namespace:Lottie.Forms;assembly=Lottie.Forms"
+    xmlns:translate="clr-namespace:DuoNotes.Utils"
+    xmlns:vm="clr-namespace:DuoNotes.ViewModel"
+    Title="DuoNotes"
+    BackgroundColor="{AppThemeBinding Dark={StaticResource BckgroundDarkColor},
                                       Light={StaticResource BackgroundLigthColor}}">
 
     <ContentPage.BindingContext>
@@ -15,49 +17,52 @@
     </ContentPage.BindingContext>
 
     <ScrollView>
-        <Grid Padding="20"
-              RowDefinitions="120,Auto,*"
-              RowSpacing="20"
-              VerticalOptions="Center">
+        <Grid
+            Padding="20"
+            RowDefinitions="Auto,Auto,*"
+            RowSpacing="20"
+            VerticalOptions="Center">
 
-            <ffimageloadingsvg:SvgCachedImage HeightRequest="120"
-                                              Source="book.svg"
-                                              WidthRequest="120" />
+            <forms:AnimationView
+                Animation="writing.json"
+                AnimationSource="AssetOrBundle"
+                HeightRequest="250"
+                HorizontalOptions="CenterAndExpand"
+                RepeatMode="Infinite"
+                WidthRequest="250" />
 
-            <Frame Grid.Row="1"
-                   Style="{StaticResource FrameContainer}"
-                   VerticalOptions="FillAndExpand">
+            <Frame
+                Grid.Row="1"
+                Style="{StaticResource FrameContainer}"
+                VerticalOptions="FillAndExpand">
 
                 <StackLayout Padding="10">
                     <Entry Keyboard="Email"
                            Placeholder="{translate:Translate Email}"
                            Style="{StaticResource EntrySyle}"
-                           Text="{Binding User.Email}">
-                        <Entry.Behaviors>
-                            <translate:OnEntryCompletedBehavior TargetElement="{x:Reference PassEntry}" />
-                        </Entry.Behaviors>
-                    </Entry>
+                           Text="{Binding User.Email}" />
+                    <Entry
+                        x:Name="PassEntry"
+                        IsPassword="True"
+                        Placeholder="{translate:Translate Password}"
+                        Style="{StaticResource EntrySyle}"
+                        Text="{Binding User.Password}" />
 
-                    <Entry Placeholder="{translate:Translate Password}"
-                           Style="{StaticResource EntrySyle}"
-                           x:Name="PassEntry"
-                           IsPassword="True"
-                           Text="{Binding User.Password}" />
-
-                    <Button Padding="10"
-                            Style="{StaticResource ButonStyle}"
-                            Command="{Binding LoginCommand}"
-                            FontSize="Medium"
-                            Text="{translate:Translate Login}" />
+                    <Button
+                        Padding="10"
+                        Command="{Binding LoginCommand}"
+                        FontSize="Medium"
+                        Style="{StaticResource ButonStyle}"
+                        Text="{translate:Translate Login}" />
                 </StackLayout>
             </Frame>
 
-            <Label Grid.Row="2"
-                   HorizontalOptions="End"
-                   Style="{StaticResource LabelStyle}"
-                   Text="{translate:Translate HaveAccount}"
-                   community:TouchEffect.Command="{Binding NavigateToRegisterCommand}">
-            </Label>
+            <Label
+                Grid.Row="2"
+                community:TouchEffect.Command="{Binding NavigateToRegisterCommand}"
+                HorizontalOptions="End"
+                Style="{StaticResource LabelStyle}"
+                Text="{translate:Translate HaveAccount}" />
 
 
         </Grid>

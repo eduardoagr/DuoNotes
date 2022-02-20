@@ -1,55 +1,50 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<pages:PopupPage x:Class="DuoNotes.View.PopUps.NotebookPopUp"
-                 xmlns="http://xamarin.com/schemas/2014/forms"
-                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-                 xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
-                 xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
-                 xmlns:community="http://xamarin.com/schemas/2020/toolkit"
-                 xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
-                 xmlns:translate="clr-namespace:DuoNotes.Utils"
-                 Padding="20"
-                 xmlns:vm="clr-namespace:DuoNotes.ViewModel.PopUps">
+<pages:PopupPage
+    x:Class="DuoNotes.View.PopUps.NotebookPopUp"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+    xmlns:community="http://xamarin.com/schemas/2020/toolkit"
+    xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+    xmlns:translate="clr-namespace:DuoNotes.Utils"
+    xmlns:vm="clr-namespace:DuoNotes.ViewModel.PopUps"
+    Padding="20">
 
     <pages:PopupPage.BindingContext>
         <vm:NotebookPopUpPageModel />
     </pages:PopupPage.BindingContext>
 
     <ContentPage.Behaviors>
-        <community:EventToCommandBehavior EventName="Disappearing"
-                                          Command="{Binding PageDisappearingCommand}" />
+        <community:EventToCommandBehavior Command="{Binding PageDisappearingCommand}" EventName="Disappearing" />
     </ContentPage.Behaviors>
 
 
 
     <Frame Style="{StaticResource FrameContainer}">
-        <Grid Padding="10"
-              RowDefinitions="Auto,Auto,Auto">
+        <Grid Padding="10" RowDefinitions="Auto,Auto,Auto">
 
-            <Label community:TouchEffect.Command="{Binding DismissPopUpCommand}"
-                   Style="{StaticResource CloseStyle}" />
+            <Label community:TouchEffect.Command="{Binding DismissPopUpCommand}" Style="{StaticResource CloseStyle}" />
 
-            <Entry Grid.Row="1"
-                   Placeholder="{translate:Translate NoteBookTitle}"
-                   Style="{StaticResource EntrySyle}"
-                   Text="{Binding Notebook.Name}" />
+            <Entry
+                Grid.Row="1"
+                Placeholder="{translate:Translate NoteBookTitle}"
+                Style="{StaticResource EntrySyle}"
+                Text="{Binding Notebook.Name}" />
 
-            <ScrollView Grid.Row="2"
-                        HorizontalScrollBarVisibility="Never"
-                        Orientation="Horizontal">
-                <buttons:SfChipGroup ItemsSource="{Binding Colors}"
-                                     SelectedItem="{Binding SelectedColor}"
-                                     Style="{StaticResource ChipCollection}">
+            <ScrollView Grid.Row="2" Orientation="Horizontal">
+                <buttons:SfChipGroup ItemsSource="{Binding Colors}" SelectedItem="{Binding SelectedColor}">
                     <buttons:SfChipGroup.Behaviors>
-                        <community:EventToCommandBehavior Command="{Binding SelectedColorCommand}"
-                                                          EventName="SelectionChanged" />
+                        <community:EventToCommandBehavior Command="{Binding SelectedColorCommand}" EventName="SelectionChanged" />
                     </buttons:SfChipGroup.Behaviors>
                     <buttons:SfChipGroup.ItemTemplate>
                         <DataTemplate>
                             <StackLayout>
-                                <border:SfBorder Style="{StaticResource ChipCollectionBoder}">
-                                    <Ellipse Fill="{Binding .}"
-                                             HeightRequest="60"
-                                             WidthRequest="60" />
+                                <border:SfBorder>
+                                    <Ellipse
+                                        Fill="{Binding .}"
+                                        HeightRequest="60"
+                                        WidthRequest="60" />
                                 </border:SfBorder>
                             </StackLayout>
                         </DataTemplate>
@@ -57,11 +52,12 @@
                 </buttons:SfChipGroup>
             </ScrollView>
 
-            <Button Grid.Row="3"
-                    Padding="10"
-                    Command="{Binding NewNotebookCommand}"
-                    Style="{StaticResource ButonStyle}"
-                    Text="{translate:Translate NewNotebook}" />
+            <Button
+                Grid.Row="3"
+                Padding="10"
+                Command="{Binding NewNotebookCommand}"
+                Style="{StaticResource ButonStyle}"
+                Text="{translate:Translate NewNotebook}" />
         </Grid>
     </Frame>
 </pages:PopupPage>

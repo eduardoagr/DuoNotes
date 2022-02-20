@@ -28,15 +28,10 @@
                     Style="{StaticResource HeadersStyle}"
                     Text="{translate:Translate Register}" />
 
-                <Entry
-                    Grid.Row="2"
-                    Placeholder="{translate:Translate Email}"
-                    Style="{StaticResource EntrySyle}"
-                    Text="{Binding User.Email}">
-                    <Entry.Behaviors>
-                        <translate:OnEntryCompletedBehavior TargetElement="{x:Reference PassEntry}" />
-                    </Entry.Behaviors>
-                </Entry>
+                <Entry Grid.Row="2"
+                       Placeholder="{translate:Translate Email}"
+                       Style="{StaticResource EntrySyle}"
+                       Text="{Binding User.Email}" />
 
                 <Entry
                     x:Name="PassEntry"
