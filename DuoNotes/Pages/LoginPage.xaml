@@ -4,7 +4,6 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:community="http://xamarin.com/schemas/2020/toolkit"
-    xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
     xmlns:forms="clr-namespace:Lottie.Forms;assembly=Lottie.Forms"
     xmlns:translate="clr-namespace:DuoNotes.Utils"
     xmlns:vm="clr-namespace:DuoNotes.ViewModel"
@@ -24,7 +23,7 @@
             VerticalOptions="Center">
 
             <forms:AnimationView
-                Animation="writing.json"
+                Animation="Writing.json"
                 AnimationSource="AssetOrBundle"
                 HeightRequest="250"
                 HorizontalOptions="CenterAndExpand"

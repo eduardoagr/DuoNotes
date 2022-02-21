@@ -72,8 +72,9 @@
     <None Include="Entitlements.plist" />
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <BundleResource Include="Resources\book.json" />
     <BundleResource Include="Resources\writing.json" />
+    <BundleResource Include="Resources\MagicBook.json" />
+    <BundleResource Include="Resources\CollectionOfBooks.json" />
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">

@@ -46,6 +46,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<Compile Update="Pages\NotebooksPage.xaml.cs">
+		  <DependentUpon>NotebooksPage.xaml</DependentUpon>
+		</Compile>
 		<Compile Update="Pages\PopUps\NotebookPopUpPage.xaml.cs">
 		  <DependentUpon>NotebookPopUpPage.xaml</DependentUpon>
 		</Compile>
@@ -63,6 +66,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<EmbeddedResource Update="Pages\SplashScreenPage.xaml">
+		  <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+		</EmbeddedResource>
 		<EmbeddedResource Update="Resources\AppResources.resx">
 			<Generator>ResXFileCodeGenerator</Generator>
 			<LastGenOutput>AppResources.Designer.cs</LastGenOutput>

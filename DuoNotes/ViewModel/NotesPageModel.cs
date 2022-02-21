@@ -12,7 +12,7 @@ using Xamarin.Forms;
 
 namespace DuoNotes.ViewModel {
 
-    public class NotesPageModel : MainPageModel {
+    public class NotesPageModel : NotebooksPageModel {
 
         public Action<string> NotebookAction { get; set; }
 

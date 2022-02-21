@@ -44,7 +44,7 @@ namespace DuoNotes.Services {
                 UserDialogs.Instance.ShowLoading(AppResources.Loading);
                 var auth = await AuthProvider.CreateUserWithEmailAndPasswordAsync(users.Email, users.Password);
                 await PopupNavigation.Instance.PopAsync(true);
-                await App.Current.MainPage.DisplayAlert(string.Empty, AppResources.UserInserted, "OK");
+                Application.Current.MainPage = new NavigationPage(new NotebooksPage());
             } catch (FirebaseAuthException ex) {
                 Firebasemessages.GetMessages(ex);
             }
@@ -62,7 +62,7 @@ namespace DuoNotes.Services {
                 Preferences.Set(AppConstant.UserID, auth.User.LocalId);
                 Preferences.Set(AppConstant.FirebaseRefreshToken, serializedcontnet);
                 UserDialogs.Instance.HideLoading();
-                Application.Current.MainPage = new NavigationPage(new MainPage());
+                Application.Current.MainPage = new NavigationPage(new NotebooksPage());
             } catch (FirebaseAuthException ex) {
                 Firebasemessages.GetMessages(ex);
             }

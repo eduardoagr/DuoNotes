@@ -1,4 +1,5 @@
 ﻿using DuoNotes.Constants;
+using DuoNotes.Pages;
 using DuoNotes.Services;
 using DuoNotes.View;
 
@@ -20,13 +21,8 @@ namespace DuoNotes {
 
             InitializeComponent();
 
-            var UserId = Preferences.Get(AppConstant.UserID, string.Empty);
-
-            if (!string.IsNullOrEmpty(UserId)) {
-                MainPage = new NavigationPage(new MainPage());
-            } else {
-                MainPage = new NavigationPage(new LoginPage());
-            }
+            MainPage = new NavigationPage(new SplashScreenPage());
+           
         }
 
         protected override void OnStart() {

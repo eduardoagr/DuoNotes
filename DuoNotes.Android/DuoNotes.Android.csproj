@@ -101,11 +101,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidAsset Include="Assets\writing.json" />
+    <AndroidAsset Include="Assets\Writing.json" />
+    <AndroidAsset Include="Assets\MagicBook.json" />
+    <AndroidAsset Include="Assets\CollectionOfBooks.json" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
     <None Include="Properties\AndroidManifest.xml" />
-    <AndroidAsset Include="Assets\book.json" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\styles.xml" />
