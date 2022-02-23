@@ -92,8 +92,10 @@ namespace DuoNotes.ViewModel {
             }
         }
 
-        private void DeleteItemAction(Notebook obj) {
-            App.Current.MainPage.DisplayAlert("Item", $"deleted {obj.Name}", "OK");
+        private async void DeleteItemAction(Notebook obj) {
+            App.FirebaseServices.DeleteNotebookNote(obj.Id, AppConstant.Notebooks);
+
+            FireBaseNotebooks = await App.FirebaseServices.ReadAsync(AppConstant.Notebooks);
         }
     }
 }

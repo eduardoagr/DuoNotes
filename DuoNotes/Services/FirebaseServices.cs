@@ -147,10 +147,12 @@ namespace DuoNotes.Services {
         }
 
         public async void DeleteNotebookNote(string ID, string ChildName) {
-            var NotebookNote = (await firebaseClient
-               .Child(ChildName)
-               .OnceAsync<Notebook>()).Where(n => n.Object.NotebookId == ID).FirstOrDefault();
-            await firebaseClient.Child(ChildName).Child(NotebookNote.Key).DeleteAsync();
+                
+             await firebaseClient
+                  .Child(ChildName)
+                  .Child(ID)
+                  .DeleteAsync();
+            
         }
 
         //This method will convert whatever we passed, to a specific object, based on the childname
