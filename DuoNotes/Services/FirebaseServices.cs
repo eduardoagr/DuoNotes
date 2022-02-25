@@ -151,15 +151,11 @@ namespace DuoNotes.Services {
         }
 
 
-        //public async Task<Note> ReadNoteAsync(string Id) {
+        public async Task<Note> ReadNoteAsync(string Id) {
 
-        //    var allPersons = await GetAllPersons();
-        //    await firebase
-        //      .Child("Persons")
-        //      .OnceAsync<Person>();
-        //    return allPersons.Where(a => a.PersonId == personId).FirstOrDefault();
+            
 
-        //}
+        }
 
         public async void UpdateNotebookNoten(string Id) {
             //TODO: Update the Note file location
