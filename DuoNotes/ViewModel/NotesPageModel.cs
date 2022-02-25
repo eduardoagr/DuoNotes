@@ -1,12 +1,12 @@
 ﻿using DuoNotes.Constants;
 using DuoNotes.Model;
+using DuoNotes.Pages;
 using DuoNotes.View.PopUps;
 using DuoNotes.ViewModel.PopUps;
 
 using Rg.Plugins.Popup.Services;
 
 using System;
-using System.Windows.Input;
 
 using Xamarin.Forms;
 
@@ -57,8 +57,13 @@ namespace DuoNotes.ViewModel {
         public override async void SeletedItemActionAsync() {
             base.SeletedItemActionAsync();
 
-            await Application.Current.MainPage.DisplayAlert(String.Empty, "I have to do my own implementation", "OK");
+            var EditPage = new EditorPage();
 
+            await Application.Current.MainPage.Navigation.PushAsync(EditPage);
+
+            var viewModel = EditPage.BindingContext as EditorPageModel;
+
+            viewModel.NoteAction(SeletedNote.Id);
         }
     }
 }

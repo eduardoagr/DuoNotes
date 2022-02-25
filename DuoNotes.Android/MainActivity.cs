@@ -5,6 +5,7 @@ using Android.App;
 using Android.Content.PM;
 using Android.OS;
 using Android.Runtime;
+using Android.Views;
 
 using FFImageLoading.Forms.Platform;
 
@@ -27,7 +28,10 @@ namespace DuoNotes.Droid {
             CachedImageRenderer.Init(true);
             FormsMaterial.Init(this, savedInstanceState);
             Rg.Plugins.Popup.Popup.Init(this);
+
             LoadApplication(new App());
+
+            Window.SetSoftInputMode(SoftInput.AdjustResize);
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Permission[] grantResults) {
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);

@@ -1,4 +1,5 @@
 ﻿using DuoNotes.Constants;
+using DuoNotes.Pages;
 using DuoNotes.View;
 
 using System;
@@ -9,7 +10,7 @@ using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace DuoNotes.ViewModel {
-    internal class SplashScreenPageModel : Page {
+    internal class SplashScreenPageModel {
 
         public Command FinishedAnimtionCommand { get; set; }
 
@@ -26,10 +27,6 @@ namespace DuoNotes.ViewModel {
             } else {
                 Application.Current.MainPage = new NavigationPage(new LoginPage());
             }
-        }
-
-        protected override bool OnBackButtonPressed() {
-            return true;
         }
     }
 }

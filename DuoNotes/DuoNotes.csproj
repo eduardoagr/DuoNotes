@@ -49,6 +49,9 @@
 		<Compile Update="Pages\NotebooksPage.xaml.cs">
 		  <DependentUpon>NotebooksPage.xaml</DependentUpon>
 		</Compile>
+		<Compile Update="Pages\EditorPage.xaml.cs">
+		  <DependentUpon>EditorPage.xaml</DependentUpon>
+		</Compile>
 		<Compile Update="Pages\PopUps\NotebookPopUpPage.xaml.cs">
 		  <DependentUpon>NotebookPopUpPage.xaml</DependentUpon>
 		</Compile>
@@ -66,6 +69,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<EmbeddedResource Update="Pages\EditorPage.xaml">
+		  <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+		</EmbeddedResource>
 		<EmbeddedResource Update="Pages\SplashScreenPage.xaml">
 		  <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
 		</EmbeddedResource>

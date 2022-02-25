@@ -7,6 +7,7 @@ using Foundation;
 
 using Syncfusion.XForms.iOS.Buttons;
 using Syncfusion.XForms.iOS.EffectsView;
+using Syncfusion.XForms.iOS.RichTextEditor;
 
 using UIKit;
 
@@ -33,6 +34,7 @@ namespace DuoNotes.iOS {
             FormsMaterial.Init();
             SfEffectsViewRenderer.Init();
             SfChipGroupRenderer.Init();
+            SfRichTextEditorRenderer.Init();
             SfChipRenderer.Init();
             Rg.Plugins.Popup.Popup.Init();
             LoadApplication(new App());

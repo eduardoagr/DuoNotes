@@ -64,7 +64,7 @@ namespace DuoNotes.ViewModel {
         }
 
         public virtual async void AppearAction() {
-            FireUser = await App.FirebaseServices.GetProfileInformationAndRefreshToken();
+            FireUser = await App.FirebaseServices.GetProfileInformationAndRefreshTokenAsync();
             FireBaseNotebooks = await App.FirebaseServices.ReadAsync(AppConstant.Notebooks);
         }
         private async void NavigateCommandAsync() {
