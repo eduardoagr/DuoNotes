@@ -34,7 +34,7 @@
     <StackLayout>
 
         <CollectionView
-            ItemsSource="{Binding FireBaseNotebooks}"
+            ItemsSource="{Binding FireBaseNotebookNotes}"
             SelectedItem="{Binding SeletedNote}"
             SelectionChangedCommand="{Binding SeletedItemCommand}"
             SelectionMode="Single">

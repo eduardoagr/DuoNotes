@@ -45,7 +45,7 @@
 
         <CollectionView
             BackgroundColor="White"
-            ItemsSource="{Binding FireBaseNotebooks}"
+            ItemsSource="{Binding FireBaseNotebookNotes}"
             SelectedItem="{Binding SelectedNotebook}"
             SelectionChangedCommand="{Binding SeletedItemCommand}"
             SelectionMode="Single">

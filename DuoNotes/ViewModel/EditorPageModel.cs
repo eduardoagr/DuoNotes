@@ -20,7 +20,7 @@ namespace DuoNotes.ViewModel {
 
             PageDisappearCommand = new Command(PageDisappearAction);
 
-            SaveCommand = new Command(SveAction);
+            SaveCommand = new Command(SaveAction);
 
 
             NoteAction = (note) => {
@@ -36,8 +36,8 @@ namespace DuoNotes.ViewModel {
 
         }
 
-        private void SveAction() {
-            throw new NotImplementedException();
+        private void SaveAction() {
+
         }
 
     }

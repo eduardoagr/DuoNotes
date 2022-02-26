@@ -7,14 +7,13 @@ using DuoNotes.ViewModel.PopUps;
 using Rg.Plugins.Popup.Services;
 
 using System;
+using System.Text;
 
 using Xamarin.Forms;
 
 namespace DuoNotes.ViewModel {
 
     public class NotesPageModel : NotebooksPageModel {
-
-        public Action<string> NotebookAction { get; set; }
 
         public string NotebookId { get; set; }
 
@@ -30,13 +29,7 @@ namespace DuoNotes.ViewModel {
 
             FabAnimationCommmand = new Command<Frame>(AnimateButtonCommand);
 
-            PageDisappearCommand = new Command(PageDisappearAction);
-
-            NotebookAction = (id) => {
-
-                NotebookId = id;
-
-            };
+           // PageDisappearCommand = new Command(PageDisappearAction);
         }
 
 
@@ -44,11 +37,12 @@ namespace DuoNotes.ViewModel {
         public override async void AppearAction() {
             base.AppearAction();
 
-            FireBaseNotebooks = await App.FirebaseServices.ReadAsync(AppConstant.Notes, NotebookId);
-        }
+            NotebookId = Application.Current.Properties["id"] as string;
 
-        private void PageDisappearAction() {
-            FireBaseNotebooks.Clear();
+            Console.WriteLine($"NotebookID {NotebookId}");
+
+            FireBaseNotebookNotes = await App.FirebaseServices.ReadAsync(AppConstant.Notes, NotebookId);
+
         }
 
         public override async void AnimateButtonCommand(Frame obj) {
@@ -78,7 +72,7 @@ namespace DuoNotes.ViewModel {
 
             App.FirebaseServices.DeleteNotebookNotAsync(obj.Id, AppConstant.Notes);
 
-            FireBaseNotebooks = await App.FirebaseServices.ReadAsync(AppConstant.Notes, NotebookId);
+            FireBaseNotebookNotes = await App.FirebaseServices.ReadAsync(AppConstant.Notes, NotebookId);
         }
     }
 }

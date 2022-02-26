@@ -28,7 +28,7 @@ namespace DuoNotes.ViewModel {
 
         public Notebook SelectedNotebook { get; set; }
 
-        public ObservableCollection<NotebookNote> FireBaseNotebooks { get; set; }
+        public ObservableCollection<NotebookNote> FireBaseNotebookNotes { get; set; }
 
         public Command<Frame> FabAnimationCommmand { get; set; }
 
@@ -38,7 +38,7 @@ namespace DuoNotes.ViewModel {
 
         public NotebooksPageModel() {
 
-            FireBaseNotebooks = new ObservableCollection<NotebookNote>();
+            FireBaseNotebookNotes = new ObservableCollection<NotebookNote>();
 
             PageAppearCommand = new Command(AppearAction);
 
@@ -65,8 +65,9 @@ namespace DuoNotes.ViewModel {
 
         public virtual async void AppearAction() {
             FireUser = await App.FirebaseServices.GetProfileInformationAndRefreshTokenAsync();
-            FireBaseNotebooks = await App.FirebaseServices.ReadAsync(AppConstant.Notebooks);
+            FireBaseNotebookNotes = await App.FirebaseServices.ReadAsync(AppConstant.Notebooks);
         }
+
         private async void NavigateCommandAsync() {
             await Application.Current.MainPage.Navigation.PushAsync(new ProfilePage());
         }
@@ -85,9 +86,8 @@ namespace DuoNotes.ViewModel {
             if (SelectedNotebook != null) {
 
                 NotesPage notesPage = new NotesPage();
-                await Application.Current.MainPage.Navigation.PushAsync(notesPage, true);
-                var viewModel = notesPage.BindingContext as NotesPageModel;
-                viewModel.NotebookAction(SelectedNotebook.Id);
+                Application.Current.Properties["id"] = SelectedNotebook.Id;
+                await Application.Current.MainPage.Navigation.PushAsync(notesPage, true);    
                 SelectedNotebook = null;
             }
         }
