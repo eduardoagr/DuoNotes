@@ -3,18 +3,17 @@
     x:Class="DuoNotes.Pages.EditorPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:community="http://xamarin.com/schemas/2020/toolkit"
     xmlns:richtexteditor="clr-namespace:Syncfusion.XForms.RichTextEditor;assembly=Syncfusion.SfRichTextEditor.XForms"
     xmlns:vm="clr-namespace:DuoNotes.PageModels"
-             xmlns:community="http://xamarin.com/schemas/2020/toolkit"
-             Title="{Binding Note.Name}">
+    Title="{Binding Note.Name}">
 
     <ContentPage.BindingContext>
         <vm:EditorPageModel />
     </ContentPage.BindingContext>
 
     <ContentPage.Behaviors>
-        <community:EventToCommandBehavior Command="{Binding PageDisappearCommand}"
-                                          EventName="Disappearing" />
+        <community:EventToCommandBehavior Command="{Binding PageDisappearCommand}" EventName="Disappearing" />
     </ContentPage.Behaviors>
 
     <ContentPage.Content>
