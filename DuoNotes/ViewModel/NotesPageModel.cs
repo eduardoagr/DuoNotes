@@ -20,23 +20,31 @@ namespace DuoNotes.ViewModel {
 
         public Note SeletedNote { get; set; }
 
+        public Command<Note> DeleteNoteCommand { get; set; }
+
         public Command PageDisappearCommand { get; set; }
 
         public NotesPageModel() {
 
+            DeleteNoteCommand = new Command<Note>(DeleteNoteAction);
 
             FabAnimationCommmand = new Command<Frame>(AnimateButtonCommand);
 
             PageDisappearCommand = new Command(PageDisappearAction);
 
-            NotebookAction = async (id) => {
+            NotebookAction = (id) => {
 
                 NotebookId = id;
 
-                if (!string.IsNullOrEmpty(NotebookId)) {
-                    FireBaseNotebooks = await App.FirebaseServices.ReadAsync(AppConstant.Notes, NotebookId);
-                }
             };
+        }
+
+
+
+        public override async void AppearAction() {
+            base.AppearAction();
+
+            FireBaseNotebooks = await App.FirebaseServices.ReadAsync(AppConstant.Notes, NotebookId);
         }
 
         private void PageDisappearAction() {
@@ -63,7 +71,14 @@ namespace DuoNotes.ViewModel {
 
             var viewModel = EditPage.BindingContext as EditorPageModel;
 
-            viewModel.NoteAction(SeletedNote.Id);
+            viewModel.NoteAction(SeletedNote);
+        }
+
+        private async void DeleteNoteAction(Note obj) {
+
+            App.FirebaseServices.DeleteNotebookNotAsync(obj.Id, AppConstant.Notes);
+
+            FireBaseNotebooks = await App.FirebaseServices.ReadAsync(AppConstant.Notes, NotebookId);
         }
     }
 }

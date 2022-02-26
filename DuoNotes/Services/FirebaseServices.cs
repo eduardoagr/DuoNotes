@@ -150,18 +150,15 @@ namespace DuoNotes.Services {
             return FireBaseNotebooks;
         }
 
-
-        public async Task<Note> ReadNoteAsync(string Id) {
-
-            
-
-        }
-
         public async void UpdateNotebookNoten(string Id) {
             //TODO: Update the Note file location
         }
 
-        public async void DeleteNotebookNote(string Id, string ChildName) {
+        public void UploadToAzureBlobStorage(Note note) { 
+        
+        }
+
+        public async void DeleteNotebookNotAsync(string Id, string ChildName) {
                 
              await firebaseClient
                   .Child(ChildName)

@@ -1,14 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage x:Class="DuoNotes.NotebooksPage"
-             xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:community="http://xamarin.com/schemas/2020/toolkit"
-             xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
-             xmlns:icon="clr-namespace:DuoNotes.Fonts"
-             xmlns:translate="clr-namespace:DuoNotes.Utils"
-             xmlns:vm="clr-namespace:DuoNotes.ViewModel"
-             Title="{translate:Translate Notebooks}"
-             BackgroundColor="{AppThemeBinding Dark={StaticResource BckgroundDarkColor},
+<ContentPage
+    x:Class="DuoNotes.NotebooksPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:community="http://xamarin.com/schemas/2020/toolkit"
+    xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+    xmlns:icon="clr-namespace:DuoNotes.Fonts"
+    xmlns:translate="clr-namespace:DuoNotes.Utils"
+    xmlns:vm="clr-namespace:DuoNotes.ViewModel"
+    Title="{translate:Translate Notebooks}"
+    BackgroundColor="{AppThemeBinding Dark={StaticResource BckgroundDarkColor},
                                       Light={StaticResource BackgroundLigthColor}}">
 
 
@@ -17,65 +18,66 @@
     </ContentPage.BindingContext>
 
     <NavigationPage.TitleView>
-        <StackLayout HorizontalOptions="Start"
-                     Orientation="Horizontal">
+        <StackLayout HorizontalOptions="Start" Orientation="Horizontal">
             <StackLayout.GestureRecognizers>
                 <TapGestureRecognizer Command="{Binding ProfileCommnd}" />
             </StackLayout.GestureRecognizers>
 
-            <ffimageloadingsvg:SvgCachedImage HeightRequest="40"
-                                              Source="{Binding FireUser.PhotoUrl}"
-                                              WidthRequest="40" />
+            <ffimageloadingsvg:SvgCachedImage
+                HeightRequest="40"
+                Source="{Binding FireUser.PhotoUrl}"
+                WidthRequest="40" />
 
-            <Label FontAttributes="Bold"
-                   FontSize="Medium"
-                   Text="{Binding FireUser.DisplayName}"
-                   VerticalOptions="Center" />
+            <Label
+                FontAttributes="Bold"
+                FontSize="Medium"
+                Text="{Binding FireUser.DisplayName}"
+                VerticalOptions="Center" />
 
         </StackLayout>
     </NavigationPage.TitleView>
 
     <ContentPage.Behaviors>
-        <community:EventToCommandBehavior Command="{Binding PageAppearCommand}"
-                                          EventName="Appearing" />
+        <community:EventToCommandBehavior Command="{Binding PageAppearCommand}" EventName="Appearing" />
     </ContentPage.Behaviors>
 
     <StackLayout>
 
-        <CollectionView BackgroundColor="White"
-                        ItemsSource="{Binding FireBaseNotebooks}"
-                        SelectedItem="{Binding SelectedNotebook}"
-                        SelectionChangedCommand="{Binding SeletedItemCommand}"
-                        SelectionMode="Single">
+        <CollectionView
+            BackgroundColor="White"
+            ItemsSource="{Binding FireBaseNotebooks}"
+            SelectedItem="{Binding SelectedNotebook}"
+            SelectionChangedCommand="{Binding SeletedItemCommand}"
+            SelectionMode="Single">
 
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <SwipeView Padding="10">
                         <SwipeView.LeftItems>
                             <SwipeItems Mode="Execute">
-                                <SwipeItem BackgroundColor="{StaticResource DeleteItemColor}"
-                                           Command="{Binding Source={RelativeSource AncestorType={x:Type vm:NotebooksPageModel}}, Path=DeleteItemCommand}}"
-                                           CommandParameter="{Binding .}"
-                                           IconImageSource="{Binding Source={RelativeSource AncestorType={x:Type vm:NotebooksPageModel}}, Path=Glyph}"
-                                           Text="{translate:Translate Delete}" />
+                                <SwipeItem
+                                    BackgroundColor="{StaticResource DeleteItemColor}"
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type vm:NotebooksPageModel}}, Path=DeleteNotebookCommand}}"
+                                    CommandParameter="{Binding .}"
+                                    IconImageSource="{Binding Source={RelativeSource AncestorType={x:Type vm:NotebooksPageModel}}, Path=Glyph}"
+                                    Text="{translate:Translate Delete}" />
                             </SwipeItems>
                         </SwipeView.LeftItems>
 
-                        <Frame community:TouchEffect.PressedBackgroundColor="{StaticResource PressedItems}"
-                               Style="{StaticResource FrameContainer}">
-                            <Grid Padding="10"
-                                  RowDefinitions="Auto,Auto">
+                        <Frame community:TouchEffect.PressedBackgroundColor="{StaticResource PressedItems}" Style="{StaticResource FrameContainer}">
+                            <Grid Padding="10" RowDefinitions="Auto,Auto">
 
-                                <Label Style="{StaticResource BookIconStyle}"
-                                       TextColor="{Binding Color}" />
+                                <Label Style="{StaticResource BookIconStyle}" TextColor="{Binding Color}" />
 
-                                <Label Margin="20,0,0,0"
-                                       Style="{StaticResource DateLabelStyle}"
-                                       Text="{Binding CreatedDate}" />
+                                <Label
+                                    Margin="20,0,0,0"
+                                    Style="{StaticResource DateLabelStyle}"
+                                    Text="{Binding CreatedDate}" />
 
-                                <Label Grid.Row="1"
-                                       FontAttributes="Bold"
-                                       Text="{Binding Name}" />
+                                <Label
+                                    Grid.Row="1"
+                                    FontAttributes="Bold"
+                                    Text="{Binding Name}" />
                             </Grid>
                         </Frame>
 
@@ -85,14 +87,16 @@
 
         </CollectionView>
 
-        <Frame x:Name="Fab"
-               Grid.Row="1"
-               Style="{StaticResource FabButton}">
+        <Frame
+            x:Name="Fab"
+            Grid.Row="1"
+            Style="{StaticResource FabButton}">
 
-            <Label community:TouchEffect.Command="{Binding FabAnimationCommmand}"
-                   community:TouchEffect.CommandParameter="{Reference Fab}"
-                   Style="{StaticResource PlusStyle}"
-                   Text="{Static icon:IconFont.Plus}" />
+            <Label
+                community:TouchEffect.Command="{Binding FabAnimationCommmand}"
+                community:TouchEffect.CommandParameter="{Reference Fab}"
+                Style="{StaticResource PlusStyle}"
+                Text="{Static icon:IconFont.Plus}" />
         </Frame>
     </StackLayout>
 </ContentPage>

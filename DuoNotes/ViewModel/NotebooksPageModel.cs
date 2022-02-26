@@ -24,7 +24,7 @@ namespace DuoNotes.ViewModel {
 
         public Command PageAppearCommand { get; set; }
 
-        public Command<Notebook> DeleteItemCommand { get; set; }
+        public Command<Notebook> DeleteNotebookCommand { get; set; }
 
         public Notebook SelectedNotebook { get; set; }
 
@@ -48,7 +48,7 @@ namespace DuoNotes.ViewModel {
 
             ProfileCommnd = new Command(NavigateCommandAsync);
 
-            DeleteItemCommand = new Command<Notebook>(DeleteItemAction);
+            DeleteNotebookCommand = new Command<Notebook>(DeleteNotebookCommandAction);
 
             GetGlyph();
 
@@ -92,10 +92,16 @@ namespace DuoNotes.ViewModel {
             }
         }
 
-        private async void DeleteItemAction(Notebook obj) {
-            App.FirebaseServices.DeleteNotebookNote(obj.Id, AppConstant.Notebooks);
+        private async void DeleteNotebookCommandAction(Notebook obj) {
 
-            FireBaseNotebooks = await App.FirebaseServices.ReadAsync(AppConstant.Notebooks);
+            App.FirebaseServices.DeleteNotebookNotAsync(obj.Id, AppConstant.Notebooks);
+
+           var Notes = await App.FirebaseServices.ReadAsync(AppConstant.Notes, obj.Id);
+            foreach (var item in Notes) {
+                App.FirebaseServices.DeleteNotebookNotAsync(((Note)item).Id, AppConstant.Notes);
+            }
+
+            await App.FirebaseServices.ReadAsync(AppConstant.Notebooks);
         }
     }
 }
