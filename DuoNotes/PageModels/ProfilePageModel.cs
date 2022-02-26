@@ -8,7 +8,7 @@ using System.Windows.Input;
 
 using Xamarin.Forms;
 
-namespace DuoNotes.ViewModel {
+namespace DuoNotes.PageModels {
 
     [AddINotifyPropertyChangedInterface]
     internal class ProfilePageModel {

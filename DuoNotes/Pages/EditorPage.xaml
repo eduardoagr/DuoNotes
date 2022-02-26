@@ -4,7 +4,7 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:richtexteditor="clr-namespace:Syncfusion.XForms.RichTextEditor;assembly=Syncfusion.SfRichTextEditor.XForms"
-    xmlns:vm="clr-namespace:DuoNotes.ViewModel"
+    xmlns:vm="clr-namespace:DuoNotes.PageModels"
              xmlns:community="http://xamarin.com/schemas/2020/toolkit"
              Title="{Binding Note.Name}">
 

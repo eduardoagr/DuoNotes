@@ -4,7 +4,7 @@ using System;
 
 using Xamarin.Forms;
 
-namespace DuoNotes.ViewModel {
+namespace DuoNotes.PageModels {
 
     public class EditorPageModel {
 

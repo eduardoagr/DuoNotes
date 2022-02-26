@@ -1,8 +1,9 @@
 ﻿using DuoNotes.Constants;
 using DuoNotes.Model;
+using DuoNotes.PageModels;
 using DuoNotes.Pages;
 using DuoNotes.View.PopUps;
-using DuoNotes.ViewModel.PopUps;
+using DuoNotes.PageModels.PopUps;
 
 using Rg.Plugins.Popup.Services;
 
@@ -11,7 +12,7 @@ using System.Text;
 
 using Xamarin.Forms;
 
-namespace DuoNotes.ViewModel {
+namespace DuoNotes.PageModels {
 
     public class NotesPageModel : NotebooksPageModel {
 

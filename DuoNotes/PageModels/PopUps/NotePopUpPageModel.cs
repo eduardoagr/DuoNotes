@@ -10,7 +10,7 @@ using System.Windows.Input;
 
 using Xamarin.Forms;
 
-namespace DuoNotes.ViewModel.PopUps {
+namespace DuoNotes.PageModels.PopUps {
 
     public class NotePopUpPageModel : NotebookPopUpPageModel {
 

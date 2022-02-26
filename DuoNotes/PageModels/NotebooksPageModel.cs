@@ -13,7 +13,7 @@ using System.Collections.ObjectModel;
 
 using Xamarin.Forms;
 
-namespace DuoNotes.ViewModel {
+namespace DuoNotes.PageModels {
 
     [AddINotifyPropertyChangedInterface]
     public class NotebooksPageModel {
@@ -98,7 +98,7 @@ namespace DuoNotes.ViewModel {
 
            var Notes = await App.FirebaseServices.ReadAsync(AppConstant.Notes, obj.Id);
             foreach (var item in Notes) {
-                App.FirebaseServices.DeleteNotebookNotAsync(((Note)item).Id, AppConstant.Notes);
+                App.FirebaseServices.DeleteNotebookNotAsync(item.NotebookId, AppConstant.Notes);
             }
 
             await App.FirebaseServices.ReadAsync(AppConstant.Notebooks);

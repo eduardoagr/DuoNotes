@@ -16,7 +16,7 @@ using System.Windows.Input;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
-namespace DuoNotes.ViewModel.PopUps {
+namespace DuoNotes.PageModels.PopUps {
 
     [AddINotifyPropertyChangedInterface]
     public class NotebookPopUpPageModel {

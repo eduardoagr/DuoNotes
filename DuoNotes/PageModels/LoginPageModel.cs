@@ -14,7 +14,7 @@ using Xamarin.Forms;
 
 using User = DuoNotes.Model.User;
 
-namespace DuoNotes.ViewModel {
+namespace DuoNotes.PageModels {
 
     [AddINotifyPropertyChangedInterface]
     public class LoginPageModel {

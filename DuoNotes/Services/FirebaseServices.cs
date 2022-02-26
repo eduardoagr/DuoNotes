@@ -164,9 +164,6 @@ namespace DuoNotes.Services {
                   .Child(ChildName)
                   .Child(Id)
                   .DeleteAsync();
-
-            //TODO delete the notes of that notebook
-            
         }
 
         //This method will convert whatever we passed, to a specific object, based on the childname

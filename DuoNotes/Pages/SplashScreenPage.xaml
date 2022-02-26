@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:forms="clr-namespace:Lottie.Forms;assembly=Lottie.Forms"
              xmlns:community="http://xamarin.com/schemas/2020/toolkit"
-             xmlns:vm="clr-namespace:DuoNotes.ViewModel"
+             xmlns:vm="clr-namespace:DuoNotes.PageModels"
              x:Class="DuoNotes.Pages.SplashScreenPage">
 
     <ContentPage.BindingContext>

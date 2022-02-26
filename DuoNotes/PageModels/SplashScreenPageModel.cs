@@ -9,7 +9,7 @@ using System.Text;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
-namespace DuoNotes.ViewModel {
+namespace DuoNotes.PageModels {
     internal class SplashScreenPageModel {
 
         public Command FinishedAnimtionCommand { get; set; }
