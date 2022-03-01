@@ -8,6 +8,7 @@
     xmlns:icon="clr-namespace:DuoNotes.Fonts"
     xmlns:pcview="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     xmlns:richtexteditor="clr-namespace:Syncfusion.XForms.RichTextEditor;assembly=Syncfusion.SfRichTextEditor.XForms"
+    xmlns:translate="clr-namespace:DuoNotes.Utils"
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView">
 
     <Application.Resources>
@@ -137,6 +138,7 @@
                 <Setter Property="BackgroundColor" Value="{AppThemeBinding Dark={StaticResource BackgroundLigthColor}, Light={StaticResource BckgroundDarkColor}}" />
                 <Setter Property="ToolbarItems" Value="Bold,Italic,Underline,FontSize,FontColor,Alignment,NumberList,BulletList" />
                 <Setter Property="VerticalOptions" Value="FillAndExpand" />
+                <Setter Property="PlaceHolder" Value="{translate:Translate EditorPlaceholder}" />
             </Style>
 
         </ResourceDictionary>
