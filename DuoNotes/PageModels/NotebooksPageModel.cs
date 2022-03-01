@@ -18,7 +18,7 @@ namespace DuoNotes.PageModels {
     [AddINotifyPropertyChangedInterface]
     public class NotebooksPageModel {
 
-        public Command SeletedItemCommand { get; set; }
+        public Command SelectedItemCommand { get; set; }
 
         public Command ProfileCommnd { get; set; }
 
@@ -42,7 +42,7 @@ namespace DuoNotes.PageModels {
 
             PageAppearCommand = new Command(AppearAction);
 
-            SeletedItemCommand = new Command(SeletedItemActionAsync);
+            SelectedItemCommand = new Command(SelectedItemActionAsync);
 
             FabAnimationCommmand = new Command<Frame>(AnimateButtonCommand);
 
@@ -81,12 +81,12 @@ namespace DuoNotes.PageModels {
 
         }
 
-        public async virtual void SeletedItemActionAsync() {
+        public async virtual void SelectedItemActionAsync() {
 
             if (SelectedNotebook != null) {
 
                 NotesPage notesPage = new NotesPage();
-                Application.Current.Properties["id"] = SelectedNotebook.Id;
+                Application.Current.Properties[AppConstant.SelectedNotebook] = SelectedNotebook;
                 await Application.Current.MainPage.Navigation.PushAsync(notesPage, true);    
                 SelectedNotebook = null;
             }
@@ -98,7 +98,7 @@ namespace DuoNotes.PageModels {
 
            var Notes = await App.FirebaseServices.ReadAsync(AppConstant.Notes, obj.Id);
             foreach (var item in Notes) {
-                App.FirebaseServices.DeleteNotebookNotAsync(item.NotebookId, AppConstant.Notes);
+                App.FirebaseServices.DeleteNotebookNotAsync(((Note)item).Id, AppConstant.Notes);
             }
 
             await App.FirebaseServices.ReadAsync(AppConstant.Notebooks);

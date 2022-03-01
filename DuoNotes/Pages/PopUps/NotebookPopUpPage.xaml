@@ -24,7 +24,10 @@
     <Frame Style="{StaticResource FrameContainer}">
         <Grid Padding="10" RowDefinitions="Auto,Auto,Auto">
 
-            <Label community:TouchEffect.Command="{Binding DismissPopUpCommand}" Style="{StaticResource CloseStyle}" />
+            <StackLayout HorizontalOptions="End">
+                <Label community:TouchEffect.Command="{Binding DismissPopUpCommand}" Style="{StaticResource CloseStyle}" />
+            </StackLayout>
+
 
             <Entry
                 Grid.Row="1"

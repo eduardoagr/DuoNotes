@@ -7,6 +7,7 @@
     xmlns:icon="clr-namespace:DuoNotes.Fonts"
     xmlns:translate="clr-namespace:DuoNotes.Utils"
     xmlns:vm="clr-namespace:DuoNotes.PageModels"
+    xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     Title="{translate:Translate Notes}"
     BackgroundColor="{AppThemeBinding Dark={StaticResource BckgroundDarkColor},
                                       Light={StaticResource BackgroundLigthColor}}">
@@ -16,23 +17,21 @@
     </ContentPage.BindingContext>
 
     <ContentPage.Behaviors>
-        <community:EventToCommandBehavior Command="{Binding PageDisappearCommand}"
-                                          EventName="Disappearing" />
-        <community:EventToCommandBehavior Command="{Binding PageAppearCommand}"
-                                          EventName="Appearing" />
+        <community:EventToCommandBehavior Command="{Binding PageDisappearCommand}" EventName="Disappearing" />
+        <community:EventToCommandBehavior Command="{Binding PageAppearCommand}" EventName="Appearing" />
     </ContentPage.Behaviors>
 
     <StackLayout>
 
         <CollectionView
             ItemsSource="{Binding FireBaseNotebookNotes}"
-            SelectedItem="{Binding SeletedNote}"
-            SelectionChangedCommand="{Binding SeletedItemCommand}"
+            SelectedItem="{Binding SelectedNote}"
+            SelectionChangedCommand="{Binding SelectedItemCommand}"
             SelectionMode="Single">
 
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <SwipeView Padding="10">
+                    <SwipeView>
                         <SwipeView.LeftItems>
                             <SwipeItems Mode="Execute">
                                 <SwipeItem
@@ -44,8 +43,14 @@
                             </SwipeItems>
                         </SwipeView.LeftItems>
 
-                        <Frame community:TouchEffect.PressedBackgroundColor="{StaticResource PressedItems}" Style="{StaticResource FrameContainer}">
-                            <StackLayout Padding="10">
+                        <yummy:PancakeView
+                            community:TouchEffect.AnimationDuration="100"
+                            community:TouchEffect.AnimationEasing="{Static Easing.CubicInOut}"
+                            community:TouchEffect.PressedBackgroundColor="{StaticResource PressedItems}"
+                            community:TouchEffect.PressedOpacity="0.6"
+                            community:TouchEffect.PressedScale="0.75">
+                            
+                            <StackLayout Padding="5">
                                 <Label Style="{StaticResource DateLabelStyle}" Text="{Binding CreatedDate}" />
                                 <Label
                                     Grid.Row="1"
@@ -53,7 +58,7 @@
                                     Text="{Binding Name}" />
                             </StackLayout>
 
-                        </Frame>
+                        </yummy:PancakeView>
 
                     </SwipeView>
                 </DataTemplate>

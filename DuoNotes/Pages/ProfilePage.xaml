@@ -7,7 +7,7 @@
              xmlns:renders="clr-namespace:DuoNotes.Renders"
              xmlns:translate="clr-namespace:DuoNotes.Utils"
              xmlns:vm="clr-namespace:DuoNotes.PageModels"
-             Title="{translate:Translate userProfile}"
+             Title="{translate:Translate UserProfile}"
              BackgroundColor="{AppThemeBinding Dark={StaticResource BckgroundDarkColor},
                                       Light={StaticResource BackgroundLigthColor}}">
 

@@ -1,28 +1,46 @@
-﻿using DuoNotes.Services;
-
+﻿
 using System.Globalization;
 
 namespace DuoNotes.Constants {
     public class AppConstant {
 
+        //syncfusion library key
+
         public const string KEY = "NTY0Njk3QDMxMzkyZTM0MmUzMEVJRzNEYmRZQnZhdjIyeXRDY3JpMXgwUUg1MnBoQ1AxMWFYZlF6Z2dIVEE9";
 
-        public const string WEB_API_KEY = "AIzaSyAxdD4aXTmGRN-BwLX4ItYusIc35r4_VVQ";
-
-        public const string UID = "UID";
-
+        
+        //When we save in our database, we want to know the language of the device, so we can adjust, the date
+        
         public static string languages = CultureInfo.CurrentCulture.Name;
 
+        
+        // User ID in firebase
+
         public static string UserID = "UserID";
+
+
+        //Firebase keys and tokens
+
+        public const string WEB_API_KEY = "AIzaSyAxdD4aXTmGRN-BwLX4ItYusIc35r4_VVQ";
 
         public const string FirebaseRefreshToken = "FirebaseRefreshToken";
 
         public const string FirebaseToken = "FirebaseToken";
 
+
+
+        //Firebase child name
+
         public const string Notebooks = "Notebooks";
 
         public const string Notes = "Notes";
 
-        public const string NotebookID = "NotebookID";
+
+        //We need the ID to query the database for the selected notebook
+        
+        public const string SelectedNotebook = "SelectedNotebook";
+
+
+        public const string SelectedNote = "SelectedNote";
     }
 }
