@@ -135,11 +135,15 @@
             </Style>
 
             <Style TargetType="richtexteditor:SfRichTextEditor">
-                <Setter Property="BackgroundColor" Value="{AppThemeBinding Dark={StaticResource BackgroundLigthColor}, Light={StaticResource BckgroundDarkColor}}" />
-                <Setter Property="ToolbarItems" Value="Bold,Italic,Underline,FontSize,FontColor,Alignment,NumberList,BulletList" />
+                <Setter Property="BackgroundColor" Value="{AppThemeBinding Dark={StaticResource BckgroundDarkColor}, Light={StaticResource BackgroundLigthColor}}" />
                 <Setter Property="VerticalOptions" Value="FillAndExpand" />
-                <Setter Property="PlaceHolder" Value="{translate:Translate EditorPlaceholder}" />
             </Style>
+
+            <Style TargetType="BoxView">
+                <Setter Property="HeightRequest" Value="1" />
+                <Setter Property="BackgroundColor" Value="{AppThemeBinding Dark={StaticResource BackgroundLigthColor}, Light={StaticResource DeleteItemColor}}" />
+            </Style>
+
 
         </ResourceDictionary>
     </Application.Resources>

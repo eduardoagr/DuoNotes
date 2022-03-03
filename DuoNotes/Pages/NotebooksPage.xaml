@@ -72,7 +72,7 @@
                             community:TouchEffect.PressedOpacity="0.6"
                             community:TouchEffect.PressedScale="0.75">
 
-                            <Grid Padding="5" RowDefinitions="Auto,Auto">
+                            <Grid Padding="5" RowDefinitions="Auto,1,Auto">
 
                                 <Label Style="{StaticResource BookIconStyle}" TextColor="{Binding Color}" />
 
@@ -81,8 +81,10 @@
                                     Style="{StaticResource DateLabelStyle}"
                                     Text="{Binding CreatedDate}" />
 
+                                <BoxView Grid.Row="1" />
+
                                 <Label
-                                    Grid.Row="1"
+                                    Grid.Row="2"
                                     FontAttributes="Bold"
                                     Text="{Binding Name}" />
                             </Grid>

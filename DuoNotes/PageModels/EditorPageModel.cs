@@ -1,7 +1,10 @@
 ﻿using DuoNotes.Constants;
 using DuoNotes.Model;
 
+using Syncfusion.XForms.RichTextEditor;
+
 using System;
+using System.Collections.ObjectModel;
 
 using Xamarin.Forms;
 
@@ -15,8 +18,8 @@ namespace DuoNotes.PageModels {
 
         public EditorPageModel() {
 
-            SaveCommand = new Command(SaveAction);
 
+            SaveCommand = new Command(SaveAction);
         }
 
         public override void AppearAction() {
@@ -28,6 +31,7 @@ namespace DuoNotes.PageModels {
 
         private void SaveAction() {
 
+            //Upload to Azure, with a unique name, and get the location
         }
 
     }

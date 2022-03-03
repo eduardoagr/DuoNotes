@@ -51,9 +51,12 @@
                             community:TouchEffect.PressedScale="0.75">
                             
                             <StackLayout Padding="5">
-                                <Label Style="{StaticResource DateLabelStyle}" Text="{Binding CreatedDate}" />
+                                <Label Style="{StaticResource DateLabelStyle}"
+                                       Text="{Binding CreatedDate}" />
+                                
+                                <BoxView />
+
                                 <Label
-                                    Grid.Row="1"
                                     FontAttributes="Bold"
                                     Text="{Binding Name}" />
                             </StackLayout>

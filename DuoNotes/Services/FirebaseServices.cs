@@ -154,10 +154,6 @@ namespace DuoNotes.Services {
             //TODO: Update the Note file location
         }
 
-        public void UploadToAzureBlobStorage(Note note) { 
-        
-        }
-
         public async void DeleteNotebookNotAsync(string Id, string ChildName) {
                 
              await firebaseClient
