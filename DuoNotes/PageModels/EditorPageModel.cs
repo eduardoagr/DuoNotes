@@ -1,11 +1,10 @@
 ﻿using DuoNotes.Constants;
 using DuoNotes.Model;
 
-using Syncfusion.XForms.RichTextEditor;
-
 using System;
-using System.Collections.ObjectModel;
+using System.IO;
 
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace DuoNotes.PageModels {
@@ -16,6 +15,8 @@ namespace DuoNotes.PageModels {
 
         public Command SaveCommand { get; set; }
 
+        public string HtmlText { get; set; }
+
         public EditorPageModel() {
 
 
@@ -25,14 +26,27 @@ namespace DuoNotes.PageModels {
         public override void AppearAction() {
 
             Note = Application.Current.Properties[AppConstant.SelectedNote] as Note;
-
-
         }
 
-        private void SaveAction() {
+
+        private async void SaveAction() {
 
             //Upload to Azure, with a unique name, and get the location
-        }
 
+            var LocalFolder = FileSystem.AppDataDirectory;
+
+            var FilePath = Path.Combine(LocalFolder, $"{Note.Name}.rtf");
+
+            var FullPah = Path.GetFullPath(FilePath);
+
+            using (StreamWriter sw = new StreamWriter(FullPah)) {
+
+                sw.WriteLine(HtmlText);
+            }
+            
+            await App.AzureServices.UploadToAzureBlobStorage(FilePath, FullPah);
+
+
+        }
     }
 }

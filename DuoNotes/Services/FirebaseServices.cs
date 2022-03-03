@@ -150,8 +150,12 @@ namespace DuoNotes.Services {
             return FireBaseNotebooks;
         }
 
-        public async void UpdateNotebookNoten(string Id) {
-            //TODO: Update the Note file location
+        public async void UpdateNotebookNoten(string Id, string fileLocation) {
+           
+            await firebaseClient
+                .Child(AppConstant.Notes)
+                .Child(Id)
+                .PatchAsync(new Note() {FileLocation = fileLocation});
         }
 
         public async void DeleteNotebookNotAsync(string Id, string ChildName) {

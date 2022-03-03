@@ -65,12 +65,7 @@
                             </SwipeItems>
                         </SwipeView.LeftItems>
 
-                        <yummy:PancakeView
-                            community:TouchEffect.AnimationDuration="100"
-                            community:TouchEffect.AnimationEasing="{Static Easing.CubicInOut}"
-                            community:TouchEffect.PressedBackgroundColor="{StaticResource PressedItems}"
-                            community:TouchEffect.PressedOpacity="0.6"
-                            community:TouchEffect.PressedScale="0.75">
+                        <yummy:PancakeView community:TouchEffect.PressedBackgroundColor="{StaticResource PressedItems}">
 
                             <Grid Padding="5" RowDefinitions="Auto,1,Auto">
 

@@ -13,9 +13,13 @@ namespace DuoNotes {
 
         public static FirebaseServices FirebaseServices { get; set; }
 
+        public static AzureServices AzureServices { get; set; }
+
         public App() {
 
             FirebaseServices = new FirebaseServices();
+
+            AzureServices = new AzureServices();
 
             SyncfusionLicenseProvider.RegisterLicense(AppConstant.KEY);
 
