@@ -17,18 +17,12 @@
         <community:EventToCommandBehavior Command="{Binding PageDisappearCommand}" EventName="Disappearing" />
     </ContentPage.Behaviors>
 
-    <ContentPage.Content>
-        <StackLayout>
-            <richtexteditor:SfRichTextEditor
-                HtmlText="{Binding HtmlText}"
-                DefaultFontColor="Red"
-                ToolbarOptions="Bold,Italic,Underline,Alignment,BulletList,NumberList,FontSize,FontColor,HighlightColor,Undo"
-                ToolbarPosition="Top" />
-
-            <Button
-                Command="{Binding SaveCommand}"
-                CommandParameter="rich"
-                Text="save" />
-        </StackLayout>
-    </ContentPage.Content>
+        <ContentPage.Content>
+            <StackLayout>
+                <richtexteditor:SfRichTextEditor
+                    DefaultFontColor="Red"
+                    ToolbarOptions="Bold,Italic,Underline,Alignment,BulletList,NumberList,FontSize,FontColor,HighlightColor,Undo"
+                    ToolbarPosition="Top" />
+            </StackLayout>
+        </ContentPage.Content>
 </ContentPage>
