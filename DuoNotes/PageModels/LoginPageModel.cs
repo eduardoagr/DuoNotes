@@ -1,14 +1,10 @@
-﻿using DuoNotes.Constants;
-using DuoNotes.Services;
-using DuoNotes.View.PopUps;
+﻿using DuoNotes.View.PopUps;
 
 using PropertyChanged;
 
 using Rg.Plugins.Popup.Services;
 
-using System;
 using System.ComponentModel.DataAnnotations;
-using System.Windows.Input;
 
 using Xamarin.Forms;
 
@@ -32,7 +28,7 @@ namespace DuoNotes.PageModels {
             User = new User {
                 OnAnyPropertiesChanged = () => {
 
-                    (LoginCommand as Command).ChangeCanExecute();
+                    LoginCommand.ChangeCanExecute();
                 }
             };
 

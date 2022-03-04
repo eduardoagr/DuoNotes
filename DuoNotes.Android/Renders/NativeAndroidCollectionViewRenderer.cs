@@ -1,10 +1,12 @@
 ﻿
 using Android.Content;
-using DuoNotes.Droid.Renders;
 using Android.Views;
+
+using DuoNotes.Droid.Renders;
+using DuoNotes.Renders;
+
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
-using DuoNotes.Renders;
 
 [assembly: ExportRenderer(typeof(CollectionViewRender), typeof(NativeAndroidCollectionViewRenderer))]
 namespace DuoNotes.Droid.Renders {

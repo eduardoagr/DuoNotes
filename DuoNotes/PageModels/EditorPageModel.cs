@@ -1,12 +1,7 @@
 ﻿using DuoNotes.Constants;
 using DuoNotes.Model;
 
-using Syncfusion.XForms.RichTextEditor;
-
-using System;
-using System.Collections.ObjectModel;
 using System.IO;
-using System.Xml;
 
 using Xamarin.Essentials;
 using Xamarin.Forms;

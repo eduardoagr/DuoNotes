@@ -31,7 +31,7 @@ namespace DuoNotes.Services {
         private readonly FirebaseAuthProvider AuthProvider;
         private readonly FirebaseClient firebaseClient;
         const string BASE_URL = "https://duonotes-f2b77-default-rtdb.europe-west1.firebasedatabase.app/";
-        
+
         public FirebaseService() {
 
             FireBaseNotebooks = new ObservableCollection<NotebookNote>();
@@ -39,7 +39,7 @@ namespace DuoNotes.Services {
             firebaseClient = new FirebaseClient(BASE_URL);
         }
 
-        
+
         public async Task RegisterAsync(User users) {
 
             try {
@@ -53,7 +53,7 @@ namespace DuoNotes.Services {
             UserDialogs.Instance.HideLoading();
         }
 
-        
+
         public async Task LoginAsync(User users) {
 
             try {
@@ -72,13 +72,13 @@ namespace DuoNotes.Services {
             UserDialogs.Instance.HideLoading();
         }
 
-        
+
         public void LogOut() {
             Preferences.Clear();
             Application.Current.MainPage = new NavigationPage(new LoginPage());
         }
 
-        
+
         public async Task<Firebase.Auth.User> GetProfileInformationAndRefreshTokenAsync() {
 
             var savedfirebaseauth = JsonConvert.DeserializeObject<FirebaseAuth>(Preferences.Get(AppConstant.FirebaseRefreshToken, string.Empty));
@@ -96,7 +96,7 @@ namespace DuoNotes.Services {
 
         }
 
-        
+
         public async Task<Firebase.Auth.User> UpdateUserDataAsync(string PhotoUri, string DisplyName) {
 
             var savedfirebaseauth = JsonConvert.DeserializeObject<FirebaseAuth>(Preferences.Get(AppConstant.FirebaseRefreshToken,
@@ -114,7 +114,7 @@ namespace DuoNotes.Services {
             return newUser.User;
         }
 
-        
+
         public async Task InsertAsync(NotebookNote element, string ChildName) {
             if (element == null || ChildName == null) {
                 return;
@@ -123,7 +123,7 @@ namespace DuoNotes.Services {
                 .PostAsync(JsonConvert.SerializeObject(element));
         }
 
-        
+
         public async Task<ObservableCollection<NotebookNote>> ReadAsync(string ChildName, string NotebookId = "") {
 
             var list = await firebaseClient.Child(ChildName)
@@ -155,11 +155,11 @@ namespace DuoNotes.Services {
         }
 
         public async void DeleteNotebookNotAsync(string Id, string ChildName) {
-                
-             await firebaseClient
-                  .Child(ChildName)
-                  .Child(Id)
-                  .DeleteAsync();
+
+            await firebaseClient
+                 .Child(ChildName)
+                 .Child(Id)
+                 .DeleteAsync();
         }
 
         //This method will convert whatever we passed, to a specific object, based on the childname

@@ -1,11 +1,9 @@
 ﻿using DuoNotes.Constants;
 using DuoNotes.Pages;
 using DuoNotes.Services;
-using DuoNotes.View;
 
 using Syncfusion.Licensing;
 
-using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace DuoNotes {
@@ -13,8 +11,8 @@ namespace DuoNotes {
 
         public static FirebaseService FirebaseService { get; set; }
 
-        public static AzureService AzureService  { get; set; }
-    
+        public static AzureService AzureService { get; set; }
+
         public App() {
 
             AzureService = new AzureService();
@@ -26,7 +24,7 @@ namespace DuoNotes {
             InitializeComponent();
 
             MainPage = new NavigationPage(new SplashScreenPage());
-           
+
         }
 
         protected override void OnStart() {

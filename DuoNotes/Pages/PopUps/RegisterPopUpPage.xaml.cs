@@ -1,4 +1,5 @@
 ﻿using Rg.Plugins.Popup.Pages;
+
 using Xamarin.Forms.Xaml;
 
 namespace DuoNotes.View.PopUps {

@@ -87,7 +87,7 @@ namespace DuoNotes.PageModels {
 
                 NotesPage notesPage = new NotesPage();
                 Application.Current.Properties[AppConstant.SelectedNotebook] = SelectedNotebook;
-                await Application.Current.MainPage.Navigation.PushAsync(notesPage, true);    
+                await Application.Current.MainPage.Navigation.PushAsync(notesPage, true);
                 SelectedNotebook = null;
             }
         }
@@ -96,7 +96,7 @@ namespace DuoNotes.PageModels {
 
             App.FirebaseService.DeleteNotebookNotAsync(obj.Id, AppConstant.Notebooks);
 
-           var Notes = await App.FirebaseService.ReadAsync(AppConstant.Notes, obj.Id);
+            var Notes = await App.FirebaseService.ReadAsync(AppConstant.Notes, obj.Id);
             foreach (var item in Notes) {
                 App.FirebaseService.DeleteNotebookNotAsync(((Note)item).Id, AppConstant.Notes);
             }

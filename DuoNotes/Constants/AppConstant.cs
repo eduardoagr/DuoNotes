@@ -8,12 +8,12 @@ namespace DuoNotes.Constants {
 
         public const string KEY = "NTY0Njk3QDMxMzkyZTM0MmUzMEVJRzNEYmRZQnZhdjIyeXRDY3JpMXgwUUg1MnBoQ1AxMWFYZlF6Z2dIVEE9";
 
-        
+
         //When we save in our database, we want to know the language of the device, so we can adjust, the date
-        
+
         public static string languages = CultureInfo.CurrentCulture.Name;
 
-        
+
         // User ID in firebase
 
         public static string UserID = "UserID";
@@ -37,7 +37,7 @@ namespace DuoNotes.Constants {
 
 
         //We need the ID to query the database for the selected notebook
-        
+
         public const string SelectedNotebook = "SelectedNotebook";
 
 
