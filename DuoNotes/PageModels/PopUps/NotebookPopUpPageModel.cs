@@ -11,7 +11,6 @@ using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Windows.Input;
 
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -42,13 +41,13 @@ namespace DuoNotes.PageModels.PopUps {
             Notebook = new Notebook {
                 OnAnyPropertiesChanged = () => {
 
-                    (NewNotebookCommand as Command).ChangeCanExecute();
+                    NewNotebookCommand.ChangeCanExecute();
                 }
             };
 
             NewNotebookCommand = new Command(CreateNewNotebookAsync, CanCreateNotebook);
 
-            Colors = ColorServices.GetColors();
+            Colors = ColorService.GetColors();
 
 
             SelectedColorCommand = new Command(SelectColorAction);
@@ -79,9 +78,10 @@ namespace DuoNotes.PageModels.PopUps {
                 };
             }
 
-            await App.FirebaseServices.InsertAsync(Notebook, AppConstant.Notebooks);
+            await App.FirebaseService.InsertAsync(Notebook, AppConstant.Notebooks);
+            await App.FirebaseService.ReadAsync(AppConstant.Notebooks);
             await PopupNavigation.Instance.PopAsync();
-            await App.FirebaseServices.ReadAsync(AppConstant.Notebooks);
+
         }
 
 

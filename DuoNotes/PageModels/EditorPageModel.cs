@@ -1,43 +1,52 @@
-﻿using DuoNotes.Model;
+﻿using DuoNotes.Constants;
+using DuoNotes.Model;
 
-using System;
+using System.IO;
 
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace DuoNotes.PageModels {
 
-    public class EditorPageModel {
-
-        public Action<Note> NoteAction { get; set; }
+    public class EditorPageModel : NotesPageModel {
 
         public Note Note { get; set; }
 
-        public Command PageDisappearCommand { get; set; }
-
         public Command SaveCommand { get; set; }
+
+        public Command ShareCommand { get; set; }
+
+        public string HtmlText { get; set; }
 
         public EditorPageModel() {
 
-            PageDisappearCommand = new Command(PageDisappearAction);
 
             SaveCommand = new Command(SaveAction);
-
-
-            NoteAction = (note) => {
-
-                Note = Note;
-
-            };
-
         }
 
-        private void PageDisappearAction() {
+        public override void AppearAction() {
+
+            Note = Application.Current.Properties[AppConstant.SelectedNote] as Note;
 
 
         }
 
-        private void SaveAction() {
+        private async void SaveAction() {
 
+            //Upload to Azure, with a unique name, and get the location
+
+            var LocalFolder = FileSystem.AppDataDirectory;
+
+            var FilePath = Path.Combine(LocalFolder, $"{Note.Name}.rtf");
+
+            var FullPah = Path.GetFullPath(FilePath);
+
+            using (StreamWriter sw = new StreamWriter(FullPah)) {
+
+                sw.WriteLine(HtmlText);
+            }
+
+            await App.AzureService.UploadToAzureBlobStorage(FilePath, FullPah);
         }
 
     }

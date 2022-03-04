@@ -21,17 +21,21 @@
                 RowDefinitions="Auto,Auto,Auto,Auto,Auto"
                 RowSpacing="10">
 
-                <Label community:TouchEffect.Command="{Binding CloseCommand}" Style="{StaticResource CloseStyle}" />
+                <StackLayout HorizontalOptions="End">
+                    <Label community:TouchEffect.Command="{Binding CloseCommand}"
+                           Style="{StaticResource CloseStyle}" />
+                </StackLayout>
 
                 <Label
                     Grid.Row="1"
                     Style="{StaticResource HeadersStyle}"
                     Text="{translate:Translate Register}" />
 
-                <Entry Grid.Row="2"
-                       Placeholder="{translate:Translate Email}"
-                       Style="{StaticResource EntrySyle}"
-                       Text="{Binding User.Email}" />
+                <Entry
+                    Grid.Row="2"
+                    Placeholder="{translate:Translate Email}"
+                    Style="{StaticResource EntrySyle}"
+                    Text="{Binding User.Email}" />
 
                 <Entry
                     x:Name="PassEntry"

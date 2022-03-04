@@ -1,35 +1,39 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<pages:PopupPage xmlns:pages="http://rotorgames.com"
-                 xmlns="http://xamarin.com/schemas/2014/forms"
-                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-                 xmlns:translate="clr-namespace:DuoNotes.Utils"
-                 xmlns:community="http://xamarin.com/schemas/2020/toolkit"
-                 xmlns:vm="clr-namespace:DuoNotes.PageModels.PopUps"
-                 Padding="20"
-                 x:Class="DuoNotes.View.PopUps.NotesPopUp">
+<pages:PopupPage
+    x:Class="DuoNotes.View.PopUps.NotesPopUp"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:community="http://xamarin.com/schemas/2020/toolkit"
+    xmlns:pages="http://rotorgames.com"
+    xmlns:translate="clr-namespace:DuoNotes.Utils"
+    xmlns:vm="clr-namespace:DuoNotes.PageModels.PopUps"
+    Padding="20">
 
     <pages:PopupPage.BindingContext>
         <vm:NotePopUpPageModel />
     </pages:PopupPage.BindingContext>
 
     <Frame Style="{StaticResource FrameContainer}">
-        <Grid RowDefinitions="Auto,Auto"
-              Padding="10">
+        <Grid Padding="10" RowDefinitions="Auto,Auto">
 
-            <Label Style="{StaticResource CloseStyle}"
-                   community:TouchEffect.Command="{Binding DismissPopUpCommand}" />
+            <StackLayout HorizontalOptions="End">
+                <Label community:TouchEffect.Command="{Binding DismissPopUpCommand}" Style="{StaticResource CloseStyle}" />
+            </StackLayout>
 
-            <Entry Placeholder="{translate:Translate NoteTite}"
-                   Style="{StaticResource EntrySyle}"
-                   Text="{Binding Note.Name}"
-                   Grid.Row="2" />
 
-            <Button Padding="10"
-                    Style="{StaticResource ButonStyle}"
-                    Text="{translate:Translate NewNote}"
-                    Command="{Binding NewNoteCommand}"
-                    IsEnabled="True"
-                    Grid.Row="3" />
+            <Entry
+                Grid.Row="2"
+                Placeholder="{translate:Translate NoteTite}"
+                Style="{StaticResource EntrySyle}"
+                Text="{Binding Note.Name}" />
+
+            <Button
+                Grid.Row="3"
+                Padding="10"
+                Command="{Binding NewNoteCommand}"
+                IsEnabled="True"
+                Style="{StaticResource ButonStyle}"
+                Text="{translate:Translate NewNote}" />
         </Grid>
     </Frame>
 </pages:PopupPage>

@@ -1,12 +1,10 @@
 ﻿using DuoNotes.Constants;
 using DuoNotes.Model;
-using DuoNotes.Services;
 
 using Rg.Plugins.Popup.Services;
 
 using System;
 using System.Globalization;
-using System.Windows.Input;
 
 using Xamarin.Forms;
 
@@ -27,7 +25,7 @@ namespace DuoNotes.PageModels.PopUps {
             Note = new Note {
                 OnAnyPropertiesChanged = () => {
 
-                    (NewNoteCommand as Command).ChangeCanExecute();
+                    NewNoteCommand.ChangeCanExecute();
                 }
             };
 
@@ -53,8 +51,8 @@ namespace DuoNotes.PageModels.PopUps {
                 };
             }
 
-            await App.FirebaseServices.InsertAsync(Note, AppConstant.Notes);
-            await App.FirebaseServices.ReadAsync(AppConstant.Notes, NotebookId);
+            await App.FirebaseService.InsertAsync(Note, AppConstant.Notes);
+            await App.FirebaseService.ReadAsync(AppConstant.Notes, NotebookId);
             await PopupNavigation.Instance.PopAsync();
         }
 

@@ -24,6 +24,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="Acr.UserDialogs" Version="7.2.0.562" />
+		<PackageReference Include="Azure.Storage.Blobs" Version="12.10.0" />
 		<PackageReference Include="Com.Airbnb.Xamarin.Forms.Lottie" Version="4.1.0" />
 		<PackageReference Include="FirebaseAuthentication.net" Version="3.7.2" />
 		<PackageReference Include="FirebaseDatabase.net" Version="4.0.7" />
@@ -31,26 +32,23 @@
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
 		<PackageReference Include="PropertyChanged.Fody" Version="3.4.0" PrivateAssets="All" />
 		<PackageReference Include="Rg.Plugins.Popup" Version="2.1.0" />
-		<PackageReference Include="Syncfusion.Licensing" Version="19.4.0.53" />
-		<PackageReference Include="Syncfusion.Xamarin.Buttons" Version="19.4.0.53" />
-		<PackageReference Include="Syncfusion.Xamarin.SfRichTextEditor" Version="19.4.0.53" />
+		<PackageReference Include="Syncfusion.Licensing" Version="19.4.0.54" />
+		<PackageReference Include="Syncfusion.Xamarin.Buttons" Version="19.4.0.54" />
+		<PackageReference Include="Syncfusion.Xamarin.SfRichTextEditor" Version="19.4.0.54" />
 		<PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
 		<PackageReference Include="Xamarin.CommunityToolkit" Version="2.0.0" />
 		<PackageReference Include="Xamarin.FFImageLoading.Svg.Forms" Version="2.4.11.982" />
 		<PackageReference Include="Xamarin.Forms" Version="5.0.0.2337" />
 		<PackageReference Include="Xamarin.Essentials" Version="1.7.1" />
+		<PackageReference Include="Xamarin.Forms.PancakeView" Version="2.3.0.759" />
 		<PackageReference Include="Xamarin.Forms.Visual.Material" Version="5.0.0.2337" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<Compile Update="Pages\NotebooksPage.xaml.cs">
 		  <DependentUpon>NotebooksPage.xaml</DependentUpon>
-		</Compile>
-		<Compile Update="Pages\EditorPage.xaml.cs">
-		  <DependentUpon>EditorPage.xaml</DependentUpon>
 		</Compile>
 		<Compile Update="Pages\PopUps\NotebookPopUpPage.xaml.cs">
 		  <DependentUpon>NotebookPopUpPage.xaml</DependentUpon>

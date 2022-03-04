@@ -129,6 +129,9 @@
   <data name="Delete" xml:space="preserve">
     <value>Delete</value>
   </data>
+  <data name="EditorPlaceholder" xml:space="preserve">
+    <value>Type something</value>
+  </data>
   <data name="EditProfile" xml:space="preserve">
     <value>Edit profile</value>
   </data>
@@ -201,7 +204,7 @@
   <data name="UserInserted" xml:space="preserve">
     <value>User created successfully</value>
   </data>
-  <data name="userProfile" xml:space="preserve">
+  <data name="UserProfile" xml:space="preserve">
     <value>Profile</value>
   </data>
   <data name="WEAK_PASSWORD : Password should be at least 6 characters" xml:space="preserve">

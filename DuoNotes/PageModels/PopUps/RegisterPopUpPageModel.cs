@@ -1,13 +1,10 @@
-﻿using DuoNotes.Constants;
-using DuoNotes.Model;
-using DuoNotes.Services;
+﻿using DuoNotes.Model;
 
 using PropertyChanged;
 
 using Rg.Plugins.Popup.Services;
 
 using System.ComponentModel.DataAnnotations;
-using System.Windows.Input;
 
 using Xamarin.Forms;
 
@@ -27,7 +24,7 @@ namespace DuoNotes.PageModels.PopUps {
             User = new User {
                 OnAnyPropertiesChanged = () => {
 
-                    (RegisterCommand as Command).ChangeCanExecute();
+                    RegisterCommand.ChangeCanExecute();
                 }
             };
 
@@ -46,7 +43,7 @@ namespace DuoNotes.PageModels.PopUps {
 
         private async void RegisterActionAsync() {
 
-            await App.FirebaseServices.RegisterAsync(User);
+            await App.FirebaseService.RegisterAsync(User);
         }
 
         private async void PerformCloseAction() {

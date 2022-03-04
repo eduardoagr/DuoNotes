@@ -8,6 +8,7 @@
     xmlns:icon="clr-namespace:DuoNotes.Fonts"
     xmlns:translate="clr-namespace:DuoNotes.Utils"
     xmlns:vm="clr-namespace:DuoNotes.PageModels"
+    xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     Title="{translate:Translate Notebooks}"
     BackgroundColor="{AppThemeBinding Dark={StaticResource BckgroundDarkColor},
                                       Light={StaticResource BackgroundLigthColor}}">
@@ -32,6 +33,7 @@
                 FontAttributes="Bold"
                 FontSize="Medium"
                 Text="{Binding FireUser.DisplayName}"
+                TextColor="White"
                 VerticalOptions="Center" />
 
         </StackLayout>
@@ -44,15 +46,14 @@
     <StackLayout>
 
         <CollectionView
-            BackgroundColor="White"
             ItemsSource="{Binding FireBaseNotebookNotes}"
             SelectedItem="{Binding SelectedNotebook}"
-            SelectionChangedCommand="{Binding SeletedItemCommand}"
+            SelectionChangedCommand="{Binding SelectedItemCommand}"
             SelectionMode="Single">
 
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <SwipeView Padding="10">
+                    <SwipeView>
                         <SwipeView.LeftItems>
                             <SwipeItems Mode="Execute">
                                 <SwipeItem
@@ -64,8 +65,9 @@
                             </SwipeItems>
                         </SwipeView.LeftItems>
 
-                        <Frame community:TouchEffect.PressedBackgroundColor="{StaticResource PressedItems}" Style="{StaticResource FrameContainer}">
-                            <Grid Padding="10" RowDefinitions="Auto,Auto">
+                        <yummy:PancakeView community:TouchEffect.PressedBackgroundColor="{StaticResource PressedItems}">
+
+                            <Grid Padding="5" RowDefinitions="Auto,1,Auto">
 
                                 <Label Style="{StaticResource BookIconStyle}" TextColor="{Binding Color}" />
 
@@ -74,12 +76,15 @@
                                     Style="{StaticResource DateLabelStyle}"
                                     Text="{Binding CreatedDate}" />
 
+                                <BoxView Grid.Row="1" />
+
                                 <Label
-                                    Grid.Row="1"
+                                    Grid.Row="2"
                                     FontAttributes="Bold"
                                     Text="{Binding Name}" />
                             </Grid>
-                        </Frame>
+                        </yummy:PancakeView>
+
 
                     </SwipeView>
                 </DataTemplate>

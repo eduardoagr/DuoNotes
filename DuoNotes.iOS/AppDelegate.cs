@@ -1,6 +1,4 @@
 ﻿
-using Acr.UserDialogs;
-
 using FFImageLoading.Forms.Platform;
 
 using Foundation;

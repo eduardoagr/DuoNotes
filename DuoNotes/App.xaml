@@ -5,7 +5,11 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
     xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
-    xmlns:icon="clr-namespace:DuoNotes.Fonts">
+    xmlns:icon="clr-namespace:DuoNotes.Fonts"
+    xmlns:pcview="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    xmlns:richtexteditor="clr-namespace:Syncfusion.XForms.RichTextEditor;assembly=Syncfusion.SfRichTextEditor.XForms"
+    xmlns:translate="clr-namespace:DuoNotes.Utils"
+    xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView">
 
     <Application.Resources>
         <ResourceDictionary>
@@ -39,6 +43,11 @@
                 <Setter Property="VerticalOptions" Value="Fill" />
             </Style>
 
+            <Style TargetType="SwipeView">
+                <Setter Property="Padding" Value="5" />
+                <Setter Property="BackgroundColor" Value="{AppThemeBinding Dark={StaticResource BckgroundDarkColor}, Light={StaticResource BackgroundLigthColor}}" />
+            </Style>
+
             <Style x:Key="CloseStyle" TargetType="Label">
                 <Setter Property="Text" Value="{Static icon:MaterialIcons.CloseCircle}" />
                 <Setter Property="TextColor" Value="Red" />
@@ -58,6 +67,7 @@
 
             <Style x:Key="FrameContainer" TargetType="Frame">
                 <Setter Property="Padding" Value="0" />
+                <Setter Property="HasShadow" Value="False" />
                 <Setter Property="BorderColor" Value="Silver" />
                 <Setter Property="BackgroundColor" Value="{AppThemeBinding Dark={StaticResource BckgroundDarkColor}, Light={StaticResource BackgroundLigthColor}}" />
                 <Setter Property="IsClippedToBounds" Value="True" />
@@ -70,6 +80,15 @@
                 <Setter Property="SelectedChipBackgroundColor" Value="{AppThemeBinding Dark={StaticResource BackgroundLigthColor}, Light={StaticResource BckgroundDarkColor}}" />
                 <Setter Property="Type" Value="Choice" />
                 <Setter Property="HeightRequest" Value="60" />
+            </Style>
+
+            <Style TargetType="yummy:PancakeView">
+                <Setter Property="Margin" Value="10" />
+                <Setter Property="Padding" Value="2" />
+                <Setter Property="Border" Value="{pcview:BorderMarkup Color={AppThemeBinding Dark={StaticResource BackgroundLigthColor}}, Thickness='2'}" />
+                <Setter Property="CornerRadius" Value="0,30,0,30" />
+                <Setter Property="BackgroundColor" Value="{AppThemeBinding Dark={StaticResource BckgroundDarkColor}, Light={StaticResource BackgroundLigthColor}}" />
+                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
             </Style>
 
             <Style TargetType="border:SfBorder">
@@ -115,8 +134,23 @@
                 <Setter Property="Text" Value="{Static icon:IconFont.Book}" />
             </Style>
 
-            <Style TargetType="CollectionView">
-                <Setter Property="Background" Value="{AppThemeBinding Dark={StaticResource BckgroundDarkColor}, Light={StaticResource BackgroundLigthColor}}" />
+            <Style TargetType="richtexteditor:SfRichTextEditor">
+                <Setter Property="BackgroundColor" Value="{AppThemeBinding Dark={StaticResource BckgroundDarkColor}, Light={StaticResource BackgroundLigthColor}}" />
+                <Setter Property="VerticalOptions" Value="FillAndExpand" />
+                <Setter Property="DefaultFontColor" Value="{AppThemeBinding Dark={StaticResource BackgroundLigthColor}, Light={StaticResource BckgroundDarkColor}}" />
+            </Style>
+
+            <Style TargetType="BoxView">
+                <Setter Property="HeightRequest" Value="1" />
+                <Setter Property="BackgroundColor" Value="{AppThemeBinding Dark={StaticResource BackgroundLigthColor}, Light={StaticResource DeleteItemColor}}" />
+            </Style>
+
+            <Style x:Key="ToolbarItemsStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="FontSize" Value="25" />
+                <Setter Property="Padding" Value="10" />
+                <Setter Property="FontFamily" Value="ma" />
             </Style>
 
 

@@ -18,7 +18,7 @@ namespace DuoNotes.PageModels {
     [AddINotifyPropertyChangedInterface]
     public class NotebooksPageModel {
 
-        public Command SeletedItemCommand { get; set; }
+        public Command SelectedItemCommand { get; set; }
 
         public Command ProfileCommnd { get; set; }
 
@@ -42,7 +42,7 @@ namespace DuoNotes.PageModels {
 
             PageAppearCommand = new Command(AppearAction);
 
-            SeletedItemCommand = new Command(SeletedItemActionAsync);
+            SelectedItemCommand = new Command(SelectedItemActionAsync);
 
             FabAnimationCommmand = new Command<Frame>(AnimateButtonCommand);
 
@@ -64,8 +64,8 @@ namespace DuoNotes.PageModels {
         }
 
         public virtual async void AppearAction() {
-            FireUser = await App.FirebaseServices.GetProfileInformationAndRefreshTokenAsync();
-            FireBaseNotebookNotes = await App.FirebaseServices.ReadAsync(AppConstant.Notebooks);
+            FireUser = await App.FirebaseService.GetProfileInformationAndRefreshTokenAsync();
+            FireBaseNotebookNotes = await App.FirebaseService.ReadAsync(AppConstant.Notebooks);
         }
 
         private async void NavigateCommandAsync() {
@@ -81,27 +81,27 @@ namespace DuoNotes.PageModels {
 
         }
 
-        public async virtual void SeletedItemActionAsync() {
+        public async virtual void SelectedItemActionAsync() {
 
             if (SelectedNotebook != null) {
 
                 NotesPage notesPage = new NotesPage();
-                Application.Current.Properties["id"] = SelectedNotebook.Id;
-                await Application.Current.MainPage.Navigation.PushAsync(notesPage, true);    
+                Application.Current.Properties[AppConstant.SelectedNotebook] = SelectedNotebook;
+                await Application.Current.MainPage.Navigation.PushAsync(notesPage, true);
                 SelectedNotebook = null;
             }
         }
 
         private async void DeleteNotebookCommandAction(Notebook obj) {
 
-            App.FirebaseServices.DeleteNotebookNotAsync(obj.Id, AppConstant.Notebooks);
+            App.FirebaseService.DeleteNotebookNotAsync(obj.Id, AppConstant.Notebooks);
 
-           var Notes = await App.FirebaseServices.ReadAsync(AppConstant.Notes, obj.Id);
+            var Notes = await App.FirebaseService.ReadAsync(AppConstant.Notes, obj.Id);
             foreach (var item in Notes) {
-                App.FirebaseServices.DeleteNotebookNotAsync(item.NotebookId, AppConstant.Notes);
+                App.FirebaseService.DeleteNotebookNotAsync(((Note)item).Id, AppConstant.Notes);
             }
 
-            await App.FirebaseServices.ReadAsync(AppConstant.Notebooks);
+            await App.FirebaseService.ReadAsync(AppConstant.Notebooks);
         }
     }
 }

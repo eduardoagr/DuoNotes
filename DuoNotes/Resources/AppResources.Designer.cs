@@ -97,6 +97,15 @@ namespace DuoNotes.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Type something.
+        /// </summary>
+        internal static string EditorPlaceholder {
+            get {
+                return ResourceManager.GetString("EditorPlaceholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Edit profile.
         /// </summary>
         internal static string EditProfile {
@@ -315,9 +324,9 @@ namespace DuoNotes.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Profile.
         /// </summary>
-        internal static string userProfile {
+        internal static string UserProfile {
             get {
-                return ResourceManager.GetString("userProfile", resourceCulture);
+                return ResourceManager.GetString("UserProfile", resourceCulture);
             }
         }
         

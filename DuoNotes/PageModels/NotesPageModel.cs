@@ -1,14 +1,10 @@
 ﻿using DuoNotes.Constants;
 using DuoNotes.Model;
-using DuoNotes.PageModels;
+using DuoNotes.PageModels.PopUps;
 using DuoNotes.Pages;
 using DuoNotes.View.PopUps;
-using DuoNotes.PageModels.PopUps;
 
 using Rg.Plugins.Popup.Services;
-
-using System;
-using System.Text;
 
 using Xamarin.Forms;
 
@@ -16,9 +12,9 @@ namespace DuoNotes.PageModels {
 
     public class NotesPageModel : NotebooksPageModel {
 
-        public string NotebookId { get; set; }
+        public Notebook Notebook { get; set; }
 
-        public Note SeletedNote { get; set; }
+        public Note SelectedNote { get; set; }
 
         public Command<Note> DeleteNoteCommand { get; set; }
 
@@ -30,19 +26,14 @@ namespace DuoNotes.PageModels {
 
             FabAnimationCommmand = new Command<Frame>(AnimateButtonCommand);
 
-           // PageDisappearCommand = new Command(PageDisappearAction);
+            PageDisappearCommand = new Command(PageDisappearAction);
         }
 
-
-
         public override async void AppearAction() {
-            base.AppearAction();
 
-            NotebookId = Application.Current.Properties["id"] as string;
+            Notebook = Application.Current.Properties[AppConstant.SelectedNotebook] as Notebook;
 
-            Console.WriteLine($"NotebookID {NotebookId}");
-
-            FireBaseNotebookNotes = await App.FirebaseServices.ReadAsync(AppConstant.Notes, NotebookId);
+            FireBaseNotebookNotes = await App.FirebaseService.ReadAsync(AppConstant.Notes, Notebook.Id);
 
         }
 
@@ -54,26 +45,29 @@ namespace DuoNotes.PageModels {
             var notesPopUp = new NotesPopUp();
             await PopupNavigation.Instance.PushAsync(notesPopUp, true);
             var viewModel = notesPopUp.BindingContext as NotePopUpPageModel;
-            viewModel.NotebookAction(NotebookId);
+            viewModel.NotebookAction(Notebook.Id);
         }
 
-        public override async void SeletedItemActionAsync() {
-            base.SeletedItemActionAsync();
+        public override async void SelectedItemActionAsync() {
 
-            var EditPage = new EditorPage();
+            if (SelectedNote != null) {
 
-            await Application.Current.MainPage.Navigation.PushAsync(EditPage);
-
-            var viewModel = EditPage.BindingContext as EditorPageModel;
-
-            viewModel.NoteAction(SeletedNote);
+                var edit = new EditorPage();
+                Application.Current.Properties[AppConstant.SelectedNote] = SelectedNote;
+                await Application.Current.MainPage.Navigation.PushAsync(edit);
+                SelectedNote = null;
+            }
         }
 
         private async void DeleteNoteAction(Note obj) {
 
-            App.FirebaseServices.DeleteNotebookNotAsync(obj.Id, AppConstant.Notes);
+            App.FirebaseService.DeleteNotebookNotAsync(obj.Id, AppConstant.Notes);
 
-            FireBaseNotebookNotes = await App.FirebaseServices.ReadAsync(AppConstant.Notes, NotebookId);
+            FireBaseNotebookNotes = await App.FirebaseService.ReadAsync(AppConstant.Notes, Notebook.Id);
+        }
+
+        private void PageDisappearAction() {
+            FireBaseNotebookNotes.Clear();
         }
     }
 }
