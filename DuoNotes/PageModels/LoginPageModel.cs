@@ -54,7 +54,7 @@ namespace DuoNotes.PageModels {
         }
 
         private async void LoginAction() {
-            await App.FirebaseServices.LoginAsync(User);
+            await App.FirebaseService.LoginAsync(User);
 
         }
     }

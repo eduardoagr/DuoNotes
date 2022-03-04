@@ -46,7 +46,7 @@ namespace DuoNotes.PageModels.PopUps {
 
         private async void RegisterActionAsync() {
 
-            await App.FirebaseServices.RegisterAsync(User);
+            await App.FirebaseService.RegisterAsync(User);
         }
 
         private async void PerformCloseAction() {

@@ -11,11 +11,15 @@ using Xamarin.Forms;
 namespace DuoNotes {
     public partial class App : Application {
 
-        public static FirebaseServices FirebaseServices { get; set; }
+        public static FirebaseService FirebaseService { get; set; }
 
+        public static AzureService AzureService  { get; set; }
+    
         public App() {
 
-            FirebaseServices = new FirebaseServices();
+            AzureService = new AzureService();
+
+            FirebaseService = new FirebaseService();
 
             SyncfusionLicenseProvider.RegisterLicense(AppConstant.KEY);
 

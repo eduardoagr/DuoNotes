@@ -137,11 +137,20 @@
             <Style TargetType="richtexteditor:SfRichTextEditor">
                 <Setter Property="BackgroundColor" Value="{AppThemeBinding Dark={StaticResource BckgroundDarkColor}, Light={StaticResource BackgroundLigthColor}}" />
                 <Setter Property="VerticalOptions" Value="FillAndExpand" />
+                <Setter Property="DefaultFontColor" Value="{AppThemeBinding Dark={StaticResource BackgroundLigthColor}, Light={StaticResource BckgroundDarkColor}}" />
             </Style>
 
             <Style TargetType="BoxView">
                 <Setter Property="HeightRequest" Value="1" />
                 <Setter Property="BackgroundColor" Value="{AppThemeBinding Dark={StaticResource BackgroundLigthColor}, Light={StaticResource DeleteItemColor}}" />
+            </Style>
+
+            <Style x:Key="ToolbarItemsStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="FontSize" Value="25" />
+                <Setter Property="Padding" Value="10" />
+                <Setter Property="FontFamily" Value="ma" />
             </Style>
 
 

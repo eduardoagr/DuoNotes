@@ -48,7 +48,7 @@ namespace DuoNotes.PageModels.PopUps {
 
             NewNotebookCommand = new Command(CreateNewNotebookAsync, CanCreateNotebook);
 
-            Colors = ColorServices.GetColors();
+            Colors = ColorService.GetColors();
 
 
             SelectedColorCommand = new Command(SelectColorAction);
@@ -79,9 +79,10 @@ namespace DuoNotes.PageModels.PopUps {
                 };
             }
 
-            await App.FirebaseServices.InsertAsync(Notebook, AppConstant.Notebooks);
+            await App.FirebaseService.InsertAsync(Notebook, AppConstant.Notebooks);
+            await App.FirebaseService.ReadAsync(AppConstant.Notebooks);
             await PopupNavigation.Instance.PopAsync();
-            await App.FirebaseServices.ReadAsync(AppConstant.Notebooks);
+
         }
 
 

@@ -33,7 +33,7 @@ namespace DuoNotes.PageModels {
 
             Notebook = Application.Current.Properties[AppConstant.SelectedNotebook] as Notebook;
 
-            FireBaseNotebookNotes = await App.FirebaseServices.ReadAsync(AppConstant.Notes, Notebook.Id);
+            FireBaseNotebookNotes = await App.FirebaseService.ReadAsync(AppConstant.Notes, Notebook.Id);
 
         }
 
@@ -61,9 +61,9 @@ namespace DuoNotes.PageModels {
 
         private async void DeleteNoteAction(Note obj) {
 
-            App.FirebaseServices.DeleteNotebookNotAsync(obj.Id, AppConstant.Notes);
+            App.FirebaseService.DeleteNotebookNotAsync(obj.Id, AppConstant.Notes);
 
-            FireBaseNotebookNotes = await App.FirebaseServices.ReadAsync(AppConstant.Notes, Notebook.Id);
+            FireBaseNotebookNotes = await App.FirebaseService.ReadAsync(AppConstant.Notes, Notebook.Id);
         }
 
         private void PageDisappearAction() {

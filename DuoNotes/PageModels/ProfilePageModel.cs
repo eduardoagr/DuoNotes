@@ -27,7 +27,7 @@ namespace DuoNotes.PageModels {
 
         public ProfilePageModel() {
 
-            Avatars = AvaarServices.GetAvatars();
+            Avatars = AvaarService.GetAvatars();
 
             SelectedAvatarCommand = new Command(SelectAvatarAction);
 
@@ -38,7 +38,7 @@ namespace DuoNotes.PageModels {
 
         private async void SaveProfile() {
             if (!string.IsNullOrEmpty(SelectedAvatar) || string.IsNullOrEmpty(DisplayName)) {
-                FireUser = await App.FirebaseServices.UpdateUserDataAsync(SelectedAvatar, DisplayName);
+                FireUser = await App.FirebaseService.UpdateUserDataAsync(SelectedAvatar, DisplayName);
             } else {
                 GetUserData();
             }
@@ -52,7 +52,7 @@ namespace DuoNotes.PageModels {
         }
 
         private async void GetUserData() {
-            FireUser = await App.FirebaseServices.GetProfileInformationAndRefreshTokenAsync();
+            FireUser = await App.FirebaseService.GetProfileInformationAndRefreshTokenAsync();
             SelectedAvatar = FireUser.PhotoUrl;
         }
 

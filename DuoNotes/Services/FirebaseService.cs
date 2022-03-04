@@ -25,14 +25,14 @@ using Xamarin.Forms;
 using User = DuoNotes.Model.User;
 
 namespace DuoNotes.Services {
-    public class FirebaseServices {
+    public class FirebaseService {
 
         private ObservableCollection<NotebookNote> FireBaseNotebooks { get; set; }
         private readonly FirebaseAuthProvider AuthProvider;
         private readonly FirebaseClient firebaseClient;
         const string BASE_URL = "https://duonotes-f2b77-default-rtdb.europe-west1.firebasedatabase.app/";
         
-        public FirebaseServices() {
+        public FirebaseService() {
 
             FireBaseNotebooks = new ObservableCollection<NotebookNote>();
             AuthProvider = new FirebaseAuthProvider(new FirebaseConfig(AppConstant.WEB_API_KEY));

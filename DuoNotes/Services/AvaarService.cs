@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 
 namespace DuoNotes.Services {
-    internal class AvaarServices {
+    internal class AvaarService {
 
         internal static List<string> GetAvatars() {
 

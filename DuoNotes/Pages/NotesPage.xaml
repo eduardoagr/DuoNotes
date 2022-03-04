@@ -43,22 +43,13 @@
                             </SwipeItems>
                         </SwipeView.LeftItems>
 
-                        <yummy:PancakeView
-                            community:TouchEffect.AnimationDuration="100"
-                            community:TouchEffect.AnimationEasing="{Static Easing.CubicInOut}"
-                            community:TouchEffect.PressedBackgroundColor="{StaticResource PressedItems}"
-                            community:TouchEffect.PressedOpacity="0.6"
-                            community:TouchEffect.PressedScale="0.75">
-                            
+                        <yummy:PancakeView community:TouchEffect.PressedBackgroundColor="{StaticResource PressedItems}">
                             <StackLayout Padding="5">
-                                <Label Style="{StaticResource DateLabelStyle}"
-                                       Text="{Binding CreatedDate}" />
-                                
+                                <Label Style="{StaticResource DateLabelStyle}" Text="{Binding CreatedDate}" />
+
                                 <BoxView />
 
-                                <Label
-                                    FontAttributes="Bold"
-                                    Text="{Binding Name}" />
+                                <Label FontAttributes="Bold" Text="{Binding Name}" />
                             </StackLayout>
 
                         </yummy:PancakeView>

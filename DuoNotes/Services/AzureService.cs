@@ -5,7 +5,7 @@ using DuoNotes.Constants;
 using System.Threading.Tasks;
 
 namespace DuoNotes.Services {
-    public class AzureBlob {
+    public class AzureService {
 
         public async Task<string> UploadToAzureBlobStorage(string filePath, string fileName) {
 

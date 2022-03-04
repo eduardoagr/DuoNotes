@@ -4,25 +4,43 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:community="http://xamarin.com/schemas/2020/toolkit"
+    xmlns:icon="clr-namespace:DuoNotes.Fonts"
     xmlns:richtexteditor="clr-namespace:Syncfusion.XForms.RichTextEditor;assembly=Syncfusion.SfRichTextEditor.XForms"
-    xmlns:vm="clr-namespace:DuoNotes.PageModels"
-    Title="{Binding Note.Name}">
+    xmlns:vm="clr-namespace:DuoNotes.PageModels">
 
     <ContentPage.BindingContext>
         <vm:EditorPageModel />
     </ContentPage.BindingContext>
+
 
     <ContentPage.Behaviors>
         <community:EventToCommandBehavior Command="{Binding PageAppearCommand}" EventName="Appearing" />
         <community:EventToCommandBehavior Command="{Binding PageDisappearCommand}" EventName="Disappearing" />
     </ContentPage.Behaviors>
 
-        <ContentPage.Content>
-            <StackLayout>
-                <richtexteditor:SfRichTextEditor
-                    DefaultFontColor="Red"
-                    ToolbarOptions="Bold,Italic,Underline,Alignment,BulletList,NumberList,FontSize,FontColor,HighlightColor,Undo"
-                    ToolbarPosition="Top" />
-            </StackLayout>
-        </ContentPage.Content>
+    <NavigationPage.TitleView>
+        <StackLayout
+            Padding="10"
+            FlowDirection="RightToLeft"
+            Orientation="Horizontal">
+            <Label
+                community:TouchEffect.Command="{Binding ShareCommand}"
+                Style="{StaticResource ToolbarItemsStyle}"
+                Text="{Static icon:MaterialIcons.ShareVariant}" />
+
+            <Label
+                community:TouchEffect.Command="{Binding SaveCommand}"
+                Style="{StaticResource ToolbarItemsStyle}"
+                Text="{Static icon:MaterialIcons.ContentSave}" />
+
+        </StackLayout>
+    </NavigationPage.TitleView>
+    <ContentPage.Content>
+        <StackLayout>
+            <richtexteditor:SfRichTextEditor
+                HtmlText="{Binding HtmlText}"
+                ToolbarOptions="Bold,Italic,Underline,Alignment,BulletList,NumberList,FontSize,FontColor,HighlightColor,Undo"
+                ToolbarPosition="Top" />
+        </StackLayout>
+    </ContentPage.Content>
 </ContentPage>
