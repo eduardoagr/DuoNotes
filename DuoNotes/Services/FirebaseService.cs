@@ -169,7 +169,7 @@ namespace DuoNotes.Services {
                 notebookNote = new Notebook {
                     UserID = item.Object.UserID,
                     Id = item.Key,
-                    Name = $"{AppResources.NoteBookName}: {item.Object.Name}",
+                    Name = item.Object.Name,
                     CreatedDate = item.Object.CreatedDate,
                     Color = item.Object.Color,
                 };
@@ -178,7 +178,7 @@ namespace DuoNotes.Services {
                     NotebookId = item.Object.NotebookId,
                     UserID = item.Object.UserID,
                     Id = item.Key,
-                    Name = $"{AppResources.NoteTite}: {item.Object.Name}",
+                    Name = item.Object.Name,
                     CreatedDate = item.Object.CreatedDate,
                     Color = item.Object.Color,
                 };

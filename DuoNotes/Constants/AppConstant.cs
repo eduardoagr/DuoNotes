@@ -43,6 +43,7 @@ namespace DuoNotes.Constants {
 
         public const string SelectedNote = "SelectedNote";
 
+
         //Azure Blob storage
 
         public const string ContanerName = "notes";

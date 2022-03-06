@@ -48,19 +48,7 @@ namespace DuoNotes.PageModels {
 
             ProfileCommnd = new Command(NavigateCommandAsync);
 
-            DeleteNotebookCommand = new Command<Notebook>(DeleteNotebookCommandAction);
 
-            GetGlyph();
-
-        }
-
-
-        private void GetGlyph() {
-            Glyph = new FontImageSource() {
-                Glyph = IconFont.TrashCan,
-                FontFamily = "fa",
-                Size = 44
-            };
         }
 
         public virtual async void AppearAction() {
@@ -92,7 +80,7 @@ namespace DuoNotes.PageModels {
             }
         }
 
-        private async void DeleteNotebookCommandAction(Notebook obj) {
+        public async void DeleteNotebookCommandAction(Notebook obj) {
 
             App.FirebaseService.DeleteNotebookNotAsync(obj.Id, AppConstant.Notebooks);
 

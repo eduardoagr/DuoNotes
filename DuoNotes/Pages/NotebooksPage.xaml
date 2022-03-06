@@ -60,8 +60,14 @@
                                     BackgroundColor="{StaticResource DeleteItemColor}"
                                     Command="{Binding Source={RelativeSource AncestorType={x:Type vm:NotebooksPageModel}}, Path=DeleteNotebookCommand}}"
                                     CommandParameter="{Binding .}"
-                                    IconImageSource="{Binding Source={RelativeSource AncestorType={x:Type vm:NotebooksPageModel}}, Path=Glyph}"
-                                    Text="{translate:Translate Delete}" />
+                                    Text="{translate:Translate Delete}">
+                                    <SwipeItem.IconImageSource>
+                                        <FontImageSource
+                                            FontFamily="fa"
+                                            Glyph="{Static icon:IconFont.TrashCan}"
+                                            Size="30" />
+                                    </SwipeItem.IconImageSource>
+                                </SwipeItem>
                             </SwipeItems>
                         </SwipeView.LeftItems>
 

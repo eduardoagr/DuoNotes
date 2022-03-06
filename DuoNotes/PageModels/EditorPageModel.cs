@@ -27,8 +27,6 @@ namespace DuoNotes.PageModels {
         public override void AppearAction() {
 
             Note = Application.Current.Properties[AppConstant.SelectedNote] as Note;
-
-
         }
 
         private async void SaveAction() {
@@ -39,15 +37,15 @@ namespace DuoNotes.PageModels {
 
             var FilePath = Path.Combine(LocalFolder, $"{Note.Name}.rtf");
 
-            var FullPah = Path.GetFullPath(FilePath);
+            var FileName = Path.GetFileName(FilePath);
 
-            using (StreamWriter sw = new StreamWriter(FullPah)) {
+            using (StreamWriter sw = new StreamWriter(FilePath)) {
 
                 sw.WriteLine(HtmlText);
             }
 
-            await App.AzureService.UploadToAzureBlobStorage(FilePath, FullPah);
+            var Location = await App.AzureService.UploadToAzureBlobStorage(FilePath, FileName);
+            System.Console.WriteLine(Location);
         }
-
     }
 }

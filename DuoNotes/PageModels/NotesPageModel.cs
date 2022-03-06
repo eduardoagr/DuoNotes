@@ -61,6 +61,8 @@ namespace DuoNotes.PageModels {
 
         private async void DeleteNoteAction(Note obj) {
 
+            string ext = ".rtf";
+
             App.FirebaseService.DeleteNotebookNotAsync(obj.Id, AppConstant.Notes);
 
             FireBaseNotebookNotes = await App.FirebaseService.ReadAsync(AppConstant.Notes, Notebook.Id);

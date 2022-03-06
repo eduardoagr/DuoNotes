@@ -1,14 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage x:Class="DuoNotes.View.ProfilePage"
-             xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
-             xmlns:icon="clr-namespace:DuoNotes.Fonts"
-             xmlns:renders="clr-namespace:DuoNotes.Renders"
-             xmlns:translate="clr-namespace:DuoNotes.Utils"
-             xmlns:vm="clr-namespace:DuoNotes.PageModels"
-             Title="{translate:Translate UserProfile}"
-             BackgroundColor="{AppThemeBinding Dark={StaticResource BckgroundDarkColor},
+<ContentPage
+    x:Class="DuoNotes.View.ProfilePage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:community="http://xamarin.com/schemas/2020/toolkit"
+    xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+    xmlns:icon="clr-namespace:DuoNotes.Fonts"
+    xmlns:renders="clr-namespace:DuoNotes.Renders"
+    xmlns:translate="clr-namespace:DuoNotes.Utils"
+    xmlns:vm="clr-namespace:DuoNotes.PageModels"
+    Title="{translate:Translate UserProfile}"
+    BackgroundColor="{AppThemeBinding Dark={StaticResource BckgroundDarkColor},
                                       Light={StaticResource BackgroundLigthColor}}">
 
     <ContentPage.BindingContext>
@@ -18,55 +20,80 @@
     <ContentPage.ToolbarItems>
         <ToolbarItem Command="{x:Binding UpdateCommand}">
             <ToolbarItem.IconImageSource>
-                <FontImageSource FontFamily="ma"
-                                 Glyph="{x:Static icon:MaterialIcons.ContentSave}" />
+                <FontImageSource FontFamily="ma" Glyph="{x:Static icon:MaterialIcons.ContentSave}" />
             </ToolbarItem.IconImageSource>
         </ToolbarItem>
-
     </ContentPage.ToolbarItems>
+
+    <ContentPage.Resources>
+        <Style TargetType="Grid">
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Selected">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor" Value="{StaticResource PressedItems}" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+    </ContentPage.Resources>
 
     <Grid RowDefinitions="Auto,*">
 
-        <StackLayout Padding="10"
-                     Orientation="Horizontal">
+        <StackLayout Padding="10" Orientation="Horizontal">
 
-            <ffimageloadingsvg:SvgCachedImage HeightRequest="40"
-                                              Source="{Binding SelectedAvatar}"
-                                              WidthRequest="40"
-                                              LoadingPlaceholder="{Binding FireUser.PhotoUrl}"/>
+            <ffimageloadingsvg:SvgCachedImage
+                HeightRequest="40"
+                LoadingPlaceholder="{Binding FireUser.PhotoUrl}"
+                Source="{Binding SelectedAvatar}"
+                WidthRequest="40" />
 
-            <Entry FontAttributes="Bold"
-                   FontSize="Medium"
-                   HorizontalOptions="FillAndExpand"
-                   Placeholder="{Binding FireUser.DisplayName}"
-                   Text="{Binding DisplayName}" />
+            <Entry
+                FontAttributes="Bold"
+                FontSize="Medium"
+                HorizontalOptions="FillAndExpand"
+                Placeholder="{Binding FireUser.DisplayName}"
+                Text="{Binding DisplayName}" />
 
         </StackLayout>
 
-        <BoxView BackgroundColor="{AppThemeBinding Dark={StaticResource BackgroundLigthColor},
+        <BoxView
+            BackgroundColor="{AppThemeBinding Dark={StaticResource BackgroundLigthColor},
                                               Light={StaticResource BckgroundDarkColor}}"
-                 HeightRequest="1"
-                 VerticalOptions="EndAndExpand" />
+            HeightRequest="1"
+            VerticalOptions="EndAndExpand" />
 
-        <renders:CollectionViewRender Grid.Row="1"
-                                      Margin="20"
-                                      ItemsSource="{Binding Avatars}"
-                                      SelectedItem="{Binding SelectedAvatar}"
-                                      SelectionChangedCommand="{Binding SelectedAvatarCommand}"
-                                      SelectionMode="Single">
+        <renders:CollectionViewRender
+            Grid.Row="1"
+            Margin="20"
+            ItemsSource="{Binding Avatars}"
+            SelectedItem="{Binding SelectedAvatar}"
+            SelectionChangedCommand="{Binding SelectedAvatarCommand}"
+            SelectionMode="Single">
             <CollectionView.ItemsLayout>
-                <GridItemsLayout HorizontalItemSpacing="5"
-                                 Orientation="Vertical"
-                                 Span="2"
-                                 VerticalItemSpacing="5" />
+
+                <GridItemsLayout Orientation="Vertical" Span="4" />
+
             </CollectionView.ItemsLayout>
             <CollectionView.ItemTemplate>
+
                 <DataTemplate>
-                    <ffimageloadingsvg:SvgCachedImage Margin="5"
-                                                      HeightRequest="40"
-                                                      HorizontalOptions="Start"
-                                                      Source="{Binding .}"
-                                                      WidthRequest="40" />
+                    <Grid
+                        Padding="10"
+                        HorizontalOptions="CenterAndExpand"
+                        VerticalOptions="CenterAndExpand">
+                        <ffimageloadingsvg:SvgCachedImage
+                            Margin="5"
+                            HeightRequest="40"
+                            HorizontalOptions="Center"
+                            Source="{Binding .}"
+                            WidthRequest="40" />
+                    </Grid>
+
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </renders:CollectionViewRender>

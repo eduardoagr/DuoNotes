@@ -19,19 +19,30 @@
     </ContentPage.Behaviors>
 
     <NavigationPage.TitleView>
-        <StackLayout
-            Padding="10"
-            FlowDirection="RightToLeft"
-            Orientation="Horizontal">
+        <StackLayout HorizontalOptions="FillAndExpand" Orientation="Horizontal">
             <Label
-                community:TouchEffect.Command="{Binding ShareCommand}"
-                Style="{StaticResource ToolbarItemsStyle}"
-                Text="{Static icon:MaterialIcons.ShareVariant}" />
-
-            <Label
+                FontSize="Large"
+                Text="{Binding Note.Name}"
+                TextColor="{StaticResource BackgroundLigthColor}"
+                VerticalTextAlignment="Center" />
+            <Button
                 community:TouchEffect.Command="{Binding SaveCommand}"
-                Style="{StaticResource ToolbarItemsStyle}"
-                Text="{Static icon:MaterialIcons.ContentSave}" />
+                community:TouchEffect.PressedBackgroundColor="{StaticResource ToolbarPresedItems}"
+                BackgroundColor="{StaticResource Trnsparent}"
+                HorizontalOptions="EndAndExpand">
+                <Button.ImageSource>
+                    <FontImageSource FontFamily="ma" Glyph="{Static icon:MaterialIcons.ShareVariant}" />
+                </Button.ImageSource>
+            </Button>
+
+            <Button
+                community:TouchEffect.Command="{Binding SaveCommand}"
+                community:TouchEffect.PressedBackgroundColor="{StaticResource ToolbarPresedItems}"
+                BackgroundColor="{StaticResource Trnsparent}">
+                <Button.ImageSource>
+                    <FontImageSource FontFamily="ma" Glyph="{Static icon:MaterialIcons.ContentSave}" />
+                </Button.ImageSource>
+            </Button>
 
         </StackLayout>
     </NavigationPage.TitleView>

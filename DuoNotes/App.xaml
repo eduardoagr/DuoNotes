@@ -19,6 +19,8 @@
             <Color x:Key="BckgroundDarkColor">#000</Color>
             <Color x:Key="DeleteItemColor">#FF981838</Color>
             <Color x:Key="PressedItems">#2196F3</Color>
+            <Color x:Key="Trnsparent">Transparent</Color>
+            <Color x:Key="ToolbarPresedItems"></Color>
 
             <!--  styles  -->
             <Style x:Key="EntrySyle" TargetType="Entry">
@@ -141,17 +143,13 @@
             </Style>
 
             <Style TargetType="BoxView">
-                <Setter Property="HeightRequest" Value="1" />
-                <Setter Property="BackgroundColor" Value="{AppThemeBinding Dark={StaticResource BackgroundLigthColor}, Light={StaticResource DeleteItemColor}}" />
+                <Setter Property="HeightRequest"
+                        Value="1" />
+                <Setter Property="BackgroundColor"
+                        Value="{AppThemeBinding Dark={StaticResource BackgroundLigthColor}, Light={StaticResource DeleteItemColor}}" />
             </Style>
 
-            <Style x:Key="ToolbarItemsStyle" TargetType="Label">
-                <Setter Property="TextColor" Value="White" />
-                <Setter Property="VerticalTextAlignment" Value="Center" />
-                <Setter Property="FontSize" Value="25" />
-                <Setter Property="Padding" Value="10" />
-                <Setter Property="FontFamily" Value="ma" />
-            </Style>
+
 
 
         </ResourceDictionary>

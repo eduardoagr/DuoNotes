@@ -34,12 +34,16 @@
                     <SwipeView>
                         <SwipeView.LeftItems>
                             <SwipeItems Mode="Execute">
-                                <SwipeItem
-                                    BackgroundColor="{StaticResource DeleteItemColor}"
-                                    Command="{Binding Source={RelativeSource AncestorType={x:Type vm:NotesPageModel}}, Path=DeleteNoteCommand}}"
-                                    CommandParameter="{Binding .}"
-                                    IconImageSource="{Binding Source={RelativeSource AncestorType={x:Type vm:NotebooksPageModel}}, Path=Glyph}"
-                                    Text="{translate:Translate Delete}" />
+                                <SwipeItem BackgroundColor="{StaticResource DeleteItemColor}"
+                                           Command="{Binding Source={RelativeSource AncestorType={x:Type vm:NotebooksPageModel}}, Path=DeleteNotebookCommand}}"
+                                           CommandParameter="{Binding .}"
+                                           Text="{translate:Translate Delete}">
+                                    <SwipeItem.IconImageSource>
+                                        <FontImageSource FontFamily="fa"
+                                                         Glyph="{Static icon:IconFont.TrashCan}"
+                                                         Size="30" />
+                                    </SwipeItem.IconImageSource>
+                                </SwipeItem>
                             </SwipeItems>
                         </SwipeView.LeftItems>
 
