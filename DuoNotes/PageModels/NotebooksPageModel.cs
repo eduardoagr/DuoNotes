@@ -48,7 +48,7 @@ namespace DuoNotes.PageModels {
 
             ProfileCommnd = new Command(NavigateCommandAsync);
 
-
+            DeleteNotebookCommand = new Command<Notebook>(DeleteNotebookCommandAction);
         }
 
         public virtual async void AppearAction() {
@@ -82,14 +82,19 @@ namespace DuoNotes.PageModels {
 
         public async void DeleteNotebookCommandAction(Notebook obj) {
 
+            string ext = ".rtf";
+
             App.FirebaseService.DeleteNotebookNotAsync(obj.Id, AppConstant.Notebooks);
 
             var Notes = await App.FirebaseService.ReadAsync(AppConstant.Notes, obj.Id);
             foreach (var item in Notes) {
-                App.FirebaseService.DeleteNotebookNotAsync(((Note)item).Id, AppConstant.Notes);
+                var note = item as Note;
+                App.FirebaseService.DeleteNotebookNotAsync(note.Id, AppConstant.Notes);
+                App.AzureService.DeleteFileFromBlobStorage($"{note.Name}{ext}");
+
             }
 
-            await App.FirebaseService.ReadAsync(AppConstant.Notebooks);
+            FireBaseNotebookNotes = await App.FirebaseService.ReadAsync(AppConstant.Notebooks);
         }
     }
 }

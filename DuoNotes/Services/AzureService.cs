@@ -1,6 +1,9 @@
-﻿using Azure.Storage.Blobs;
+﻿using Acr.UserDialogs;
+
+using Azure.Storage.Blobs;
 
 using DuoNotes.Constants;
+using DuoNotes.Resources;
 
 using System.Threading.Tasks;
 
@@ -18,8 +21,10 @@ namespace DuoNotes.Services {
 
         public async Task<string> UploadToAzureBlobStorage(string filePath, string fileName) {
 
+            UserDialogs.Instance.ShowLoading(AppResources.Loading);
             var blob = BlobContainerClient.GetBlobClient(fileName);
             await blob.UploadAsync(filePath, true);
+            UserDialogs.Instance.HideLoading();
 
            return $"https://notesbucket.blob.core.windows.net/notes/{fileName}";
 
@@ -28,7 +33,7 @@ namespace DuoNotes.Services {
         public async void DeleteFileFromBlobStorage(string fileName) {
 
             var blob = BlobContainerClient.GetBlobClient(fileName);
-            await blob.DeleteAsync(Azure.Storage.Blobs.Models.DeleteSnapshotsOption.IncludeSnapshots);
+            await blob.DeleteIfExistsAsync(Azure.Storage.Blobs.Models.DeleteSnapshotsOption.IncludeSnapshots);
         }
     }
 }

@@ -39,13 +39,14 @@ namespace DuoNotes.PageModels {
 
             var FileName = Path.GetFileName(FilePath);
 
-            using (StreamWriter sw = new StreamWriter(FilePath)) {
+            using (StreamWriter sw = new StreamWriter(File.Create(FilePath))) {
 
                 sw.WriteLine(HtmlText);
             }
 
             var Location = await App.AzureService.UploadToAzureBlobStorage(FilePath, FileName);
             System.Console.WriteLine(Location);
+            File.Delete(FilePath);
         }
     }
 }

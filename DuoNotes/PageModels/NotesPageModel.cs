@@ -65,6 +65,8 @@ namespace DuoNotes.PageModels {
 
             App.FirebaseService.DeleteNotebookNotAsync(obj.Id, AppConstant.Notes);
 
+            App.AzureService.DeleteFileFromBlobStorage($"{obj.Name}{ext}");
+
             FireBaseNotebookNotes = await App.FirebaseService.ReadAsync(AppConstant.Notes, Notebook.Id);
         }
 

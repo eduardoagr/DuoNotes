@@ -20,7 +20,7 @@
             <Color x:Key="DeleteItemColor">#FF981838</Color>
             <Color x:Key="PressedItems">#2196F3</Color>
             <Color x:Key="Trnsparent">Transparent</Color>
-            <Color x:Key="ToolbarPresedItems"></Color>
+            <Color x:Key="ToolbarPresedItems">#266EA8</Color>
 
             <!--  styles  -->
             <Style x:Key="EntrySyle" TargetType="Entry">
