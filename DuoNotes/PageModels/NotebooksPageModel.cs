@@ -86,7 +86,8 @@ namespace DuoNotes.PageModels {
 
             App.FirebaseService.DeleteNotebookNotAsync(obj.Id, AppConstant.Notebooks);
 
-            var Notes = await App.FirebaseService.ReadAsync(AppConstant.Notes, obj.Id);
+            //We want to read, but we do not want to update
+            var Notes = await App.FirebaseService.ReadWithOutUpdateAsync(AppConstant.Notes, obj.Id);
             foreach (var item in Notes) {
                 var note = item as Note;
                 App.FirebaseService.DeleteNotebookNotAsync(note.Id, AppConstant.Notes);

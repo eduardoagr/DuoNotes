@@ -18,6 +18,8 @@ namespace DuoNotes.PageModels {
 
         public string HtmlText { get; set; }
 
+        public string text { get; set; }
+
         public EditorPageModel() {
 
 
@@ -33,7 +35,7 @@ namespace DuoNotes.PageModels {
 
             //Upload to Azure, with a unique name, and get the location
 
-            var LocalFolder = FileSystem.AppDataDirectory;
+            var LocalFolder = FileSystem.CacheDirectory;
 
             var FilePath = Path.Combine(LocalFolder, $"{Note.Name}.rtf");
 
@@ -41,7 +43,7 @@ namespace DuoNotes.PageModels {
 
             using (StreamWriter sw = new StreamWriter(File.Create(FilePath))) {
 
-                sw.WriteLine(HtmlText);
+                sw.WriteLine(text);
             }
 
             var Location = await App.AzureService.UploadToAzureBlobStorage(FilePath, FileName);

@@ -85,7 +85,7 @@ namespace DuoNotes.Services {
             var RefreshedContent = await AuthProvider.RefreshAuthAsync(savedfirebaseauth);
             Preferences.Set(AppConstant.FirebaseRefreshToken, JsonConvert.SerializeObject(RefreshedContent));
 
-            if (string.IsNullOrEmpty(savedfirebaseauth.User.PhotoUrl) ||
+            if (string.IsNullOrEmpty(savedfirebaseauth.User.PhotoUrl) &&
                 string.IsNullOrEmpty(savedfirebaseauth.User.DisplayName)) {
 
                 savedfirebaseauth.User.PhotoUrl = "msn.svg";
@@ -123,7 +123,7 @@ namespace DuoNotes.Services {
                 .PostAsync(JsonConvert.SerializeObject(element));
         }
 
-
+        // Read and update our observableCollection
         public async Task<ObservableCollection<NotebookNote>> ReadAsync(string ChildName, string NotebookId = "") {
 
             var list = await firebaseClient.Child(ChildName)
@@ -149,9 +149,31 @@ namespace DuoNotes.Services {
 
             return FireBaseNotebooks;
         }
+         
+        /* Read without modifying our ObservableCollection.
+        /  This one is useful, because when deleting notes withing a notebook, we want to get the notes, without our collection knowing 
+        */
+        public async Task<List<NotebookNote>> ReadWithOutUpdateAsync(string ChildName, string NotebookId = "") {
+            var list = await firebaseClient.Child(ChildName)
+                 .OnceAsync<NotebookNote>();
+            var collection = new List<NotebookNote>();
+            foreach (var item in list) {
+                NotebookNote notebookNote = null;
+                notebookNote = Convert(ChildName, item);
+                collection.Add(notebookNote);
+            }
+            if (ChildName.Equals(AppConstant.Notes)) {
+                collection = collection.Where(n => ((Note)n).NotebookId == NotebookId).ToList();
+            }
+            return collection;
+        }
+        
+        public async void UpdateNotebookNoten(string Id, string FileLocation) {
 
-        public async void UpdateNotebookNoten(string Id) {
-            //TODO: Update the Note file location
+            await firebaseClient
+                .Child(AppConstant.Notes)
+                .Child(Id)
+                .PatchAsync(new Note() { FileLocation = FileLocation });
         }
 
         public async void DeleteNotebookNotAsync(string Id, string ChildName) {
@@ -162,7 +184,7 @@ namespace DuoNotes.Services {
                  .DeleteAsync();
         }
 
-        //This method will convert whatever we passed, to a specific object, based on the childname
+        //This method will convert whatever we passed, to a specific object, based on the child-name
         private static NotebookNote Convert(string ChildName, FirebaseObject<NotebookNote> item) {
             NotebookNote notebookNote;
             if (ChildName.Equals(AppConstant.Notebooks)) {

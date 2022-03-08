@@ -35,7 +35,7 @@ namespace DuoNotes.PageModels {
         }
 
         private async void SaveProfile() {
-            if (!string.IsNullOrEmpty(SelectedAvatar) || string.IsNullOrEmpty(DisplayName)) {
+            if (string.IsNullOrEmpty(SelectedAvatar) || string.IsNullOrEmpty(DisplayName)) {
                 FireUser = await App.FirebaseService.UpdateUserDataAsync(SelectedAvatar, DisplayName);
             } else {
                 GetUserData();
