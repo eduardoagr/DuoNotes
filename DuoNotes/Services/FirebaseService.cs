@@ -85,10 +85,9 @@ namespace DuoNotes.Services {
             var RefreshedContent = await AuthProvider.RefreshAuthAsync(savedfirebaseauth);
             Preferences.Set(AppConstant.FirebaseRefreshToken, JsonConvert.SerializeObject(RefreshedContent));
 
-            if (string.IsNullOrEmpty(savedfirebaseauth.User.PhotoUrl) &&
-                string.IsNullOrEmpty(savedfirebaseauth.User.DisplayName)) {
-
+            if (string.IsNullOrEmpty(savedfirebaseauth.User.DisplayName)) {
                 savedfirebaseauth.User.PhotoUrl = "msn.svg";
+            } if (string.IsNullOrEmpty(savedfirebaseauth.User.DisplayName)) {
                 savedfirebaseauth.User.DisplayName = AppResources.User;
             }
 
@@ -149,13 +148,15 @@ namespace DuoNotes.Services {
 
             return FireBaseNotebooks;
         }
-         
+
         /* Read without modifying our ObservableCollection.
         /  This one is useful, because when deleting notes withing a notebook, we want to get the notes, without our collection knowing 
         */
         public async Task<List<NotebookNote>> ReadWithOutUpdateAsync(string ChildName, string NotebookId = "") {
+          
             var list = await firebaseClient.Child(ChildName)
                  .OnceAsync<NotebookNote>();
+           
             var collection = new List<NotebookNote>();
             foreach (var item in list) {
                 NotebookNote notebookNote = null;
@@ -167,13 +168,25 @@ namespace DuoNotes.Services {
             }
             return collection;
         }
-        
-        public async void UpdateNotebookNoten(string Id, string FileLocation) {
+
+        public async Task<NotebookNote> ReadOlyOnceAsync(string NoteId) {
+
+            var objs = await firebaseClient.Child(AppConstant.Notes).Child(NoteId)
+                 .OnceAsync<NotebookNote>();
+
+            var note = objs.ElementAt(0);
+
+            return note;
+        }
+
+        public async void UpdateNotebookNote(string Id, string FileLocation) {
 
             await firebaseClient
                 .Child(AppConstant.Notes)
                 .Child(Id)
-                .PatchAsync(new Note() { FileLocation = FileLocation });
+                .PatchAsync($"{{ \"FileLocation\" : \"{FileLocation}\" }}");;
+
+
         }
 
         public async void DeleteNotebookNotAsync(string Id, string ChildName) {

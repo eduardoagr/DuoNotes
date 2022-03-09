@@ -26,7 +26,7 @@ namespace DuoNotes.Services {
             await blob.UploadAsync(filePath, true);
             UserDialogs.Instance.HideLoading();
 
-           return $"https://notesbucket.blob.core.windows.net/notes/{fileName}";
+            return $"https://notesbucket.blob.core.windows.net/notes/{fileName}";
 
         }
 

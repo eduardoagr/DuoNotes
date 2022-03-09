@@ -70,7 +70,7 @@ namespace DuoNotes.PageModels {
             FireBaseNotebookNotes = await App.FirebaseService.ReadAsync(AppConstant.Notes, Notebook.Id);
         }
 
-        private void PageDisappearAction() {
+        public virtual void PageDisappearAction() {
             FireBaseNotebookNotes.Clear();
         }
     }

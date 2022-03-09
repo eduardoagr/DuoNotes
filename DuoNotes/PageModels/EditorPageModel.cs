@@ -18,37 +18,43 @@ namespace DuoNotes.PageModels {
 
         public string HtmlText { get; set; }
 
-        public string text { get; set; }
-
         public EditorPageModel() {
-
-
             SaveCommand = new Command(SaveAction);
         }
 
-        public override void AppearAction() {
+        public override async void AppearAction() {
 
             Note = Application.Current.Properties[AppConstant.SelectedNote] as Note;
+                
+            if (string.IsNullOrEmpty(Note.FileLocation)) {
+                await App.Current.MainPage.DisplayAlert("error", "Nothing", "OK");
+            }
         }
 
         private async void SaveAction() {
 
-            //Upload to Azure, with a unique name, and get the location
+            var AppDirctory = FileSystem.CacheDirectory;
 
-            var LocalFolder = FileSystem.CacheDirectory;
+            var filePath = Path.Combine(AppDirctory, $"{Note.Name}.html");
 
-            var FilePath = Path.Combine(LocalFolder, $"{Note.Name}.rtf");
+            var FileName = Path.GetFileName(filePath);
 
-            var FileName = Path.GetFileName(FilePath);
+            using (var sw = new StreamWriter(File.Create(filePath))) {
 
-            using (StreamWriter sw = new StreamWriter(File.Create(FilePath))) {
-
-                sw.WriteLine(text);
+                sw.WriteLine(HtmlText);
             }
 
-            var Location = await App.AzureService.UploadToAzureBlobStorage(FilePath, FileName);
-            System.Console.WriteLine(Location);
-            File.Delete(FilePath);
+            var location = await App.AzureService.UploadToAzureBlobStorage(filePath, FileName);
+
+            App.FirebaseService.UpdateNotebookNote(Note.Id, location);
+
+            File.Delete(filePath);
+
+        }
+
+        public override async void PageDisappearAction() {
+
         }
     }
 }
+    

@@ -1,6 +1,5 @@
 ﻿
 using DuoNotes.Constants;
-using DuoNotes.Fonts;
 using DuoNotes.Model;
 using DuoNotes.View;
 using DuoNotes.View.PopUps;

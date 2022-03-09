@@ -143,10 +143,8 @@
             </Style>
 
             <Style TargetType="BoxView">
-                <Setter Property="HeightRequest"
-                        Value="1" />
-                <Setter Property="BackgroundColor"
-                        Value="{AppThemeBinding Dark={StaticResource BackgroundLigthColor}, Light={StaticResource DeleteItemColor}}" />
+                <Setter Property="HeightRequest" Value="1" />
+                <Setter Property="BackgroundColor" Value="{AppThemeBinding Dark={StaticResource BackgroundLigthColor}, Light={StaticResource DeleteItemColor}}" />
             </Style>
 
 
