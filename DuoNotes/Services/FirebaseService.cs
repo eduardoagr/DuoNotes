@@ -176,7 +176,7 @@ namespace DuoNotes.Services {
 
             var note = objs.ElementAt(0);
 
-            return note;
+            return note.Object;
         }
 
         public async void UpdateNotebookNote(string Id, string FileLocation) {
