@@ -177,7 +177,7 @@ namespace DuoNotes.Services {
             await firebaseClient
                 .Child(AppConstant.Notes)
                 .Child(Id)
-                .PatchAsync($"{{ \"FileLocation\" : \"{FileLocation}\" }}");;
+                .PatchAsync($"{{ \"FileLocation\" : \"{FileLocation}\" }}");
 
 
         }
