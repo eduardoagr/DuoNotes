@@ -54,7 +54,7 @@ namespace DuoNotes.PageModels {
 
         public override async void PageDisappearAction() {
 
-
+            await App.FirebaseService.ReadOlyOnceAsync(Note.Id, AppConstant.Notes);
         }
     }
 }

@@ -14,7 +14,6 @@ using Newtonsoft.Json;
 
 using Rg.Plugins.Popup.Services;
 
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -173,15 +172,6 @@ namespace DuoNotes.Services {
             return collection;
         }
 
-        public async void ReadOnceAsync(string NoteId, string ChildName) {
-
-            var dinos = await firebaseClient.Child(ChildName).
-                Child(NoteId).OnceAsync<NotebookNote>();
-
-            foreach (var dino in dinos) {
-                Console.WriteLine($"{dino.Key}.");
-            }
-        }
         public async void UpdateNote(string Id, string FileLocation) {
 
             await firebaseClient
