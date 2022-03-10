@@ -46,7 +46,7 @@ namespace DuoNotes.PageModels {
 
             var location = await App.AzureService.UploadToAzureBlobStorage(filePath, FileName);
 
-            App.FirebaseService.UpdateNotebookNote(Note.Id, location);
+            App.FirebaseService.UpdateNote(Note.Id, location);
 
             File.Delete(filePath);
 
@@ -54,7 +54,7 @@ namespace DuoNotes.PageModels {
 
         public override async void PageDisappearAction() {
 
-            await App.FirebaseService.ReadOlyOnceAsync(Note.Id);
+            await App.FirebaseService.ReadOlyOnceAsync(Note.Id, AppConstant.Notes);
         }
     }
 }

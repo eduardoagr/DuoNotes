@@ -64,7 +64,7 @@ namespace DuoNotes.PageModels {
             await obj.ScaleTo(0.8, 50, Easing.Linear);
             //Scale to normal
             await obj.ScaleTo(1, 50, Easing.Linear);
-            await PopupNavigation.Instance.PushAsync(new NotebookPopUp());
+            await PopupNavigation.Instance.PushAsync(new NotebookPopUpPage());
 
         }
 

@@ -101,6 +101,8 @@ namespace DuoNotes.Services {
             var savedfirebaseauth = JsonConvert.DeserializeObject<FirebaseAuth>(Preferences.Get(AppConstant.FirebaseRefreshToken,
                 string.Empty));
 
+            UserDialogs.Instance.ShowLoading(AppResources.Loading);
+
             var newUser = await AuthProvider.UpdateProfileAsync(savedfirebaseauth.FirebaseToken, DisplyName,
                 PhotoUri);
 
@@ -110,6 +112,7 @@ namespace DuoNotes.Services {
             var RefreshedContent = await AuthProvider.RefreshAuthAsync(savedfirebaseauth);
             Preferences.Set(AppConstant.FirebaseRefreshToken, JsonConvert.SerializeObject(RefreshedContent));
 
+            UserDialogs.Instance.HideLoading();
             return newUser.User;
         }
 
@@ -169,17 +172,7 @@ namespace DuoNotes.Services {
             return collection;
         }
 
-        public async Task<NotebookNote> ReadOlyOnceAsync(string NoteId) {
-
-            var objs = await firebaseClient.Child(AppConstant.Notes).Child(NoteId)
-                 .OnceAsync<NotebookNote>();
-
-            var note = objs.ElementAt(0);
-
-            return note.Object;
-        }
-
-        public async void UpdateNotebookNote(string Id, string FileLocation) {
+        public async void UpdateNote(string Id, string FileLocation) {
 
             await firebaseClient
                 .Child(AppConstant.Notes)
