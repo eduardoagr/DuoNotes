@@ -123,17 +123,11 @@
   <data name="CloseSession" xml:space="preserve">
     <value>Cerrar sesión</value>
   </data>
-  <data name="Confirm password" xml:space="preserve">
-    <value>Confirmar contraseña</value>
-  </data>
-  <data name="ContinueEditing" xml:space="preserve">
-    <value>seguir editando</value>
-  </data>
   <data name="Delete" xml:space="preserve">
     <value>Borrar</value>
   </data>
   <data name="EditorError" xml:space="preserve">
-    <value>La nota está vacía, ¿quieres volver atrás o seguir editando?</value>
+    <value>La nota está vacía</value>
   </data>
   <data name="EditorPlaceholder" xml:space="preserve">
     <value>Escribe algo</value>
@@ -149,6 +143,9 @@
   </data>
   <data name="EMAIL_NOT_FOUND" xml:space="preserve">
     <value>Email no encontrado</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Error</value>
   </data>
   <data name="GoBack" xml:space="preserve">
     <value>Volver atrás</value>

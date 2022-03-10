@@ -136,7 +136,7 @@
     <value>Delete</value>
   </data>
   <data name="EditorError" xml:space="preserve">
-    <value>The note is empty, do yo want to go back, or continue editing?</value>
+    <value>The note is empty</value>
   </data>
   <data name="EditorPlaceholder" xml:space="preserve">
     <value>Type something</value>
@@ -152,6 +152,9 @@
   </data>
   <data name="EMAIL_NOT_FOUND" xml:space="preserve">
     <value>Email not found</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Error</value>
   </data>
   <data name="GoBack" xml:space="preserve">
     <value>Go Back</value>

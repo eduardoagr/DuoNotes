@@ -115,7 +115,7 @@ namespace DuoNotes.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The note is empty, do yo want to go back, or continue editing?.
+        ///   Looks up a localized string similar to The note is empty.
         /// </summary>
         internal static string EditorError {
             get {
@@ -165,6 +165,15 @@ namespace DuoNotes.Resources {
         internal static string EMAIL_NOT_FOUND {
             get {
                 return ResourceManager.GetString("EMAIL_NOT_FOUND", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error.
+        /// </summary>
+        internal static string Error {
+            get {
+                return ResourceManager.GetString("Error", resourceCulture);
             }
         }
         

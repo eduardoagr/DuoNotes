@@ -31,24 +31,16 @@ namespace DuoNotes.PageModels {
 
             var NewNote = await App.FirebaseService.ReadByIdAsync(AppConstant.Notes, Note.Id);
 
-            if (string.IsNullOrEmpty(NewNote.FileLocation)) {
-                await App.Current.MainPage.DisplayAlert("error", "Nothing", "OK");
+            if (!string.IsNullOrEmpty(NewNote.FileLocation)) {
+                var ext = ".html";
+                HtmlText = await App.AzureService.GetBlobStorage($"{NewNote.Name}{ext}");
             }
         }
 
         private async void SaveAction() {
 
-            if (HtmlText == "<p><br></p>" || string.IsNullOrEmpty(HtmlText)) {
+            if (HtmlText != "<p><br></p>" || !string.IsNullOrEmpty(HtmlText)) {
 
-                string action = await Application.Current.MainPage.DisplayActionSheet
-                    (AppResources.EditorError, AppResources.Cancel,
-                    null, AppResources.ContinueEditing, AppResources.GoBack);
-
-                if (action == AppResources.GoBack) {
-                    await Application.Current.MainPage.Navigation.PopAsync();
-                }
-
-            } else {
                 var AppDirctory = FileSystem.CacheDirectory;
 
                 var filePath = Path.Combine(AppDirctory, $"{Note.Name}.html");
@@ -65,6 +57,8 @@ namespace DuoNotes.PageModels {
                 App.FirebaseService.UpdateNoteFileLocationAsync(Note.Id, location);
 
                 File.Delete(filePath);
+            } else {
+                await App.Current.MainPage.DisplayAlert(AppResources.Error, AppResources.EditorError, "OK");
             }
         }
     }

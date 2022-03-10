@@ -1,10 +1,15 @@
 ﻿using Acr.UserDialogs;
 
 using Azure.Storage.Blobs;
+using Azure.Storage.Blobs.Models;
+using Azure.Storage.Blobs.Specialized;
 
 using DuoNotes.Constants;
 using DuoNotes.Resources;
 
+using System;
+using System.ComponentModel;
+using System.IO;
 using System.Threading.Tasks;
 
 namespace DuoNotes.Services {
@@ -33,7 +38,22 @@ namespace DuoNotes.Services {
         public async void DeleteFileFromBlobStorage(string fileName) {
 
             var blob = BlobContainerClient.GetBlobClient(fileName);
-            await blob.DeleteIfExistsAsync(Azure.Storage.Blobs.Models.DeleteSnapshotsOption.IncludeSnapshots);
+            await blob.DeleteIfExistsAsync(DeleteSnapshotsOption.IncludeSnapshots);
+        }
+
+        public async Task<string> GetBlobStorage(string FileName) {
+
+            var blob = BlobContainerClient.GetBlobClient(FileName);
+            BlobDownloadInfo download = blob.Download();
+            var content = download.Content;
+            string text = string.Empty;
+            using (var streamReader = new StreamReader(content)) {
+                while (!streamReader.EndOfStream) {
+                   text = await streamReader.ReadLineAsync();
+                }
+            }
+
+            return text;
         }
     }
 }
