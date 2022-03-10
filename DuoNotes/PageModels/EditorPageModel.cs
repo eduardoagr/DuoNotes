@@ -19,6 +19,7 @@ namespace DuoNotes.PageModels {
         public string HtmlText { get; set; }
 
         public EditorPageModel() {
+
             SaveCommand = new Command(SaveAction);
         }
 
@@ -26,10 +27,9 @@ namespace DuoNotes.PageModels {
 
             Note = Application.Current.Properties[AppConstant.SelectedNote] as Note;
 
-            await App.FirebaseService.ReadByIdAsync(AppConstant.Notes, Note.Id);
+            var NewNote = await App.FirebaseService.ReadByIdAsync(AppConstant.Notes, Note.Id);
 
-
-            if (string.IsNullOrEmpty(Note.FileLocation)) {
+            if (string.IsNullOrEmpty(NewNote.FileLocation)) {
                 await App.Current.MainPage.DisplayAlert("error", "Nothing", "OK");
             }
         }
@@ -49,7 +49,7 @@ namespace DuoNotes.PageModels {
 
             var location = await App.AzureService.UploadToAzureBlobStorage(filePath, FileName);
 
-            App.FirebaseService.UpdateNote(Note.Id, location);
+            App.FirebaseService.UpdateNoteFileLocationAsync(Note.Id, location);
 
             File.Delete(filePath);
 
@@ -61,4 +61,3 @@ namespace DuoNotes.PageModels {
         }
     }
 }
-    

@@ -14,6 +14,7 @@ using Newtonsoft.Json;
 
 using Rg.Plugins.Popup.Services;
 
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -87,7 +88,8 @@ namespace DuoNotes.Services {
 
             if (string.IsNullOrEmpty(savedfirebaseauth.User.DisplayName)) {
                 savedfirebaseauth.User.PhotoUrl = "msn.svg";
-            } if (string.IsNullOrEmpty(savedfirebaseauth.User.DisplayName)) {
+            }
+            if (string.IsNullOrEmpty(savedfirebaseauth.User.DisplayName)) {
                 savedfirebaseauth.User.DisplayName = AppResources.User;
             }
 
@@ -156,10 +158,10 @@ namespace DuoNotes.Services {
         /  This one is useful, because when deleting notes withing a notebook, we want to get the notes, without our collection knowing 
         */
         public async Task<List<NotebookNote>> ReadWithOutUpdateAsync(string ChildName, string NotebookId = "") {
-          
+
             var list = await firebaseClient.Child(ChildName)
                  .OnceAsync<NotebookNote>();
-           
+
             var collection = new List<NotebookNote>();
             foreach (var item in list) {
                 NotebookNote notebookNote = null;
@@ -172,21 +174,32 @@ namespace DuoNotes.Services {
             return collection;
         }
 
-        public async Task<NotebookNote> ReadByIdAsync(string ChildName, string Id) {
-            
-           return (NotebookNote)await firebaseClient
-              .Child(ChildName)
-              .Child(Id)
-              .OnceAsync<NotebookNote>();
+        public async Task<Note> ReadByIdAsync(string ChildName, string Id) {
+
+            var Notes = await firebaseClient
+                                   .Child(ChildName)
+                                   .Child(Id)
+                                   .OnceAsync<object>();
+
+            var items = Notes.ToList();
+
+            var NotebookNote = new Note() 
+            { 
+                CreatedDate = items[0].Object.ToString(),
+                FileLocation = items[1].Object.ToString(),
+                Name = items[2].Object.ToString(),
+                NotebookId = items[3].Object.ToString()
+            };
+
+            return NotebookNote;
         }
-        public async void UpdateNote(string Id, string FileLocation) {
+
+        public async void UpdateNoteFileLocationAsync(string Id, string FileLocation) {
 
             await firebaseClient
                 .Child(AppConstant.Notes)
                 .Child(Id)
                 .PatchAsync($"{{ \"FileLocation\" : \"{FileLocation}\" }}");
-
-
         }
 
         public async void DeleteNotebookNotAsync(string Id, string ChildName) {

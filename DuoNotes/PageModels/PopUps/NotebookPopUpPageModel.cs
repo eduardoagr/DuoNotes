@@ -72,9 +72,9 @@ namespace DuoNotes.PageModels.PopUps {
 
                 Notebook = new Notebook {
                     CreatedDate = DateTime.Now.ToString("D", new CultureInfo(AppConstant.languages)),
-                    UserID = Preferences.Get(AppConstant.UserID, string.Empty),
                     Name = Notebook.Name,
                     Color = Notebook.Color,
+                    UserID = Preferences.Get(AppConstant.UserID, string.Empty),
                 };
             }
 

@@ -44,10 +44,10 @@ namespace DuoNotes.PageModels.PopUps {
 
                 Note = new Note() {
                     CreatedDate = DateTime.Now.ToString("D", new CultureInfo(AppConstant.languages)),
-                    NotebookId = NotebookId,
                     Name = Note.Name,
+                    FileLocation = string.Empty,
                     Id = Note.Id,
-                    FileLocation = string.Empty
+                    NotebookId = NotebookId,  
                 };
             }
 
