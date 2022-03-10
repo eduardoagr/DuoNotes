@@ -117,17 +117,26 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
   <data name="CloseSession" xml:space="preserve">
     <value>Log out</value>
   </data>
   <data name="Confirm password" xml:space="preserve">
     <value>Confirm password</value>
   </data>
+  <data name="ContinueEditing" xml:space="preserve">
+    <value>Continue editting</value>
+  </data>
   <data name="CreateNotebook" xml:space="preserve">
     <value>Ceate notebook</value>
   </data>
   <data name="Delete" xml:space="preserve">
     <value>Delete</value>
+  </data>
+  <data name="EditorError" xml:space="preserve">
+    <value>The note is empty, do yo want to go back, or continue editing?</value>
   </data>
   <data name="EditorPlaceholder" xml:space="preserve">
     <value>Type something</value>
@@ -143,6 +152,9 @@
   </data>
   <data name="EMAIL_NOT_FOUND" xml:space="preserve">
     <value>Email not found</value>
+  </data>
+  <data name="GoBack" xml:space="preserve">
+    <value>Go Back</value>
   </data>
   <data name="HaveAccount" xml:space="preserve">
     <value>Do not have an account? register here</value>

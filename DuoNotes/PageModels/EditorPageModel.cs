@@ -1,6 +1,8 @@
 ﻿using DuoNotes.Constants;
 using DuoNotes.Model;
+using DuoNotes.Resources;
 
+using System.Diagnostics;
 using System.IO;
 
 using Xamarin.Essentials;
@@ -36,23 +38,34 @@ namespace DuoNotes.PageModels {
 
         private async void SaveAction() {
 
-            var AppDirctory = FileSystem.CacheDirectory;
+            if (HtmlText == "<p><br></p>" || string.IsNullOrEmpty(HtmlText)) {
 
-            var filePath = Path.Combine(AppDirctory, $"{Note.Name}.html");
+                string action = await Application.Current.MainPage.DisplayActionSheet
+                    (AppResources.EditorError, AppResources.Cancel,
+                    null, AppResources.ContinueEditing, AppResources.GoBack);
 
-            var FileName = Path.GetFileName(filePath);
+                if (action == AppResources.GoBack) {
+                    await Application.Current.MainPage.Navigation.PopAsync();
+                }
 
-            using (var sw = new StreamWriter(File.Create(filePath))) {
+            } else {
+                var AppDirctory = FileSystem.CacheDirectory;
 
-                sw.WriteLine(HtmlText);
+                var filePath = Path.Combine(AppDirctory, $"{Note.Name}.html");
+
+                var FileName = Path.GetFileName(filePath);
+
+                using (var sw = new StreamWriter(File.Create(filePath))) {
+
+                    sw.WriteLine(HtmlText);
+                }
+
+                var location = await App.AzureService.UploadToAzureBlobStorage(filePath, FileName);
+
+                App.FirebaseService.UpdateNoteFileLocationAsync(Note.Id, location);
+
+                File.Delete(filePath);
             }
-
-            var location = await App.AzureService.UploadToAzureBlobStorage(filePath, FileName);
-
-            App.FirebaseService.UpdateNoteFileLocationAsync(Note.Id, location);
-
-            File.Delete(filePath);
-
         }
     }
 }

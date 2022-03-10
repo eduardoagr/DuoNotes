@@ -61,6 +61,15 @@ namespace DuoNotes.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        internal static string Cancel {
+            get {
+                return ResourceManager.GetString("Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Log out.
         /// </summary>
         internal static string CloseSession {
@@ -79,6 +88,15 @@ namespace DuoNotes.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Continue editting.
+        /// </summary>
+        internal static string ContinueEditing {
+            get {
+                return ResourceManager.GetString("ContinueEditing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ceate notebook.
         /// </summary>
         internal static string CreateNotebook {
@@ -93,6 +111,15 @@ namespace DuoNotes.Resources {
         internal static string Delete {
             get {
                 return ResourceManager.GetString("Delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The note is empty, do yo want to go back, or continue editing?.
+        /// </summary>
+        internal static string EditorError {
+            get {
+                return ResourceManager.GetString("EditorError", resourceCulture);
             }
         }
         
@@ -138,6 +165,15 @@ namespace DuoNotes.Resources {
         internal static string EMAIL_NOT_FOUND {
             get {
                 return ResourceManager.GetString("EMAIL_NOT_FOUND", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Go Back.
+        /// </summary>
+        internal static string GoBack {
+            get {
+                return ResourceManager.GetString("GoBack", resourceCulture);
             }
         }
         
