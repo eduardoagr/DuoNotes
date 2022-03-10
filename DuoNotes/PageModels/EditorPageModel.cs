@@ -54,10 +54,5 @@ namespace DuoNotes.PageModels {
             File.Delete(filePath);
 
         }
-
-        public override void PageDisappearAction() {
-
-
-        }
     }
 }
