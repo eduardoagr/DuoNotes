@@ -25,7 +25,10 @@ namespace DuoNotes.PageModels {
         public override async void AppearAction() {
 
             Note = Application.Current.Properties[AppConstant.SelectedNote] as Note;
-                
+
+            await App.FirebaseService.ReadByIdAsync(AppConstant.Notes, Note.Id);
+
+
             if (string.IsNullOrEmpty(Note.FileLocation)) {
                 await App.Current.MainPage.DisplayAlert("error", "Nothing", "OK");
             }
@@ -52,9 +55,9 @@ namespace DuoNotes.PageModels {
 
         }
 
-        public override async void PageDisappearAction() {
+        public override void PageDisappearAction() {
 
-            await App.FirebaseService.ReadOlyOnceAsync(Note.Id, AppConstant.Notes);
+
         }
     }
 }

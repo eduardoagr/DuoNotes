@@ -172,16 +172,13 @@ namespace DuoNotes.Services {
             return collection;
         }
 
-        public async Task<NotebookNote> ReadOlyOnceAsync(string Id, string ChildName) {
-
-            var objs = await firebaseClient
-                .Child(ChildName).Child(Id)
-                 .OnceAsync<NotebookNote>();
-
-            return (NotebookNote)objs.Where(n => n.Key == NoteId);
-
+        public async Task<NotebookNote> ReadByIdAsync(string ChildName, string Id) {
+            
+           return (NotebookNote)await firebaseClient
+              .Child(ChildName)
+              .Child(Id)
+              .OnceAsync<NotebookNote>();
         }
-
         public async void UpdateNote(string Id, string FileLocation) {
 
             await firebaseClient
