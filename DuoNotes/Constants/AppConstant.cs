@@ -47,6 +47,6 @@ namespace DuoNotes.Constants {
         //Azure Blob storage
 
         public const string ContanerName = "notes";
-        public const string ConectionString = "DefaultEndpointsProtocol=https;AccountName=notesbucket;AccountKey=YnF1cUnsJnmco2pAMmppa9Af2TKQLAkCxUxmyhfmbmg7inyO5LT0XMAhm+dFdLcyII+BNHWWGJaI6Exs0OVzwg==;EndpointSuffix=core.windows.net";
+        public const string ConectionString = "DefaultEndpointsProtocol=https;AccountName=notesbucket;AccountKey=kCUWArA7EFfu2Zwt4R+zSC619apF409MZsLt39V04YAdKt4o+1ZRrZLLWh0mKbGIJ4PjkfcEHKweACWgcf4LcA==;EndpointSuffix=core.windows.net";
     }
 }
