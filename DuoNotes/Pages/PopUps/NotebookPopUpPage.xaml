@@ -3,6 +3,7 @@
     x:Class="DuoNotes.View.PopUps.NotebookPopUpPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:animations="http://rotorgames.com"
     xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
     xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
     xmlns:community="http://xamarin.com/schemas/2020/toolkit"
@@ -11,6 +12,15 @@
     xmlns:vm="clr-namespace:DuoNotes.PageModels.PopUps"
     Padding="20">
 
+    <pages:PopupPage.Animation>
+        <animations:ScaleAnimation
+            DurationIn="700"
+            PositionIn="Center"
+            PositionOut="Center"
+            ScaleIn="0.5"
+            ScaleOut="0.5" />
+    </pages:PopupPage.Animation>
+
     <pages:PopupPage.BindingContext>
         <vm:NotebookPopUpPageModel />
     </pages:PopupPage.BindingContext>
@@ -18,7 +28,6 @@
     <ContentPage.Behaviors>
         <community:EventToCommandBehavior Command="{Binding PageDisappearingCommand}" EventName="Disappearing" />
     </ContentPage.Behaviors>
-
 
 
     <Frame Style="{StaticResource FrameContainer}">
@@ -31,6 +40,7 @@
 
             <Entry
                 Grid.Row="1"
+                MaxLength="20"
                 Placeholder="{translate:Translate NoteBookTitle}"
                 Style="{StaticResource EntrySyle}"
                 Text="{Binding Notebook.Name}" />

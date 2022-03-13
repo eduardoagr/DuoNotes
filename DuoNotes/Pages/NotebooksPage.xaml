@@ -19,24 +19,55 @@
     </ContentPage.BindingContext>
 
     <NavigationPage.TitleView>
-        <StackLayout HorizontalOptions="Start" Orientation="Horizontal">
-            <StackLayout.GestureRecognizers>
-                <TapGestureRecognizer Command="{Binding ProfileCommnd}" />
-            </StackLayout.GestureRecognizers>
+        <Grid ColumnDefinitions="Auto,Auto,Auto">
 
             <ffimageloadingsvg:SvgCachedImage
                 HeightRequest="40"
                 Source="{Binding FireUser.PhotoUrl}"
-                WidthRequest="40" />
+                WidthRequest="40">
+                <ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding ProfileCommnd}" />
+                </ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+            </ffimageloadingsvg:SvgCachedImage>
 
-            <Label
-                FontAttributes="Bold"
-                FontSize="Medium"
-                Text="{Binding FireUser.DisplayName}"
-                TextColor="White"
-                VerticalOptions="Center" />
+            <Label FontAttributes="Bold"
+                   VerticalTextAlignment="Center"
+                   FontSize="Medium"
+                   Text="{Binding FireUser.DisplayName}"
+                   Grid.Column="1"
+                   TextColor="{StaticResource BackgroundLigthColor}">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding ProfileCommnd}" />
+                </Label.GestureRecognizers>
+            </Label>
 
-        </StackLayout>
+            <SearchBar
+                x:Name="SearchBar"
+                HorizontalOptions="CenterAndExpand"
+                IsVisible="{Binding IsVisible}"
+                MaxLength="50"
+                Grid.Column="2"
+                WidthRequest="300">
+                <SearchBar.Behaviors>
+                    <community:EventToCommandBehavior
+                        Command="{Binding TextToSearchCommand}"
+                        CommandParameter="{Binding Text, Source={x:Reference SearchBar}}"
+                        EventName="TextChanged" />
+                </SearchBar.Behaviors>
+            </SearchBar>
+
+            <Button
+                community:TouchEffect.PressedBackgroundColor="{StaticResource PressedItems}"
+                BackgroundColor="{StaticResource Trnsparent}"
+                Command="{Binding SwitchVisibilityCommand}"
+                Grid.Column="3"
+                HorizontalOptions="EndAndExpand"
+                VerticalOptions="CenterAndExpand">
+                <Button.ImageSource>
+                    <FontImageSource FontFamily="ma" Glyph="{Static icon:MaterialIcons.TextBoxSearch}" />
+                </Button.ImageSource>
+            </Button>
+        </Grid>
     </NavigationPage.TitleView>
 
     <ContentPage.Behaviors>
@@ -45,12 +76,7 @@
 
     <StackLayout>
 
-        <CollectionView
-            ItemsSource="{Binding FireBaseNotebookNotes}"
-            SelectedItem="{Binding SelectedNotebook}"
-            SelectionChangedCommand="{Binding SelectedItemCommand}"
-            SelectionMode="Single">
-
+        <CollectionView ItemsSource="{Binding FireBaseNotebookNotes}">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <SwipeView>
@@ -71,7 +97,11 @@
                             </SwipeItems>
                         </SwipeView.LeftItems>
 
-                        <yummy:PancakeView community:TouchEffect.PressedBackgroundColor="{StaticResource PressedItems}">
+                        <yummy:PancakeView
+                            community:TouchEffect.Command="{Binding Source={RelativeSource AncestorType={x:Type vm:NotebooksPageModel}}, Path=SelectedItemCommand}"
+                            community:TouchEffect.CommandParameter="{Binding .}"
+                            community:TouchEffect.LongPressCommand="{Binding Source={RelativeSource AncestorType={x:Type vm:NotebooksPageModel}}, Path=SelectedItemLongPressCommand}"
+                            community:TouchEffect.PressedBackgroundColor="{StaticResource PressedItems}">
 
                             <Grid Padding="5" RowDefinitions="Auto,1,Auto">
 

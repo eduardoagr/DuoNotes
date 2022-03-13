@@ -58,7 +58,7 @@ namespace DuoNotes.PageModels {
 
                 File.Delete(filePath);
             } else {
-                await App.Current.MainPage.DisplayAlert(AppResources.Error, AppResources.EditorError, "OK");
+                await App.Current.MainPage.DisplayAlert(AppResources.Error, AppResources.EditorError, AppResources.OK);
             }
         }
     }

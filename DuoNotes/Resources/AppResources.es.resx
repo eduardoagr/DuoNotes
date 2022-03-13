@@ -126,6 +126,9 @@
   <data name="Delete" xml:space="preserve">
     <value>Borrar</value>
   </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Desea actualizar este elemento</value>
+  </data>
   <data name="EditorError" xml:space="preserve">
     <value>La nota está vacía</value>
   </data>
@@ -171,6 +174,9 @@
   <data name="NewUser" xml:space="preserve">
     <value>Nuevo usuario</value>
   </data>
+  <data name="No" xml:space="preserve">
+    <value>No</value>
+  </data>
   <data name="Notebooks" xml:space="preserve">
     <value>Cuadernos</value>
   </data>
@@ -210,7 +216,13 @@
   <data name="UserProfile" xml:space="preserve">
     <value>Perfil</value>
   </data>
+  <data name="Warning" xml:space="preserve">
+    <value>Advertencia</value>
+  </data>
   <data name="WEAK_PASSWORD : Password should be at least 6 characters" xml:space="preserve">
     <value>La contraseña debe tener al menos 6 caracteres</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Si</value>
   </data>
 </root>

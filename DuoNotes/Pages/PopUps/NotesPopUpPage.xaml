@@ -9,6 +9,15 @@
     xmlns:vm="clr-namespace:DuoNotes.PageModels.PopUps"
     Padding="20">
 
+    <pages:PopupPage.Animation>
+        <pages:ScaleAnimation
+            DurationIn="700"
+            PositionIn="Center"
+            PositionOut="Center"
+            ScaleIn="0.5"
+            ScaleOut="0.5" />
+    </pages:PopupPage.Animation>
+
     <pages:PopupPage.BindingContext>
         <vm:NotePopUpPageModel />
     </pages:PopupPage.BindingContext>
@@ -23,6 +32,7 @@
 
             <Entry
                 Grid.Row="2"
+                MaxLength="20"
                 Placeholder="{translate:Translate NoteTite}"
                 Style="{StaticResource EntrySyle}"
                 Text="{Binding Note.Name}" />

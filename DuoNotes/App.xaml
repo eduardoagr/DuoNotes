@@ -148,6 +148,14 @@
             </Style>
 
 
+            <Style x:Key="ToolBarItemsStyle"
+                   TargetType="Label">
+                <Setter Property="FontFamily"
+                        Value="ma" />
+                <Setter Property="FontSize"
+                        Value="30" />
+                <Setter Property="TextColor" Value="{StaticResource BackgroundLigthColor}"  />
+            </Style>
 
 
         </ResourceDictionary>

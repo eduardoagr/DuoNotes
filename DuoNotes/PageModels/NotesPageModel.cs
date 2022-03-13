@@ -6,6 +6,9 @@ using DuoNotes.View.PopUps;
 
 using Rg.Plugins.Popup.Services;
 
+using System.Linq;
+using System.Threading.Tasks;
+
 using Xamarin.Forms;
 
 namespace DuoNotes.PageModels {
@@ -37,6 +40,25 @@ namespace DuoNotes.PageModels {
 
         }
 
+        public override async void TextToSearchAction(string SeachTerm) {
+
+            if (!string.IsNullOrEmpty(SeachTerm)) {
+
+                var FilteredItems = FireBaseNotebookNotes.Where(item =>
+                item.Name.ToLowerInvariant().Contains(SeachTerm.ToLowerInvariant())).ToList();
+
+                FireBaseNotebookNotes.Clear();
+
+                foreach (var Item in FilteredItems) {
+                    FireBaseNotebookNotes.Add(Item);
+                }
+
+            } else {
+                FireBaseNotebookNotes = await App.FirebaseService.ReadAsync(AppConstant.Notes, Notebook.Id);
+                IsVisible = false;
+            }
+        }
+
         public override async void AnimateButtonCommand(Frame obj) {
 
             await obj.ScaleTo(0.8, 50, Easing.Linear);
@@ -48,20 +70,20 @@ namespace DuoNotes.PageModels {
             viewModel.NotebookAction(Notebook.Id);
         }
 
-        public override async void SelectedItemActionAsync() {
+        public override async void SelectedItemActionAsync(NotebookNote notebookNote) {
 
-            if (SelectedNote != null) {
+            if (notebookNote is NotebookNote notebook) {
 
                 var edit = new EditorPage();
-                Application.Current.Properties[AppConstant.SelectedNote] = SelectedNote;
+                Application.Current.Properties[AppConstant.SelectedNote] = notebook;
                 await Application.Current.MainPage.Navigation.PushAsync(edit);
-                SelectedNote = null;
             }
         }
 
+
         private async void DeleteNoteAction(Note obj) {
 
-            string ext = ".rtf";
+            string ext = ".html";
 
             App.FirebaseService.DeleteNotebookNotAsync(obj.Id, AppConstant.Notes);
 
