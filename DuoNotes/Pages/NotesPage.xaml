@@ -80,13 +80,20 @@
                                 </SwipeItemView>
                             </SwipeItems>
                         </SwipeView.LeftItems>
-                        <Frame CornerRadius="10" Style="{StaticResource FrameContainer}">
-                            <StackLayout Padding="10" BackgroundColor="#D12C7D72">
-                                <Label Style="{StaticResource DateLabelStyle}" Text="{Binding CreatedDate}" />
-                                <BoxView HeightRequest="1" BackgroundColor="{StaticResource BckgroundDarkColor}" />
-                                <Label Style="{StaticResource DateLabelStyle}"  Text="{Binding Name}" />
-                            </StackLayout>
-                        </Frame>
+                        <Grid ColumnDefinitions="Auto" ColumnSpacing="10">
+                            <Label Style="{StaticResource NoteIconStyle}" />
+                            <Frame
+                                Grid.Column="1"
+                                CornerRadius="10"
+                                Style="{StaticResource FrameContainer}"
+                                VerticalOptions="StartAndExpand">
+                                <StackLayout Padding="10" BackgroundColor="#D12C7D72">
+                                    <Label Style="{StaticResource DateLabelStyle}" Text="{Binding CreatedDate}" />
+                                    <BoxView BackgroundColor="{StaticResource BckgroundDarkColor}" HeightRequest="1" />
+                                    <Label Style="{StaticResource DateLabelStyle}" Text="{Binding Name}" />
+                                </StackLayout>
+                            </Frame>
+                        </Grid>
                     </SwipeView>
                 </DataTemplate>
             </CollectionView.ItemTemplate>

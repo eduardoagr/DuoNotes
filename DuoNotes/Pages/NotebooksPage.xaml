@@ -94,7 +94,10 @@
                                 </SwipeItemView>
                             </SwipeItems>
                         </SwipeView.LeftItems>
-                        <Grid ColumnDefinitions="Auto">
+                        <Grid
+                            ColumnDefinitions="Auto"
+                            ColumnSpacing="10"
+                            HeightRequest="65">
                             <Label Style="{StaticResource BookIconStyle}" TextColor="{Binding Color}" />
                             <Frame
                                 Grid.Column="1"

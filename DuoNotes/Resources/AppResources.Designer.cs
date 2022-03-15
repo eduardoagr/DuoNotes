@@ -268,6 +268,15 @@ namespace DuoNotes.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Tite.
+        /// </summary>
+        internal static string NoteBookTitle {
+            get {
+                return ResourceManager.GetString("NoteBookTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Notes.
         /// </summary>
         internal static string Notes {

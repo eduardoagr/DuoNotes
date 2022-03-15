@@ -28,7 +28,7 @@ namespace DuoNotes.PageModels {
 
             Note = Application.Current.Properties[AppConstant.SelectedNote] as Note;
 
-            var NewNote = await App.FirebaseService.ReadByIdAsync(AppConstant.Notes, Note.Id);
+            var NewNote = await App.FirebaseService.ReadByIdAsync(AppConstant.Notes, Note.Id) as Note;
 
             if (!string.IsNullOrEmpty(NewNote.FileLocation)) {
                 var ext = ".html";
@@ -53,9 +53,7 @@ namespace DuoNotes.PageModels {
 
                 var location = await App.AzureService.UploadToAzureBlobStorage(filePath, FileName);
 
-                Note.FileLocation = location;
-
-                App.FirebaseService.UpdateNoteFileLocationAsync(Note.Id, Note);
+                App.FirebaseService.UpdateNoteFileLocationAsync(Note.Id, location);
 
                 File.Delete(filePath);
             } else {

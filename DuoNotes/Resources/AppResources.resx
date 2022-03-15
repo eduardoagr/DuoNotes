@@ -186,6 +186,9 @@
   <data name="NoteBookName" xml:space="preserve">
     <value>title</value>
   </data>
+  <data name="NoteBookTitle" xml:space="preserve">
+    <value>Tite</value>
+  </data>
   <data name="Notes" xml:space="preserve">
     <value>Notes</value>
   </data>

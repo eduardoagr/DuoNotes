@@ -110,15 +110,17 @@
                 <Setter Property="BackgroundColor" Value="CornflowerBlue" />
             </Style>
 
-            <Style x:Key="DateLabelStyle"
-                   BasedOn="{StaticResource LabelStyle}"
-                   TargetType="Label">
+            <Style
+                x:Key="DateLabelStyle"
+                BasedOn="{StaticResource LabelStyle}"
+                TargetType="Label">
                 <Setter Property="HorizontalTextAlignment" Value="Start" />
                 <Setter Property="FontAttributes" Value="Bold" />
             </Style>
 
             <Style x:Key="BookIconStyle" TargetType="Label">
                 <Setter Property="FontFamily" Value="fa" />
+                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
                 <Setter Property="FontSize" Value="60" />
                 <Setter Property="Text" Value="{Static icon:IconFont.Book}" />
             </Style>
@@ -154,6 +156,15 @@
                 <Setter Property="VerticalOptions" Value="CenterAndExpand" />
             </Style>
 
+            <Style
+                x:Key="NoteIconStyle"
+                BasedOn="{StaticResource BookIconStyle}"
+                TargetType="Label">
+                <Setter Property="FontFamily" Value="ma" />
+                <Setter Property="FontSize" Value="60" />
+                <Setter Property="TextColor" Value="#0B853F" />
+                <Setter Property="Text" Value="{Static icon:MaterialIcons.StickerText}" />
+            </Style>
         </ResourceDictionary>
     </Application.Resources>
 </Application>
