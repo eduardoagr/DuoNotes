@@ -177,9 +177,6 @@
   <data name="No" xml:space="preserve">
     <value>No</value>
   </data>
-  <data name="Notebooks" xml:space="preserve">
-    <value>Cuadernos</value>
-  </data>
   <data name="NoteBookTitle" xml:space="preserve">
     <value>Titulo</value>
   </data>
@@ -200,6 +197,9 @@
   </data>
   <data name="Register" xml:space="preserve">
     <value>Registrar</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Buscar</value>
   </data>
   <data name="ServerError" xml:space="preserve">
     <value>Error del servidor</value>

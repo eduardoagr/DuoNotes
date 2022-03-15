@@ -48,6 +48,5 @@ namespace DuoNotes.Constants {
 
         public const string ContanerName = "notes";
         public const string ConectionString = "DefaultEndpointsProtocol=https;AccountName=notesbucket;AccountKey=kCUWArA7EFfu2Zwt4R+zSC619apF409MZsLt39V04YAdKt4o+1ZRrZLLWh0mKbGIJ4PjkfcEHKweACWgcf4LcA==;EndpointSuffix=core.windows.net";
-
     }
 }

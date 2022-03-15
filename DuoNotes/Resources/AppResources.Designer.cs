@@ -268,24 +268,6 @@ namespace DuoNotes.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Notebooks.
-        /// </summary>
-        internal static string Notebooks {
-            get {
-                return ResourceManager.GetString("Notebooks", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to title.
-        /// </summary>
-        internal static string NoteBookTitle {
-            get {
-                return ResourceManager.GetString("NoteBookTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Notes.
         /// </summary>
         internal static string Notes {
@@ -336,6 +318,15 @@ namespace DuoNotes.Resources {
         internal static string Register {
             get {
                 return ResourceManager.GetString("Register", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search.
+        /// </summary>
+        internal static string Search {
+            get {
+                return ResourceManager.GetString("Search", resourceCulture);
             }
         }
         

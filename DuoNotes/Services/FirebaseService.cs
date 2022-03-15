@@ -14,7 +14,6 @@ using Newtonsoft.Json;
 
 using Rg.Plugins.Popup.Services;
 
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -120,11 +119,11 @@ namespace DuoNotes.Services {
 
 
         public async Task InsertAsync(NotebookNote element, string ChildName) {
-            if (element == null || ChildName == null) {
-                return;
-            }
-            await firebaseClient.Child(ChildName)
+            if (element != null && !string.IsNullOrEmpty(ChildName)) {
+                            await firebaseClient.Child(ChildName)
                 .PostAsync(JsonConvert.SerializeObject(element));
+            }
+
         }
 
         // Read and update our observableCollection
@@ -183,8 +182,7 @@ namespace DuoNotes.Services {
 
             var items = Notes.ToList();
 
-            var NotebookNote = new Note() 
-            { 
+            var NotebookNote = new Note() {
                 CreatedDate = items[0].Object.ToString(),
                 FileLocation = items[1].Object.ToString(),
                 Name = items[2].Object.ToString(),
@@ -194,12 +192,12 @@ namespace DuoNotes.Services {
             return NotebookNote;
         }
 
-        public async void UpdateNoteFileLocationAsync(string Id, string FileLocation) {
+        public async void UpdateNoteFileLocationAsync(string Id, NotebookNote notebookNote) {
 
             await firebaseClient
                 .Child(AppConstant.Notes)
                 .Child(Id)
-                .PatchAsync($"{{ \"FileLocation\" : \"{FileLocation}\" }}");
+                .PutAsync(notebookNote);
         }
 
         public async void DeleteNotebookNotAsync(string Id, string ChildName) {

@@ -6,10 +6,7 @@
     xmlns:community="http://xamarin.com/schemas/2020/toolkit"
     xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
     xmlns:icon="clr-namespace:DuoNotes.Fonts"
-    xmlns:translate="clr-namespace:DuoNotes.Utils"
     xmlns:vm="clr-namespace:DuoNotes.PageModels"
-    xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
-    Title="{translate:Translate Notebooks}"
     BackgroundColor="{AppThemeBinding Dark={StaticResource BckgroundDarkColor},
                                       Light={StaticResource BackgroundLigthColor}}">
 
@@ -19,10 +16,11 @@
     </ContentPage.BindingContext>
 
     <NavigationPage.TitleView>
-        <Grid ColumnDefinitions="Auto,Auto,Auto">
+        <StackLayout Orientation="Horizontal">
 
             <ffimageloadingsvg:SvgCachedImage
                 HeightRequest="40"
+                IsVisible="{Binding ProfileVisibility}"
                 Source="{Binding FireUser.PhotoUrl}"
                 WidthRequest="40">
                 <ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
@@ -30,12 +28,13 @@
                 </ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
             </ffimageloadingsvg:SvgCachedImage>
 
-            <Label FontAttributes="Bold"
-                   VerticalTextAlignment="Center"
-                   FontSize="Medium"
-                   Text="{Binding FireUser.DisplayName}"
-                   Grid.Column="1"
-                   TextColor="{StaticResource BackgroundLigthColor}">
+            <Label
+                FontAttributes="Bold"
+                FontSize="Medium"
+                IsVisible="{Binding ProfileVisibility}"
+                Text="{Binding FireUser.DisplayName}"
+                TextColor="{StaticResource BackgroundLigthColor}"
+                VerticalTextAlignment="Center">
                 <Label.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding ProfileCommnd}" />
                 </Label.GestureRecognizers>
@@ -43,31 +42,30 @@
 
             <SearchBar
                 x:Name="SearchBar"
-                HorizontalOptions="CenterAndExpand"
-                IsVisible="{Binding IsVisible}"
-                MaxLength="50"
-                Grid.Column="2"
-                WidthRequest="300">
+                IsEnabled="{Binding SearchBarVisibility}"
+                IsVisible="{Binding SearchBarVisibility}">
                 <SearchBar.Behaviors>
                     <community:EventToCommandBehavior
                         Command="{Binding TextToSearchCommand}"
                         CommandParameter="{Binding Text, Source={x:Reference SearchBar}}"
                         EventName="TextChanged" />
+                    <community:EventToCommandBehavior Command="{Binding SearchPressCommand}" EventName="SearchButtonPressed" />
                 </SearchBar.Behaviors>
             </SearchBar>
 
             <Button
+                Grid.Column="3"
                 community:TouchEffect.PressedBackgroundColor="{StaticResource PressedItems}"
                 BackgroundColor="{StaticResource Trnsparent}"
                 Command="{Binding SwitchVisibilityCommand}"
-                Grid.Column="3"
                 HorizontalOptions="EndAndExpand"
+                IsVisible="{Binding ProfileVisibility}"
                 VerticalOptions="CenterAndExpand">
                 <Button.ImageSource>
                     <FontImageSource FontFamily="ma" Glyph="{Static icon:MaterialIcons.TextBoxSearch}" />
                 </Button.ImageSource>
             </Button>
-        </Grid>
+        </StackLayout>
     </NavigationPage.TitleView>
 
     <ContentPage.Behaviors>
@@ -76,56 +74,43 @@
 
     <StackLayout>
 
-        <CollectionView ItemsSource="{Binding FireBaseNotebookNotes}">
+        <CollectionView
+            ItemsSource="{Binding FireBaseNotebookNotes}"
+            SelectedItem="{Binding SelectedItem}"
+            SelectionChangedCommand="{Binding SelectedItemCommand}"
+            SelectionMode="Single">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <SwipeView>
                         <SwipeView.LeftItems>
                             <SwipeItems Mode="Execute">
-                                <SwipeItem
-                                    BackgroundColor="{StaticResource DeleteItemColor}"
-                                    Command="{Binding Source={RelativeSource AncestorType={x:Type vm:NotebooksPageModel}}, Path=DeleteNotebookCommand}}"
-                                    CommandParameter="{Binding .}"
-                                    Text="{translate:Translate Delete}">
-                                    <SwipeItem.IconImageSource>
-                                        <FontImageSource
-                                            FontFamily="fa"
-                                            Glyph="{Static icon:IconFont.TrashCan}"
-                                            Size="30" />
-                                    </SwipeItem.IconImageSource>
-                                </SwipeItem>
+                                <SwipeItemView Command="{Binding Source={RelativeSource AncestorType={x:Type vm:NotebooksPageModel}}, Path=DeleteNotebookNoteCommand}" CommandParameter="{Binding .}">
+                                    <StackLayout
+                                        BackgroundColor="{StaticResource Trnsparent}"
+                                        Orientation="Vertical"
+                                        WidthRequest="100">
+                                        <Label Style="{StaticResource TrashCanStyle}" />
+                                    </StackLayout>
+                                </SwipeItemView>
                             </SwipeItems>
                         </SwipeView.LeftItems>
-
-                        <yummy:PancakeView
-                            community:TouchEffect.Command="{Binding Source={RelativeSource AncestorType={x:Type vm:NotebooksPageModel}}, Path=SelectedItemCommand}"
-                            community:TouchEffect.CommandParameter="{Binding .}"
-                            community:TouchEffect.LongPressCommand="{Binding Source={RelativeSource AncestorType={x:Type vm:NotebooksPageModel}}, Path=SelectedItemLongPressCommand}"
-                            community:TouchEffect.PressedBackgroundColor="{StaticResource PressedItems}">
-
-                            <Grid Padding="5" RowDefinitions="Auto,1,Auto">
-
-                                <Label Style="{StaticResource BookIconStyle}" TextColor="{Binding Color}" />
-
-                                <Label
-                                    Margin="20,0,0,0"
-                                    Style="{StaticResource DateLabelStyle}"
-                                    Text="{Binding CreatedDate}" />
-
-                                <BoxView Grid.Row="1" />
-
-                                <Label
-                                    Grid.Row="2"
-                                    FontAttributes="Bold"
-                                    Text="{Binding Name}" />
-                            </Grid>
-                        </yummy:PancakeView>
-
-
+                        <Grid ColumnDefinitions="Auto">
+                            <Label Style="{StaticResource BookIconStyle}" TextColor="{Binding Color}" />
+                            <Frame
+                                Grid.Column="1"
+                                CornerRadius="10"
+                                Style="{StaticResource FrameContainer}"
+                                VerticalOptions="StartAndExpand">
+                                <StackLayout Padding="10" BackgroundColor="#D12C7D72">
+                                    <Label Style="{StaticResource DateLabelStyle}" Text="{Binding CreatedDate}" />
+                                    <BoxView BackgroundColor="{StaticResource BckgroundDarkColor}" HeightRequest="1" />
+                                    <Label Style="{StaticResource DateLabelStyle}" Text="{Binding Name}" />
+                                </StackLayout>
+                            </Frame>
+                        </Grid>
                     </SwipeView>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
-
         </CollectionView>
 
         <Frame

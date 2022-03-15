@@ -9,14 +9,12 @@ using PropertyChanged;
 
 using Rg.Plugins.Popup.Services;
 
-using SkiaSharp;
-
 using System;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 using System.Linq;
 using System.Reactive.Linq;
 
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace DuoNotes.PageModels {
@@ -34,13 +32,13 @@ namespace DuoNotes.PageModels {
 
         public Command<string> TextToSearchCommand { get; set; }
 
-        public Command<Notebook> DeleteNotebookCommand { get; set; }
+        public Command<NotebookNote> DeleteNotebookNoteCommand { get; set; }
 
-        public Command<NotebookNote> SelectedItemCommand { get; set; }
+        public Command SelectedItemCommand { get; set; }
 
         public Command<Frame> FabAnimationCommmand { get; set; }
 
-        public Command NewNotebboNoteAppearCommand { get; set; }
+        public Command SearchPressCommand { get; set; }
 
         public ObservableCollection<NotebookNote> FireBaseNotebookNotes { get; set; }
 
@@ -50,7 +48,11 @@ namespace DuoNotes.PageModels {
 
         public FontImageSource Glyph { get; set; }
 
-        public bool IsVisible { get; set; }
+        public NotebookNote SelectedItem { get; set; }
+
+        public bool SearchBarVisibility { get; set; }
+
+        public bool ProfileVisibility { get; set; }
 
         public NotebooksPageModel() {
 
@@ -60,21 +62,35 @@ namespace DuoNotes.PageModels {
 
             PageAppearCommand = new Command(AppearAction);
 
-            SelectedItemCommand = new Command<NotebookNote>(SelectedItemActionAsync);
+            SelectedItemCommand = new Command(SelectedItemActionAsync);
 
             FabAnimationCommmand = new Command<Frame>(AnimateButtonCommand);
 
             ProfileCommnd = new Command(NavigateCommandAsync);
 
-            DeleteNotebookCommand = new Command<Notebook>(DeleteNotebookCommandAction);
+            DeleteNotebookNoteCommand = new Command<NotebookNote>(DeleteNotebookCommandAction);
 
             SelectedItemLongPressCommand = new Command(SelectedLongPressItemActionAsync);
 
             SwitchVisibilityCommand = new Command(SwitchVisibilityAction);
 
-            NewNotebboNoteAppearCommand = new Command(NewNotebboNoteAppearAction);
-
             TextToSearchCommand = new Command<string>(TextToSearchAction);
+
+            SearchPressCommand = new Command(SearchPressAction);
+
+            ProfileVisibility = true;
+        }
+
+        public virtual void SearchPressAction() {
+
+            SearchBarVisibility = false;
+            ProfileVisibility = true;
+        }
+
+        public virtual async void AppearAction() {
+            FireUser = await App.FirebaseService.GetProfileInformationAndRefreshTokenAsync();
+            FireBaseNotebookNotes = await App.FirebaseService.ReadAsync(AppConstant.Notebooks);
+
         }
 
         public virtual async void TextToSearchAction(string SeachTerm) {
@@ -92,10 +108,11 @@ namespace DuoNotes.PageModels {
 
             } else {
                 FireBaseNotebookNotes = await App.FirebaseService.ReadAsync(AppConstant.Notebooks);
-                IsVisible = false;
+                SearchBarVisibility = false;
+                ProfileVisibility = true;
             }
         }
-    
+
 
         private async void NewNotebboNoteAppearAction() {
             await Application.Current.MainPage.DisplayAlert("", "", "OK");
@@ -103,7 +120,13 @@ namespace DuoNotes.PageModels {
 
         public virtual void SwitchVisibilityAction() {
 
-            IsVisible = !IsVisible;
+            SearchBarVisibility = !SearchBarVisibility;
+
+            if (SearchBarVisibility) {
+                ProfileVisibility = false;
+            } else {
+                ProfileVisibility = true;
+            }
         }
 
         public virtual async void SelectedLongPressItemActionAsync() {
@@ -115,10 +138,7 @@ namespace DuoNotes.PageModels {
             Console.WriteLine(answer);
         }
 
-        public virtual async void AppearAction() {
-            FireUser = await App.FirebaseService.GetProfileInformationAndRefreshTokenAsync();
-            FireBaseNotebookNotes = await App.FirebaseService.ReadAsync(AppConstant.Notebooks);
-        }
+
 
         private async void NavigateCommandAsync() {
             await Application.Current.MainPage.Navigation.PushAsync(new ProfilePage());
@@ -133,29 +153,33 @@ namespace DuoNotes.PageModels {
 
         }
 
-        public async virtual void SelectedItemActionAsync(NotebookNote notebookNote) {
+        public async virtual void SelectedItemActionAsync() {
 
-            if (notebookNote is NotebookNote notebook) {
+            if (SelectedItem != null) {
 
                 NotesPage notesPage = new NotesPage();
-                Application.Current.Properties[AppConstant.SelectedNotebook] = notebook;
+                Application.Current.Properties[AppConstant.SelectedNotebook] = SelectedItem;
                 await Application.Current.MainPage.Navigation.PushAsync(notesPage, true);
             }
         }
 
-        public async void DeleteNotebookCommandAction(Notebook obj) {
+        public virtual async void DeleteNotebookCommandAction(NotebookNote obj) {
 
+            var newObj = obj as Notebook;
             string ext = ".html";
 
-            App.FirebaseService.DeleteNotebookNotAsync(obj.Id, AppConstant.Notebooks);
+            App.FirebaseService.DeleteNotebookNotAsync(newObj.Id, AppConstant.Notebooks);
 
             //We want to read, but we do not want to update
-            var Notes = await App.FirebaseService.ReadWithOutUpdateAsync(AppConstant.Notes, obj.Id);
+            var Notes = await App.FirebaseService.ReadWithOutUpdateAsync(AppConstant.Notes, newObj.Id);
             foreach (var item in Notes) {
                 var note = item as Note;
                 App.FirebaseService.DeleteNotebookNotAsync(note.Id, AppConstant.Notes);
                 App.AzureService.DeleteFileFromBlobStorage($"{note.Name}{ext}");
             }
+
+                // Use default vibration length
+                Vibration.Vibrate();
 
             FireBaseNotebookNotes = await App.FirebaseService.ReadAsync(AppConstant.Notebooks);
         }

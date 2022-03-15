@@ -47,7 +47,7 @@ namespace DuoNotes.PageModels.PopUps {
                     Name = Note.Name,
                     FileLocation = string.Empty,
                     Id = Note.Id,
-                    NotebookId = NotebookId,  
+                    NotebookId = NotebookId,
                 };
             }
 

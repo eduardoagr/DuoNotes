@@ -7,8 +7,8 @@ using DuoNotes.View.PopUps;
 using Rg.Plugins.Popup.Services;
 
 using System.Linq;
-using System.Threading.Tasks;
 
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace DuoNotes.PageModels {
@@ -19,17 +19,27 @@ namespace DuoNotes.PageModels {
 
         public Note SelectedNote { get; set; }
 
-        public Command<Note> DeleteNoteCommand { get; set; }
-
         public Command PageDisappearCommand { get; set; }
 
-        public NotesPageModel() {
+        public bool TitleVisibility { get; set; }
 
-            DeleteNoteCommand = new Command<Note>(DeleteNoteAction);
+        public bool SearchBtonVisibility { get; set; }
+
+        public NotesPageModel() {
 
             FabAnimationCommmand = new Command<Frame>(AnimateButtonCommand);
 
             PageDisappearCommand = new Command(PageDisappearAction);
+
+            TitleVisibility = true;
+
+            SearchBtonVisibility = true;
+        }
+
+        public override void SearchPressAction() {
+
+            TitleVisibility = true;
+            SearchBtonVisibility = false;
         }
 
         public override async void AppearAction() {
@@ -38,6 +48,19 @@ namespace DuoNotes.PageModels {
 
             FireBaseNotebookNotes = await App.FirebaseService.ReadAsync(AppConstant.Notes, Notebook.Id);
 
+        }
+
+        public override void SwitchVisibilityAction() {
+
+            if (TitleVisibility) {
+                SearchBtonVisibility = false;
+                SearchBarVisibility = true;
+                TitleVisibility = false;
+            } else {
+                SearchBtonVisibility = true;
+                SearchBarVisibility = false;
+                TitleVisibility = true;
+            }
         }
 
         public override async void TextToSearchAction(string SeachTerm) {
@@ -55,7 +78,9 @@ namespace DuoNotes.PageModels {
 
             } else {
                 FireBaseNotebookNotes = await App.FirebaseService.ReadAsync(AppConstant.Notes, Notebook.Id);
-                IsVisible = false;
+                SearchBarVisibility = false;
+                TitleVisibility = true;
+                SearchBtonVisibility = true;
             }
         }
 
@@ -70,26 +95,30 @@ namespace DuoNotes.PageModels {
             viewModel.NotebookAction(Notebook.Id);
         }
 
-        public override async void SelectedItemActionAsync(NotebookNote notebookNote) {
+        public override async void SelectedItemActionAsync() {
 
-            if (notebookNote is NotebookNote notebook) {
+            if (SelectedItem != null ) {
 
                 var edit = new EditorPage();
-                Application.Current.Properties[AppConstant.SelectedNote] = notebook;
+                Application.Current.Properties[AppConstant.SelectedNote] = SelectedItem;
                 await Application.Current.MainPage.Navigation.PushAsync(edit);
             }
         }
 
+        public override async void DeleteNotebookCommandAction(NotebookNote obj) {
 
-        private async void DeleteNoteAction(Note obj) {
+            var newObj = obj as Note;
 
             string ext = ".html";
 
-            App.FirebaseService.DeleteNotebookNotAsync(obj.Id, AppConstant.Notes);
+            App.FirebaseService.DeleteNotebookNotAsync(newObj.Id, AppConstant.Notes);
 
             App.AzureService.DeleteFileFromBlobStorage($"{obj.Name}{ext}");
 
             FireBaseNotebookNotes = await App.FirebaseService.ReadAsync(AppConstant.Notes, Notebook.Id);
+
+            // Use default vibration length
+            Vibration.Vibrate();
         }
 
         public virtual void PageDisappearAction() {

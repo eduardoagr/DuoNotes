@@ -7,7 +7,6 @@
     xmlns:icon="clr-namespace:DuoNotes.Fonts"
     xmlns:translate="clr-namespace:DuoNotes.Utils"
     xmlns:vm="clr-namespace:DuoNotes.PageModels"
-    xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     BackgroundColor="{AppThemeBinding Dark={StaticResource BckgroundDarkColor},
                                       Light={StaticResource BackgroundLigthColor}}">
 
@@ -16,25 +15,26 @@
     </ContentPage.BindingContext>
 
     <NavigationPage.TitleView>
-        <StackLayout HorizontalOptions="FillAndExpand" Orientation="Horizontal">
+        <StackLayout Orientation="Horizontal">
 
             <Label
                 FontAttributes="Bold"
                 FontSize="Medium"
+                IsVisible="{Binding TitleVisibility}"
                 Text="{translate:Translate Notes}"
                 TextColor="{StaticResource BackgroundLigthColor}"
                 VerticalOptions="Center" />
 
             <SearchBar
                 x:Name="SearchBar"
-                IsVisible="{Binding IsVisible}"
-                MaxLength="50"
-                WidthRequest="300">
+                IsEnabled="{Binding SearchBarVisibility}"
+                IsVisible="{Binding SearchBarVisibility}">
                 <SearchBar.Behaviors>
                     <community:EventToCommandBehavior
                         Command="{Binding TextToSearchCommand}"
                         CommandParameter="{Binding Text, Source={x:Reference SearchBar}}"
                         EventName="TextChanged" />
+                    <community:EventToCommandBehavior Command="{Binding SearchPressCommand}" EventName="SearchButtonPressed" />
                 </SearchBar.Behaviors>
             </SearchBar>
 
@@ -43,6 +43,7 @@
                 BackgroundColor="{StaticResource Trnsparent}"
                 Command="{Binding SwitchVisibilityCommand}"
                 HorizontalOptions="EndAndExpand"
+                IsVisible="{Binding SearchBtonVisibility}"
                 VerticalOptions="CenterAndExpand">
                 <Button.ImageSource>
                     <FontImageSource FontFamily="ma" Glyph="{Static icon:MaterialIcons.TextBoxSearch}" />
@@ -59,47 +60,36 @@
 
     <StackLayout>
 
-        <CollectionView ItemsSource="{Binding FireBaseNotebookNotes}">
+        <CollectionView
+            ItemsSource="{Binding FireBaseNotebookNotes}"
+            SelectedItem="{Binding SelectedItem}"
+            SelectionChangedCommand="{Binding SelectedItemCommand}"
+            SelectionMode="Single">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <SwipeView>
                         <SwipeView.LeftItems>
                             <SwipeItems Mode="Execute">
-                                <SwipeItem
-                                    BackgroundColor="{StaticResource DeleteItemColor}"
-                                    Command="{Binding Source={RelativeSource AncestorType={x:Type vm:NotesPageModel}}, Path=DeleteNoteCommand}}"
-                                    CommandParameter="{Binding .}"
-                                    Text="{translate:Translate Delete}">
-                                    <SwipeItem.IconImageSource>
-                                        <FontImageSource
-                                            FontFamily="fa"
-                                            Glyph="{Static icon:IconFont.TrashCan}"
-                                            Size="30" />
-                                    </SwipeItem.IconImageSource>
-                                </SwipeItem>
+                                <SwipeItemView Command="{Binding Source={RelativeSource AncestorType={x:Type vm:NotesPageModel}}, Path=DeleteNotebookNoteCommand}" CommandParameter="{Binding .}">
+                                    <StackLayout
+                                        BackgroundColor="{StaticResource Trnsparent}"
+                                        Orientation="Vertical"
+                                        WidthRequest="100">
+                                        <Label Style="{StaticResource TrashCanStyle}" />
+                                    </StackLayout>
+                                </SwipeItemView>
                             </SwipeItems>
                         </SwipeView.LeftItems>
-
-                        <yummy:PancakeView
-                            community:TouchEffect.Command="{Binding Source={RelativeSource AncestorType={x:Type vm:NotesPageModel}}, Path=SelectedItemCommand}"
-                            community:TouchEffect.CommandParameter="{Binding .}"
-                            community:TouchEffect.LongPressCommand="{Binding Source={RelativeSource AncestorType={x:Type vm:NotesPageModel}}, Path=SelectedItemLongPressCommand}"
-                            community:TouchEffect.PressedBackgroundColor="{StaticResource PressedItems}">
-
-                            <StackLayout Padding="5">
+                        <Frame CornerRadius="10" Style="{StaticResource FrameContainer}">
+                            <StackLayout Padding="10" BackgroundColor="#D12C7D72">
                                 <Label Style="{StaticResource DateLabelStyle}" Text="{Binding CreatedDate}" />
-
-                                <BoxView />
-
-                                <Label FontAttributes="Bold" Text="{Binding Name}" />
+                                <BoxView HeightRequest="1" BackgroundColor="{StaticResource BckgroundDarkColor}" />
+                                <Label Style="{StaticResource DateLabelStyle}"  Text="{Binding Name}" />
                             </StackLayout>
-
-                        </yummy:PancakeView>
-
+                        </Frame>
                     </SwipeView>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
-
         </CollectionView>
 
 

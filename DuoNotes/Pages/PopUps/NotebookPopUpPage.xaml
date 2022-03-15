@@ -53,7 +53,7 @@
                     <buttons:SfChipGroup.ItemTemplate>
                         <DataTemplate>
                             <StackLayout>
-                                <border:SfBorder>
+                                <border:SfBorder Style="{StaticResource ColorBorderStyle}">
                                     <Ellipse
                                         Fill="{Binding .}"
                                         HeightRequest="60"

@@ -2,7 +2,6 @@
 using DuoNotes.Model;
 using DuoNotes.Resources;
 
-using System.Diagnostics;
 using System.IO;
 
 using Xamarin.Essentials;
@@ -54,11 +53,13 @@ namespace DuoNotes.PageModels {
 
                 var location = await App.AzureService.UploadToAzureBlobStorage(filePath, FileName);
 
-                App.FirebaseService.UpdateNoteFileLocationAsync(Note.Id, location);
+                Note.FileLocation = location;
+
+                App.FirebaseService.UpdateNoteFileLocationAsync(Note.Id, Note);
 
                 File.Delete(filePath);
             } else {
-                await App.Current.MainPage.DisplayAlert(AppResources.Error, AppResources.EditorError, AppResources.OK);
+                await Application.Current.MainPage.DisplayAlert(AppResources.Error, AppResources.EditorError, AppResources.OK);
             }
         }
     }
