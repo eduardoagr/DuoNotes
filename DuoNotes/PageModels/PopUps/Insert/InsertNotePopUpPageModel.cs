@@ -10,7 +10,7 @@ using Xamarin.Forms;
 
 namespace DuoNotes.PageModels.PopUps {
 
-    public class NotePopUpPageModel : NotebookPopUpPageModel {
+    public class InsertNotePopUpPageModel : InsertNotebookPopUpPageModel {
 
         public Command NewNoteCommand { get; set; }
 
@@ -20,7 +20,7 @@ namespace DuoNotes.PageModels.PopUps {
 
         public Note Note { get; set; }
 
-        public NotePopUpPageModel() {
+        public InsertNotePopUpPageModel() {
 
             Note = new Note {
                 OnAnyPropertiesChanged = () => {

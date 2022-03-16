@@ -18,7 +18,7 @@ using Xamarin.Forms;
 namespace DuoNotes.PageModels.PopUps {
 
     [AddINotifyPropertyChangedInterface]
-    public class NotebookPopUpPageModel {
+    public class InsertNotebookPopUpPageModel {
 
         public Command NewNotebookCommand { get; set; }
 
@@ -28,15 +28,13 @@ namespace DuoNotes.PageModels.PopUps {
 
         public Command DismissPopUpCommand { get; set; }
 
-        public Command PageDisappearingCommand { get; set; }
-
         public List<Color> Colors { get; set; }
 
         public Color SelectedColor { get; set; }
 
         public Notebook Notebook { get; set; }
 
-        public NotebookPopUpPageModel() {
+        public InsertNotebookPopUpPageModel() {
 
             Notebook = new Notebook {
                 OnAnyPropertiesChanged = () => {
@@ -46,12 +44,10 @@ namespace DuoNotes.PageModels.PopUps {
             };
 
             NewNotebookCommand = new Command(CreateNewNotebookAsync, CanCreateNotebook);
-
+            
             Colors = ColorService.GetColors();
 
-
             SelectedColorCommand = new Command(SelectColorAction);
-
 
             DismissPopUpCommand = new Command(ClosePopUpAction);
 

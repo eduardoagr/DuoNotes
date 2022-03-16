@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <pages:PopupPage
-    x:Class="DuoNotes.View.PopUps.NotesPopUp"
+    x:Class="DuoNotes.Pages.PopUps.Edit.EditNotesPopUpPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:community="http://xamarin.com/schemas/2020/toolkit"
@@ -19,8 +19,12 @@
     </pages:PopupPage.Animation>
 
     <pages:PopupPage.BindingContext>
-        <vm:NotePopUpPageModel />
+        <vm:InsertNotePopUpPageModel />
     </pages:PopupPage.BindingContext>
+
+    <pages:PopupPage.Behaviors>
+        <community:EventToCommandBehavior Command="{Binding PageAppearCommand}" EventName="Appearing" />
+    </pages:PopupPage.Behaviors>
 
     <Frame Style="{StaticResource FrameContainer}">
         <Grid Padding="10" RowDefinitions="Auto,Auto">

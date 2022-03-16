@@ -165,6 +165,17 @@
                 <Setter Property="TextColor" Value="#0B853F" />
                 <Setter Property="Text" Value="{Static icon:MaterialIcons.StickerText}" />
             </Style>
+
+            <Style
+                x:Key="EditStyle"
+                BasedOn="{StaticResource BookIconStyle}"
+                TargetType="Label">
+                <Setter Property="FontFamily" Value="ma" />
+                <Setter Property="TextColor" Value="CornflowerBlue" />
+                <Setter Property="Margin" Value="30,0" />
+                <Setter Property="FontSize" Value="50" />
+                <Setter Property="Text" Value="{Static icon:MaterialIcons.FileDocumentEdit}" />
+            </Style>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

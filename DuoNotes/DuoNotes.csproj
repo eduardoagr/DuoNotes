@@ -56,11 +56,11 @@
 		<Compile Update="Pages\NotebooksPage.xaml.cs">
 		  <DependentUpon>NotebooksPage.xaml</DependentUpon>
 		</Compile>
-		<Compile Update="Pages\PopUps\NotebookPopUpPage.xaml.cs">
-		  <DependentUpon>NotebookPopUpPage.xaml</DependentUpon>
+		<Compile Update="Pages\PopUps\Insert\InsertNotebookPopUpPage.xaml.cs">
+		  <DependentUpon>InsertNotebookPopUpPage.xaml</DependentUpon>
 		</Compile>
-		<Compile Update="Pages\PopUps\NotesPopUpPage.xaml.cs">
-		  <DependentUpon>NotesPopUpPage.xaml</DependentUpon>
+		<Compile Update="Pages\PopUps\Insert\InsertNotesPopUpPage.xaml.cs">
+		  <DependentUpon>InsertNotesPopUpPage.xaml</DependentUpon>
 		</Compile>
 		<Compile Update="Pages\PopUps\RegisterPopUpPage.xaml.cs">
 		  <DependentUpon>RegisterPopUpPage.xaml</DependentUpon>
@@ -79,6 +79,12 @@
 		<EmbeddedResource Update="Pages\NoDataPage.xaml">
 		  <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
 		</EmbeddedResource>
+		<EmbeddedResource Update="Pages\PopUps\Edit\EditNotebookPopUpPage.xaml">
+		  <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Pages\PopUps\Edit\EditNotesPopUpPage.xaml">
+		  <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+		</EmbeddedResource>
 		<EmbeddedResource Update="Pages\SplashScreenPage.xaml">
 		  <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
 		</EmbeddedResource>
@@ -92,10 +98,10 @@
 		<EmbeddedResource Update="Pages\NotesPage.xaml">
 		  <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
 		</EmbeddedResource>
-		<EmbeddedResource Update="Pages\PopUps\NotebookPopUpPage.xaml">
+		<EmbeddedResource Update="Pages\PopUps\Insert\InsertNotebookPopUpPage.xaml">
 			<Generator>MSBuild:UpdateDesignTimeXaml</Generator>
 		</EmbeddedResource>
-		<EmbeddedResource Update="Pages\PopUps\NotesPopUpPage.xaml">
+		<EmbeddedResource Update="Pages\PopUps\Insert\InsertNotesPopUpPage.xaml">
 		  <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
 		</EmbeddedResource>
 		<EmbeddedResource Update="Pages\PopUps\RegisterPopUpPage.xaml">

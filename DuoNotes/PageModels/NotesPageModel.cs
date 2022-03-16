@@ -89,9 +89,9 @@ namespace DuoNotes.PageModels {
             await obj.ScaleTo(0.8, 50, Easing.Linear);
             //Scale to normal
             await obj.ScaleTo(1, 50, Easing.Linear);
-            var notesPopUp = new NotesPopUp();
+            var notesPopUp = new InsertNotesPopUpPage();
             await PopupNavigation.Instance.PushAsync(notesPopUp, true);
-            var viewModel = notesPopUp.BindingContext as NotePopUpPageModel;
+            var viewModel = notesPopUp.BindingContext as InsertNotePopUpPageModel;
             viewModel.NotebookAction(Notebook.Id);
         }
 

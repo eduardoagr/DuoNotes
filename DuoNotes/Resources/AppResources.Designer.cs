@@ -349,11 +349,11 @@ namespace DuoNotes.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Contenido.
+        ///   Looks up a localized string similar to Update.
         /// </summary>
-        internal static string Usage {
+        internal static string Update {
             get {
-                return ResourceManager.GetString("Usage", resourceCulture);
+                return ResourceManager.GetString("Update", resourceCulture);
             }
         }
         

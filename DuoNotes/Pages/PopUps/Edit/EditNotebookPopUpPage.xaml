@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <pages:PopupPage
-    x:Class="DuoNotes.View.PopUps.NotebookPopUpPage"
+    x:Class="DuoNotes.Pages.PopUps.Edit.EditNotebookPopUpPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:animations="http://rotorgames.com"
@@ -9,7 +9,7 @@
     xmlns:community="http://xamarin.com/schemas/2020/toolkit"
     xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
     xmlns:translate="clr-namespace:DuoNotes.Utils"
-    xmlns:vm="clr-namespace:DuoNotes.PageModels.PopUps"
+    xmlns:vm="clr-namespace:DuoNotes.PageModels.PopUps.Edit"
     Padding="20">
 
     <pages:PopupPage.Animation>
@@ -22,12 +22,12 @@
     </pages:PopupPage.Animation>
 
     <pages:PopupPage.BindingContext>
-        <vm:NotebookPopUpPageModel />
+        <vm:EditNotebookPopUpPageModel />
     </pages:PopupPage.BindingContext>
 
-    <ContentPage.Behaviors>
-        <community:EventToCommandBehavior Command="{Binding PageDisappearingCommand}" EventName="Disappearing" />
-    </ContentPage.Behaviors>
+    <pages:PopupPage.Behaviors>
+        <community:EventToCommandBehavior Command="{Binding PageAppearCommand}" EventName="Appearing" />
+    </pages:PopupPage.Behaviors>
 
 
     <Frame Style="{StaticResource FrameContainer}">
@@ -46,7 +46,7 @@
                 Text="{Binding Notebook.Name}" />
 
             <ScrollView Grid.Row="2" Orientation="Horizontal">
-                <buttons:SfChipGroup ItemsSource="{Binding Colors}" SelectedItem="{Binding SelectedColor}">
+                <buttons:SfChipGroup ItemsSource="{Binding Colors}" SelectedItem="{Binding Notebook.Color}">
                     <buttons:SfChipGroup.Behaviors>
                         <community:EventToCommandBehavior Command="{Binding SelectedColorCommand}" EventName="SelectionChanged" />
                     </buttons:SfChipGroup.Behaviors>
@@ -68,9 +68,9 @@
             <Button
                 Grid.Row="3"
                 Padding="10"
-                Command="{Binding NewNotebookCommand}"
+                Command="{Binding UpdateCommand}"
                 Style="{StaticResource ButonStyle}"
-                Text="{translate:Translate NewNotebook}" />
+                Text="{translate:Translate Update}" />
         </Grid>
     </Frame>
 </pages:PopupPage>

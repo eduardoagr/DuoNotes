@@ -83,7 +83,7 @@
                 <DataTemplate>
                     <SwipeView>
                         <SwipeView.LeftItems>
-                            <SwipeItems Mode="Execute">
+                            <SwipeItems Mode="Reveal">
                                 <SwipeItemView Command="{Binding Source={RelativeSource AncestorType={x:Type vm:NotebooksPageModel}}, Path=DeleteNotebookNoteCommand}" CommandParameter="{Binding .}">
                                     <StackLayout
                                         BackgroundColor="{StaticResource Trnsparent}"
@@ -94,10 +94,17 @@
                                 </SwipeItemView>
                             </SwipeItems>
                         </SwipeView.LeftItems>
-                        <Grid
-                            ColumnDefinitions="Auto"
-                            ColumnSpacing="10"
-                            HeightRequest="65">
+                        <SwipeView.RightItems>
+                            <SwipeItemView Command="{Binding Source={RelativeSource AncestorType={x:Type vm:NotebooksPageModel}}, Path=EditNotebookNoteCommand}" CommandParameter="{Binding .}">
+                                <StackLayout
+                                    BackgroundColor="{StaticResource Trnsparent}"
+                                    Orientation="Vertical"
+                                    WidthRequest="100">
+                                    <Label Style="{StaticResource EditStyle}" />
+                                </StackLayout>
+                            </SwipeItemView>
+                        </SwipeView.RightItems>
+                        <Grid ColumnDefinitions="Auto" ColumnSpacing="10">
                             <Label Style="{StaticResource BookIconStyle}" TextColor="{Binding Color}" />
                             <Frame
                                 Grid.Column="1"

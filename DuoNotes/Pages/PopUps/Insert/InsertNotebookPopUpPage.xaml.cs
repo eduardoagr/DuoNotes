@@ -4,8 +4,8 @@ using Xamarin.Forms.Xaml;
 
 namespace DuoNotes.View.PopUps {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class NotebookPopUpPage : PopupPage {
-        public NotebookPopUpPage() {
+    public partial class InsertNotebookPopUpPage : PopupPage {
+        public InsertNotebookPopUpPage() {
             InitializeComponent();
         }
 
