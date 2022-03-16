@@ -123,6 +123,9 @@ namespace DuoNotes.Services {
             if (element != null && !string.IsNullOrEmpty(ChildName)) {
                 await firebaseClient.Child(ChildName)
                      .PostAsync(JsonConvert.SerializeObject(element));
+
+                // Use default vibration length
+                Vibration.Vibrate();
             }
 
         }
@@ -212,10 +215,10 @@ namespace DuoNotes.Services {
 
         public async void UpdateNoteBookTitleAsync(string Id, string NotebookName) {
 
-            await firebaseClient
-                .Child(AppConstant.Notebooks)
-                .Child(Id)
-                .PatchAsync($"{{ \"Name\" : \"{NotebookName}\" }}");
+                await firebaseClient
+                    .Child(AppConstant.Notebooks)
+                    .Child(Id)
+                    .PatchAsync($"{{ \"Name\" : \"{NotebookName}\" }}");
         }
 
         public async void UpdateNoteBookColorAsync(string Id, string NotebookColor) {
