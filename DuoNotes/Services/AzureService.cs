@@ -2,13 +2,10 @@
 
 using Azure.Storage.Blobs;
 using Azure.Storage.Blobs.Models;
-using Azure.Storage.Blobs.Specialized;
 
 using DuoNotes.Constants;
 using DuoNotes.Resources;
 
-using System;
-using System.ComponentModel;
 using System.IO;
 using System.Threading.Tasks;
 
@@ -49,7 +46,7 @@ namespace DuoNotes.Services {
             string text = string.Empty;
             using (var streamReader = new StreamReader(content)) {
                 while (!streamReader.EndOfStream) {
-                   text = await streamReader.ReadLineAsync();
+                    text = await streamReader.ReadLineAsync();
                 }
             }
 

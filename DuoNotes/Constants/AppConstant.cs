@@ -1,4 +1,6 @@
 ﻿
+using Syncfusion.Compression.Zip;
+
 using System.Globalization;
 
 namespace DuoNotes.Constants {
@@ -49,5 +51,13 @@ namespace DuoNotes.Constants {
         public const string ContanerName = "notes";
         public const string ConectionString = "DefaultEndpointsProtocol=https;AccountName=notesbucket;AccountKey=kCUWArA7EFfu2Zwt4R+zSC619apF409MZsLt39V04YAdKt4o+1ZRrZLLWh0mKbGIJ4PjkfcEHKweACWgcf4LcA==;EndpointSuffix=core.windows.net";
 
+        //Edit Notebooks and Notes
+
+        public const string EditNote = "EditNote";
+        public const string EditNotebook = "EditNotebook";
+
+        // We need the Id of the notebook, when we edit a Note
+
+        public const string NotebookId = "NotebookId";
     }
 }

@@ -2,7 +2,6 @@
 using DuoNotes.Model;
 using DuoNotes.Resources;
 
-using System.Diagnostics;
 using System.IO;
 
 using Xamarin.Essentials;
@@ -27,9 +26,9 @@ namespace DuoNotes.PageModels {
 
         public override async void AppearAction() {
 
-            Note = Application.Current.Properties[AppConstant.SelectedNote] as Note;
+            Note = Application.Current.Properties[AppConstant.EditNote] as Note;
 
-            var NewNote = await App.FirebaseService.ReadByIdAsync(AppConstant.Notes, Note.Id);
+            var NewNote = await App.FirebaseService.ReadByIdAsync(AppConstant.Notes, Note.Id) as Note;
 
             if (!string.IsNullOrEmpty(NewNote.FileLocation)) {
                 var ext = ".html";
@@ -58,7 +57,7 @@ namespace DuoNotes.PageModels {
 
                 File.Delete(filePath);
             } else {
-                await App.Current.MainPage.DisplayAlert(AppResources.Error, AppResources.EditorError, "OK");
+                await Application.Current.MainPage.DisplayAlert(AppResources.Error, AppResources.EditorError, AppResources.OK);
             }
         }
     }

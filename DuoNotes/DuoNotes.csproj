@@ -25,7 +25,7 @@
 	<ItemGroup>
 		<PackageReference Include="Acr.UserDialogs" Version="7.2.0.562" />
 		<PackageReference Include="Azure.Core" Version="1.22.0" />
-		<PackageReference Include="Azure.Storage.Blobs" Version="12.10.0" />
+		<PackageReference Include="Azure.Storage.Blobs" Version="12.11.0" />
 		<PackageReference Include="Com.Airbnb.Xamarin.Forms.Lottie" Version="4.1.0" />
 		<PackageReference Include="FirebaseAuthentication.net" Version="3.7.2" />
 		<PackageReference Include="FirebaseDatabase.net" Version="4.0.7" />
@@ -35,28 +35,32 @@
 		</PackageReference>
 		<PackageReference Include="PropertyChanged.Fody" Version="3.4.0" PrivateAssets="All" />
 		<PackageReference Include="Rg.Plugins.Popup" Version="2.1.0" />
-		<PackageReference Include="Syncfusion.Licensing" Version="19.4.0.55" />
-		<PackageReference Include="Syncfusion.Xamarin.Buttons" Version="19.4.0.55" />
-		<PackageReference Include="Syncfusion.Xamarin.DocIO" Version="19.4.0.55" />
-		<PackageReference Include="Syncfusion.Xamarin.SfRichTextEditor" Version="19.4.0.55" />
+		<PackageReference Include="Syncfusion.Licensing" Version="19.4.0.56" />
+		<PackageReference Include="Syncfusion.Xamarin.Buttons" Version="19.4.0.56" />
+		<PackageReference Include="Syncfusion.Xamarin.DocIO" Version="19.4.0.56" />
+		<PackageReference Include="Syncfusion.Xamarin.SfListView" Version="19.4.0.56" />
+		<PackageReference Include="Syncfusion.Xamarin.SfRichTextEditor" Version="19.4.0.56" />
 		<PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
 		<PackageReference Include="Xamarin.CommunityToolkit" Version="2.0.0" />
 		<PackageReference Include="Xamarin.FFImageLoading.Svg.Forms" Version="2.4.11.982" />
 		<PackageReference Include="Xamarin.Forms" Version="5.0.0.2337" />
 		<PackageReference Include="Xamarin.Essentials" Version="1.7.1" />
-		<PackageReference Include="Xamarin.Forms.PancakeView" Version="2.3.0.759" />
+		<PackageReference Include="Xamarin.Forms.BehaviorsPack" Version="3.0.0" />
 		<PackageReference Include="Xamarin.Forms.Visual.Material" Version="5.0.0.2337" />
 	</ItemGroup>
 
 	<ItemGroup>
+		<Compile Update="Pages\NoDataPage.xaml.cs">
+		  <DependentUpon>NoDataPage.xaml</DependentUpon>
+		</Compile>
 		<Compile Update="Pages\NotebooksPage.xaml.cs">
 		  <DependentUpon>NotebooksPage.xaml</DependentUpon>
 		</Compile>
-		<Compile Update="Pages\PopUps\NotebookPopUpPage.xaml.cs">
-		  <DependentUpon>NotebookPopUpPage.xaml</DependentUpon>
+		<Compile Update="Pages\PopUps\Insert\InsertNotebookPopUpPage.xaml.cs">
+		  <DependentUpon>InsertNotebookPopUpPage.xaml</DependentUpon>
 		</Compile>
-		<Compile Update="Pages\PopUps\NotesPopUpPage.xaml.cs">
-		  <DependentUpon>NotesPopUpPage.xaml</DependentUpon>
+		<Compile Update="Pages\PopUps\Insert\InsertNotesPopUpPage.xaml.cs">
+		  <DependentUpon>InsertNotesPopUpPage.xaml</DependentUpon>
 		</Compile>
 		<Compile Update="Pages\PopUps\RegisterPopUpPage.xaml.cs">
 		  <DependentUpon>RegisterPopUpPage.xaml</DependentUpon>
@@ -72,6 +76,15 @@
 		<EmbeddedResource Update="Pages\EditorPage.xaml">
 		  <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
 		</EmbeddedResource>
+		<EmbeddedResource Update="Pages\NoDataPage.xaml">
+		  <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Pages\PopUps\Edit\EditNotebookPopUpPage.xaml">
+		  <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Pages\PopUps\Edit\EditNotesPopUpPage.xaml">
+		  <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+		</EmbeddedResource>
 		<EmbeddedResource Update="Pages\SplashScreenPage.xaml">
 		  <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
 		</EmbeddedResource>
@@ -85,10 +98,10 @@
 		<EmbeddedResource Update="Pages\NotesPage.xaml">
 		  <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
 		</EmbeddedResource>
-		<EmbeddedResource Update="Pages\PopUps\NotebookPopUpPage.xaml">
+		<EmbeddedResource Update="Pages\PopUps\Insert\InsertNotebookPopUpPage.xaml">
 			<Generator>MSBuild:UpdateDesignTimeXaml</Generator>
 		</EmbeddedResource>
-		<EmbeddedResource Update="Pages\PopUps\NotesPopUpPage.xaml">
+		<EmbeddedResource Update="Pages\PopUps\Insert\InsertNotesPopUpPage.xaml">
 		  <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
 		</EmbeddedResource>
 		<EmbeddedResource Update="Pages\PopUps\RegisterPopUpPage.xaml">

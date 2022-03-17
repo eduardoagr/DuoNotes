@@ -14,7 +14,6 @@ using Newtonsoft.Json;
 
 using Rg.Plugins.Popup.Services;
 
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -47,7 +46,7 @@ namespace DuoNotes.Services {
                 UserDialogs.Instance.ShowLoading(AppResources.Loading);
                 var auth = await AuthProvider.CreateUserWithEmailAndPasswordAsync(users.Email, users.Password);
                 await PopupNavigation.Instance.PopAsync(true);
-                await App.Current.MainPage.DisplayAlert(AppResources.NewUser, AppResources.UserInserted, "OK");
+                await Application.Current.MainPage.DisplayAlert(AppResources.NewUser, AppResources.UserInserted, "OK");
             } catch (FirebaseAuthException ex) {
                 Firebasemessages.GetMessages(ex);
             }
@@ -120,11 +119,14 @@ namespace DuoNotes.Services {
 
 
         public async Task InsertAsync(NotebookNote element, string ChildName) {
-            if (element == null || ChildName == null) {
-                return;
+            if (element != null && !string.IsNullOrEmpty(ChildName)) {
+                await firebaseClient.Child(ChildName)
+                     .PostAsync(JsonConvert.SerializeObject(element));
+
+                // Use default vibration length
+                Vibration.Vibrate();
             }
-            await firebaseClient.Child(ChildName)
-                .PostAsync(JsonConvert.SerializeObject(element));
+
         }
 
         // Read and update our observableCollection
@@ -174,7 +176,9 @@ namespace DuoNotes.Services {
             return collection;
         }
 
-        public async Task<Note> ReadByIdAsync(string ChildName, string Id) {
+        public async Task<NotebookNote> ReadByIdAsync(string ChildName, string Id) {
+
+            NotebookNote notebookNote;
 
             var Notes = await firebaseClient
                                    .Child(ChildName)
@@ -182,25 +186,38 @@ namespace DuoNotes.Services {
                                    .OnceAsync<object>();
 
             var items = Notes.ToList();
+            notebookNote = Convert(ChildName, items);
 
-            var NotebookNote = new Note() 
-            { 
-                CreatedDate = items[0].Object.ToString(),
-                FileLocation = items[1].Object.ToString(),
-                Name = items[2].Object.ToString(),
-                NotebookId = items[3].Object.ToString()
-            };
-
-            return NotebookNote;
+            return notebookNote;
         }
 
-        public async void UpdateNoteFileLocationAsync(string Id, string FileLocation) {
+
+        //Update Note
+
+        public async void UpdateNoteFileLocationAsync(string Id, string NoteFileLocation) {
 
             await firebaseClient
                 .Child(AppConstant.Notes)
                 .Child(Id)
-                .PatchAsync($"{{ \"FileLocation\" : \"{FileLocation}\" }}");
+                .PatchAsync($"{{ \"FileLocation\" : \"{NoteFileLocation}\" }}");
         }
+
+        public async void UpdateNoteAsync(string Id, string NoteName) {
+
+            await firebaseClient
+                .Child(AppConstant.Notes)
+                .Child(Id)
+                .PatchAsync($"{{ \"Name\" : \"{NoteName}\" }}");
+        }
+
+        public async void UpdateNotebookAsync(string Id, string NotebookColor, string NotebookName) {
+
+            await firebaseClient
+                .Child(AppConstant.Notebooks)
+                .Child(Id)
+                .PatchAsync($"{{ \"Color\" : \"{NotebookColor}\", \"Name\" : \"{NotebookName}\" }}");
+        }
+
 
         public async void DeleteNotebookNotAsync(string Id, string ChildName) {
 
@@ -208,9 +225,47 @@ namespace DuoNotes.Services {
                  .Child(ChildName)
                  .Child(Id)
                  .DeleteAsync();
+
+            // Use default vibration length
+            Vibration.Vibrate();
         }
 
-        //This method will convert whatever we passed, to a specific object, based on the child-name
+
+        /// <summary>
+        /// Returns the item base in the ID
+        /// </summary>
+        /// <param name="ChildName"> This is the node to search in firebase </param>
+        /// <param name="items"> The Json object in the form of a list </param>
+        /// <returns></returns>
+
+        private static NotebookNote Convert(string ChildName, List<FirebaseObject<object>> items) {
+            NotebookNote notebookNote;
+            if (ChildName.Equals(AppConstant.Notes)) {
+                notebookNote = new Note() {
+                    CreatedDate = items[0].Object.ToString(),
+                    FileLocation = items[1].Object.ToString(),
+                    Name = items[2].Object.ToString(),
+                    NotebookId = items[3].Object.ToString()
+                };
+            } else {
+                notebookNote = new Notebook {
+                    Color = items[0].Object.ToString(),
+                    CreatedDate = items[1].ToString(),
+                    Name = items[2].ToString(),
+                    UserID = items[3].ToString()
+                };
+            }
+
+            return notebookNote;
+        }
+
+        /// <summary>
+        /// Returns the item base in the ID
+        /// </summary>
+        /// <param name="ChildName"> This is the node to search in firebase </param>
+        /// <param name="item"> The Json object </param>
+        /// <returns></returns>
+
         private static NotebookNote Convert(string ChildName, FirebaseObject<NotebookNote> item) {
             NotebookNote notebookNote;
             if (ChildName.Equals(AppConstant.Notebooks)) {

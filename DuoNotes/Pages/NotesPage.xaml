@@ -7,14 +7,51 @@
     xmlns:icon="clr-namespace:DuoNotes.Fonts"
     xmlns:translate="clr-namespace:DuoNotes.Utils"
     xmlns:vm="clr-namespace:DuoNotes.PageModels"
-    xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
-    Title="{translate:Translate Notes}"
     BackgroundColor="{AppThemeBinding Dark={StaticResource BckgroundDarkColor},
                                       Light={StaticResource BackgroundLigthColor}}">
 
     <ContentPage.BindingContext>
         <vm:NotesPageModel />
     </ContentPage.BindingContext>
+
+    <NavigationPage.TitleView>
+        <StackLayout Orientation="Horizontal">
+
+            <Label
+                FontAttributes="Bold"
+                FontSize="Medium"
+                IsVisible="{Binding TitleVisibility}"
+                Text="{translate:Translate Notes}"
+                TextColor="{StaticResource BackgroundLigthColor}"
+                VerticalOptions="Center" />
+
+            <SearchBar
+                x:Name="SearchBar"
+                IsEnabled="{Binding SearchBarVisibility}"
+                IsVisible="{Binding SearchBarVisibility}">
+                <SearchBar.Behaviors>
+                    <community:EventToCommandBehavior
+                        Command="{Binding TextToSearchCommand}"
+                        CommandParameter="{Binding Text, Source={x:Reference SearchBar}}"
+                        EventName="TextChanged" />
+                    <community:EventToCommandBehavior Command="{Binding SearchPressCommand}" EventName="SearchButtonPressed" />
+                </SearchBar.Behaviors>
+            </SearchBar>
+
+            <Button
+                community:TouchEffect.PressedBackgroundColor="{StaticResource PressedItems}"
+                BackgroundColor="{StaticResource Trnsparent}"
+                Command="{Binding SwitchVisibilityCommand}"
+                HorizontalOptions="EndAndExpand"
+                IsVisible="{Binding SearchBtonVisibility}"
+                VerticalOptions="CenterAndExpand">
+                <Button.ImageSource>
+                    <FontImageSource FontFamily="ma" Glyph="{Static icon:MaterialIcons.TextBoxSearch}" />
+                </Button.ImageSource>
+            </Button>
+        </StackLayout>
+    </NavigationPage.TitleView>
+
 
     <ContentPage.Behaviors>
         <community:EventToCommandBehavior Command="{Binding PageDisappearCommand}" EventName="Disappearing" />
@@ -25,43 +62,51 @@
 
         <CollectionView
             ItemsSource="{Binding FireBaseNotebookNotes}"
-            SelectedItem="{Binding SelectedNote}"
+            SelectedItem="{Binding SelectedItem}"
             SelectionChangedCommand="{Binding SelectedItemCommand}"
             SelectionMode="Single">
-
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <SwipeView>
                         <SwipeView.LeftItems>
-                            <SwipeItems Mode="Execute">
-                                <SwipeItem BackgroundColor="{StaticResource DeleteItemColor}"
-                                           Command="{Binding Source={RelativeSource AncestorType={x:Type vm:NotesPageModel}}, Path=DeleteNoteCommand}}"
-                                           CommandParameter="{Binding .}"
-                                           Text="{translate:Translate Delete}">
-                                    <SwipeItem.IconImageSource>
-                                        <FontImageSource FontFamily="fa"
-                                                         Glyph="{Static icon:IconFont.TrashCan}"
-                                                         Size="30" />
-                                    </SwipeItem.IconImageSource>
-                                </SwipeItem>
+                            <SwipeItems Mode="Reveal">
+                                <SwipeItemView Command="{Binding Source={RelativeSource AncestorType={x:Type vm:NotesPageModel}}, Path=DeleteNotebookNoteCommand}" CommandParameter="{Binding .}">
+                                    <StackLayout
+                                        BackgroundColor="{StaticResource Trnsparent}"
+                                        Orientation="Vertical"
+                                        WidthRequest="100">
+                                        <Label Style="{StaticResource TrashCanStyle}" />
+                                    </StackLayout>
+                                </SwipeItemView>
                             </SwipeItems>
                         </SwipeView.LeftItems>
-
-                        <yummy:PancakeView community:TouchEffect.PressedBackgroundColor="{StaticResource PressedItems}">
-                            <StackLayout Padding="5">
-                                <Label Style="{StaticResource DateLabelStyle}" Text="{Binding CreatedDate}" />
-
-                                <BoxView />
-
-                                <Label FontAttributes="Bold" Text="{Binding Name}" />
-                            </StackLayout>
-
-                        </yummy:PancakeView>
-
+                        <SwipeView.RightItems>
+                            <SwipeItemView Command="{Binding Source={RelativeSource AncestorType={x:Type vm:NotebooksPageModel}}, Path=EditNotebookNoteCommand}" CommandParameter="{Binding .}">
+                                <StackLayout
+                                    BackgroundColor="{StaticResource Trnsparent}"
+                                    Orientation="Vertical"
+                                    WidthRequest="100">
+                                    <Label Style="{StaticResource EditStyle}" />
+                                </StackLayout>
+                            </SwipeItemView>
+                        </SwipeView.RightItems>
+                        <Grid ColumnDefinitions="Auto" ColumnSpacing="10">
+                            <Label Style="{StaticResource NoteIconStyle}" />
+                            <Frame
+                                Grid.Column="1"
+                                CornerRadius="10"
+                                Style="{StaticResource FrameContainer}"
+                                VerticalOptions="StartAndExpand">
+                                <StackLayout Padding="10" BackgroundColor="#D12C7D72">
+                                    <Label Style="{StaticResource DateLabelStyle}" Text="{Binding CreatedDate}" />
+                                    <BoxView BackgroundColor="{StaticResource BckgroundDarkColor}" HeightRequest="1" />
+                                    <Label Style="{StaticResource DateLabelStyle}" Text="{Binding Name}" />
+                                </StackLayout>
+                            </Frame>
+                        </Grid>
                     </SwipeView>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
-
         </CollectionView>
 
 

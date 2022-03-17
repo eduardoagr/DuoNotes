@@ -115,6 +115,15 @@ namespace DuoNotes.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Do you wan to update this element.
+        /// </summary>
+        internal static string Edit {
+            get {
+                return ResourceManager.GetString("Edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The note is empty.
         /// </summary>
         internal static string EditorError {
@@ -174,15 +183,6 @@ namespace DuoNotes.Resources {
         internal static string Error {
             get {
                 return ResourceManager.GetString("Error", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Go Back.
-        /// </summary>
-        internal static string GoBack {
-            get {
-                return ResourceManager.GetString("GoBack", resourceCulture);
             }
         }
         
@@ -250,6 +250,15 @@ namespace DuoNotes.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No.
+        /// </summary>
+        internal static string No {
+            get {
+                return ResourceManager.GetString("No", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to title.
         /// </summary>
         internal static string NoteBookName {
@@ -259,16 +268,7 @@ namespace DuoNotes.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Notebooks.
-        /// </summary>
-        internal static string Notebooks {
-            get {
-                return ResourceManager.GetString("Notebooks", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to title.
+        ///   Looks up a localized string similar to Tite.
         /// </summary>
         internal static string NoteBookTitle {
             get {
@@ -331,6 +331,15 @@ namespace DuoNotes.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Search.
+        /// </summary>
+        internal static string Search {
+            get {
+                return ResourceManager.GetString("Search", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Server error.
         /// </summary>
         internal static string ServerError {
@@ -340,11 +349,11 @@ namespace DuoNotes.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Contenido.
+        ///   Looks up a localized string similar to Update.
         /// </summary>
-        internal static string Usage {
+        internal static string Update {
             get {
-                return ResourceManager.GetString("Usage", resourceCulture);
+                return ResourceManager.GetString("Update", resourceCulture);
             }
         }
         
@@ -376,11 +385,29 @@ namespace DuoNotes.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Warning.
+        /// </summary>
+        internal static string Warning {
+            get {
+                return ResourceManager.GetString("Warning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Password should be at least 6 characters.
         /// </summary>
         internal static string WEAK_PASSWORD___Password_should_be_at_least_6_characters {
             get {
                 return ResourceManager.GetString("WEAK_PASSWORD : Password should be at least 6 characters", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Yes.
+        /// </summary>
+        internal static string Yes {
+            get {
+                return ResourceManager.GetString("Yes", resourceCulture);
             }
         }
     }

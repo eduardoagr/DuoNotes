@@ -135,6 +135,9 @@
   <data name="Delete" xml:space="preserve">
     <value>Delete</value>
   </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Do you wan to update this element</value>
+  </data>
   <data name="EditorError" xml:space="preserve">
     <value>The note is empty</value>
   </data>
@@ -155,9 +158,6 @@
   </data>
   <data name="Error" xml:space="preserve">
     <value>Error</value>
-  </data>
-  <data name="GoBack" xml:space="preserve">
-    <value>Go Back</value>
   </data>
   <data name="HaveAccount" xml:space="preserve">
     <value>Do not have an account? register here</value>
@@ -180,14 +180,14 @@
   <data name="NewUser" xml:space="preserve">
     <value>New user</value>
   </data>
+  <data name="No" xml:space="preserve">
+    <value>No</value>
+  </data>
   <data name="NoteBookName" xml:space="preserve">
     <value>title</value>
   </data>
-  <data name="Notebooks" xml:space="preserve">
-    <value>Notebooks</value>
-  </data>
   <data name="NoteBookTitle" xml:space="preserve">
-    <value>title</value>
+    <value>Tite</value>
   </data>
   <data name="Notes" xml:space="preserve">
     <value>Notes</value>
@@ -207,11 +207,14 @@
   <data name="Register" xml:space="preserve">
     <value>Register</value>
   </data>
+  <data name="Search" xml:space="preserve">
+    <value>Search</value>
+  </data>
   <data name="ServerError" xml:space="preserve">
     <value>Server error</value>
   </data>
-  <data name="Usage" xml:space="preserve">
-    <value>Contenido</value>
+  <data name="Update" xml:space="preserve">
+    <value>Update</value>
   </data>
   <data name="User" xml:space="preserve">
     <value>User</value>
@@ -222,7 +225,13 @@
   <data name="UserProfile" xml:space="preserve">
     <value>Profile</value>
   </data>
+  <data name="Warning" xml:space="preserve">
+    <value>Warning</value>
+  </data>
   <data name="WEAK_PASSWORD : Password should be at least 6 characters" xml:space="preserve">
     <value>Password should be at least 6 characters</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Yes</value>
   </data>
 </root>
