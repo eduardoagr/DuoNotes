@@ -13,7 +13,6 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Reactive.Linq;
 
-using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace DuoNotes.PageModels {
@@ -98,6 +97,8 @@ namespace DuoNotes.PageModels {
 
             if (!string.IsNullOrWhiteSpace(SeachTerm)) {
 
+                FireBaseNotebookNotes = await App.FirebaseService.ReadAsync(AppConstant.Notebooks);
+
                 var FilteredItems = FireBaseNotebookNotes.Where(item =>
                 item.Name.ToLowerInvariant().Contains(SeachTerm.ToLowerInvariant())).ToList();
 
@@ -108,7 +109,6 @@ namespace DuoNotes.PageModels {
                 }
 
             } else {
-                FireBaseNotebookNotes = await App.FirebaseService.ReadAsync(AppConstant.Notebooks);
                 SearchBarVisibility = false;
                 ProfileVisibility = true;
             }
@@ -163,17 +163,14 @@ namespace DuoNotes.PageModels {
                 App.AzureService.DeleteFileFromBlobStorage($"{note.Name}{ext}");
             }
 
-            // Use default vibration length
-            Vibration.Vibrate();
-
             FireBaseNotebookNotes = await App.FirebaseService.ReadAsync(AppConstant.Notebooks);
         }
 
-        private async void EditNotebookNoteAction(NotebookNote obj) {
+        public virtual async void EditNotebookNoteAction(NotebookNote obj) {
 
             var notebook = obj as Notebook;
 
-            Application.Current.Properties[AppConstant.SelectedNotebook] = notebook;
+            Application.Current.Properties[AppConstant.EditNotebook] = notebook;
 
             await PopupNavigation.Instance.PushAsync(new EditNotebookPopUpPage());
 

@@ -6,7 +6,7 @@
     xmlns:community="http://xamarin.com/schemas/2020/toolkit"
     xmlns:pages="http://rotorgames.com"
     xmlns:translate="clr-namespace:DuoNotes.Utils"
-    xmlns:vm="clr-namespace:DuoNotes.PageModels.PopUps"
+    xmlns:vm="clr-namespace:DuoNotes.PageModels.PopUps.Edit"
     Padding="20">
 
     <pages:PopupPage.Animation>
@@ -19,7 +19,7 @@
     </pages:PopupPage.Animation>
 
     <pages:PopupPage.BindingContext>
-        <vm:InsertNotePopUpPageModel />
+        <vm:EditNotesPopUpPageModel />
     </pages:PopupPage.BindingContext>
 
     <pages:PopupPage.Behaviors>
@@ -44,10 +44,10 @@
             <Button
                 Grid.Row="3"
                 Padding="10"
-                Command="{Binding NewNoteCommand}"
-                IsEnabled="True"
+                Command="{Binding UpdateCommand}"
                 Style="{StaticResource ButonStyle}"
-                Text="{translate:Translate NewNote}" />
+                Text="{translate:Translate Update}" />
+
         </Grid>
     </Frame>
 </pages:PopupPage>

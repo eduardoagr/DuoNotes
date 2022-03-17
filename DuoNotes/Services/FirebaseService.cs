@@ -46,7 +46,7 @@ namespace DuoNotes.Services {
                 UserDialogs.Instance.ShowLoading(AppResources.Loading);
                 var auth = await AuthProvider.CreateUserWithEmailAndPasswordAsync(users.Email, users.Password);
                 await PopupNavigation.Instance.PopAsync(true);
-                await App.Current.MainPage.DisplayAlert(AppResources.NewUser, AppResources.UserInserted, "OK");
+                await Application.Current.MainPage.DisplayAlert(AppResources.NewUser, AppResources.UserInserted, "OK");
             } catch (FirebaseAuthException ex) {
                 Firebasemessages.GetMessages(ex);
             }
@@ -202,7 +202,7 @@ namespace DuoNotes.Services {
                 .PatchAsync($"{{ \"FileLocation\" : \"{NoteFileLocation}\" }}");
         }
 
-        public async void UpdateNoteTitleAsync(string Id, string NoteName) {
+        public async void UpdateNoteAsync(string Id, string NoteName) {
 
             await firebaseClient
                 .Child(AppConstant.Notes)
@@ -210,22 +210,12 @@ namespace DuoNotes.Services {
                 .PatchAsync($"{{ \"Name\" : \"{NoteName}\" }}");
         }
 
-        //Updating Notebooks
-
-        public async void UpdateNoteBookTitleAsync(string Id, string NotebookName) {
+        public async void UpdateNotebookAsync(string Id, string NotebookColor, string NotebookName) {
 
             await firebaseClient
                 .Child(AppConstant.Notebooks)
                 .Child(Id)
-                .PatchAsync($"{{ \"Name\" : \"{NotebookName}\" }}");
-        }
-
-        public async void UpdateNoteBookColorAsync(string Id, string NotebookColor) {
-
-            await firebaseClient
-                .Child(AppConstant.Notebooks)
-                .Child(Id)
-                .PatchAsync($"{{ \"Color\" : \"{NotebookColor}\" }}");
+                .PatchAsync($"{{ \"Color\" : \"{NotebookColor}\", \"Name\" : \"{NotebookName}\" }}");
         }
 
 
@@ -235,6 +225,9 @@ namespace DuoNotes.Services {
                  .Child(ChildName)
                  .Child(Id)
                  .DeleteAsync();
+
+            // Use default vibration length
+            Vibration.Vibrate();
         }
 
 

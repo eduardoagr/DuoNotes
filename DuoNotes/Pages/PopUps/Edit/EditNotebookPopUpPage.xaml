@@ -46,7 +46,7 @@
                 Text="{Binding Notebook.Name}" />
 
             <ScrollView Grid.Row="2" Orientation="Horizontal">
-                <buttons:SfChipGroup ItemsSource="{Binding Colors}" SelectedItem="{Binding Notebook.Color}">
+                <buttons:SfChipGroup ItemsSource="{Binding Colors}" SelectedItem="{Binding SelectedColor}">
                     <buttons:SfChipGroup.Behaviors>
                         <community:EventToCommandBehavior Command="{Binding SelectedColorCommand}" EventName="SelectionChanged" />
                     </buttons:SfChipGroup.Behaviors>
