@@ -2,7 +2,6 @@
 using DuoNotes.Constants;
 using DuoNotes.Model;
 using DuoNotes.Pages.PopUps.Edit;
-using DuoNotes.Resources;
 using DuoNotes.View;
 using DuoNotes.View.PopUps;
 
@@ -10,10 +9,8 @@ using PropertyChanged;
 
 using Rg.Plugins.Popup.Services;
 
-using System;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Net.Http.Headers;
 using System.Reactive.Linq;
 
 using Xamarin.Essentials;
@@ -166,8 +163,8 @@ namespace DuoNotes.PageModels {
                 App.AzureService.DeleteFileFromBlobStorage($"{note.Name}{ext}");
             }
 
-                // Use default vibration length
-                Vibration.Vibrate();
+            // Use default vibration length
+            Vibration.Vibrate();
 
             FireBaseNotebookNotes = await App.FirebaseService.ReadAsync(AppConstant.Notebooks);
         }

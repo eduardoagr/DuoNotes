@@ -14,7 +14,6 @@ using Newtonsoft.Json;
 
 using Rg.Plugins.Popup.Services;
 
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -191,7 +190,7 @@ namespace DuoNotes.Services {
 
             return notebookNote;
         }
-        
+
 
         //Update Note
 
@@ -215,10 +214,10 @@ namespace DuoNotes.Services {
 
         public async void UpdateNoteBookTitleAsync(string Id, string NotebookName) {
 
-                await firebaseClient
-                    .Child(AppConstant.Notebooks)
-                    .Child(Id)
-                    .PatchAsync($"{{ \"Name\" : \"{NotebookName}\" }}");
+            await firebaseClient
+                .Child(AppConstant.Notebooks)
+                .Child(Id)
+                .PatchAsync($"{{ \"Name\" : \"{NotebookName}\" }}");
         }
 
         public async void UpdateNoteBookColorAsync(string Id, string NotebookColor) {
@@ -239,15 +238,15 @@ namespace DuoNotes.Services {
         }
 
 
-    /// <summary>
-    /// Returns the item base in the ID
-    /// </summary>
-    /// <param name="ChildName"> This is the node to search in firebase </param>
-    /// <param name="items"> The Json object in the form of a list </param>
-    /// <returns></returns>
+        /// <summary>
+        /// Returns the item base in the ID
+        /// </summary>
+        /// <param name="ChildName"> This is the node to search in firebase </param>
+        /// <param name="items"> The Json object in the form of a list </param>
+        /// <returns></returns>
 
-    private static NotebookNote Convert(string ChildName, List<FirebaseObject<object>> items) {
-        NotebookNote notebookNote;
+        private static NotebookNote Convert(string ChildName, List<FirebaseObject<object>> items) {
+            NotebookNote notebookNote;
             if (ChildName.Equals(AppConstant.Notes)) {
                 notebookNote = new Note() {
                     CreatedDate = items[0].Object.ToString(),

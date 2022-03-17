@@ -2,6 +2,7 @@
 using FFImageLoading.Forms.Platform;
 
 using Foundation;
+
 using Syncfusion.XForms.iOS.Buttons;
 using Syncfusion.XForms.iOS.EffectsView;
 using Syncfusion.XForms.iOS.RichTextEditor;

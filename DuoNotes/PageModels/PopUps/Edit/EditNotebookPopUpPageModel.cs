@@ -4,9 +4,7 @@ using DuoNotes.Model;
 using Rg.Plugins.Popup.Services;
 
 using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Text;
 
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -47,7 +45,6 @@ namespace DuoNotes.PageModels.PopUps.Edit {
         private void PageAppearAction() {
 
             Notebook = Application.Current.Properties[AppConstant.SelectedNotebook] as Notebook;
-            
         }
     }
 }

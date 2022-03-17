@@ -44,7 +44,7 @@ namespace DuoNotes.PageModels.PopUps {
             };
 
             NewNotebookCommand = new Command(CreateNewNotebookAsync, CanCreateNotebook);
-            
+
             Colors = ColorService.GetColors();
 
             SelectedColorCommand = new Command(SelectColorAction);

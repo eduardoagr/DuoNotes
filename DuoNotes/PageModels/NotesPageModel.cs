@@ -97,7 +97,7 @@ namespace DuoNotes.PageModels {
 
         public override async void SelectedItemActionAsync() {
 
-            if (SelectedItem != null ) {
+            if (SelectedItem != null) {
 
                 var edit = new EditorPage();
                 Application.Current.Properties[AppConstant.SelectedNote] = SelectedItem;
