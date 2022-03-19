@@ -80,6 +80,9 @@
     <PackageReference Include="Syncfusion.Xamarin.DocIO">
       <Version>19.4.0.56</Version>
     </PackageReference>
+    <PackageReference Include="Syncfusion.Xamarin.DocIORenderer">
+      <Version>19.4.0.56</Version>
+    </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfListView">
       <Version>19.4.0.56</Version>
     </PackageReference>
@@ -87,7 +90,7 @@
       <Version>19.4.0.56</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.CommunityToolkit">
-      <Version>2.0.0</Version>
+      <Version>2.0.1</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.FFImageLoading.Svg.Forms">
       <Version>2.4.11.982</Version>
@@ -99,6 +102,7 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dependencies\Share.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Renders\NativeAndroidCollectionViewRenderer.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
@@ -236,6 +240,19 @@
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\mailchimp.svg" />
   </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\word.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\text.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\document.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\xml\fille_provider_paths.xml" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>

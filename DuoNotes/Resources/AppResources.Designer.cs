@@ -124,15 +124,6 @@ namespace DuoNotes.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The note is empty.
-        /// </summary>
-        internal static string EditorError {
-            get {
-                return ResourceManager.GetString("EditorError", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Type something.
         /// </summary>
         internal static string EditorPlaceholder {
@@ -223,15 +214,6 @@ namespace DuoNotes.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to New note.
-        /// </summary>
-        internal static string NewNote {
-            get {
-                return ResourceManager.GetString("NewNote", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Create new notebook.
         /// </summary>
         internal static string NewNotebook {
@@ -273,6 +255,15 @@ namespace DuoNotes.Resources {
         internal static string NoteBookTitle {
             get {
                 return ResourceManager.GetString("NoteBookTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Note name.
+        /// </summary>
+        internal static string NoteName {
+            get {
+                return ResourceManager.GetString("NoteName", resourceCulture);
             }
         }
         

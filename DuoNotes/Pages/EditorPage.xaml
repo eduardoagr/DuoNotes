@@ -26,7 +26,7 @@
                 TextColor="{StaticResource BackgroundLigthColor}"
                 VerticalTextAlignment="Center" />
             <Button
-                community:TouchEffect.Command="{Binding SaveCommand}"
+                community:TouchEffect.Command="{Binding ShareCommand}"
                 community:TouchEffect.PressedBackgroundColor="{StaticResource ToolbarPresedItems}"
                 BackgroundColor="{StaticResource Trnsparent}"
                 HorizontalOptions="EndAndExpand">
@@ -50,6 +50,7 @@
         <StackLayout>
             <richtexteditor:SfRichTextEditor
                 HtmlText="{Binding HtmlText}"
+                Text="{Binding PlainText}"
                 ToolbarOptions="Bold,Italic,Underline,Alignment,BulletList,NumberList,FontSize,FontColor,HighlightColor,Undo"
                 ToolbarPosition="Top" />
         </StackLayout>

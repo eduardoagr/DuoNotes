@@ -194,28 +194,37 @@ namespace DuoNotes.Services {
 
         //Update Note
 
-        public async void UpdateNoteFileLocationAsync(string Id, string NoteFileLocation) {
+        public async Task UpdateNoteFileLocationAsync(string Id, string NoteFileLocation) {
 
             await firebaseClient
                 .Child(AppConstant.Notes)
                 .Child(Id)
                 .PatchAsync($"{{ \"FileLocation\" : \"{NoteFileLocation}\" }}");
+
+            // Use default vibration length
+            Vibration.Vibrate();
         }
 
-        public async void UpdateNoteAsync(string Id, string NoteName) {
+        public async Task UpdateNoteAsync(string Id, string NoteName) {
 
             await firebaseClient
                 .Child(AppConstant.Notes)
                 .Child(Id)
                 .PatchAsync($"{{ \"Name\" : \"{NoteName}\" }}");
+
+            // Use default vibration length
+            Vibration.Vibrate();
         }
 
-        public async void UpdateNotebookAsync(string Id, string NotebookColor, string NotebookName) {
+        public async Task UpdateNotebookAsync(string Id, string NotebookColor, string NotebookName) {
 
             await firebaseClient
                 .Child(AppConstant.Notebooks)
                 .Child(Id)
                 .PatchAsync($"{{ \"Color\" : \"{NotebookColor}\", \"Name\" : \"{NotebookName}\" }}");
+
+            // Use default vibration length
+            Vibration.Vibrate();
         }
 
 

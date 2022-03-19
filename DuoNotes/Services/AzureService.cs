@@ -32,7 +32,7 @@ namespace DuoNotes.Services {
 
         }
 
-        public async void DeleteFileFromBlobStorage(string fileName) {
+        public async Task DeleteFileFromBlobStorage(string fileName) {
 
             var blob = BlobContainerClient.GetBlobClient(fileName);
             await blob.DeleteIfExistsAsync(DeleteSnapshotsOption.IncludeSnapshots);

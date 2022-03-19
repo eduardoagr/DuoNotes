@@ -28,7 +28,7 @@ namespace DuoNotes.PageModels.PopUps.Edit {
         }
 
         public override async void UpdateAction() {
-            App.FirebaseService.UpdateNoteAsync(Note.Id, Note.Name);
+            await App.FirebaseService.UpdateNoteAsync(Note.Id, Note.Name);
             await App.FirebaseService.ReadAsync(AppConstant.Notes, NotebookId);
             await PopupNavigation.Instance.PopAsync();
         }

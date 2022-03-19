@@ -138,9 +138,6 @@
   <data name="Edit" xml:space="preserve">
     <value>Do you wan to update this element</value>
   </data>
-  <data name="EditorError" xml:space="preserve">
-    <value>The note is empty</value>
-  </data>
   <data name="EditorPlaceholder" xml:space="preserve">
     <value>Type something</value>
   </data>
@@ -171,9 +168,6 @@
   <data name="Login" xml:space="preserve">
     <value>Login</value>
   </data>
-  <data name="NewNote" xml:space="preserve">
-    <value>New note</value>
-  </data>
   <data name="NewNotebook" xml:space="preserve">
     <value>Create new notebook</value>
   </data>
@@ -188,6 +182,9 @@
   </data>
   <data name="NoteBookTitle" xml:space="preserve">
     <value>Tite</value>
+  </data>
+  <data name="NoteName" xml:space="preserve">
+    <value>Note name</value>
   </data>
   <data name="Notes" xml:space="preserve">
     <value>Notes</value>

@@ -53,11 +53,11 @@ namespace DuoNotes.PageModels.PopUps {
 
         }
 
-        private void ClosePopUpAction() {
+        public virtual void ClosePopUpAction() {
             PopupNavigation.Instance.PopAsync();
         }
 
-        private void SelectColorAction() {
+        public virtual void SelectColorAction() {
             if (SelectedColor != null) {
                 Notebook.Color = SelectedColor.ToHex();
             }

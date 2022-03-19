@@ -38,10 +38,11 @@
 		<PackageReference Include="Syncfusion.Licensing" Version="19.4.0.56" />
 		<PackageReference Include="Syncfusion.Xamarin.Buttons" Version="19.4.0.56" />
 		<PackageReference Include="Syncfusion.Xamarin.DocIO" Version="19.4.0.56" />
+		<PackageReference Include="Syncfusion.Xamarin.DocIORenderer" Version="19.4.0.56" />
 		<PackageReference Include="Syncfusion.Xamarin.SfListView" Version="19.4.0.56" />
 		<PackageReference Include="Syncfusion.Xamarin.SfRichTextEditor" Version="19.4.0.56" />
 		<PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
-		<PackageReference Include="Xamarin.CommunityToolkit" Version="2.0.0" />
+		<PackageReference Include="Xamarin.CommunityToolkit" Version="2.0.1" />
 		<PackageReference Include="Xamarin.FFImageLoading.Svg.Forms" Version="2.4.11.982" />
 		<PackageReference Include="Xamarin.Forms" Version="5.0.0.2337" />
 		<PackageReference Include="Xamarin.Essentials" Version="1.7.1" />
@@ -65,6 +66,9 @@
 		<Compile Update="Pages\PopUps\RegisterPopUpPage.xaml.cs">
 		  <DependentUpon>RegisterPopUpPage.xaml</DependentUpon>
 		</Compile>
+		<Compile Update="Pages\PopUps\SharePopUpPage.xaml.cs">
+		  <DependentUpon>SharePopUpPage.xaml</DependentUpon>
+		</Compile>
 		<Compile Update="Resources\AppResources.Designer.cs">
 			<DesignTime>True</DesignTime>
 			<AutoGen>True</AutoGen>
@@ -83,6 +87,9 @@
 		  <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
 		</EmbeddedResource>
 		<EmbeddedResource Update="Pages\PopUps\Edit\EditNotesPopUpPage.xaml">
+		  <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Pages\PopUps\SharePopUpPage.xaml">
 		  <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
 		</EmbeddedResource>
 		<EmbeddedResource Update="Pages\SplashScreenPage.xaml">

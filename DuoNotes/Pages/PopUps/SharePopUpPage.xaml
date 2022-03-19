@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage
+    x:Class="DuoNotes.Pages.PopUps.SharePopUpPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:community="http://xamarin.com/schemas/2020/toolkit"
+    xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+    xmlns:pages="http://rotorgames.com"
+    xmlns:renders="clr-namespace:DuoNotes.Renders"
+    xmlns:translate="clr-namespace:DuoNotes.Utils"
+    xmlns:vm="clr-namespace:DuoNotes.PageModels.PopUps"
+    Padding="20">
+
+    <pages:PopupPage.Animation>
+        <pages:ScaleAnimation
+            DurationIn="700"
+            PositionIn="Center"
+            PositionOut="Center"
+            ScaleIn="0.5"
+            ScaleOut="0.5" />
+    </pages:PopupPage.Animation>
+
+    <pages:PopupPage.Resources>
+        <Style TargetType="Grid">
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Selected">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor" Value="{StaticResource PressedItems}" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+    </pages:PopupPage.Resources>
+
+    <pages:PopupPage.BindingContext>
+        <vm:SharePopUpPageModel />
+    </pages:PopupPage.BindingContext>
+
+    <pages:PopupPage.Behaviors>
+        <community:EventToCommandBehavior Command="{Binding PageAppearCommand}" EventName="Appearing" />
+    </pages:PopupPage.Behaviors>
+
+    <Grid>
+        <Frame Style="{StaticResource FrameContainer}">
+
+            <Grid
+                Padding="20"
+                RowDefinitions="Auto,60"
+                RowSpacing="10">
+
+                <StackLayout HorizontalOptions="End">
+                    <Label community:TouchEffect.Command="{Binding DismissPopUpCommand}" Style="{StaticResource CloseStyle}" />
+                </StackLayout>
+
+                <renders:CollectionViewRender
+                    Grid.Row="1"
+                    ItemsLayout="HorizontalList"
+                    ItemsSource="{Binding ShareOptions}"
+                    SelectedItem="{Binding Option}"
+                    SelectionChangedCommand="{Binding ShareOptionsCommand}"
+                    SelectionMode="Single">
+                    <renders:CollectionViewRender.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <ffimageloadingsvg:SvgCachedImage
+                                    Margin="20,0"
+                                    HeightRequest="60"
+                                    HorizontalOptions="CenterAndExpand"
+                                    Source="{Binding ImageName}"
+                                    WidthRequest="60" />
+                            </Grid>
+                        </DataTemplate>
+                    </renders:CollectionViewRender.ItemTemplate>
+                </renders:CollectionViewRender>
+
+            </Grid>
+        </Frame>
+    </Grid>
+</pages:PopupPage>

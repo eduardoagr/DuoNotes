@@ -109,6 +109,7 @@ namespace DuoNotes.PageModels {
                 }
 
             } else {
+                FireBaseNotebookNotes = await App.FirebaseService.ReadAsync(AppConstant.Notebooks);
                 SearchBarVisibility = false;
                 ProfileVisibility = true;
             }
@@ -160,7 +161,7 @@ namespace DuoNotes.PageModels {
             foreach (var item in Notes) {
                 var note = item as Note;
                 App.FirebaseService.DeleteNotebookNotAsync(note.Id, AppConstant.Notes);
-                App.AzureService.DeleteFileFromBlobStorage($"{note.Name}{ext}");
+                await App.AzureService.DeleteFileFromBlobStorage($"{note.Name}{ext}");
             }
 
             FireBaseNotebookNotes = await App.FirebaseService.ReadAsync(AppConstant.Notebooks);

@@ -80,6 +80,9 @@ namespace DuoNotes.PageModels {
                 }
 
             } else {
+                FireBaseNotebookNotes = await App.FirebaseService.ReadAsync(AppConstant.Notes,
+                   Notebook.Id);
+
                 SearchBarVisibility = false;
                 TitleVisibility = true;
                 SearchBtonVisibility = true;
