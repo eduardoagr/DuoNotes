@@ -23,7 +23,7 @@ namespace DuoNotes.PageModels.PopUps.Edit {
 
         public virtual async void UpdateAction() {
             var color = SelectedColor.ToHex();
-            App.FirebaseService.UpdateNotebookAsync(Notebook.Id, color, Notebook.Name);
+            await App.FirebaseService.UpdateNotebookAsync(Notebook.Id, color, Notebook.Name);
             await App.FirebaseService.ReadAsync(AppConstant.Notebooks);
             await PopupNavigation.Instance.PopAsync();
         }

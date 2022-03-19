@@ -194,7 +194,7 @@ namespace DuoNotes.Services {
 
         //Update Note
 
-        public async void UpdateNoteFileLocationAsync(string Id, string NoteFileLocation) {
+        public async Task UpdateNoteFileLocationAsync(string Id, string NoteFileLocation) {
 
             await firebaseClient
                 .Child(AppConstant.Notes)
@@ -202,7 +202,7 @@ namespace DuoNotes.Services {
                 .PatchAsync($"{{ \"FileLocation\" : \"{NoteFileLocation}\" }}");
         }
 
-        public async void UpdateNoteAsync(string Id, string NoteName) {
+        public async Task UpdateNoteAsync(string Id, string NoteName) {
 
             await firebaseClient
                 .Child(AppConstant.Notes)
@@ -210,7 +210,7 @@ namespace DuoNotes.Services {
                 .PatchAsync($"{{ \"Name\" : \"{NoteName}\" }}");
         }
 
-        public async void UpdateNotebookAsync(string Id, string NotebookColor, string NotebookName) {
+        public async Task UpdateNotebookAsync(string Id, string NotebookColor, string NotebookName) {
 
             await firebaseClient
                 .Child(AppConstant.Notebooks)
