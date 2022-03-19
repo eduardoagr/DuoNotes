@@ -31,21 +31,16 @@
 
 
     <Frame Style="{StaticResource FrameContainer}">
-        <Grid Padding="10" RowDefinitions="Auto,Auto,Auto">
-
-            <StackLayout HorizontalOptions="End">
-                <Label community:TouchEffect.Command="{Binding DismissPopUpCommand}" Style="{StaticResource CloseStyle}" />
-            </StackLayout>
-
-
+        <Grid Padding="10"
+              RowDefinitions="Auto,Auto">
+            
             <Entry
-                Grid.Row="1"
                 MaxLength="20"
                 Placeholder="{translate:Translate NoteBookTitle}"
                 Style="{StaticResource EntrySyle}"
                 Text="{Binding Notebook.Name}" />
 
-            <ScrollView Grid.Row="2" Orientation="Horizontal">
+            <ScrollView Grid.Row="1" Orientation="Horizontal">
                 <buttons:SfChipGroup ItemsSource="{Binding Colors}" SelectedItem="{Binding SelectedColor}">
                     <buttons:SfChipGroup.Behaviors>
                         <community:EventToCommandBehavior Command="{Binding SelectedColorCommand}" EventName="SelectionChanged" />
@@ -66,7 +61,7 @@
             </ScrollView>
 
             <Button
-                Grid.Row="3"
+                Grid.Row="2"
                 Padding="10"
                 Command="{Binding UpdateCommand}"
                 Style="{StaticResource ButonStyle}"

@@ -8,5 +8,13 @@ namespace DuoNotes.Pages.PopUps.Edit {
         public EditNotesPopUpPage() {
             InitializeComponent();
         }
+
+        protected override bool OnBackButtonPressed() {
+            return true;
+        }
+
+        protected override bool OnBackgroundClicked() {
+            return false;
+        }
     }
 }
