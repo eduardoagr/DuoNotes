@@ -1,6 +1,4 @@
 ﻿
-using Syncfusion.Compression.Zip;
-
 using System.Globalization;
 
 namespace DuoNotes.Constants {

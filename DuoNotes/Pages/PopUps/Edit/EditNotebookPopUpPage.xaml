@@ -31,9 +31,8 @@
 
 
     <Frame Style="{StaticResource FrameContainer}">
-        <Grid Padding="10"
-              RowDefinitions="Auto,Auto">
-            
+        <Grid Padding="10" RowDefinitions="Auto,Auto">
+
             <Entry
                 MaxLength="20"
                 Placeholder="{translate:Translate NoteBookTitle}"
@@ -41,7 +40,7 @@
                 Text="{Binding Notebook.Name}" />
 
             <ScrollView Grid.Row="1" Orientation="Horizontal">
-                <buttons:SfChipGroup ItemsSource="{Binding Colors}" SelectedItem="{Binding SelectedColor}">
+                <buttons:SfChipGroup ItemsSource="{Binding Colors}" SelectedItem="{Binding CurrentColor}">
                     <buttons:SfChipGroup.Behaviors>
                         <community:EventToCommandBehavior Command="{Binding SelectedColorCommand}" EventName="SelectionChanged" />
                     </buttons:SfChipGroup.Behaviors>

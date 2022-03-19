@@ -57,7 +57,7 @@ namespace DuoNotes.PageModels.PopUps {
             PopupNavigation.Instance.PopAsync();
         }
 
-        private void SelectColorAction() {
+        public virtual void SelectColorAction() {
             if (SelectedColor != null) {
                 Notebook.Color = SelectedColor.ToHex();
             }

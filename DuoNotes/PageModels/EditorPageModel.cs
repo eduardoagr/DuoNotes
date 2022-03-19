@@ -26,7 +26,7 @@ namespace DuoNotes.PageModels {
 
         public override async void AppearAction() {
 
-            Note = Application.Current.Properties[AppConstant.EditNote] as Note;
+            Note = Application.Current.Properties[AppConstant.SelectedNote] as Note;
 
             var NewNote = await App.FirebaseService.ReadByIdAsync(AppConstant.Notes, Note.Id) as Note;
 
