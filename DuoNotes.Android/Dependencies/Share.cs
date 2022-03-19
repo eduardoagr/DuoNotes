@@ -39,8 +39,6 @@ namespace DuoNotes.Droid.Dependencies {
             Android.App.Application.Context.StartActivity(chooserIntent);
 
             return Task.FromResult(true);
-
-
         }
     }
 }
