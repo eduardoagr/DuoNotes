@@ -272,4 +272,7 @@
   <ItemGroup>
     <BundleResource Include="Resources\mailchimp.svg" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ocr.svg" />
+  </ItemGroup>
 </Project>

@@ -3,6 +3,7 @@ using FFImageLoading.Forms.Platform;
 
 using Foundation;
 
+using Syncfusion.XForms.iOS.Border;
 using Syncfusion.XForms.iOS.Buttons;
 using Syncfusion.XForms.iOS.EffectsView;
 using Syncfusion.XForms.iOS.RichTextEditor;
@@ -32,6 +33,8 @@ namespace DuoNotes.iOS {
             FormsMaterial.Init();
             SfEffectsViewRenderer.Init();
             SfChipGroupRenderer.Init();
+            SfBorderRenderer.Init();
+            SfButtonRenderer.Init();
             SfRichTextEditorRenderer.Init();
             SfChipRenderer.Init();
             Rg.Plugins.Popup.Popup.Init();

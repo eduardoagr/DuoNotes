@@ -3,7 +3,9 @@
     x:Class="DuoNotes.Pages.EditorPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
     xmlns:community="http://xamarin.com/schemas/2020/toolkit"
+    xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
     xmlns:icon="clr-namespace:DuoNotes.Fonts"
     xmlns:richtexteditor="clr-namespace:Syncfusion.XForms.RichTextEditor;assembly=Syncfusion.SfRichTextEditor.XForms"
     xmlns:vm="clr-namespace:DuoNotes.PageModels">
@@ -43,6 +45,19 @@
                     <FontImageSource FontFamily="ma" Glyph="{Static icon:MaterialIcons.ContentSave}" />
                 </Button.ImageSource>
             </Button>
+
+            <buttons:SfButton
+                community:TouchEffect.Command="{Binding OcrCommand}"
+                community:TouchEffect.NormalBackgroundColor="Transparent"
+                community:TouchEffect.PressedBackgroundColor="{StaticResource ToolbarPresedItems}"
+                BackgroundColor="Transparent">
+                <buttons:SfButton.Content>
+                    <ffimageloadingsvg:SvgCachedImage
+                        HeightRequest="45"
+                        Source="ocr.svg"
+                        WidthRequest="45" />
+                </buttons:SfButton.Content>
+            </buttons:SfButton>
 
         </StackLayout>
     </NavigationPage.TitleView>

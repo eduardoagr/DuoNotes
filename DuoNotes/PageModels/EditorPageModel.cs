@@ -17,11 +17,19 @@ namespace DuoNotes.PageModels {
 
         public Command ShareCommand { get; set; }
 
+        public Command OcrCommand { get; set; }
+
         public string HtmlText { get; set; }
 
         public EditorPageModel() {
 
             SaveCommand = new Command(SaveAction);
+
+            OcrCommand = new Command(OcrAction); 
+        }
+
+        private void OcrAction() {
+            System.Console.WriteLine("frefrefre ");
         }
 
         public override async void AppearAction() {
@@ -53,7 +61,7 @@ namespace DuoNotes.PageModels {
 
                 var location = await App.AzureService.UploadToAzureBlobStorage(filePath, FileName);
 
-                App.FirebaseService.UpdateNoteFileLocationAsync(Note.Id, location);
+               await App.FirebaseService.UpdateNoteFileLocationAsync(Note.Id, location);
 
                 File.Delete(filePath);
             } else {

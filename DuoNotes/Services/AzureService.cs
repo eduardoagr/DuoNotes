@@ -40,6 +40,7 @@ namespace DuoNotes.Services {
 
         public async Task<string> GetBlobStorage(string FileName) {
 
+            UserDialogs.Instance.ShowLoading(AppResources.Loading);
             var blob = BlobContainerClient.GetBlobClient(FileName);
             BlobDownloadInfo download = blob.Download();
             var content = download.Content;
@@ -49,6 +50,8 @@ namespace DuoNotes.Services {
                     text = await streamReader.ReadLineAsync();
                 }
             }
+
+            UserDialogs.Instance.HideLoading();
 
             return text;
         }
