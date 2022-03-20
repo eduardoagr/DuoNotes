@@ -218,7 +218,6 @@ namespace DuoNotes.Services {
                 .PatchAsync($"{{ \"Color\" : \"{NotebookColor}\", \"Name\" : \"{NotebookName}\" }}");
         }
 
-
         public async void DeleteNotebookNotAsync(string Id, string ChildName) {
 
             await firebaseClient

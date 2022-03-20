@@ -104,7 +104,7 @@
                                 </StackLayout>
                             </SwipeItemView>
                         </SwipeView.RightItems>
-                        <Grid ColumnDefinitions="Auto" ColumnSpacing="10">
+                        <Grid ColumnDefinitions="Auto" ColumnSpacing="10" x:Name="grid">
                             <Label Style="{StaticResource BookIconStyle}" TextColor="{Binding Color}" />
                             <Frame
                                 Grid.Column="1"
