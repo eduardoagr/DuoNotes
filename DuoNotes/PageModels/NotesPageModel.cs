@@ -17,8 +17,6 @@ namespace DuoNotes.PageModels {
 
         public Notebook Notebook { get; set; }
 
-        public Note SelectedNote { get; set; }
-
         public Command PageDisappearCommand { get; set; }
 
         public bool TitleVisibility { get; set; }

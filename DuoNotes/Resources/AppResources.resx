@@ -135,14 +135,11 @@
   <data name="Delete" xml:space="preserve">
     <value>Delete</value>
   </data>
+  <data name="Downloading" xml:space="preserve">
+    <value>We are downloading your document</value>
+  </data>
   <data name="Edit" xml:space="preserve">
     <value>Do you wan to update this element</value>
-  </data>
-  <data name="EditorError" xml:space="preserve">
-    <value>The note is empty</value>
-  </data>
-  <data name="EditorPlaceholder" xml:space="preserve">
-    <value>Type something</value>
   </data>
   <data name="EditProfile" xml:space="preserve">
     <value>Edit profile</value>
@@ -180,20 +177,11 @@
   <data name="NewUser" xml:space="preserve">
     <value>New user</value>
   </data>
-  <data name="No" xml:space="preserve">
-    <value>No</value>
-  </data>
   <data name="NoteBookName" xml:space="preserve">
-    <value>title</value>
-  </data>
-  <data name="NoteBookTitle" xml:space="preserve">
-    <value>Tite</value>
+    <value>Title</value>
   </data>
   <data name="Notes" xml:space="preserve">
     <value>Notes</value>
-  </data>
-  <data name="NoteTite" xml:space="preserve">
-    <value>Title</value>
   </data>
   <data name="OK" xml:space="preserve">
     <value>Ok</value>
@@ -224,9 +212,6 @@
   </data>
   <data name="UserProfile" xml:space="preserve">
     <value>Profile</value>
-  </data>
-  <data name="Warning" xml:space="preserve">
-    <value>Warning</value>
   </data>
   <data name="WEAK_PASSWORD : Password should be at least 6 characters" xml:space="preserve">
     <value>Password should be at least 6 characters</value>

@@ -46,8 +46,6 @@ namespace DuoNotes.PageModels {
 
         private async void SaveAction() {
 
-            if (HtmlText != "<p><br></p>" || !string.IsNullOrEmpty(HtmlText)) {
-
                 var AppDirctory = FileSystem.CacheDirectory;
 
                 var filePath = Path.Combine(AppDirctory, $"{Note.Name}.html");
@@ -64,9 +62,6 @@ namespace DuoNotes.PageModels {
                await App.FirebaseService.UpdateNoteFileLocationAsync(Note.Id, location);
 
                 File.Delete(filePath);
-            } else {
-                await Application.Current.MainPage.DisplayAlert(AppResources.Error, AppResources.EditorError, AppResources.OK);
-            }
         }
     }
 }
