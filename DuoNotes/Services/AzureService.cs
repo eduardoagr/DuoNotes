@@ -23,11 +23,11 @@ namespace DuoNotes.Services {
 
         public async Task<string> UploadToAzureBlobStorage(string filePath, string fileName) {
 
-            UserDialogs.Instance.ShowLoading(AppResources.Loading);
-            var blob = BlobContainerClient.GetBlobClient(fileName);
-            await blob.UploadAsync(filePath, true);
-            UserDialogs.Instance.HideLoading();
-
+            using (UserDialogs.Instance.Loading(AppResources.Loading)) {
+                var blob = BlobContainerClient.GetBlobClient(fileName);
+                await blob.UploadAsync(filePath, true);
+            }
+        
             return $"https://notesbucket.blob.core.windows.net/notes/{fileName}";
 
         }

@@ -43,33 +43,37 @@ namespace DuoNotes.Services {
         public async Task RegisterAsync(User users) {
 
             try {
-                UserDialogs.Instance.ShowLoading(AppResources.Loading);
-                var auth = await AuthProvider.CreateUserWithEmailAndPasswordAsync(users.Email, users.Password);
-                await PopupNavigation.Instance.PopAsync(true);
-                await Application.Current.MainPage.DisplayAlert(AppResources.NewUser, AppResources.UserInserted, AppResources.OK);
+                using (UserDialogs.Instance.Loading(AppResources.Loading)) {
+                    var auth = await AuthProvider.CreateUserWithEmailAndPasswordAsync(users.Email, users.Password);
+                    await PopupNavigation.Instance.PopAsync(true);
+                    await Application.Current.MainPage.DisplayAlert(AppResources.NewUser, AppResources.UserInserted, AppResources.OK);
+                }
+
             } catch (FirebaseAuthException ex) {
                 Firebasemessages.GetMessages(ex);
             }
-            UserDialogs.Instance.HideLoading();
         }
 
 
         public async Task LoginAsync(User users) {
 
             try {
-                UserDialogs.Instance.ShowLoading(AppResources.Loading);
-                var auth = await AuthProvider.SignInWithEmailAndPasswordAsync(users.Email, users.Password);
-                var content = await auth.GetFreshAuthAsync();
-                var serializedcontnet = JsonConvert.SerializeObject(content);
-                Preferences.Set(AppConstant.FirebaseToken, auth.FirebaseToken);
-                Preferences.Set(AppConstant.UserID, auth.User.LocalId);
-                Preferences.Set(AppConstant.FirebaseRefreshToken, serializedcontnet);
-                UserDialogs.Instance.HideLoading();
-                Application.Current.MainPage = new NavigationPage(new NotebooksPage());
+                using (UserDialogs.Instance.Loading(AppResources.Loading)) {
+                    var auth = await AuthProvider.SignInWithEmailAndPasswordAsync(users.Email, users.Password);
+                    var content = await auth.GetFreshAuthAsync();
+                    var serializedcontnet = JsonConvert.SerializeObject(content);
+                    Preferences.Set(AppConstant.FirebaseToken, auth.FirebaseToken);
+                    Preferences.Set(AppConstant.UserID, auth.User.LocalId);
+                    Preferences.Set(AppConstant.FirebaseRefreshToken, serializedcontnet);
+                    UserDialogs.Instance.HideLoading();
+                    Application.Current.MainPage = new NavigationPage(new NotebooksPage());
+                }
+
             } catch (FirebaseAuthException ex) {
                 Firebasemessages.GetMessages(ex);
+                users.Email = string.Empty;
+                users.Password = string.Empty;
             }
-            UserDialogs.Instance.HideLoading();
         }
 
 
@@ -101,19 +105,20 @@ namespace DuoNotes.Services {
 
             var savedfirebaseauth = JsonConvert.DeserializeObject<FirebaseAuth>(Preferences.Get(AppConstant.FirebaseRefreshToken,
                 string.Empty));
-
-            UserDialogs.Instance.ShowLoading(AppResources.Loading);
-
+            
             var newUser = await AuthProvider.UpdateProfileAsync(savedfirebaseauth.FirebaseToken, DisplyName,
-                PhotoUri);
+                               PhotoUri);
 
-            savedfirebaseauth.User.DisplayName = string.IsNullOrEmpty(DisplyName) ? savedfirebaseauth.User.DisplayName : DisplyName;
-            savedfirebaseauth.User.PhotoUrl = string.IsNullOrEmpty(PhotoUri) ? savedfirebaseauth.User.PhotoUrl : PhotoUri;
+            using (UserDialogs.Instance.Loading(AppResources.Loading)) {
+               
 
-            var RefreshedContent = await AuthProvider.RefreshAuthAsync(savedfirebaseauth);
-            Preferences.Set(AppConstant.FirebaseRefreshToken, JsonConvert.SerializeObject(RefreshedContent));
+                savedfirebaseauth.User.DisplayName = string.IsNullOrEmpty(DisplyName) ? savedfirebaseauth.User.DisplayName : DisplyName;
+                savedfirebaseauth.User.PhotoUrl = string.IsNullOrEmpty(PhotoUri) ? savedfirebaseauth.User.PhotoUrl : PhotoUri;
 
-            UserDialogs.Instance.HideLoading();
+                var RefreshedContent = await AuthProvider.RefreshAuthAsync(savedfirebaseauth);
+                Preferences.Set(AppConstant.FirebaseRefreshToken, JsonConvert.SerializeObject(RefreshedContent));
+            }
+
             return newUser.User;
         }
 
@@ -176,7 +181,7 @@ namespace DuoNotes.Services {
             return collection;
         }
 
-       
+
         public async Task<NotebookNote> ReadByIdAsync(string ChildName, string Id) {
 
             NotebookNote notebookNote;

@@ -52,13 +52,11 @@
                 Source="{Binding SelectedAvatar}"
                 WidthRequest="40" />
 
-            <Entry
-                FontAttributes="Bold"
-                FontSize="Medium"
-                HorizontalOptions="FillAndExpand"
-                MaxLength="20"
-                Placeholder="{Binding FireUser.DisplayName}"
-                Text="{Binding DisplayName}" />
+            <Entry FontAttributes="Bold"
+                   FontSize="Medium"
+                   HorizontalOptions="FillAndExpand"
+                   MaxLength="20"
+                   Text="{Binding FireUser.DisplayName}" />
 
         </StackLayout>
 
