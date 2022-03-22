@@ -1,23 +1,25 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:forms="clr-namespace:Lottie.Forms;assembly=Lottie.Forms"
-             xmlns:community="http://xamarin.com/schemas/2020/toolkit"
-             xmlns:vm="clr-namespace:DuoNotes.PageModels"
-             x:Class="DuoNotes.Pages.SplashScreenPage">
+<ContentPage
+    x:Class="DuoNotes.Pages.SplashScreenPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:community="http://xamarin.com/schemas/2020/toolkit"
+    xmlns:forms="clr-namespace:Lottie.Forms;assembly=Lottie.Forms"
+    xmlns:vm="clr-namespace:DuoNotes.PageModels"
+    x:DataType="vm:SplashScreenPageModel">
 
     <ContentPage.BindingContext>
         <vm:SplashScreenPageModel />
     </ContentPage.BindingContext>
-    
-    <forms:AnimationView x:Name="vnimationView"
-                         Animation="CollectionOfBooks.json"
-                         AnimationSource="AssetOrBundle"
-                         VerticalOptions="FillAndExpand"
-                         HorizontalOptions="FillAndExpand">
+
+    <forms:AnimationView
+        x:Name="vnimationView"
+        Animation="CollectionOfBooks.json"
+        AnimationSource="AssetOrBundle"
+        HorizontalOptions="FillAndExpand"
+        VerticalOptions="FillAndExpand">
         <forms:AnimationView.Behaviors>
-            <community:EventToCommandBehavior EventName="OnFinishedAnimation"
-                                              Command="{Binding FinishedAnimtionCommand }" />
+            <community:EventToCommandBehavior Command="{Binding FinishedAnimtionCommand}" EventName="OnFinishedAnimation" />
         </forms:AnimationView.Behaviors>
     </forms:AnimationView>
 </ContentPage>

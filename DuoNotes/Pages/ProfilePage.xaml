@@ -3,13 +3,13 @@
     x:Class="DuoNotes.View.ProfilePage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:community="http://xamarin.com/schemas/2020/toolkit"
     xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
     xmlns:icon="clr-namespace:DuoNotes.Fonts"
     xmlns:renders="clr-namespace:DuoNotes.Renders"
     xmlns:translate="clr-namespace:DuoNotes.Utils"
     xmlns:vm="clr-namespace:DuoNotes.PageModels"
     Title="{translate:Translate UserProfile}"
+    x:DataType="vm:ProfilePageModel"
     BackgroundColor="{AppThemeBinding Dark={StaticResource BckgroundDarkColor},
                                       Light={StaticResource BackgroundLigthColor}}">
 

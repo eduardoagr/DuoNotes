@@ -64,35 +64,28 @@ namespace DuoNotes.PageModels.PopUps {
             var localFolder = FileSystem.AppDataDirectory;
 
             if (Option.Order == 1) {
+
                 string fileName = $"{NoteName}.docx";
 
                 var file = Path.Combine(localFolder, fileName);
 
                 //Creates an instance of WordDocument Instance (Empty Word Document)
 
-                WordDocument document = new WordDocument();
+                using (var document = new WordDocument()) {
+                    document.EnsureMinimal();
+
+                    document.LastParagraph.AppendHTML(IgnoreVoidElementsInHTML(HtmlText));
+
+                    //Saves the Word document to MemoryStream
+                    MemoryStream stream = new MemoryStream();
+
+                    document.Save(stream, FormatType.Docx);
+                }
 
                 //Add a section & a paragraph in the empty document
 
-                document.EnsureMinimal();
+                await App.AzureService.UploadToAzureBlobStorage(file, NoteName);
 
-                //Append HTML string to Word document paragraph.
-
-                document.LastParagraph.AppendHTML(IgnoreVoidElementsInHTML(HtmlText));
-
-                MemoryStream outputStream = new MemoryStream();
-
-                //Saves the Word document.
-
-                document.Save(outputStream, FormatType.Docx);
-
-                //Closes the instance of Word document object
-
-                document.Close();
-
-                await share.Show(AppResources.NoteTite, NoteName, file, "docx");
-
-                File.Delete(file);
 
             } else if (Option.Order == 2) {
 

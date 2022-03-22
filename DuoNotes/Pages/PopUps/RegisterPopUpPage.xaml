@@ -8,7 +8,8 @@
     xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
     xmlns:translate="clr-namespace:DuoNotes.Utils"
     xmlns:vm="clr-namespace:DuoNotes.PageModels.PopUps"
-    Padding="20">
+    Padding="20"
+    x:DataType="vm:RegisterPopUpPageModel">
 
     <pages:PopupPage.Animation>
         <animations:ScaleAnimation

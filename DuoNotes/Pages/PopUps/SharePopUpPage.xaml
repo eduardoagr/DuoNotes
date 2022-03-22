@@ -7,7 +7,8 @@
     xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
     xmlns:pages="http://rotorgames.com"
     xmlns:renders="clr-namespace:DuoNotes.Renders"
-    xmlns:translate="clr-namespace:DuoNotes.Utils"
+    xmlns:model="clr-namespace:DuoNotes.Model"
+    x:DataType="vm:SharePopUpPageModel"
     xmlns:vm="clr-namespace:DuoNotes.PageModels.PopUps"
     Padding="20">
 
@@ -65,7 +66,7 @@
                     SelectionChangedCommand="{Binding ShareOptionsCommand}"
                     SelectionMode="Single">
                     <renders:CollectionViewRender.ItemTemplate>
-                        <DataTemplate>
+                        <DataTemplate x:DataType="model:ShareOptions">
                             <Grid>
                                 <ffimageloadingsvg:SvgCachedImage
                                     Margin="20,0"

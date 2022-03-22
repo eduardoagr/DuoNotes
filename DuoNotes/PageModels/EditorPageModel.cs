@@ -51,7 +51,7 @@ namespace DuoNotes.PageModels {
 
             if (!string.IsNullOrEmpty(NewNote.FileLocation)) {
                 var ext = ".html";
-                HtmlText = await App.AzureService.GetBlobStorage($"{NewNote.Name}{ext}");
+                HtmlText = await App.AzureService.GetTextfromBlobStorage($"{NewNote.Name}{ext}");
             }
         }
 

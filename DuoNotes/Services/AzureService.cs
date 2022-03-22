@@ -38,7 +38,7 @@ namespace DuoNotes.Services {
             await blob.DeleteIfExistsAsync(DeleteSnapshotsOption.IncludeSnapshots);
         }
 
-        public async Task<string> GetBlobStorage(string FileName) {
+        public async Task<string> GetTextfromBlobStorage(string FileName) {
 
             var blob = BlobContainerClient.GetBlobClient(FileName);
             BlobDownloadInfo download = blob.Download();
@@ -51,6 +51,15 @@ namespace DuoNotes.Services {
             }
 
             return text;
+        }
+
+        public Stream GetStreamBlobStorage(string FileName) {
+
+            var blob = BlobContainerClient.GetBlobClient(FileName);
+            BlobDownloadInfo download = blob.Download();
+            var content = download.Content;
+
+            return content;
         }
     }
 }

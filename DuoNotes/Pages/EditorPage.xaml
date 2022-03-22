@@ -6,7 +6,8 @@
     xmlns:community="http://xamarin.com/schemas/2020/toolkit"
     xmlns:icon="clr-namespace:DuoNotes.Fonts"
     xmlns:richtexteditor="clr-namespace:Syncfusion.XForms.RichTextEditor;assembly=Syncfusion.SfRichTextEditor.XForms"
-    xmlns:vm="clr-namespace:DuoNotes.PageModels">
+    xmlns:vm="clr-namespace:DuoNotes.PageModels"
+    x:DataType="vm:EditorPageModel">
 
     <ContentPage.BindingContext>
         <vm:EditorPageModel />

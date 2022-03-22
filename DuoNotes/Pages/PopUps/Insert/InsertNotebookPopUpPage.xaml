@@ -9,6 +9,7 @@
     xmlns:community="http://xamarin.com/schemas/2020/toolkit"
     xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
     xmlns:translate="clr-namespace:DuoNotes.Utils"
+                 x:DataType="vm:InsertNotebookPopUpPageModel"
     xmlns:vm="clr-namespace:DuoNotes.PageModels.PopUps"
     Padding="20">
 
