@@ -162,6 +162,9 @@
   <data name="Login" xml:space="preserve">
     <value>Iniciar sesión</value>
   </data>
+  <data name="NewNote" xml:space="preserve">
+    <value>Nueva nota</value>
+  </data>
   <data name="NewNotebook" xml:space="preserve">
     <value>Nuevo cuaderno</value>
   </data>
@@ -218,8 +221,5 @@
   </data>
   <data name="WEAK_PASSWORD : Password should be at least 6 characters" xml:space="preserve">
     <value>La contraseña debe tener al menos 6 caracteres</value>
-  </data>
-  <data name="Yes" xml:space="preserve">
-    <value>Si</value>
   </data>
 </root>

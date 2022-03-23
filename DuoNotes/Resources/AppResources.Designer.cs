@@ -214,6 +214,15 @@ namespace DuoNotes.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to New Note.
+        /// </summary>
+        internal static string NewNote {
+            get {
+                return ResourceManager.GetString("NewNote", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Create new notebook.
         /// </summary>
         internal static string NewNotebook {
@@ -390,15 +399,6 @@ namespace DuoNotes.Resources {
         internal static string WEAK_PASSWORD___Password_should_be_at_least_6_characters {
             get {
                 return ResourceManager.GetString("WEAK_PASSWORD : Password should be at least 6 characters", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Yes.
-        /// </summary>
-        internal static string Yes {
-            get {
-                return ResourceManager.GetString("Yes", resourceCulture);
             }
         }
     }

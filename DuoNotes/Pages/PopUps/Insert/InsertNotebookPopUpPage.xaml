@@ -9,9 +9,9 @@
     xmlns:community="http://xamarin.com/schemas/2020/toolkit"
     xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
     xmlns:translate="clr-namespace:DuoNotes.Utils"
-                 x:DataType="vm:InsertNotebookPopUpPageModel"
     xmlns:vm="clr-namespace:DuoNotes.PageModels.PopUps"
-    Padding="20">
+    Padding="20"
+    x:DataType="vm:InsertNotebookPopUpPageModel">
 
     <pages:PopupPage.Animation>
         <animations:ScaleAnimation
@@ -48,7 +48,7 @@
                         <community:EventToCommandBehavior Command="{Binding SelectedColorCommand}" EventName="SelectionChanged" />
                     </buttons:SfChipGroup.Behaviors>
                     <buttons:SfChipGroup.ItemTemplate>
-                        <DataTemplate>
+                        <DataTemplate x:DataType="{x:Null}">
                             <StackLayout>
                                 <border:SfBorder Style="{StaticResource ColorBorderStyle}">
                                     <Ellipse

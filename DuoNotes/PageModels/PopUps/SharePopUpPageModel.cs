@@ -13,6 +13,7 @@ using Syncfusion.Pdf;
 
 using System.Collections.Generic;
 using System.IO;
+using System.Reflection;
 using System.Threading.Tasks;
 
 using Xamarin.Essentials;
@@ -62,31 +63,29 @@ namespace DuoNotes.PageModels.PopUps {
 
             var share = DependencyService.Get<IShare>();
             var localFolder = FileSystem.AppDataDirectory;
+            Assembly assembly = typeof(App).GetTypeInfo().Assembly;
 
             if (Option.Order == 1) {
 
                 string fileName = $"{NoteName}.docx";
 
-                var file = Path.Combine(localFolder, fileName);
+                var filePath = Path.Combine(localFolder, fileName);
 
-                //Creates an instance of WordDocument Instance (Empty Word Document)
-
-                using (var document = new WordDocument()) {
-                    document.EnsureMinimal();
-
-                    document.LastParagraph.AppendHTML(IgnoreVoidElementsInHTML(HtmlText));
-
-                    //Saves the Word document to MemoryStream
-                    MemoryStream stream = new MemoryStream();
-
-                    document.Save(stream, FormatType.Docx);
+                using (WordDocument document = new WordDocument()) {
+                    //Loads or opens an existing Word document from stream
+                    Stream inputStream = assembly.GetManifestResourceStream(HtmlText);
+                    //Loads or opens an existing Word document through Open method of WordDocument class
+                    document.Open(inputStream, FormatType.Html);
+                    //Creates an instance of memory stream
+                    using (FileStream fileStream = new FileStream(filePath, FileMode.Create, FileAccess.ReadWrite)) {
+                        //Saves the Word document to file stream.
+                        document.Save(fileStream, FormatType.Docx);
+                    }
+                    //Closes the document
+                    document.Close();
                 }
 
-                //Add a section & a paragraph in the empty document
-
-                await App.AzureService.UploadToAzureBlobStorage(file, NoteName);
-
-
+                await App.AzureService.UploadToAzureBlobStorage(filePath, fileName);
             } else if (Option.Order == 2) {
 
                 string fileName = $"{NoteName}.pdf";
