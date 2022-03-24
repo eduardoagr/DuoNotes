@@ -71,21 +71,35 @@ namespace DuoNotes.PageModels.PopUps {
 
                 var filePath = Path.Combine(localFolder, fileName);
 
+                Stream inputStream = assembly.GetManifestResourceStream(HtmlText);
+
                 using (WordDocument document = new WordDocument()) {
-                    //Loads or opens an existing Word document from stream
-                    Stream inputStream = assembly.GetManifestResourceStream(HtmlText);
-                    //Loads or opens an existing Word document through Open method of WordDocument class
+
+                    document.EnsureMinimal();
+
+                    StreamReader streamReader = new StreamReader(inputStream);
+                    string HtmlText = streamReader.ReadToEnd();
+
+                    document.LastParagraph.AppendHTML(IgnoreVoidElementsInHTML(HtmlText));
+
                     document.Open(inputStream, FormatType.Html);
                     //Creates an instance of memory stream
-                    using (FileStream fileStream = new FileStream(filePath, FileMode.Create, FileAccess.ReadWrite)) {
+                    using (MemoryStream memoryStream = new MemoryStream()) {
+
+                        document.Save(memoryStream, FormatType.Docx);
+
                         //Saves the Word document to file stream.
-                        document.Save(fileStream, FormatType.Docx);
+                        using (var fs = new FileStream(filePath, FileMode.Create, FileAccess.Write)) {
+                            memoryStream.WriteTo(fs);
+                        }
+                        document.Save(memoryStream, FormatType.Docx);
                     }
                     //Closes the document
                     document.Close();
                 }
 
                 await App.AzureService.UploadToAzureBlobStorage(filePath, fileName);
+
             } else if (Option.Order == 2) {
 
                 string fileName = $"{NoteName}.pdf";
