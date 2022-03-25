@@ -88,6 +88,7 @@
                         HorizontalOptions="CenterAndExpand"
                         VerticalOptions="CenterAndExpand">
                         <ffimageloadingsvg:SvgCachedImage
+                            x:DataType="{x:Null}"
                             Margin="5"
                             HeightRequest="40"
                             HorizontalOptions="Center"

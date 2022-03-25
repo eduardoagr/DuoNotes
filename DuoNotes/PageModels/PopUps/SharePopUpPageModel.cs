@@ -63,43 +63,40 @@ namespace DuoNotes.PageModels.PopUps {
 
             var share = DependencyService.Get<IShare>();
             var localFolder = FileSystem.AppDataDirectory;
-            Assembly assembly = typeof(App).GetTypeInfo().Assembly;
+            var assembly = typeof(App).GetTypeInfo().Assembly;
 
             if (Option.Order == 1) {
 
                 string fileName = $"{NoteName}.docx";
 
-                var filePath = Path.Combine(localFolder, fileName);
+                var stream = GenerateStreamFromString(HtmlText);// assembly.GetManifestResourceStream(HtmlText);
 
-                Stream inputStream = assembly.GetManifestResourceStream(HtmlText);
+                var filePath = Path.Combine(localFolder, fileName);
 
                 using (WordDocument document = new WordDocument()) {
 
                     document.EnsureMinimal();
 
-                    StreamReader streamReader = new StreamReader(inputStream);
-                    string HtmlText = streamReader.ReadToEnd();
-
+                    //Loads or opens an existing Word document through Open method of WordDocument class
                     document.LastParagraph.AppendHTML(IgnoreVoidElementsInHTML(HtmlText));
+                    //using (MemoryStream memoryStream = new MemoryStream()) {
+                    //using (
+                    var fs = new FileStream(filePath, FileMode.Create, FileAccess.Write);// {
+                                                                                         // memoryStream.WriteTo(fs);
+                    //stream.WriteTo(fs);
+                    //stream.Position = 0;
+                    document.Open(stream, FormatType.Html);
 
-                    document.Open(inputStream, FormatType.Html);
-                    //Creates an instance of memory stream
-                    using (MemoryStream memoryStream = new MemoryStream()) {
-
-                        document.Save(memoryStream, FormatType.Docx);
-
-                        //Saves the Word document to file stream.
-                        using (var fs = new FileStream(filePath, FileMode.Create, FileAccess.Write)) {
-                            memoryStream.WriteTo(fs);
-                        }
-                        document.Save(memoryStream, FormatType.Docx);
-                    }
-                    //Closes the document
+                    document.Save(stream, FormatType.Docx);
+                    //}
+                    //document.Save(, FormatType.Docx);
                     document.Close();
+                    fs.Close();
+                    fs.Dispose();
+
+                    await App.AzureService.UploadToAzureBlobStorage(filePath, fileName);
+                    //}
                 }
-
-                await App.AzureService.UploadToAzureBlobStorage(filePath, fileName);
-
             } else if (Option.Order == 2) {
 
                 string fileName = $"{NoteName}.pdf";
@@ -147,6 +144,15 @@ namespace DuoNotes.PageModels.PopUps {
             } else {
                 await ShareText(PlainText);
             }
+        }
+
+        private MemoryStream GenerateStreamFromString(string htmlText) {
+            var stream = new MemoryStream();
+            var writer = new StreamWriter(stream);
+            writer.Write(htmlText);
+            writer.Flush();
+            stream.Position = 0;
+            return stream;
         }
 
         public async Task ShareText(string text) {
