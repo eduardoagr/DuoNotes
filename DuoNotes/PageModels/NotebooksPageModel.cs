@@ -152,7 +152,6 @@ namespace DuoNotes.PageModels {
         public virtual async void DeleteNotebookCommandAction(NotebookNote obj) {
 
             var newObj = obj as Notebook;
-            string ext = ".html";
 
             App.FirebaseService.DeleteNotebookNotAsync(newObj.Id, AppConstant.Notebooks);
 
@@ -161,7 +160,7 @@ namespace DuoNotes.PageModels {
             foreach (var item in Notes) {
                 var note = item as Note;
                 App.FirebaseService.DeleteNotebookNotAsync(note.Id, AppConstant.Notes);
-                await App.AzureService.DeleteFileFromBlobStorage($"{note.Name}{ext}");
+                await App.AzureService.DeleteFileFromBlobStorage($"{note.Name}");
             }
 
             FireBaseNotebookNotes = await App.FirebaseService.ReadAsync(AppConstant.Notebooks);

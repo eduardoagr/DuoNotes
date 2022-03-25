@@ -50,8 +50,7 @@ namespace DuoNotes.PageModels {
             var NewNote = await App.FirebaseService.ReadByIdAsync(AppConstant.Notes, Note.Id) as Note;
 
             if (!string.IsNullOrEmpty(NewNote.FileLocation)) {
-                var ext = ".html";
-                HtmlText = await App.AzureService.GetTextfromBlobStorage($"{NewNote.Name}{ext}");
+                HtmlText = await App.AzureService.GetTextfromBlobStorage($"{NewNote.Name}");
             }
         }
 
@@ -73,7 +72,6 @@ namespace DuoNotes.PageModels {
             await App.FirebaseService.UpdateNoteFileLocationAsync(Note.Id, location);
 
             File.Delete(filePath);
-
         }
     }
 }

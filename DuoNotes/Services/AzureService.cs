@@ -15,7 +15,7 @@ namespace DuoNotes.Services {
         readonly string ConectionString = AppConstant.ConectionString;
         readonly string ContainerName = AppConstant.ContanerName;
         readonly BlobContainerClient BlobContainerClient;
-
+        readonly string ext = ".html";
         public AzureService() {
 
             BlobContainerClient = new BlobContainerClient(ConectionString, ContainerName);
@@ -34,13 +34,13 @@ namespace DuoNotes.Services {
 
         public async Task DeleteFileFromBlobStorage(string fileName) {
 
-            var blob = BlobContainerClient.GetBlobClient(fileName);
+            var blob = BlobContainerClient.GetBlobClient($"{fileName}{ext}");
             await blob.DeleteIfExistsAsync(DeleteSnapshotsOption.IncludeSnapshots);
         }
 
         public async Task<string> GetTextfromBlobStorage(string FileName) {
 
-            var blob = BlobContainerClient.GetBlobClient(FileName);
+            var blob = BlobContainerClient.GetBlobClient($"{FileName}{ext}");
             BlobDownloadInfo download = blob.Download();
             var content = download.Content;
             string text = string.Empty;
@@ -53,13 +53,10 @@ namespace DuoNotes.Services {
             return text;
         }
 
-        public Stream GetStreamBlobStorage(string FileName) {
+        public string GetUrlBlobStorage(string FileName) {
+            var x = $"https://notesbucket.blob.core.windows.net/notes/{FileName}.html";
 
-            var blob = BlobContainerClient.GetBlobClient(FileName);
-            BlobDownloadInfo download = blob.Download();
-            var content = download.Content;
-
-            return content;
+            return x;
         }
     }
 }
