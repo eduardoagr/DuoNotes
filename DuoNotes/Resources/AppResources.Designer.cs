@@ -169,6 +169,24 @@ namespace DuoNotes.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You do not have notebooks, to add press the &quot;+&quot; symbol.
+        /// </summary>
+        internal static string EmptyNotebooks {
+            get {
+                return ResourceManager.GetString("EmptyNotebooks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You do not have notess to add press the &quot;+&quot; symbol.
+        /// </summary>
+        internal static string EmptyNotes {
+            get {
+                return ResourceManager.GetString("EmptyNotes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Error.
         /// </summary>
         internal static string Error {
@@ -246,15 +264,6 @@ namespace DuoNotes.Resources {
         internal static string No {
             get {
                 return ResourceManager.GetString("No", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to title.
-        /// </summary>
-        internal static string NoteBookName {
-            get {
-                return ResourceManager.GetString("NoteBookName", resourceCulture);
             }
         }
         

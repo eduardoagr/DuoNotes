@@ -6,9 +6,9 @@
     xmlns:community="http://xamarin.com/schemas/2020/toolkit"
     xmlns:pages="http://rotorgames.com"
     xmlns:translate="clr-namespace:DuoNotes.Utils"
-    x:DataType="vm:InsertNotePopUpPageModel"
     xmlns:vm="clr-namespace:DuoNotes.PageModels.PopUps"
-    Padding="20">
+    Padding="20"
+    x:DataType="vm:InsertNotePopUpPageModel">
 
     <pages:PopupPage.Animation>
         <pages:ScaleAnimation

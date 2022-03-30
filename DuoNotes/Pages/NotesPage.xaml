@@ -5,9 +5,9 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:community="http://xamarin.com/schemas/2020/toolkit"
     xmlns:icon="clr-namespace:DuoNotes.Fonts"
+    xmlns:models="clr-namespace:DuoNotes.Model"
     xmlns:translate="clr-namespace:DuoNotes.Utils"
     xmlns:vm="clr-namespace:DuoNotes.PageModels"
-    xmlns:models="clr-namespace:DuoNotes.Model"
     x:DataType="vm:NotesPageModel"
     BackgroundColor="{AppThemeBinding Dark={StaticResource BckgroundDarkColor},
                                       Light={StaticResource BackgroundLigthColor}}">
@@ -67,6 +67,12 @@
             SelectedItem="{Binding SelectedItem}"
             SelectionChangedCommand="{Binding SelectedItemCommand}"
             SelectionMode="Single">
+            <CollectionView.EmptyView>
+                <Label
+                    FontAttributes="Bold"
+                    Style="{StaticResource LabelStyle}"
+                    Text="{translate:Translate EmptyNotes}" />
+            </CollectionView.EmptyView>
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="models:Note">
                     <SwipeView>

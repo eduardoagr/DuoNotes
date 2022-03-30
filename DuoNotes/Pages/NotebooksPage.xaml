@@ -7,6 +7,7 @@
     xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
     xmlns:icon="clr-namespace:DuoNotes.Fonts"
     xmlns:models="clr-namespace:DuoNotes.Model"
+    xmlns:translate="clr-namespace:DuoNotes.Utils"
     xmlns:vm="clr-namespace:DuoNotes.PageModels"
     x:DataType="vm:NotebooksPageModel"
     BackgroundColor="{AppThemeBinding Dark={StaticResource BckgroundDarkColor},
@@ -81,6 +82,12 @@
             SelectedItem="{Binding SelectedItem}"
             SelectionChangedCommand="{Binding SelectedItemCommand}"
             SelectionMode="Single">
+            <CollectionView.EmptyView>
+                <Label
+                    FontAttributes="Bold"
+                    Style="{StaticResource LabelStyle}"
+                    Text="{translate:Translate EmptyNotebooks}" />
+            </CollectionView.EmptyView>
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="models:Notebook">
                     <SwipeView>
