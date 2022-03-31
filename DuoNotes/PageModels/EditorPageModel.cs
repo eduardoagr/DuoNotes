@@ -1,6 +1,5 @@
 ﻿
 using DuoNotes.Constants;
-using DuoNotes.Interfaces;
 using DuoNotes.Model;
 using DuoNotes.Pages.PopUps;
 
@@ -55,7 +54,7 @@ namespace DuoNotes.PageModels {
             }
         }
 
-        private async void SaveAction() { 
+        private async void SaveAction() {
             var AppDirctory = FileSystem.CacheDirectory;
 
             var filePath = Path.Combine(AppDirctory, $"{Note.Name}.html");
@@ -70,7 +69,7 @@ namespace DuoNotes.PageModels {
             var location = await App.AzureService.UploadToAzureBlobStorage(filePath, FileName);
 
             await App.FirebaseService.UpdateNoteFileLocationAsync(Note.Id, location);
-            
+
             File.Delete(filePath);
         }
     }
