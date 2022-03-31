@@ -69,8 +69,6 @@ namespace DuoNotes.PageModels.PopUps {
 
                 using (WordDocument document = new WordDocument()) {
 
-                    var Style = document.AddParagraphStyle("DocumentStyle");
-
                     document.EnsureMinimal();
 
                     document.LastParagraph.AppendHTML(HtmlValidator.IgnoreVoidElementsInHTML(HtmlText));
