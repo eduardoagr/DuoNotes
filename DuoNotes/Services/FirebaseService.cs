@@ -206,6 +206,9 @@ namespace DuoNotes.Services {
                 .Child(AppConstant.Notes)
                 .Child(Id)
                 .PatchAsync($"{{ \"FileLocation\" : \"{NoteFileLocation}\" }}");
+
+            // Use default vibration length
+            Vibration.Vibrate();
         }
 
         public async Task UpdateNoteAsync(string Id, string NoteName) {
@@ -214,6 +217,9 @@ namespace DuoNotes.Services {
                 .Child(AppConstant.Notes)
                 .Child(Id)
                 .PatchAsync($"{{ \"Name\" : \"{NoteName}\" }}");
+
+            // Use default vibration length
+            Vibration.Vibrate();
         }
 
         public async Task UpdateNotebookAsync(string Id, string NotebookColor, string NotebookName) {
@@ -222,6 +228,9 @@ namespace DuoNotes.Services {
                 .Child(AppConstant.Notebooks)
                 .Child(Id)
                 .PatchAsync($"{{ \"Color\" : \"{NotebookColor}\", \"Name\" : \"{NotebookName}\" }}");
+
+            // Use default vibration length
+            Vibration.Vibrate();
         }
 
         public async void DeleteNotebookNotAsync(string Id, string ChildName) {

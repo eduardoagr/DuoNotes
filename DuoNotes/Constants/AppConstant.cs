@@ -57,5 +57,14 @@ namespace DuoNotes.Constants {
         // We need the Id of the notebook, when we edit a Note
 
         public const string NotebookId = "NotebookId";
+
+        // Text and Html text
+
+        public const string Text = "Text";
+        public const string HtmlText = "HtmlText";
+
+        //Note name
+
+        public const string NoteName = "NoteName";
     }
 }

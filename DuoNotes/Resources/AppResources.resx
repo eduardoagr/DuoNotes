@@ -141,6 +141,9 @@
   <data name="Edit" xml:space="preserve">
     <value>Do you wan to update this element</value>
   </data>
+  <data name="EditorPlaceholder" xml:space="preserve">
+    <value>Type something</value>
+  </data>
   <data name="EditProfile" xml:space="preserve">
     <value>Edit profile</value>
   </data>
@@ -152,6 +155,12 @@
   </data>
   <data name="EMAIL_NOT_FOUND" xml:space="preserve">
     <value>Email not found</value>
+  </data>
+  <data name="EmptyNotebooks" xml:space="preserve">
+    <value>You do not have notebooks, to add press the "+" symbol</value>
+  </data>
+  <data name="EmptyNotes" xml:space="preserve">
+    <value>You do not have notess to add press the "+" symbol</value>
   </data>
   <data name="Error" xml:space="preserve">
     <value>Error</value>
@@ -169,7 +178,7 @@
     <value>Login</value>
   </data>
   <data name="NewNote" xml:space="preserve">
-    <value>New note</value>
+    <value>New Note</value>
   </data>
   <data name="NewNotebook" xml:space="preserve">
     <value>Create new notebook</value>
@@ -177,8 +186,17 @@
   <data name="NewUser" xml:space="preserve">
     <value>New user</value>
   </data>
+  <data name="No" xml:space="preserve">
+    <value>No</value>
+  </data>
   <data name="NoteBookName" xml:space="preserve">
-    <value>Title</value>
+    <value>title</value>
+  </data>
+  <data name="NoteBookTitle" xml:space="preserve">
+    <value>Tite</value>
+  </data>
+  <data name="NoteName" xml:space="preserve">
+    <value>Note name</value>
   </data>
   <data name="Notes" xml:space="preserve">
     <value>Notes</value>
@@ -215,8 +233,5 @@
   </data>
   <data name="WEAK_PASSWORD : Password should be at least 6 characters" xml:space="preserve">
     <value>Password should be at least 6 characters</value>
-  </data>
-  <data name="Yes" xml:space="preserve">
-    <value>Yes</value>
   </data>
 </root>

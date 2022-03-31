@@ -7,7 +7,6 @@ using Newtonsoft.Json;
 
 namespace DuoNotes.Utils {
     class Firebasemessages {
-
         public static void GetMessages(FirebaseAuthException ex) {
 
             var stringError = JsonConvert

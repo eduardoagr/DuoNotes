@@ -53,7 +53,7 @@ namespace DuoNotes.PageModels.PopUps {
 
         }
 
-        private void ClosePopUpAction() {
+        public virtual void ClosePopUpAction() {
             PopupNavigation.Instance.PopAsync();
         }
 

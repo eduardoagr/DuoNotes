@@ -124,11 +124,11 @@ namespace DuoNotes.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Do you wan to update this element.
+        ///   Looks up a localized string similar to Type something.
         /// </summary>
-        internal static string Edit {
+        internal static string EditorPlaceholder {
             get {
-                return ResourceManager.GetString("Edit", resourceCulture);
+                return ResourceManager.GetString("EditorPlaceholder", resourceCulture);
             }
         }
         
@@ -165,6 +165,24 @@ namespace DuoNotes.Resources {
         internal static string EMAIL_NOT_FOUND {
             get {
                 return ResourceManager.GetString("EMAIL_NOT_FOUND", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You do not have notebooks, to add press the &quot;+&quot; symbol.
+        /// </summary>
+        internal static string EmptyNotebooks {
+            get {
+                return ResourceManager.GetString("EmptyNotebooks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You do not have notess to add press the &quot;+&quot; symbol.
+        /// </summary>
+        internal static string EmptyNotes {
+            get {
+                return ResourceManager.GetString("EmptyNotes", resourceCulture);
             }
         }
         
@@ -214,7 +232,7 @@ namespace DuoNotes.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to New note.
+        ///   Looks up a localized string similar to New Note.
         /// </summary>
         internal static string NewNote {
             get {
@@ -243,9 +261,27 @@ namespace DuoNotes.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Title.
         /// </summary>
-        internal static string NoteBookName {
+        internal static string No {
             get {
-                return ResourceManager.GetString("NoteBookName", resourceCulture);
+                return ResourceManager.GetString("No", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tite.
+        /// </summary>
+        internal static string NoteBookTitle {
+            get {
+                return ResourceManager.GetString("NoteBookTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Note name.
+        /// </summary>
+        internal static string NoteName {
+            get {
+                return ResourceManager.GetString("NoteName", resourceCulture);
             }
         }
         
@@ -354,15 +390,6 @@ namespace DuoNotes.Resources {
         internal static string WEAK_PASSWORD___Password_should_be_at_least_6_characters {
             get {
                 return ResourceManager.GetString("WEAK_PASSWORD : Password should be at least 6 characters", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Yes.
-        /// </summary>
-        internal static string Yes {
-            get {
-                return ResourceManager.GetString("Yes", resourceCulture);
             }
         }
     }

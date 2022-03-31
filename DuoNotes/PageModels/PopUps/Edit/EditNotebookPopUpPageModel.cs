@@ -36,6 +36,8 @@ namespace DuoNotes.PageModels.PopUps.Edit {
             await PopupNavigation.Instance.PopAsync();
         }
 
+
+
         public virtual void PageAppearAction() {
 
             Notebook = Application.Current.Properties[AppConstant.EditNotebook] as Notebook;

@@ -8,7 +8,8 @@
     xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
     xmlns:icon="clr-namespace:DuoNotes.Fonts"
     xmlns:richtexteditor="clr-namespace:Syncfusion.XForms.RichTextEditor;assembly=Syncfusion.SfRichTextEditor.XForms"
-    xmlns:vm="clr-namespace:DuoNotes.PageModels">
+    xmlns:vm="clr-namespace:DuoNotes.PageModels"
+    x:DataType="vm:EditorPageModel">
 
     <ContentPage.BindingContext>
         <vm:EditorPageModel />
@@ -28,7 +29,7 @@
                 TextColor="{StaticResource BackgroundLigthColor}"
                 VerticalTextAlignment="Center" />
             <Button
-                community:TouchEffect.Command="{Binding SaveCommand}"
+                community:TouchEffect.Command="{Binding ShareCommand}"
                 community:TouchEffect.PressedBackgroundColor="{StaticResource ToolbarPresedItems}"
                 BackgroundColor="{StaticResource Trnsparent}"
                 HorizontalOptions="EndAndExpand">
@@ -65,6 +66,7 @@
         <StackLayout>
             <richtexteditor:SfRichTextEditor
                 HtmlText="{Binding HtmlText}"
+                Text="{Binding PlainText}"
                 ToolbarOptions="Bold,Italic,Underline,Alignment,BulletList,NumberList,FontSize,FontColor,HighlightColor,Undo"
                 ToolbarPosition="Top" />
         </StackLayout>

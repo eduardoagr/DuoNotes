@@ -6,7 +6,10 @@
     xmlns:community="http://xamarin.com/schemas/2020/toolkit"
     xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
     xmlns:icon="clr-namespace:DuoNotes.Fonts"
+    xmlns:models="clr-namespace:DuoNotes.Model"
+    xmlns:translate="clr-namespace:DuoNotes.Utils"
     xmlns:vm="clr-namespace:DuoNotes.PageModels"
+    x:DataType="vm:NotebooksPageModel"
     BackgroundColor="{AppThemeBinding Dark={StaticResource BckgroundDarkColor},
                                       Light={StaticResource BackgroundLigthColor}}">
 
@@ -79,8 +82,14 @@
             SelectedItem="{Binding SelectedItem}"
             SelectionChangedCommand="{Binding SelectedItemCommand}"
             SelectionMode="Single">
+            <CollectionView.EmptyView>
+                <Label
+                    FontAttributes="Bold"
+                    Style="{StaticResource LabelStyle}"
+                    Text="{translate:Translate EmptyNotebooks}" />
+            </CollectionView.EmptyView>
             <CollectionView.ItemTemplate>
-                <DataTemplate>
+                <DataTemplate x:DataType="models:Notebook">
                     <SwipeView>
                         <SwipeView.LeftItems>
                             <SwipeItems Mode="Reveal">

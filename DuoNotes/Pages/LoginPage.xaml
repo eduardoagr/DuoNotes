@@ -8,6 +8,7 @@
     xmlns:translate="clr-namespace:DuoNotes.Utils"
     xmlns:vm="clr-namespace:DuoNotes.PageModels"
     Title="DuoNotes"
+    x:DataType="vm:LoginPageModel"
     BackgroundColor="{AppThemeBinding Dark={StaticResource BckgroundDarkColor},
                                       Light={StaticResource BackgroundLigthColor}}">
 
@@ -36,10 +37,11 @@
                 VerticalOptions="FillAndExpand">
 
                 <StackLayout Padding="10">
-                    <Entry Keyboard="Email"
-                           Placeholder="{translate:Translate Email}"
-                           Style="{StaticResource EntrySyle}"
-                           Text="{Binding User.Email}" />
+                    <Entry
+                        Keyboard="Email"
+                        Placeholder="{translate:Translate Email}"
+                        Style="{StaticResource EntrySyle}"
+                        Text="{Binding User.Email}" />
                     <Entry
                         x:Name="PassEntry"
                         IsPassword="True"

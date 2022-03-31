@@ -147,6 +147,12 @@
   <data name="EMAIL_NOT_FOUND" xml:space="preserve">
     <value>Email no encontrado</value>
   </data>
+  <data name="EmptyNotebooks" xml:space="preserve">
+    <value>No tiene cuadernos, para agregar presione el simbolo "+"</value>
+  </data>
+  <data name="EmptyNotes" xml:space="preserve">
+    <value>No tiene Notas, para agregar presione el simbolo "+"</value>
+  </data>
   <data name="Error" xml:space="preserve">
     <value>Error</value>
   </data>
@@ -173,6 +179,9 @@
   </data>
   <data name="NoteBookTitle" xml:space="preserve">
     <value>Titulo</value>
+  </data>
+  <data name="NoteName" xml:space="preserve">
+    <value>Nombre de la nota</value>
   </data>
   <data name="Notes" xml:space="preserve">
     <value>Notas</value>
@@ -209,8 +218,5 @@
   </data>
   <data name="WEAK_PASSWORD : Password should be at least 6 characters" xml:space="preserve">
     <value>La contraseña debe tener al menos 6 caracteres</value>
-  </data>
-  <data name="Yes" xml:space="preserve">
-    <value>Si</value>
   </data>
 </root>

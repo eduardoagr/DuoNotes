@@ -161,7 +161,7 @@
                 TargetType="Label">
                 <Setter Property="FontFamily" Value="ma" />
                 <Setter Property="FontSize" Value="60" />
-                <Setter Property="TextColor" Value="#AE70B8" />
+                <Setter Property="TextColor" Value="#888A32" />
                 <Setter Property="Text" Value="{Static icon:MaterialIcons.StickerText}" />
             </Style>
 
@@ -175,6 +175,7 @@
                 <Setter Property="FontSize" Value="50" />
                 <Setter Property="Text" Value="{Static icon:MaterialIcons.FileDocumentEdit}" />
             </Style>
+
         </ResourceDictionary>
     </Application.Resources>
 </Application>

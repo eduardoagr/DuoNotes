@@ -10,7 +10,8 @@
     xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
     xmlns:translate="clr-namespace:DuoNotes.Utils"
     xmlns:vm="clr-namespace:DuoNotes.PageModels.PopUps.Edit"
-    Padding="20">
+    Padding="20"
+    x:DataType="vm:EditNotebookPopUpPageModel">
 
     <pages:PopupPage.Animation>
         <animations:ScaleAnimation
@@ -33,6 +34,7 @@
     <Frame Style="{StaticResource FrameContainer}">
         <Grid Padding="10" RowDefinitions="Auto,Auto">
 
+
             <Entry
                 MaxLength="20"
                 Placeholder="{translate:Translate NoteBookTitle}"
@@ -45,7 +47,7 @@
                         <community:EventToCommandBehavior Command="{Binding SelectedColorCommand}" EventName="SelectionChanged" />
                     </buttons:SfChipGroup.Behaviors>
                     <buttons:SfChipGroup.ItemTemplate>
-                        <DataTemplate>
+                        <DataTemplate x:DataType="{x:Null}">
                             <StackLayout>
                                 <border:SfBorder Style="{StaticResource ColorBorderStyle}">
                                     <Ellipse
