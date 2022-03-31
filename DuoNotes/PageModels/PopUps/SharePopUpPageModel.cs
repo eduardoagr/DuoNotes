@@ -11,6 +11,7 @@ using Syncfusion.DocIO.DLS;
 using Syncfusion.DocIORenderer;
 using Syncfusion.Pdf;
 
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
@@ -62,7 +63,7 @@ namespace DuoNotes.PageModels.PopUps {
         private async void ShareOptionsAction() {
 
             var share = DependencyService.Get<IShare>();
-            var localFolder = FileSystem.AppDataDirectory;
+            var localFolder = FileSystem.CacheDirectory;
             var assembly = typeof(App).GetTypeInfo().Assembly;
 
             if (Option.Order == 1) {
@@ -81,18 +82,20 @@ namespace DuoNotes.PageModels.PopUps {
                     document.LastParagraph.AppendHTML(IgnoreVoidElementsInHTML(HtmlText));
                     //using (MemoryStream memoryStream = new MemoryStream()) {
                     //using (
-                    var fs = new FileStream(filePath, FileMode.Create, FileAccess.Write);// {
+                    var fs = new FileStream(filePath, FileMode.OpenOrCreate, FileAccess.ReadWrite);// {
                                                                                          // memoryStream.WriteTo(fs);
                     //stream.WriteTo(fs);
                     //stream.Position = 0;
-                    document.Open(stream, FormatType.Html);
+                    //document.Open(stream, FormatType.Html);
 
-                    document.Save(stream, FormatType.Docx);
+                    document.Save(fs, FormatType.Docx);
                     //}
                     //document.Save(, FormatType.Docx);
                     document.Close();
                     fs.Close();
                     fs.Dispose();
+
+                    await share.Show("cfdc", "csadxc", filePath, "docx");
 
                     await App.AzureService.UploadToAzureBlobStorage(filePath, fileName);
                     //}
@@ -145,6 +148,8 @@ namespace DuoNotes.PageModels.PopUps {
                 await ShareText(PlainText);
             }
         }
+
+        
 
         private MemoryStream GenerateStreamFromString(string htmlText) {
             var stream = new MemoryStream();
