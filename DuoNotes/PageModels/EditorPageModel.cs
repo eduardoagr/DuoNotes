@@ -56,7 +56,7 @@ namespace DuoNotes.PageModels {
             var NewNote = await App.FirebaseService.ReadByIdAsync(AppConstant.Notes, Note.Id) as Note;
 
             if (!string.IsNullOrEmpty(NewNote.FileLocation)) {
-                HtmlText = await App.AzureService.GetTextfromBlobStorage($"{NewNote.Name}");
+                HtmlText = await App.AzureService.GetBlobStorage($"{NewNote.Name}");
             }
         }
 

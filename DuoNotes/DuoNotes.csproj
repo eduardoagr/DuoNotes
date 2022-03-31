@@ -24,7 +24,6 @@
 
 	<ItemGroup>
 		<PackageReference Include="Acr.UserDialogs" Version="7.2.0.562" />
-		<PackageReference Include="Azure.Core" Version="1.23.0" />
 		<PackageReference Include="Azure.Storage.Blobs" Version="12.11.0" />
 		<PackageReference Include="Com.Airbnb.Xamarin.Forms.Lottie" Version="4.1.0" />
 		<PackageReference Include="FirebaseAuthentication.net" Version="3.7.2" />

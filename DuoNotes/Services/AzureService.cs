@@ -37,8 +37,6 @@ namespace DuoNotes.Services {
             var blob = BlobContainerClient.GetBlobClient($"{fileName}{ext}");
             await blob.DeleteIfExistsAsync(DeleteSnapshotsOption.IncludeSnapshots);
         }
-
-        public async Task<string> GetTextfromBlobStorage(string FileName) {
         public async Task<string> GetBlobStorage(string FileName) {
             string text = string.Empty;
 

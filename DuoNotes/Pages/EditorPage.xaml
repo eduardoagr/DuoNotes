@@ -24,8 +24,8 @@
     <NavigationPage.TitleView>
         <StackLayout HorizontalOptions="FillAndExpand" Orientation="Horizontal">
             <Label
-                FontSize="Large"
                 Text="{Binding Note.Name}"
+                FontSize="Medium"
                 TextColor="{StaticResource BackgroundLigthColor}"
                 VerticalTextAlignment="Center" />
             <Button
@@ -47,11 +47,8 @@
                 </Button.ImageSource>
             </Button>
 
-            <buttons:SfButton
-                community:TouchEffect.Command="{Binding OcrCommand}"
-                community:TouchEffect.NormalBackgroundColor="Transparent"
-                community:TouchEffect.PressedBackgroundColor="{StaticResource ToolbarPresedItems}"
-                BackgroundColor="Transparent">
+            <buttons:SfButton community:TouchEffect.Command="{Binding OcrCommand}"
+                              BackgroundColor="{StaticResource Trnsparent}">
                 <buttons:SfButton.Content>
                     <ffimageloadingsvg:SvgCachedImage
                         HeightRequest="45"

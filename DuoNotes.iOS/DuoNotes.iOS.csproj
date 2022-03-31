@@ -285,4 +285,7 @@
   <ItemGroup>
     <BundleResource Include="Resources\document.svg" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ocr.svg" />
+  </ItemGroup>
 </Project>
