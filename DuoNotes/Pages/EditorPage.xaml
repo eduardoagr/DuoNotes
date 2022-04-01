@@ -15,7 +15,6 @@
         <vm:EditorPageModel />
     </ContentPage.BindingContext>
 
-
     <ContentPage.Behaviors>
         <community:EventToCommandBehavior Command="{Binding PageAppearCommand}" EventName="Appearing" />
         <community:EventToCommandBehavior Command="{Binding PageDisappearCommand}" EventName="Disappearing" />
@@ -59,13 +58,11 @@
 
         </StackLayout>
     </NavigationPage.TitleView>
-    <ContentPage.Content>
-        <StackLayout>
-            <richtexteditor:SfRichTextEditor
-                HtmlText="{Binding HtmlText}"
-                Text="{Binding PlainText}"
-                ToolbarOptions="Bold,Italic,Underline,Alignment,BulletList,NumberList,FontSize,FontColor,HighlightColor,Undo"
-                ToolbarPosition="Top" />
-        </StackLayout>
-    </ContentPage.Content>
+
+    <StackLayout>
+        <richtexteditor:SfRichTextEditor HtmlText="{Binding HtmlText}"
+                                         Text="{Binding PlainText}"
+                                         ToolbarOptions="Bold,Italic,Underline,Alignment,BulletList,NumberList,FontSize,FontColor,HighlightColor,Undo"
+                                         ToolbarPosition="Top" />
+    </StackLayout>
 </ContentPage>
