@@ -250,7 +250,7 @@
     <AndroidResource Include="Resources\drawable\document.svg" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\xml\fille_provider_paths.xml" />
+    <AndroidResource Include="Resources\xml\file_provider_paths.xml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\ocr.svg" />

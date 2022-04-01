@@ -1,4 +1,5 @@
 ﻿using DuoNotes.Constants;
+using DuoNotes.Interfaces;
 using DuoNotes.Model;
 using DuoNotes.Services;
 using DuoNotes.Utils;
@@ -12,7 +13,6 @@ using Syncfusion.Pdf;
 
 using System.Collections.Generic;
 using System.IO;
-using System.Threading.Tasks;
 
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -59,11 +59,15 @@ namespace DuoNotes.PageModels.PopUps {
 
         private async void ShareOptionsAction() {
 
+            IShare share = DependencyService.Get<IShare>();
+
             var localFolder = FileSystem.CacheDirectory;
 
             if (Option.Order == 1) {
 
-                string fileName = $"{NoteName}.docx";
+                var ext = ".docx";
+
+                string fileName = $"{NoteName}{ext}";
 
                 var filePath = Path.Combine(localFolder, fileName);
 
@@ -77,9 +81,8 @@ namespace DuoNotes.PageModels.PopUps {
                         document.Save(fs, FormatType.Docx);
                     }
                 }
-                await App.AzureService.UploadToAzureBlobStorage(filePath, fileName);
 
-                File.Delete(filePath);
+                await share.Show(fileName, "htllo", filePath, ext);
 
             } else if (Option.Order == 2) {
 
@@ -102,19 +105,20 @@ namespace DuoNotes.PageModels.PopUps {
                 }
                 await App.AzureService.UploadToAzureBlobStorage(filePath, fileName);
 
-                File.Delete(filePath);
+                await Share.RequestAsync(new ShareFileRequest {
+                    File = new ShareFile(filePath)
+                });
+
+               //File.Delete(filePath);
 
             } else {
-                await ShareText(PlainText);
+                await Share.RequestAsync(new ShareTextRequest {
+                    Text = PlainText,
+                });
             }
-        }
 
-        public async Task ShareText(string text) {
-            await Share.RequestAsync(new ShareTextRequest {
-                Text = text
-            });
+            await PopupNavigation.Instance.PopAsync();
         }
-
         private void ClosePopUpAction() {
             PopupNavigation.Instance.PopAsync();
         }
