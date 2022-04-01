@@ -157,10 +157,12 @@
     <value>Email not found</value>
   </data>
   <data name="EmptyNotebooks" xml:space="preserve">
-    <value>You do not have notebooks, to add press the "+" symbol</value>
+    <value>You do not have notebooks,
+to add press the "+" symbol</value>
   </data>
   <data name="EmptyNotes" xml:space="preserve">
-    <value>You do not have notess to add press the "+" symbol</value>
+    <value>You do not have notes
+to add press the "+" symbol</value>
   </data>
   <data name="Error" xml:space="preserve">
     <value>Error</value>

@@ -124,6 +124,15 @@ namespace DuoNotes.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Do you wan to update this element.
+        /// </summary>
+        internal static string Edit {
+            get {
+                return ResourceManager.GetString("Edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Type something.
         /// </summary>
         internal static string EditorPlaceholder {
@@ -169,7 +178,8 @@ namespace DuoNotes.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You do not have notebooks, to add press the &quot;+&quot; symbol.
+        ///   Looks up a localized string similar to You do not have notebooks,
+        ///to add press the &quot;+&quot; symbol.
         /// </summary>
         internal static string EmptyNotebooks {
             get {
@@ -178,7 +188,8 @@ namespace DuoNotes.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You do not have notess to add press the &quot;+&quot; symbol.
+        ///   Looks up a localized string similar to You do not have notes
+        ///to add press the &quot;+&quot; symbol.
         /// </summary>
         internal static string EmptyNotes {
             get {
@@ -259,11 +270,20 @@ namespace DuoNotes.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Title.
+        ///   Looks up a localized string similar to No.
         /// </summary>
         internal static string No {
             get {
                 return ResourceManager.GetString("No", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to title.
+        /// </summary>
+        internal static string NoteBookName {
+            get {
+                return ResourceManager.GetString("NoteBookName", resourceCulture);
             }
         }
         

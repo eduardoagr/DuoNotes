@@ -82,7 +82,7 @@ namespace DuoNotes.PageModels.PopUps {
                     }
                 }
 
-                await share.Show(fileName, "htllo", filePath, ext);
+                await share.Show(NoteName, "htllo", filePath, ext);
 
             } else if (Option.Order == 2) {
 

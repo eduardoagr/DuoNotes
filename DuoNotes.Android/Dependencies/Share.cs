@@ -13,13 +13,13 @@ using Xamarin.Forms;
 
 [assembly: Dependency(typeof(Share))]
 namespace DuoNotes.Droid.Dependencies {
-    internal class Share : IShare {
+    public class Share : IShare {
         public Task Show(string title, string messge, string filePath, string ext) {
 
             var intent = new Intent(Intent.ActionSend);
-            if (ext.Equals("pdf")) {
+            if (ext.Equals(".pdf")) {
                 intent.SetType("application/pdf");
-            } else if (ext.Equals("docx")) {
+            } else if (ext.Equals(".docx")) {
                 intent.SetType("application/msword");
             } else {
                 intent.SetType("text/plain");
