@@ -23,8 +23,8 @@
     <NavigationPage.TitleView>
         <StackLayout HorizontalOptions="FillAndExpand" Orientation="Horizontal">
             <Label
-                Text="{Binding Note.Name}"
                 FontSize="Medium"
+                Text="{Binding Note.Name}"
                 TextColor="{StaticResource BackgroundLigthColor}"
                 VerticalTextAlignment="Center" />
             <Button
@@ -46,8 +46,7 @@
                 </Button.ImageSource>
             </Button>
 
-            <buttons:SfButton community:TouchEffect.Command="{Binding OcrCommand}"
-                              BackgroundColor="{StaticResource Trnsparent}">
+            <buttons:SfButton community:TouchEffect.Command="{Binding OcrCommand}" BackgroundColor="{StaticResource Trnsparent}">
                 <buttons:SfButton.Content>
                     <ffimageloadingsvg:SvgCachedImage
                         HeightRequest="45"
@@ -58,11 +57,9 @@
 
         </StackLayout>
     </NavigationPage.TitleView>
-
-    <StackLayout>
-        <richtexteditor:SfRichTextEditor HtmlText="{Binding HtmlText}"
-                                         Text="{Binding PlainText}"
-                                         ToolbarOptions="Bold,Italic,Underline,Alignment,BulletList,NumberList,FontSize,FontColor,HighlightColor,Undo"
-                                         ToolbarPosition="Top" />
-    </StackLayout>
+    <richtexteditor:SfRichTextEditor
+        HtmlText="{Binding HtmlText}"
+        Text="{Binding PlainText}"
+        ToolbarOptions="Bold,Italic,Underline,Alignment,BulletList,NumberList,FontSize,FontColor,HighlightColor,Undo"
+        ToolbarPosition="Top" />
 </ContentPage>
