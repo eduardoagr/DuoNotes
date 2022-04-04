@@ -3,12 +3,11 @@
     x:Class="DuoNotes.Pages.EditorPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
     xmlns:community="http://xamarin.com/schemas/2020/toolkit"
-    xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
     xmlns:icon="clr-namespace:DuoNotes.Fonts"
     xmlns:richtexteditor="clr-namespace:Syncfusion.XForms.RichTextEditor;assembly=Syncfusion.SfRichTextEditor.XForms"
     xmlns:vm="clr-namespace:DuoNotes.PageModels"
+    Title="{Binding Note.Name}"
     x:DataType="vm:EditorPageModel">
 
     <ContentPage.BindingContext>
@@ -20,46 +19,10 @@
         <community:EventToCommandBehavior Command="{Binding PageDisappearCommand}" EventName="Disappearing" />
     </ContentPage.Behaviors>
 
-    <NavigationPage.TitleView>
-        <StackLayout HorizontalOptions="FillAndExpand" Orientation="Horizontal">
-            <Label
-                FontSize="Medium"
-                Text="{Binding Note.Name}"
-                TextColor="{StaticResource BackgroundLigthColor}"
-                VerticalTextAlignment="Center" />
-            <Button
-                community:TouchEffect.Command="{Binding ShareCommand}"
-                community:TouchEffect.PressedBackgroundColor="{StaticResource ToolbarPresedItems}"
-                BackgroundColor="{StaticResource Trnsparent}"
-                HorizontalOptions="EndAndExpand">
-                <Button.ImageSource>
-                    <FontImageSource FontFamily="ma" Glyph="{Static icon:MaterialIcons.ShareVariant}" />
-                </Button.ImageSource>
-            </Button>
 
-            <Button
-                community:TouchEffect.Command="{Binding SaveCommand}"
-                community:TouchEffect.PressedBackgroundColor="{StaticResource ToolbarPresedItems}"
-                BackgroundColor="{StaticResource Trnsparent}">
-                <Button.ImageSource>
-                    <FontImageSource FontFamily="ma" Glyph="{Static icon:MaterialIcons.ContentSave}" />
-                </Button.ImageSource>
-            </Button>
-
-            <buttons:SfButton community:TouchEffect.Command="{Binding OcrCommand}" BackgroundColor="{StaticResource Trnsparent}">
-                <buttons:SfButton.Content>
-                    <ffimageloadingsvg:SvgCachedImage
-                        HeightRequest="45"
-                        Source="ocr.svg"
-                        WidthRequest="45" />
-                </buttons:SfButton.Content>
-            </buttons:SfButton>
-
-        </StackLayout>
-    </NavigationPage.TitleView>
     <richtexteditor:SfRichTextEditor
         HtmlText="{Binding HtmlText}"
         Text="{Binding PlainText}"
-        ToolbarOptions="Bold,Italic,Underline,Alignment,BulletList,NumberList,FontSize,FontColor,HighlightColor,Undo"
+        ToolbarItems="{Binding ToolbarOptionsCollection}"
         ToolbarPosition="Top" />
 </ContentPage>

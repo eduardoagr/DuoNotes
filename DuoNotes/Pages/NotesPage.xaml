@@ -70,6 +70,7 @@
             <CollectionView.EmptyView>
                 <Label
                     FontAttributes="Bold"
+                    IsVisible="{Binding EmptyViewVisibility}"
                     Style="{StaticResource LabelStyle}"
                     Text="{translate:Translate EmptyNotes}" />
             </CollectionView.EmptyView>

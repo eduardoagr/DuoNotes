@@ -135,6 +135,9 @@
   <data name="Delete" xml:space="preserve">
     <value>Delete</value>
   </data>
+  <data name="Document" xml:space="preserve">
+    <value>Crating the document</value>
+  </data>
   <data name="Downloading" xml:space="preserve">
     <value>We are downloading your document</value>
   </data>

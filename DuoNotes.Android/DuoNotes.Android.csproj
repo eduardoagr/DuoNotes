@@ -240,9 +240,6 @@
   <ItemGroup>
     <AndroidResource Include="Resources\xml\file_provider_paths.xml" />
   </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ocr.svg" />
-  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>

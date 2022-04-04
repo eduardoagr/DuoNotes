@@ -1,4 +1,5 @@
-﻿using DuoNotes.Constants;
+﻿
+using DuoNotes.Constants;
 using DuoNotes.Interfaces;
 using DuoNotes.Model;
 using DuoNotes.Services;
@@ -63,6 +64,7 @@ namespace DuoNotes.PageModels.PopUps {
 
             var localFolder = FileSystem.CacheDirectory;
 
+
             if (Option.Order == 1) {
 
                 var ext = ".docx";
@@ -82,7 +84,7 @@ namespace DuoNotes.PageModels.PopUps {
                     }
                 }
 
-                await share.Show(NoteName, "htllo", filePath, ext);
+                await share.Show($"{NoteName}", "test", filePath, "Word");
 
             } else if (Option.Order == 2) {
 
@@ -94,7 +96,7 @@ namespace DuoNotes.PageModels.PopUps {
 
                     document.EnsureMinimal();
 
-                    document.LastParagraph.AppendHTML(HtmlValidator.IgnoreVoidElementsInHTML(HtmlText));                  
+                    document.LastParagraph.AppendHTML(HtmlValidator.IgnoreVoidElementsInHTML(HtmlText));
 
                     using (DocIORenderer render = new DocIORenderer()) {
 
@@ -103,19 +105,24 @@ namespace DuoNotes.PageModels.PopUps {
                         }
                     }
                 }
-                await App.AzureService.UploadToAzureBlobStorage(filePath, fileName);
+
+                await share.Show($"{NoteName}", "test", filePath, "Word");
 
                 await Share.RequestAsync(new ShareFileRequest {
                     File = new ShareFile(filePath)
                 });
 
-               //File.Delete(filePath);
+                File.Delete(filePath);
 
             } else {
                 await Share.RequestAsync(new ShareTextRequest {
                     Text = PlainText,
                 });
             }
+
+
+
+
 
             await PopupNavigation.Instance.PopAsync();
         }

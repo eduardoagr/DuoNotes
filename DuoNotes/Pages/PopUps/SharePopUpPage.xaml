@@ -5,12 +5,12 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:community="http://xamarin.com/schemas/2020/toolkit"
     xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+    xmlns:model="clr-namespace:DuoNotes.Model"
     xmlns:pages="http://rotorgames.com"
     xmlns:renders="clr-namespace:DuoNotes.Renders"
-    xmlns:model="clr-namespace:DuoNotes.Model"
-    x:DataType="vm:SharePopUpPageModel"
     xmlns:vm="clr-namespace:DuoNotes.PageModels.PopUps"
-    Padding="20">
+    Padding="20"
+    x:DataType="vm:SharePopUpPageModel">
 
     <pages:PopupPage.Animation>
         <pages:ScaleAnimation
@@ -49,10 +49,7 @@
     <Grid>
         <Frame Style="{StaticResource FrameContainer}">
 
-            <Grid
-                Padding="20"
-                RowDefinitions="Auto,60"
-                RowSpacing="10">
+            <Grid Padding="20" RowDefinitions="60,260">
 
                 <StackLayout HorizontalOptions="End">
                     <Label community:TouchEffect.Command="{Binding DismissPopUpCommand}" Style="{StaticResource CloseStyle}" />
@@ -60,20 +57,25 @@
 
                 <renders:CollectionViewRender
                     Grid.Row="1"
-                    ItemsLayout="HorizontalList"
+                    HorizontalOptions="CenterAndExpand"
                     ItemsSource="{Binding ShareOptions}"
                     SelectedItem="{Binding Option}"
                     SelectionChangedCommand="{Binding ShareOptionsCommand}"
                     SelectionMode="Single">
                     <renders:CollectionViewRender.ItemTemplate>
                         <DataTemplate x:DataType="model:ShareOptions">
-                            <Grid>
+                            <Grid ColumnDefinitions="60">
                                 <ffimageloadingsvg:SvgCachedImage
-                                    Margin="20,0"
+                                    Margin="0,10"
                                     HeightRequest="60"
-                                    HorizontalOptions="CenterAndExpand"
                                     Source="{Binding ImageName}"
                                     WidthRequest="60" />
+                                <Label
+                                    Grid.Column="1"
+                                    FontAttributes="Bold"
+                                    FontSize="Large"
+                                    Style="{StaticResource LabelStyle}"
+                                    Text="{Binding ImageText}" />
                             </Grid>
                         </DataTemplate>
                     </renders:CollectionViewRender.ItemTemplate>

@@ -27,7 +27,7 @@ namespace DuoNotes.Services {
                 var blob = BlobContainerClient.GetBlobClient(fileName);
                 await blob.UploadAsync(filePath, true);
             }
-        
+
             return $"https://notesbucket.blob.core.windows.net/notes/{fileName}";
 
         }

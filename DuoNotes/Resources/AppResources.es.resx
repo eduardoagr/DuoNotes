@@ -126,6 +126,9 @@
   <data name="Delete" xml:space="preserve">
     <value>Borrar</value>
   </data>
+  <data name="Document" xml:space="preserve">
+    <value>Creando el documento</value>
+  </data>
   <data name="Downloading" xml:space="preserve">
     <value>Estamos cargando su documento</value>
   </data>

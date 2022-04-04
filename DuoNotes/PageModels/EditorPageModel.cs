@@ -1,10 +1,14 @@
 ﻿
 using DuoNotes.Constants;
+using DuoNotes.Fonts;
 using DuoNotes.Model;
 using DuoNotes.Pages.PopUps;
 
 using Rg.Plugins.Popup.Services;
 
+using Syncfusion.XForms.RichTextEditor;
+
+using System.Collections.ObjectModel;
 using System.IO;
 
 using Xamarin.Essentials;
@@ -16,11 +20,9 @@ namespace DuoNotes.PageModels {
 
         public Note Note { get; set; }
 
-        public Command SaveCommand { get; set; }
-
-        public Command ShareCommand { get; set; }
-
         public Command OcrCommand { get; set; }
+
+        public ObservableCollection<object> ToolbarOptionsCollection { get; set; }
 
         public string HtmlText { get; set; }
 
@@ -28,9 +30,52 @@ namespace DuoNotes.PageModels {
 
         public EditorPageModel() {
 
-            SaveCommand = new Command(SaveAction);
+            ToolbarOptionsCollection = new ObservableCollection<object>();
 
-            ShareCommand = new Command(ShareAction);
+            AddToolbarItems();
+        }
+
+        public void AddToolbarItems() {
+
+            //Insert a new item to the custom toolbar collection.
+            var ocrBton = new Button {
+                BackgroundColor = Color.Transparent,
+                HeightRequest = 50,
+                WidthRequest = 50,
+                Text = MaterialIcons.MagnifyExpand,
+                FontFamily = "ma",
+                FontSize = 22,
+                Command = new Command(OcrAction)
+            };
+            var saveButon = new Button {
+                BackgroundColor = Color.Transparent,
+                HeightRequest = 50,
+                WidthRequest = 50,
+                Text = MaterialIcons.ContentSave,
+                FontFamily = "ma",
+                FontSize = 22,
+                Command = new Command(SaveAction)
+            };
+            var shareButon = new Button {
+                BackgroundColor = Color.Transparent,
+                HeightRequest = 50,
+                WidthRequest = 50,
+                Text = MaterialIcons.ShareVariant,
+                FontFamily = "ma",
+                FontSize = 22,
+                Command = new Command(ShareAction)
+            };
+
+            ToolbarOptionsCollection.Add(ToolbarOptions.Bold);
+            ToolbarOptionsCollection.Add(ToolbarOptions.Italic);
+            ToolbarOptionsCollection.Add(ToolbarOptions.Underline);
+            ToolbarOptionsCollection.Add(ToolbarOptions.FontColor);
+            ToolbarOptionsCollection.Add(ToolbarOptions.FontSize);
+            ToolbarOptionsCollection.Add(ToolbarOptions.NumberList);
+            ToolbarOptionsCollection.Add(ToolbarOptions.BulletList);
+            ToolbarOptionsCollection.Add(saveButon);
+            ToolbarOptionsCollection.Add(shareButon);
+            ToolbarOptionsCollection.Add(ocrBton);
         }
 
         private async void ShareAction() {

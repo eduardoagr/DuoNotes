@@ -4,5 +4,7 @@
         public int Order { get; set; }
 
         public string ImageName { get; set; }
+
+        public string ImageText { get; set; }
     }
 }

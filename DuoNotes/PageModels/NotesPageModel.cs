@@ -23,6 +23,8 @@ namespace DuoNotes.PageModels {
 
         public bool SearchBtonVisibility { get; set; }
 
+        public bool EmptyViewVisibility { get; set; }
+
         public NotesPageModel() {
 
             FabAnimationCommmand = new Command<Frame>(AnimateButtonCommand);
@@ -43,6 +45,8 @@ namespace DuoNotes.PageModels {
         public override async void AppearAction() {
 
             Notebook = Application.Current.Properties[AppConstant.SelectedNotebook] as Notebook;
+
+            EmptyViewVisibility = true;
 
             FireBaseNotebookNotes = await App.FirebaseService.ReadAsync(AppConstant.Notes, Notebook.Id);
 
@@ -103,6 +107,9 @@ namespace DuoNotes.PageModels {
             if (SelectedItem != null) {
 
                 var edit = new EditorPage();
+
+                EmptyViewVisibility = false;
+
                 Application.Current.Properties[AppConstant.SelectedNote] = SelectedItem;
                 await Application.Current.MainPage.Navigation.PushAsync(edit);
             }
