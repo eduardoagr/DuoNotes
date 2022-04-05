@@ -66,5 +66,9 @@ namespace DuoNotes.Constants {
         //Note name
 
         public const string NoteName = "NoteName";
+
+        //SfButtonStyle
+
+        public const string EdtorToolBarBtonsstyle = "EdtorToolBarBtons";
     }
 }

@@ -6,6 +6,7 @@ using DuoNotes.Pages.PopUps;
 
 using Rg.Plugins.Popup.Services;
 
+using Syncfusion.XForms.Buttons;
 using Syncfusion.XForms.RichTextEditor;
 
 using System.Collections.ObjectModel;
@@ -38,31 +39,19 @@ namespace DuoNotes.PageModels {
         public void AddToolbarItems() {
 
             //Insert a new item to the custom toolbar collection.
-            var ocrBton = new Button {
-                BackgroundColor = Color.Transparent,
-                HeightRequest = 50,
-                WidthRequest = 50,
+            var ocrBton = new SfButton {
+                Style = (Style)Application.Current.Resources[AppConstant.EdtorToolBarBtonsstyle],
                 Text = MaterialIcons.MagnifyExpand,
-                FontFamily = "ma",
-                FontSize = 22,
                 Command = new Command(OcrAction)
             };
-            var saveButon = new Button {
-                BackgroundColor = Color.Transparent,
-                HeightRequest = 50,
-                WidthRequest = 50,
+            var saveButon = new SfButton {
                 Text = MaterialIcons.ContentSave,
-                FontFamily = "ma",
-                FontSize = 22,
+                Style = (Style)Application.Current.Resources[AppConstant.EdtorToolBarBtonsstyle],
                 Command = new Command(SaveAction)
             };
-            var shareButon = new Button {
-                BackgroundColor = Color.Transparent,
-                HeightRequest = 50,
-                WidthRequest = 50,
+            var shareButon = new SfButton {
                 Text = MaterialIcons.ShareVariant,
-                FontFamily = "ma",
-                FontSize = 22,
+                Style = (Style)Application.Current.Resources[AppConstant.EdtorToolBarBtonsstyle],
                 Command = new Command(ShareAction)
             };
 

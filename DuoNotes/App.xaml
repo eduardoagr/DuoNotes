@@ -176,6 +176,24 @@
                 <Setter Property="Text" Value="{Static icon:MaterialIcons.FileDocumentEdit}" />
             </Style>
 
+            <Style x:Key="EdtorToolBarBtons"
+                   TargetType="buttons:SfButton">
+                <Setter Property="FontFamily"
+                        Value="ma" />
+                <Setter Property="TextColor"
+                        Value="Black" />
+                <Setter Property="WidthRequest"
+                        Value="50" />
+                <Setter Property="HeightRequest"
+                        Value="50" />
+                <Setter Property="FontSize"
+                        Value="22" />
+                <Setter Property="EnableRippleEffect"
+                        Value="True" />
+                <Setter Property="BackgroundColor"
+                        Value="Transparent" />
+            </Style>
+
         </ResourceDictionary>
     </Application.Resources>
 </Application>
