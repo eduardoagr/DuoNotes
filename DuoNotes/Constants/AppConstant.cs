@@ -2,11 +2,12 @@
 using System.Globalization;
 
 namespace DuoNotes.Constants {
+
     public class AppConstant {
 
         //syncfusion library key
 
-        public const string KEY = "NTY0Njk3QDMxMzkyZTM0MmUzMEVJRzNEYmRZQnZhdjIyeXRDY3JpMXgwUUg1MnBoQ1AxMWFYZlF6Z2dIVEE9";
+        public const string KEY = "NjE3NTA2QDMyMzAyZTMxMmUzME5IeE9WK1BzQW5sODB6WGVqRThXNVdPdUV6Q2V1ZEtLL0h3UEorc1o5QVE9";
 
 
         //When we save in our database, we want to know the language of the device, so we can adjust, the date
@@ -48,6 +49,11 @@ namespace DuoNotes.Constants {
 
         public const string ContanerName = "notes";
         public const string ConectionString = "DefaultEndpointsProtocol=https;AccountName=notesbucket;AccountKey=kCUWArA7EFfu2Zwt4R+zSC619apF409MZsLt39V04YAdKt4o+1ZRrZLLWh0mKbGIJ4PjkfcEHKweACWgcf4LcA==;EndpointSuffix=core.windows.net";
+
+        //Azure Computer vision
+
+        public const string ComputerVisionEndPoint = "https://duocmputervision.cognitiveservices.azure.com/";
+        public const string ComputerVisionKey = "fad89e0cfd114521816a5ab0f5efa5ba";
 
         //Edit Notebooks and Notes
 

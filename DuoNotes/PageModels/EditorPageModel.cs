@@ -1,16 +1,24 @@
 ﻿
+using Acr.UserDialogs;
+
 using DuoNotes.Constants;
 using DuoNotes.Fonts;
 using DuoNotes.Model;
 using DuoNotes.Pages.PopUps;
+using DuoNotes.Utils;
+
+using Microsoft.Azure.CognitiveServices.Vision.ComputerVision;
 
 using Rg.Plugins.Popup.Services;
 
 using Syncfusion.XForms.Buttons;
 using Syncfusion.XForms.RichTextEditor;
 
+using System;
 using System.Collections.ObjectModel;
 using System.IO;
+using System.Text;
+using System.Threading.Tasks;
 
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -25,13 +33,21 @@ namespace DuoNotes.PageModels {
 
         public ObservableCollection<object> ToolbarOptionsCollection { get; set; }
 
+        public ComputerVisionClient VisionClient { get; set; }
+
         public string HtmlText { get; set; }
 
         public string PlainText { get; set; }
 
+        public string PhotoPath { get; set; }
+
+        public string PhotoName { get; set; }
+
         public EditorPageModel() {
 
             ToolbarOptionsCollection = new ObservableCollection<object>();
+
+            VisionClient = ComputerVision.Authenticate(AppConstant.ComputerVisionEndPoint, AppConstant.ComputerVisionKey);
 
             AddToolbarItems();
         }
@@ -79,8 +95,8 @@ namespace DuoNotes.PageModels {
 
         }
 
-        private void OcrAction() {
-            System.Console.WriteLine("frefrefre ");
+        private async void OcrAction() {
+            await TakePhotoAsync();
         }
 
         public override async void AppearAction() {
@@ -111,6 +127,56 @@ namespace DuoNotes.PageModels {
             await App.FirebaseService.UpdateNoteFileLocationAsync(Note.Id, location);
 
             File.Delete(filePath);
+        }
+
+        async Task TakePhotoAsync() {
+            try {
+                var photo = await MediaPicker.CapturePhotoAsync();
+                await LoadPhotoAsync(photo);
+                Console.WriteLine($"CapturePhotoAsync COMPLETED: {PhotoPath}");
+
+                if (PhotoPath != null) {
+                   var url = await App.AzureService.UploadToAzureBlobStorage(PhotoPath, PhotoName);
+                    if (!string.IsNullOrEmpty(url)) {
+                        var txt = await ComputerVision.ReadText(VisionClient, url);
+                        var sb = new StringBuilder();
+                        if (txt != null) {
+                            using (UserDialogs.Instance.Loading("test")) {
+                                foreach (var r in txt) {
+                                    foreach (var l in r.Lines) {
+                                       sb.Append(l.Text);
+                                    }
+                                }
+
+                                await Application.Current.MainPage.DisplayAlert("", sb.ToString(), "OK");
+                            }
+                        }
+                
+                    }
+                   
+                }
+            } catch (FeatureNotSupportedException) {
+                // Feature is not supported on the device
+            } catch (PermissionException) {
+                // Permissions not granted
+            } catch (Exception ex) {
+                Console.WriteLine($"CapturePhotoAsync THREW: {ex.Message}");
+            }
+        }
+        async Task LoadPhotoAsync(FileResult photo) {
+            // canceled
+            if (photo == null) {
+                PhotoPath = null;
+                return;
+            }
+            // save the file into local storage
+            var newFile = Path.Combine(FileSystem.CacheDirectory, photo.FileName);
+            using (var stream = await photo.OpenReadAsync())
+            using (var newStream = File.OpenWrite(newFile))
+                await stream.CopyToAsync(newStream);
+
+            PhotoPath = newFile;
+            PhotoName = photo.FileName;
         }
     }
 }
