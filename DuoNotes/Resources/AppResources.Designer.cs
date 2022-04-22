@@ -288,15 +288,6 @@ namespace DuoNotes.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to title.
-        /// </summary>
-        internal static string NoteBookName {
-            get {
-                return ResourceManager.GetString("NoteBookName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Tite.
         /// </summary>
         internal static string NoteBookTitle {
@@ -374,6 +365,15 @@ namespace DuoNotes.Resources {
         internal static string ServerError {
             get {
                 return ResourceManager.GetString("ServerError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Extracting text.
+        /// </summary>
+        internal static string Text {
+            get {
+                return ResourceManager.GetString("Text", resourceCulture);
             }
         }
         

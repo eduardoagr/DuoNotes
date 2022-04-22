@@ -5,6 +5,7 @@ using DuoNotes.Constants;
 using DuoNotes.Fonts;
 using DuoNotes.Model;
 using DuoNotes.Pages.PopUps;
+using DuoNotes.Resources;
 using DuoNotes.Utils;
 
 using Microsoft.Azure.CognitiveServices.Vision.ComputerVision;
@@ -106,7 +107,7 @@ namespace DuoNotes.PageModels {
             var NewNote = await App.FirebaseService.ReadByIdAsync(AppConstant.Notes, Note.Id) as Note;
 
             if (!string.IsNullOrEmpty(NewNote.FileLocation)) {
-                HtmlText = await App.AzureService.GetBlobStorage($"{NewNote.Name}");
+                HtmlText = App.AzureService.GetBlobStorage($"{NewNote.Name}.html").Result;
             }
         }
 
@@ -133,27 +134,28 @@ namespace DuoNotes.PageModels {
             try {
                 var photo = await MediaPicker.CapturePhotoAsync();
                 await LoadPhotoAsync(photo);
-                Console.WriteLine($"CapturePhotoAsync COMPLETED: {PhotoPath}");
 
                 if (PhotoPath != null) {
-                   var url = await App.AzureService.UploadToAzureBlobStorage(PhotoPath, PhotoName);
+                    var url = await App.AzureService.UploadToAzureBlobStorage(PhotoPath, PhotoName);
                     if (!string.IsNullOrEmpty(url)) {
-                        var txt = await ComputerVision.ReadText(VisionClient, url);
-                        var sb = new StringBuilder();
-                        if (txt != null) {
-                            using (UserDialogs.Instance.Loading("test")) {
-                                foreach (var r in txt) {
-                                    foreach (var l in r.Lines) {
-                                       sb.Append(l.Text);
+                        using (UserDialogs.Instance.Loading(AppResources.Text)) {
+                            var txt = await ComputerVision.ReadText(VisionClient, url);
+                            var sb = new StringBuilder();
+                            if (txt != null) {
+                                {
+                                    foreach (var r in txt) {
+                                        foreach (var l in r.Lines) {
+                                            sb.Append(l.Text);
+                                        }
                                     }
+                                    PlainText = sb.ToString();
                                 }
-
-                                await Application.Current.MainPage.DisplayAlert("", sb.ToString(), "OK");
                             }
                         }
-                
+
+
                     }
-                   
+
                 }
             } catch (FeatureNotSupportedException) {
                 // Feature is not supported on the device

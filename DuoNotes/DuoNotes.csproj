@@ -36,12 +36,12 @@
 		</PackageReference>
 		<PackageReference Include="PropertyChanged.Fody" Version="3.4.0" PrivateAssets="All" />
 		<PackageReference Include="Rg.Plugins.Popup" Version="2.1.0" />
-		<PackageReference Include="Syncfusion.Licensing" Version="20.1.0.48" />
-		<PackageReference Include="Syncfusion.Xamarin.Buttons" Version="20.1.0.48" />
-		<PackageReference Include="Syncfusion.Xamarin.DocIO" Version="20.1.0.48" />
-		<PackageReference Include="Syncfusion.Xamarin.DocIORenderer" Version="20.1.0.48" />
-		<PackageReference Include="Syncfusion.Xamarin.SfListView" Version="20.1.0.48" />
-		<PackageReference Include="Syncfusion.Xamarin.SfRichTextEditor" Version="20.1.0.48" />
+		<PackageReference Include="Syncfusion.Licensing" Version="20.1.0.50" />
+		<PackageReference Include="Syncfusion.Xamarin.Buttons" Version="20.1.0.50" />
+		<PackageReference Include="Syncfusion.Xamarin.DocIO" Version="20.1.0.50" />
+		<PackageReference Include="Syncfusion.Xamarin.DocIORenderer" Version="20.1.0.50" />
+		<PackageReference Include="Syncfusion.Xamarin.SfListView" Version="20.1.0.50" />
+		<PackageReference Include="Syncfusion.Xamarin.SfRichTextEditor" Version="20.1.0.50" />
 		<PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
 		<PackageReference Include="Xamarin.CommunityToolkit" Version="2.0.1" />
 		<PackageReference Include="Xamarin.FFImageLoading.Svg.Forms" Version="2.4.11.982" />

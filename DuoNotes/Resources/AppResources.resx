@@ -194,9 +194,6 @@ to add press the "+" symbol</value>
   <data name="No" xml:space="preserve">
     <value>No</value>
   </data>
-  <data name="NoteBookName" xml:space="preserve">
-    <value>title</value>
-  </data>
   <data name="NoteBookTitle" xml:space="preserve">
     <value>Tite</value>
   </data>
@@ -223,6 +220,9 @@ to add press the "+" symbol</value>
   </data>
   <data name="ServerError" xml:space="preserve">
     <value>Server error</value>
+  </data>
+  <data name="Text" xml:space="preserve">
+    <value>Extracting text</value>
   </data>
   <data name="Update" xml:space="preserve">
     <value>Update</value>

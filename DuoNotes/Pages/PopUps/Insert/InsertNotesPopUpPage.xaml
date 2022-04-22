@@ -34,7 +34,7 @@
             <Entry
                 Grid.Row="2"
                 MaxLength="20"
-                   Placeholder="{translate:Translate NoteBookName}"
+                   Placeholder="{translate:Translate NoteBookTitle}"
                 Style="{StaticResource EntrySyle}"
                 Text="{Binding Note.Name}" />
 

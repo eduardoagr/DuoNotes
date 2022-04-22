@@ -24,7 +24,7 @@ namespace DuoNotes.Services {
         public async Task<string> UploadToAzureBlobStorage(string filePath, string fileName) {
 
             using (UserDialogs.Instance.Loading(AppResources.Loading)) {
-                var blob = BlobContainerClient.GetBlobClient(fileName);
+                var blob = BlobContainerClient.GetBlobClient($"{fileName}");
                 await blob.UploadAsync(filePath, true);
             }
 
@@ -38,28 +38,19 @@ namespace DuoNotes.Services {
             await blob.DeleteIfExistsAsync(DeleteSnapshotsOption.IncludeSnapshots);
         }
         public async Task<string> GetBlobStorage(string FileName) {
+
             string text = string.Empty;
 
-            using (UserDialogs.Instance.Loading(AppResources.Downloading)) {
-
-                await Task.Delay(1);
-                var blob = BlobContainerClient.GetBlobClient(FileName);
-                BlobDownloadInfo download = blob.Download();
-                var content = download.Content;
-                using (var streamReader = new StreamReader(content)) {
-                    while (!streamReader.EndOfStream) {
-                        text = await streamReader.ReadLineAsync();
-                    }
+            var blob = BlobContainerClient.GetBlobClient($"{FileName}");
+            BlobDownloadInfo download = blob.Download();
+            var content = download.Content;
+            using (var streamReader = new StreamReader(content)) {
+                while (!streamReader.EndOfStream) {
+                    text = await streamReader.ReadLineAsync();
                 }
+
             }
-
             return text;
-        }
-
-        public string GetUrlBlobStorage(string FileName) {
-            var x = $"https://notesbucket.blob.core.windows.net/notes/{FileName}.html";
-
-            return x;
         }
     }
 }

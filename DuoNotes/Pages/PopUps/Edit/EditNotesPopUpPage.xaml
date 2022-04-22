@@ -6,9 +6,9 @@
     xmlns:community="http://xamarin.com/schemas/2020/toolkit"
     xmlns:pages="http://rotorgames.com"
     xmlns:translate="clr-namespace:DuoNotes.Utils"
-    x:DataType="vm:EditNotesPopUpPageModel"
     xmlns:vm="clr-namespace:DuoNotes.PageModels.PopUps.Edit"
-    Padding="20">
+    Padding="20"
+    x:DataType="vm:EditNotesPopUpPageModel">
 
     <pages:PopupPage.Animation>
         <pages:ScaleAnimation
@@ -32,7 +32,7 @@
 
             <Entry
                 MaxLength="20"
-                Placeholder="{translate:Translate NoteTite}"
+                   Placeholder="{translate:Translate NoteBookTitle}"
                 Style="{StaticResource EntrySyle}"
                 Text="{Binding Note.Name}" />
 

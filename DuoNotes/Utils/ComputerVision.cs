@@ -1,10 +1,8 @@
 ﻿using Microsoft.Azure.CognitiveServices.Vision.ComputerVision;
 using Microsoft.Azure.CognitiveServices.Vision.ComputerVision.Models;
 
-using System.Threading;
 using System;
 using System.Threading.Tasks;
-using System.IO;
 
 namespace DuoNotes.Utils {
     public class ComputerVision {
@@ -17,7 +15,7 @@ namespace DuoNotes.Utils {
         public static async Task<System.Collections.Generic.IList<ReadResult>> ReadText(ComputerVisionClient client, string urlFile) {
 
             // Read text from URL
-            var textHeaders = await client.ReadAsync(urlFile);
+            var textHeaders = await client.ReadAsync(urlFile, null, null, "latest");
             // After the request, get the operation location (operation ID)
             string operationLocation = textHeaders.OperationLocation;
 
