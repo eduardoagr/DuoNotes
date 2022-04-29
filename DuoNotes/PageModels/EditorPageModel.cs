@@ -148,7 +148,7 @@ namespace DuoNotes.PageModels {
                                             sb.Append(l.Text);
                                         }
                                     }
-                                    PlainText = sb.ToString();
+                                    HtmlText = sb.ToString();
                                 }
                             }
                         }
