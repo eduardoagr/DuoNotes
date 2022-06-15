@@ -72,6 +72,9 @@ namespace DuoNotes.PageModels {
                 Command = new Command(ShareAction)
             };
 
+            ToolbarOptionsCollection.Add(saveButon);
+            ToolbarOptionsCollection.Add(shareButon);
+            ToolbarOptionsCollection.Add(ocrBton);
             ToolbarOptionsCollection.Add(ToolbarOptions.Bold);
             ToolbarOptionsCollection.Add(ToolbarOptions.Italic);
             ToolbarOptionsCollection.Add(ToolbarOptions.Underline);
@@ -79,9 +82,7 @@ namespace DuoNotes.PageModels {
             ToolbarOptionsCollection.Add(ToolbarOptions.FontSize);
             ToolbarOptionsCollection.Add(ToolbarOptions.NumberList);
             ToolbarOptionsCollection.Add(ToolbarOptions.BulletList);
-            ToolbarOptionsCollection.Add(saveButon);
-            ToolbarOptionsCollection.Add(shareButon);
-            ToolbarOptionsCollection.Add(ocrBton);
+
         }
 
         private async void ShareAction() {
