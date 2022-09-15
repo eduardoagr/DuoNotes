@@ -1,5 +1,9 @@
 ﻿
 
+using System;
+using System.Collections.Generic;
+using System.Globalization;
+
 using DuoNotes.Constants;
 using DuoNotes.Model;
 using DuoNotes.Services;
@@ -8,36 +12,58 @@ using PropertyChanged;
 
 using Rg.Plugins.Popup.Services;
 
-using System;
-using System.Collections.Generic;
-using System.Globalization;
-
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
-namespace DuoNotes.PageModels.PopUps {
+namespace DuoNotes.PageModels.PopUps
+{
 
     [AddINotifyPropertyChangedInterface]
-    public class InsertNotebookPopUpPageModel {
+    public class InsertNotebookPopUpPageModel
+    {
 
-        public Command NewNotebookCommand { get; set; }
+        public Command NewNotebookCommand
+        {
+            get; set;
+        }
 
-        public Command CloseCommand { get; set; }
+        public Command CloseCommand
+        {
+            get; set;
+        }
 
-        public Command SelectedColorCommand { get; set; }
+        public Command SelectedColorCommand
+        {
+            get; set;
+        }
 
-        public Command DismissPopUpCommand { get; set; }
+        public Command DismissPopUpCommand
+        {
+            get; set;
+        }
 
-        public List<Color> Colors { get; set; }
+        public List<Color> Colors
+        {
+            get; set;
+        }
 
-        public Color SelectedColor { get; set; }
+        public Color SelectedColor
+        {
+            get; set;
+        }
 
-        public Notebook Notebook { get; set; }
+        public Notebook Notebook
+        {
+            get; set;
+        }
 
-        public InsertNotebookPopUpPageModel() {
+        public InsertNotebookPopUpPageModel()
+        {
 
-            Notebook = new Notebook {
-                OnAnyPropertiesChanged = () => {
+            Notebook = new Notebook
+            {
+                OnAnyPropertiesChanged = () =>
+                {
 
                     NewNotebookCommand.ChangeCanExecute();
                 }
@@ -53,20 +79,26 @@ namespace DuoNotes.PageModels.PopUps {
 
         }
 
-        public virtual void ClosePopUpAction() {
+        public virtual void ClosePopUpAction()
+        {
             PopupNavigation.Instance.PopAsync();
         }
 
-        public virtual void SelectColorAction() {
-            if (SelectedColor != null) {
+        public virtual void SelectColorAction()
+        {
+            if (SelectedColor != null)
+            {
                 Notebook.Color = SelectedColor.ToHex();
             }
         }
 
-        private async void CreateNewNotebookAsync() {
-            if (Notebook != null) {
+        private async void CreateNewNotebookAsync()
+        {
+            if (Notebook != null)
+            {
 
-                Notebook = new Notebook {
+                Notebook = new Notebook
+                {
                     CreatedDate = DateTime.Now.ToString("D", new CultureInfo(AppConstant.languages)),
                     Name = Notebook.Name,
                     Color = Notebook.Color,
@@ -81,7 +113,8 @@ namespace DuoNotes.PageModels.PopUps {
         }
 
 
-        private bool CanCreateNotebook() {
+        private bool CanCreateNotebook()
+        {
 
             return Notebook != null && !string.IsNullOrEmpty(Notebook.Name)
                 && !string.IsNullOrEmpty(Notebook.Color);

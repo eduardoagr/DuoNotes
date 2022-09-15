@@ -1,36 +1,61 @@
-﻿using Newtonsoft.Json;
+﻿using System.Collections.Generic;
 
-using System.Collections.Generic;
+using Newtonsoft.Json;
 
-namespace DuoNotes.Model {
-    internal class ErrorMsg {
+namespace DuoNotes.Model
+{
+    internal class ErrorMsg
+    {
 
         [JsonProperty("domain")]
-        public string Domain { get; set; }
+        public string Domain
+        {
+            get; set;
+        }
 
         [JsonProperty("reason")]
-        public string Reason { get; set; }
+        public string Reason
+        {
+            get; set;
+        }
 
         [JsonProperty("message")]
-        public string Message { get; set; }
+        public string Message
+        {
+            get; set;
+        }
     }
 
-    internal class Error {
+    internal class Error
+    {
 
         [JsonProperty("errors")]
-        public IList<Error> Errors { get; set; }
+        public IList<Error> Errors
+        {
+            get; set;
+        }
 
         [JsonProperty("code")]
-        public int Code { get; set; }
+        public int Code
+        {
+            get; set;
+        }
 
         [JsonProperty("message")]
-        public string Message { get; set; }
+        public string Message
+        {
+            get; set;
+        }
     }
 
-    internal class Response {
+    internal class Response
+    {
 
         [JsonProperty("error")]
-        public Error Error { get; set; }
+        public Error Error
+        {
+            get; set;
+        }
     }
 
 }

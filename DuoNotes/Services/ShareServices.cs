@@ -1,11 +1,14 @@
-﻿using DuoNotes.Model;
+﻿using System.Collections.Generic;
 
-using System.Collections.Generic;
+using DuoNotes.Model;
 
-namespace DuoNotes.Services {
-    public class ShareServices {
+namespace DuoNotes.Services
+{
+    public class ShareServices
+    {
 
-        internal static List<ShareOptions> GetOptions() {
+        internal static List<ShareOptions> GetOptions()
+        {
 
             return new List<ShareOptions> {
                 new ShareOptions { Order = 1, ImageName = "word.svg", ImageText = "Word" },

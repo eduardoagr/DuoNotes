@@ -1,4 +1,6 @@
-﻿using DuoNotes.Constants;
+﻿using System.Linq;
+
+using DuoNotes.Constants;
 using DuoNotes.Model;
 using DuoNotes.PageModels.PopUps;
 using DuoNotes.Pages;
@@ -7,25 +9,41 @@ using DuoNotes.View.PopUps;
 
 using Rg.Plugins.Popup.Services;
 
-using System.Linq;
-
 using Xamarin.Forms;
 
-namespace DuoNotes.PageModels {
+namespace DuoNotes.PageModels
+{
 
-    public class NotesPageModel : NotebooksPageModel {
+    public class NotesPageModel : NotebooksPageModel
+    {
 
-        public Notebook Notebook { get; set; }
+        public Notebook Notebook
+        {
+            get; set;
+        }
 
-        public Command PageDisappearCommand { get; set; }
+        public Command PageDisappearCommand
+        {
+            get; set;
+        }
 
-        public bool TitleVisibility { get; set; }
+        public bool TitleVisibility
+        {
+            get; set;
+        }
 
-        public bool SearchBtonVisibility { get; set; }
+        public bool SearchBtonVisibility
+        {
+            get; set;
+        }
 
-        public bool EmptyViewVisibility { get; set; }
+        public bool EmptyViewVisibility
+        {
+            get; set;
+        }
 
-        public NotesPageModel() {
+        public NotesPageModel()
+        {
 
             FabAnimationCommmand = new Command<Frame>(AnimateButtonCommand);
 
@@ -36,13 +54,15 @@ namespace DuoNotes.PageModels {
             SearchBtonVisibility = true;
         }
 
-        public override void SearchPressAction() {
+        public override void SearchPressAction()
+        {
 
             TitleVisibility = true;
             SearchBtonVisibility = false;
         }
 
-        public override async void AppearAction() {
+        public async override void AppearAction()
+        {
 
             Notebook = Application.Current.Properties[AppConstant.SelectedNotebook] as Notebook;
 
@@ -52,22 +72,28 @@ namespace DuoNotes.PageModels {
 
         }
 
-        public override void SwitchVisibilityAction() {
+        public override void SwitchVisibilityAction()
+        {
 
-            if (TitleVisibility) {
+            if (TitleVisibility)
+            {
                 SearchBtonVisibility = false;
                 SearchBarVisibility = true;
                 TitleVisibility = false;
-            } else {
+            }
+            else
+            {
                 SearchBtonVisibility = true;
                 SearchBarVisibility = false;
                 TitleVisibility = true;
             }
         }
 
-        public override async void TextToSearchAction(string SeachTerm) {
+        public override async void TextToSearchAction(string SeachTerm)
+        {
 
-            if (!string.IsNullOrEmpty(SeachTerm)) {
+            if (!string.IsNullOrEmpty(SeachTerm))
+            {
 
                 FireBaseNotebookNotes = await App.FirebaseService.ReadAsync(AppConstant.Notes,
                     Notebook.Id);
@@ -77,11 +103,14 @@ namespace DuoNotes.PageModels {
 
                 FireBaseNotebookNotes.Clear();
 
-                foreach (var Item in FilteredItems) {
+                foreach (var Item in FilteredItems)
+                {
                     FireBaseNotebookNotes.Add(Item);
                 }
 
-            } else {
+            }
+            else
+            {
                 FireBaseNotebookNotes = await App.FirebaseService.ReadAsync(AppConstant.Notes,
                    Notebook.Id);
 
@@ -91,7 +120,8 @@ namespace DuoNotes.PageModels {
             }
         }
 
-        public override async void AnimateButtonCommand(Frame obj) {
+        public override async void AnimateButtonCommand(Frame obj)
+        {
 
             await obj.ScaleTo(0.8, 50, Easing.Linear);
             //Scale to normal
@@ -102,9 +132,11 @@ namespace DuoNotes.PageModels {
             viewModel.NotebookAction(Notebook.Id);
         }
 
-        public override async void SelectedItemActionAsync() {
+        public async override void SelectedItemActionAsync()
+        {
 
-            if (SelectedItem != null) {
+            if (SelectedItem != null)
+            {
 
                 var edit = new EditorPage();
 
@@ -115,7 +147,8 @@ namespace DuoNotes.PageModels {
             }
         }
 
-        public override async void DeleteNotebookCommandAction(NotebookNote obj) {
+        public override async void DeleteNotebookCommandAction(NotebookNote obj)
+        {
 
             var newObj = obj as Note;
 
@@ -127,7 +160,8 @@ namespace DuoNotes.PageModels {
 
         }
 
-        public override async void EditNotebookNoteAction(NotebookNote obj) {
+        public override async void EditNotebookNoteAction(NotebookNote obj)
+        {
 
             var note = obj as Note;
 
@@ -137,7 +171,8 @@ namespace DuoNotes.PageModels {
             await PopupNavigation.Instance.PushAsync(new EditNotesPopUpPage());
 
         }
-        public virtual void PageDisappearAction() {
+        public virtual void PageDisappearAction()
+        {
             FireBaseNotebookNotes.Clear();
         }
     }

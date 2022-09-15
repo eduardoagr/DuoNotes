@@ -1,12 +1,15 @@
-﻿namespace DuoNotes.Utils {
-    public class HtmlValidator {
+﻿namespace DuoNotes.Utils
+{
+    public class HtmlValidator
+    {
 
         /// <summary>
         /// Correcting void elements in the HTML. 
         /// </summary>
         /// <param name="inputString">HTML string with void HTML elements</param>
         /// <returns></returns>
-        public static string IgnoreVoidElementsInHTML(string inputString) {
+        public static string IgnoreVoidElementsInHTML(string inputString)
+        {
             inputString = inputString.Replace("<meta http-equiv=\"Content-Type\" content=\"application/xhtml+xml; charset=utf-8\">", "");
             inputString = inputString.Replace("<br>", "<br/>");
             inputString = inputString.Replace("\n", "");

@@ -1,4 +1,9 @@
-﻿using Acr.UserDialogs;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Threading.Tasks;
+
+using Acr.UserDialogs;
 
 using DuoNotes.Constants;
 using DuoNotes.Model;
@@ -14,25 +19,26 @@ using Newtonsoft.Json;
 
 using Rg.Plugins.Popup.Services;
 
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Threading.Tasks;
-
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
 using User = DuoNotes.Model.User;
 
-namespace DuoNotes.Services {
-    public class FirebaseService {
+namespace DuoNotes.Services
+{
+    public class FirebaseService
+    {
 
-        private ObservableCollection<NotebookNote> FireBaseNotebooks { get; set; }
+        private ObservableCollection<NotebookNote> FireBaseNotebooks
+        {
+            get; set;
+        }
         private readonly FirebaseAuthProvider AuthProvider;
         private readonly FirebaseClient firebaseClient;
         const string BASE_URL = "https://duonotes-f2b77-default-rtdb.europe-west1.firebasedatabase.app/";
 
-        public FirebaseService() {
+        public FirebaseService()
+        {
 
             FireBaseNotebooks = new ObservableCollection<NotebookNote>();
             AuthProvider = new FirebaseAuthProvider(new FirebaseConfig(AppConstant.WEB_API_KEY));
@@ -40,25 +46,32 @@ namespace DuoNotes.Services {
         }
 
 
-        public async Task RegisterAsync(User users) {
+        public async Task RegisterAsync(User users)
+        {
 
-            try {
-                using (UserDialogs.Instance.Loading(AppResources.Loading)) {
+            try
+            {
+                using (UserDialogs.Instance.Loading(AppResources.Loading))
+                {
                     var auth = await AuthProvider.CreateUserWithEmailAndPasswordAsync(users.Email, users.Password);
                     await PopupNavigation.Instance.PopAsync(true);
                     await Application.Current.MainPage.DisplayAlert(AppResources.NewUser, AppResources.UserInserted, AppResources.OK);
                 }
 
-            } catch (FirebaseAuthException ex) {
+            } catch (FirebaseAuthException ex)
+            {
                 Firebasemessages.GetMessages(ex);
             }
         }
 
 
-        public async Task LoginAsync(User users) {
+        public async Task LoginAsync(User users)
+        {
 
-            try {
-                using (UserDialogs.Instance.Loading(AppResources.Loading)) {
+            try
+            {
+                using (UserDialogs.Instance.Loading(AppResources.Loading))
+                {
                     var auth = await AuthProvider.SignInWithEmailAndPasswordAsync(users.Email, users.Password);
                     var content = await auth.GetFreshAuthAsync();
                     var serializedcontnet = JsonConvert.SerializeObject(content);
@@ -69,7 +82,8 @@ namespace DuoNotes.Services {
                     Application.Current.MainPage = new NavigationPage(new NotebooksPage());
                 }
 
-            } catch (FirebaseAuthException ex) {
+            } catch (FirebaseAuthException ex)
+            {
                 Firebasemessages.GetMessages(ex);
                 users.Email = string.Empty;
                 users.Password = string.Empty;
@@ -77,22 +91,26 @@ namespace DuoNotes.Services {
         }
 
 
-        public void LogOut() {
+        public void LogOut()
+        {
             Preferences.Clear();
             Application.Current.MainPage = new NavigationPage(new LoginPage());
         }
 
 
-        public async Task<Firebase.Auth.User> GetProfileInformationAndRefreshTokenAsync() {
+        public async Task<Firebase.Auth.User> GetProfileInformationAndRefreshTokenAsync()
+        {
 
             var savedfirebaseauth = JsonConvert.DeserializeObject<FirebaseAuth>(Preferences.Get(AppConstant.FirebaseRefreshToken, string.Empty));
             var RefreshedContent = await AuthProvider.RefreshAuthAsync(savedfirebaseauth);
             Preferences.Set(AppConstant.FirebaseRefreshToken, JsonConvert.SerializeObject(RefreshedContent));
 
-            if (string.IsNullOrEmpty(savedfirebaseauth.User.DisplayName)) {
+            if (string.IsNullOrEmpty(savedfirebaseauth.User.DisplayName))
+            {
                 savedfirebaseauth.User.PhotoUrl = "msn.svg";
             }
-            if (string.IsNullOrEmpty(savedfirebaseauth.User.DisplayName)) {
+            if (string.IsNullOrEmpty(savedfirebaseauth.User.DisplayName))
+            {
                 savedfirebaseauth.User.DisplayName = AppResources.User;
             }
 
@@ -101,7 +119,8 @@ namespace DuoNotes.Services {
         }
 
 
-        public async Task<Firebase.Auth.User> UpdateUserDataAsync(string PhotoUri, string DisplyName) {
+        public async Task<Firebase.Auth.User> UpdateUserDataAsync(string PhotoUri, string DisplyName)
+        {
 
             var savedfirebaseauth = JsonConvert.DeserializeObject<FirebaseAuth>(Preferences.Get(AppConstant.FirebaseRefreshToken,
                 string.Empty));
@@ -109,7 +128,8 @@ namespace DuoNotes.Services {
             var newUser = await AuthProvider.UpdateProfileAsync(savedfirebaseauth.FirebaseToken, DisplyName,
                                PhotoUri);
 
-            using (UserDialogs.Instance.Loading(AppResources.Loading)) {
+            using (UserDialogs.Instance.Loading(AppResources.Loading))
+            {
 
 
                 savedfirebaseauth.User.DisplayName = string.IsNullOrEmpty(DisplyName) ? savedfirebaseauth.User.DisplayName : DisplyName;
@@ -123,8 +143,10 @@ namespace DuoNotes.Services {
         }
 
 
-        public async Task InsertAsync(NotebookNote element, string ChildName) {
-            if (element != null && !string.IsNullOrEmpty(ChildName)) {
+        public async Task InsertAsync(NotebookNote element, string ChildName)
+        {
+            if (element != null && !string.IsNullOrEmpty(ChildName))
+            {
                 await firebaseClient.Child(ChildName)
                      .PostAsync(JsonConvert.SerializeObject(element));
 
@@ -135,26 +157,32 @@ namespace DuoNotes.Services {
         }
 
         // Read and update our observableCollection
-        public async Task<ObservableCollection<NotebookNote>> ReadAsync(string ChildName, string NotebookId = "") {
+        public async Task<ObservableCollection<NotebookNote>> ReadAsync(string ChildName, string NotebookId = "")
+        {
 
             var list = await firebaseClient.Child(ChildName)
                  .OnceAsync<NotebookNote>();
 
             var collection = new List<NotebookNote>();
 
-            foreach (var item in list) {
+            foreach (var item in list)
+            {
                 NotebookNote notebookNote = null;
                 notebookNote = Convert(ChildName, item);
                 collection.Add(notebookNote);
             }
 
-            if (ChildName.Equals(AppConstant.Notes)) {
+            if (ChildName.Equals(AppConstant.Notes))
+            {
                 collection = collection.Where(n => ((Note)n).NotebookId == NotebookId).ToList();
-            } else {
+            }
+            else
+            {
                 collection = collection.Where(n => n.UserID == Preferences.Get(AppConstant.UserID, string.Empty)).ToList();
             }
             FireBaseNotebooks.Clear();
-            foreach (var element in collection) {
+            foreach (var element in collection)
+            {
                 FireBaseNotebooks.Add(element);
             }
 
@@ -164,25 +192,29 @@ namespace DuoNotes.Services {
         /* Read without modifying our ObservableCollection.
         /  This one is useful, because when deleting notes withing a notebook, we want to get the notes, without our collection knowing 
         */
-        public async Task<List<NotebookNote>> ReadWithOutUpdateAsync(string ChildName, string NotebookId = "") {
+        public async Task<List<NotebookNote>> ReadWithOutUpdateAsync(string ChildName, string NotebookId = "")
+        {
 
             var list = await firebaseClient.Child(ChildName)
                  .OnceAsync<NotebookNote>();
 
             var collection = new List<NotebookNote>();
-            foreach (var item in list) {
+            foreach (var item in list)
+            {
                 NotebookNote notebookNote = null;
                 notebookNote = Convert(ChildName, item);
                 collection.Add(notebookNote);
             }
-            if (ChildName.Equals(AppConstant.Notes)) {
+            if (ChildName.Equals(AppConstant.Notes))
+            {
                 collection = collection.Where(n => ((Note)n).NotebookId == NotebookId).ToList();
             }
             return collection;
         }
 
 
-        public async Task<NotebookNote> ReadByIdAsync(string ChildName, string Id) {
+        public async Task<NotebookNote> ReadByIdAsync(string ChildName, string Id)
+        {
 
             NotebookNote notebookNote;
 
@@ -200,7 +232,8 @@ namespace DuoNotes.Services {
 
         //Update Note
 
-        public async Task UpdateNoteFileLocationAsync(string Id, string NoteFileLocation) {
+        public async Task UpdateNoteFileLocationAsync(string Id, string NoteFileLocation)
+        {
 
             await firebaseClient
                 .Child(AppConstant.Notes)
@@ -211,7 +244,8 @@ namespace DuoNotes.Services {
             Vibration.Vibrate();
         }
 
-        public async Task UpdateNoteAsync(string Id, string NoteName) {
+        public async Task UpdateNoteAsync(string Id, string NoteName)
+        {
 
             await firebaseClient
                 .Child(AppConstant.Notes)
@@ -222,7 +256,8 @@ namespace DuoNotes.Services {
             Vibration.Vibrate();
         }
 
-        public async Task UpdateNotebookAsync(string Id, string NotebookColor, string NotebookName) {
+        public async Task UpdateNotebookAsync(string Id, string NotebookColor, string NotebookName)
+        {
 
             await firebaseClient
                 .Child(AppConstant.Notebooks)
@@ -233,7 +268,8 @@ namespace DuoNotes.Services {
             Vibration.Vibrate();
         }
 
-        public async void DeleteNotebookNotAsync(string Id, string ChildName) {
+        public async void DeleteNotebookNotAsync(string Id, string ChildName)
+        {
 
             await firebaseClient
                  .Child(ChildName)
@@ -252,17 +288,23 @@ namespace DuoNotes.Services {
         /// <param name="items"> The Json object in the form of a list </param>
         /// <returns></returns>
 
-        private static NotebookNote Convert(string ChildName, List<FirebaseObject<object>> items) {
+        private static NotebookNote Convert(string ChildName, List<FirebaseObject<object>> items)
+        {
             NotebookNote notebookNote;
-            if (ChildName.Equals(AppConstant.Notes)) {
-                notebookNote = new Note() {
+            if (ChildName.Equals(AppConstant.Notes))
+            {
+                notebookNote = new Note()
+                {
                     CreatedDate = items[0].Object.ToString(),
                     FileLocation = items[1].Object.ToString(),
                     Name = items[2].Object.ToString(),
                     NotebookId = items[3].Object.ToString()
                 };
-            } else {
-                notebookNote = new Notebook {
+            }
+            else
+            {
+                notebookNote = new Notebook
+                {
                     Color = items[0].Object.ToString(),
                     CreatedDate = items[1].ToString(),
                     Name = items[2].ToString(),
@@ -280,18 +322,24 @@ namespace DuoNotes.Services {
         /// <param name="item"> The Json object </param>
         /// <returns></returns>
 
-        private static NotebookNote Convert(string ChildName, FirebaseObject<NotebookNote> item) {
+        private static NotebookNote Convert(string ChildName, FirebaseObject<NotebookNote> item)
+        {
             NotebookNote notebookNote;
-            if (ChildName.Equals(AppConstant.Notebooks)) {
-                notebookNote = new Notebook {
+            if (ChildName.Equals(AppConstant.Notebooks))
+            {
+                notebookNote = new Notebook
+                {
                     UserID = item.Object.UserID,
                     Id = item.Key,
                     Name = item.Object.Name,
                     CreatedDate = item.Object.CreatedDate,
                     Color = item.Object.Color,
                 };
-            } else {
-                notebookNote = new Note {
+            }
+            else
+            {
+                notebookNote = new Note
+                {
                     NotebookId = item.Object.NotebookId,
                     UserID = item.Object.UserID,
                     Id = item.Key,

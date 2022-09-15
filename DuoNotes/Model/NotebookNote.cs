@@ -1,29 +1,50 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+
+using Newtonsoft.Json;
 
 using PropertyChanged;
 
-using System;
-
-namespace DuoNotes.Model {
+namespace DuoNotes.Model
+{
 
     [AddINotifyPropertyChangedInterface]
-    public class NotebookNote {
+    public class NotebookNote
+    {
 
-        public string NotebookId { get; set; }
+        public string NotebookId
+        {
+            get; set;
+        }
 
-        public string UserID { get; set; }
+        public string UserID
+        {
+            get; set;
+        }
 
         [OnChangedMethod(nameof(OnPropertyChanged))]
-        public string Name { get; set; }
+        public string Name
+        {
+            get; set;
+        }
 
-        public string CreatedDate { get; set; }
+        public string CreatedDate
+        {
+            get; set;
+        }
 
         [OnChangedMethod(nameof(OnPropertyChanged))]
-        public string Color { get; set; }
+        public string Color
+        {
+            get; set;
+        }
 
         [JsonIgnore]
-        public Action OnAnyPropertiesChanged { get; set; }
-        private void OnPropertyChanged() {
+        public Action OnAnyPropertiesChanged
+        {
+            get; set;
+        }
+        private void OnPropertyChanged()
+        {
             OnAnyPropertiesChanged?.Invoke();
         }
     }

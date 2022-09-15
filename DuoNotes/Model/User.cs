@@ -1,26 +1,38 @@
 ﻿
+using System;
+
 using Newtonsoft.Json;
 
 using PropertyChanged;
 
-using System;
-
-namespace DuoNotes.Model {
+namespace DuoNotes.Model
+{
 
     [AddINotifyPropertyChangedInterface]
-    public class User {
+    public class User
+    {
 
         [OnChangedMethod(nameof(OnPropertyChanged))]
-        public string Email { get; set; }
+        public string Email
+        {
+            get; set;
+        }
 
 
         [OnChangedMethod(nameof(OnPropertyChanged))]
-        public string Password { get; set; }
+        public string Password
+        {
+            get; set;
+        }
 
 
         [JsonIgnore]
-        public Action OnAnyPropertiesChanged { get; set; }
-        private void OnPropertyChanged() {
+        public Action OnAnyPropertiesChanged
+        {
+            get; set;
+        }
+        private void OnPropertyChanged()
+        {
             OnAnyPropertiesChanged?.Invoke();
         }
     }

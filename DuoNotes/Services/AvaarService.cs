@@ -1,9 +1,12 @@
 ﻿using System.Collections.Generic;
 
-namespace DuoNotes.Services {
-    internal class AvaarService {
+namespace DuoNotes.Services
+{
+    internal class AvaarService
+    {
 
-        internal static List<string> GetAvatars() {
+        internal static List<string> GetAvatars()
+        {
 
             return new List<string> {
                 "charliechaplin.svg",

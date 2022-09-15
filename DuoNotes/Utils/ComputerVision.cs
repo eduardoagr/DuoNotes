@@ -1,18 +1,22 @@
-﻿using Microsoft.Azure.CognitiveServices.Vision.ComputerVision;
-using Microsoft.Azure.CognitiveServices.Vision.ComputerVision.Models;
-
-using System;
+﻿using System;
 using System.Threading.Tasks;
 
-namespace DuoNotes.Utils {
-    public class ComputerVision {
+using Microsoft.Azure.CognitiveServices.Vision.ComputerVision;
+using Microsoft.Azure.CognitiveServices.Vision.ComputerVision.Models;
 
-        public static ComputerVisionClient Authenticate(string endpoint, string key) {
+namespace DuoNotes.Utils
+{
+    public class ComputerVision
+    {
+
+        public static ComputerVisionClient Authenticate(string endpoint, string key)
+        {
             var client = new ComputerVisionClient(new ApiKeyServiceClientCredentials(key)) { Endpoint = endpoint };
             return client;
         }
 
-        public static async Task<System.Collections.Generic.IList<ReadResult>> ReadText(ComputerVisionClient client, string urlFile) {
+        public static async Task<System.Collections.Generic.IList<ReadResult>> ReadText(ComputerVisionClient client, string urlFile)
+        {
 
             // Read text from URL
             var textHeaders = await client.ReadAsync(urlFile, null, null, "latest");
@@ -26,7 +30,8 @@ namespace DuoNotes.Utils {
 
             // Extract the text
             ReadOperationResult results;
-            do {
+            do
+            {
                 results = await client.GetReadResultAsync(Guid.Parse(operationId));
             }
             while ((results.Status == OperationStatusCodes.Running ||

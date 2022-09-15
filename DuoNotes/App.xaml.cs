@@ -6,14 +6,23 @@ using Syncfusion.Licensing;
 
 using Xamarin.Forms;
 
-namespace DuoNotes {
-    public partial class App : Application {
+namespace DuoNotes
+{
+    public partial class App : Application
+    {
 
-        public static FirebaseService FirebaseService { get; set; }
+        public static FirebaseService FirebaseService
+        {
+            get; set;
+        }
 
-        public static AzureService AzureService { get; set; }
+        public static AzureService AzureService
+        {
+            get; set;
+        }
 
-        public App() {
+        public App()
+        {
 
             AzureService = new AzureService();
 
@@ -27,13 +36,16 @@ namespace DuoNotes {
 
         }
 
-        protected override void OnStart() {
+        protected override void OnStart()
+        {
         }
 
-        protected override void OnSleep() {
+        protected override void OnSleep()
+        {
         }
 
-        protected override void OnResume() {
+        protected override void OnResume()
+        {
         }
     }
 }

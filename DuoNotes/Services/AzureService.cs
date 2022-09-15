@@ -1,4 +1,7 @@
-﻿using Acr.UserDialogs;
+﻿using System.IO;
+using System.Threading.Tasks;
+
+using Acr.UserDialogs;
 
 using Azure.Storage.Blobs;
 using Azure.Storage.Blobs.Models;
@@ -6,24 +9,26 @@ using Azure.Storage.Blobs.Models;
 using DuoNotes.Constants;
 using DuoNotes.Resources;
 
-using System.IO;
-using System.Threading.Tasks;
-
-namespace DuoNotes.Services {
-    public class AzureService {
+namespace DuoNotes.Services
+{
+    public class AzureService
+    {
 
         readonly string ConectionString = AppConstant.ConectionString;
         readonly string ContainerName = AppConstant.ContanerName;
         readonly BlobContainerClient BlobContainerClient;
         readonly string ext = ".html";
-        public AzureService() {
+        public AzureService()
+        {
 
             BlobContainerClient = new BlobContainerClient(ConectionString, ContainerName);
         }
 
-        public async Task<string> UploadToAzureBlobStorage(string filePath, string fileName) {
+        public async Task<string> UploadToAzureBlobStorage(string filePath, string fileName)
+        {
 
-            using (UserDialogs.Instance.Loading(AppResources.Loading)) {
+            using (UserDialogs.Instance.Loading(AppResources.Loading))
+            {
                 var blob = BlobContainerClient.GetBlobClient($"{fileName}");
                 await blob.UploadAsync(filePath, true);
             }
@@ -32,20 +37,24 @@ namespace DuoNotes.Services {
 
         }
 
-        public async Task DeleteFileFromBlobStorage(string fileName) {
+        public async Task DeleteFileFromBlobStorage(string fileName)
+        {
 
             var blob = BlobContainerClient.GetBlobClient($"{fileName}{ext}");
             await blob.DeleteIfExistsAsync(DeleteSnapshotsOption.IncludeSnapshots);
         }
-        public async Task<string> GetBlobStorage(string FileName) {
+        public async Task<string> GetBlobStorage(string FileName)
+        {
 
             string text = string.Empty;
 
             var blob = BlobContainerClient.GetBlobClient($"{FileName}");
             BlobDownloadInfo download = blob.Download();
             var content = download.Content;
-            using (var streamReader = new StreamReader(content)) {
-                while (!streamReader.EndOfStream) {
+            using (var streamReader = new StreamReader(content))
+            {
+                while (!streamReader.EndOfStream)
+                {
                     text = await streamReader.ReadLineAsync();
                 }
 

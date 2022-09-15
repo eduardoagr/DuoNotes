@@ -1,28 +1,42 @@
-﻿using DuoNotes.Model;
+﻿using System.ComponentModel.DataAnnotations;
+
+using DuoNotes.Model;
 
 using PropertyChanged;
 
 using Rg.Plugins.Popup.Services;
 
-using System.ComponentModel.DataAnnotations;
-
 using Xamarin.Forms;
 
-namespace DuoNotes.PageModels.PopUps {
+namespace DuoNotes.PageModels.PopUps
+{
 
     [AddINotifyPropertyChangedInterface]
-    public class RegisterPopUpPageModel {
+    public class RegisterPopUpPageModel
+    {
 
-        public Command RegisterCommand { get; set; }
+        public Command RegisterCommand
+        {
+            get; set;
+        }
 
-        public Command CloseCommand { get; set; }
+        public Command CloseCommand
+        {
+            get; set;
+        }
 
-        public User User { get; set; }
+        public User User
+        {
+            get; set;
+        }
 
-        public RegisterPopUpPageModel() {
+        public RegisterPopUpPageModel()
+        {
 
-            User = new User {
-                OnAnyPropertiesChanged = () => {
+            User = new User
+            {
+                OnAnyPropertiesChanged = () =>
+                {
 
                     RegisterCommand.ChangeCanExecute();
                 }
@@ -33,7 +47,8 @@ namespace DuoNotes.PageModels.PopUps {
             CloseCommand = new Command(PerformCloseAction);
         }
 
-        private bool CanPreformAction() {
+        private bool CanPreformAction()
+        {
 
             return User != null && !string.IsNullOrEmpty(User.Email) &&
                 new EmailAddressAttribute().IsValid(User.Email) &&
@@ -41,12 +56,14 @@ namespace DuoNotes.PageModels.PopUps {
 
         }
 
-        private async void RegisterActionAsync() {
+        private async void RegisterActionAsync()
+        {
 
             await App.FirebaseService.RegisterAsync(User);
         }
 
-        private async void PerformCloseAction() {
+        private async void PerformCloseAction()
+        {
 
             await PopupNavigation.Instance.PopAsync();
         }

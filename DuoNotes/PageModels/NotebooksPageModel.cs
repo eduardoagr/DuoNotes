@@ -1,4 +1,8 @@
 ﻿
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Reactive.Linq;
+
 using DuoNotes.Constants;
 using DuoNotes.Model;
 using DuoNotes.Pages.PopUps.Edit;
@@ -9,52 +13,102 @@ using PropertyChanged;
 
 using Rg.Plugins.Popup.Services;
 
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Reactive.Linq;
-
 using Xamarin.Forms;
 
-namespace DuoNotes.PageModels {
+namespace DuoNotes.PageModels
+{
 
     [AddINotifyPropertyChangedInterface]
-    public class NotebooksPageModel {
+    public class NotebooksPageModel
+    {
 
-        public Command ProfileCommnd { get; set; }
+        public Command ProfileCommnd
+        {
+            get; set;
+        }
 
-        public Command PageAppearCommand { get; set; }
+        public Command PageAppearCommand
+        {
+            get; set;
+        }
 
-        public Command SelectedItemLongPressCommand { get; set; }
+        public Command SelectedItemLongPressCommand
+        {
+            get; set;
+        }
 
-        public Command SwitchVisibilityCommand { get; set; }
+        public Command SwitchVisibilityCommand
+        {
+            get; set;
+        }
 
-        public Command SelectedItemCommand { get; set; }
+        public Command SelectedItemCommand
+        {
+            get; set;
+        }
 
-        public Command SearchPressCommand { get; set; }
+        public Command SearchPressCommand
+        {
+            get; set;
+        }
 
-        public Command<string> TextToSearchCommand { get; set; }
+        public Command<string> TextToSearchCommand
+        {
+            get; set;
+        }
 
-        public Command<NotebookNote> DeleteNotebookNoteCommand { get; set; }
+        public Command<NotebookNote> DeleteNotebookNoteCommand
+        {
+            get; set;
+        }
 
-        public Command<NotebookNote> EditNotebookNoteCommand { get; set; }
+        public Command<NotebookNote> EditNotebookNoteCommand
+        {
+            get; set;
+        }
 
-        public Command<Frame> FabAnimationCommmand { get; set; }
+        public Command<Frame> FabAnimationCommmand
+        {
+            get; set;
+        }
 
-        public ObservableCollection<NotebookNote> FireBaseNotebookNotes { get; set; }
+        public ObservableCollection<NotebookNote> FireBaseNotebookNotes
+        {
+            get; set;
+        }
 
-        public ObservableCollection<NotebookNote> NewFireBaseNotebookNotes { get; set; }
+        public ObservableCollection<NotebookNote> NewFireBaseNotebookNotes
+        {
+            get; set;
+        }
 
-        public Firebase.Auth.User FireUser { get; set; }
+        public Firebase.Auth.User FireUser
+        {
+            get; set;
+        }
 
-        public FontImageSource Glyph { get; set; }
+        public FontImageSource Glyph
+        {
+            get; set;
+        }
 
-        public NotebookNote SelectedItem { get; set; }
+        public NotebookNote SelectedItem
+        {
+            get; set;
+        }
 
-        public bool SearchBarVisibility { get; set; }
+        public bool SearchBarVisibility
+        {
+            get; set;
+        }
 
-        public bool ProfileVisibility { get; set; }
+        public bool ProfileVisibility
+        {
+            get; set;
+        }
 
-        public NotebooksPageModel() {
+        public NotebooksPageModel()
+        {
 
             FireBaseNotebookNotes = new ObservableCollection<NotebookNote>();
 
@@ -81,21 +135,25 @@ namespace DuoNotes.PageModels {
             ProfileVisibility = true;
         }
 
-        public virtual void SearchPressAction() {
+        public virtual void SearchPressAction()
+        {
 
             SearchBarVisibility = false;
             ProfileVisibility = true;
         }
 
-        public virtual async void AppearAction() {
+        public virtual async void AppearAction()
+        {
             FireUser = await App.FirebaseService.GetProfileInformationAndRefreshTokenAsync();
             FireBaseNotebookNotes = await App.FirebaseService.ReadAsync(AppConstant.Notebooks);
 
         }
 
-        public virtual async void TextToSearchAction(string SeachTerm) {
+        public virtual async void TextToSearchAction(string SeachTerm)
+        {
 
-            if (!string.IsNullOrWhiteSpace(SeachTerm)) {
+            if (!string.IsNullOrWhiteSpace(SeachTerm))
+            {
 
                 FireBaseNotebookNotes = await App.FirebaseService.ReadAsync(AppConstant.Notebooks);
 
@@ -104,33 +162,42 @@ namespace DuoNotes.PageModels {
 
                 FireBaseNotebookNotes.Clear();
 
-                foreach (var Item in FilteredItems) {
+                foreach (var Item in FilteredItems)
+                {
                     FireBaseNotebookNotes.Add(Item);
                 }
 
-            } else {
+            }
+            else
+            {
                 FireBaseNotebookNotes = await App.FirebaseService.ReadAsync(AppConstant.Notebooks);
                 SearchBarVisibility = false;
                 ProfileVisibility = true;
             }
         }
 
-        public virtual void SwitchVisibilityAction() {
+        public virtual void SwitchVisibilityAction()
+        {
 
             SearchBarVisibility = !SearchBarVisibility;
 
-            if (SearchBarVisibility) {
+            if (SearchBarVisibility)
+            {
                 ProfileVisibility = false;
-            } else {
+            }
+            else
+            {
                 ProfileVisibility = true;
             }
         }
 
-        private async void NavigateCommandAsync() {
+        private async void NavigateCommandAsync()
+        {
             await Application.Current.MainPage.Navigation.PushAsync(new ProfilePage());
         }
 
-        public virtual async void AnimateButtonCommand(Frame obj) {
+        public virtual async void AnimateButtonCommand(Frame obj)
+        {
 
             await obj.ScaleTo(0.8, 50, Easing.Linear);
             //Scale to normal
@@ -139,9 +206,11 @@ namespace DuoNotes.PageModels {
 
         }
 
-        public async virtual void SelectedItemActionAsync() {
+        public async virtual void SelectedItemActionAsync()
+        {
 
-            if (SelectedItem != null) {
+            if (SelectedItem != null)
+            {
 
                 NotesPage notesPage = new NotesPage();
                 Application.Current.Properties[AppConstant.SelectedNotebook] = SelectedItem;
@@ -149,7 +218,8 @@ namespace DuoNotes.PageModels {
             }
         }
 
-        public virtual async void DeleteNotebookCommandAction(NotebookNote obj) {
+        public virtual async void DeleteNotebookCommandAction(NotebookNote obj)
+        {
 
             var newObj = obj as Notebook;
 
@@ -157,7 +227,8 @@ namespace DuoNotes.PageModels {
 
             //We want to read, but we do not want to update
             var Notes = await App.FirebaseService.ReadWithOutUpdateAsync(AppConstant.Notes, newObj.Id);
-            foreach (var item in Notes) {
+            foreach (var item in Notes)
+            {
                 var note = item as Note;
                 App.FirebaseService.DeleteNotebookNotAsync(note.Id, AppConstant.Notes);
                 await App.AzureService.DeleteFileFromBlobStorage($"{note.Name}");
@@ -166,7 +237,8 @@ namespace DuoNotes.PageModels {
             FireBaseNotebookNotes = await App.FirebaseService.ReadAsync(AppConstant.Notebooks);
         }
 
-        public virtual async void EditNotebookNoteAction(NotebookNote obj) {
+        public virtual async void EditNotebookNoteAction(NotebookNote obj)
+        {
 
             var notebook = obj as Notebook;
 

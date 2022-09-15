@@ -1,32 +1,49 @@
-﻿using DuoNotes.View.PopUps;
+﻿using System.ComponentModel.DataAnnotations;
+
+using DuoNotes.View.PopUps;
 
 using PropertyChanged;
 
 using Rg.Plugins.Popup.Services;
 
-using System.ComponentModel.DataAnnotations;
-
 using Xamarin.Forms;
 
 using User = DuoNotes.Model.User;
 
-namespace DuoNotes.PageModels {
+namespace DuoNotes.PageModels
+{
 
     [AddINotifyPropertyChangedInterface]
-    public class LoginPageModel {
+    public class LoginPageModel
+    {
 
-        public Command NavigateToRegisterCommand { get; set; }
+        public Command NavigateToRegisterCommand
+        {
+            get; set;
+        }
 
-        public Command LoginCommand { get; set; }
+        public Command LoginCommand
+        {
+            get; set;
+        }
 
-        public User User { get; set; }
+        public User User
+        {
+            get; set;
+        }
 
-        public bool IsRegisterAllowed { get; set; }
+        public bool IsRegisterAllowed
+        {
+            get; set;
+        }
 
-        public LoginPageModel() {
+        public LoginPageModel()
+        {
 
-            User = new User {
-                OnAnyPropertiesChanged = () => {
+            User = new User
+            {
+                OnAnyPropertiesChanged = () =>
+                {
 
                     LoginCommand.ChangeCanExecute();
                 }
@@ -38,18 +55,21 @@ namespace DuoNotes.PageModels {
 
         }
 
-        private async void OpenRegisterPopUpAction() {
+        private async void OpenRegisterPopUpAction()
+        {
             await PopupNavigation.Instance.PushAsync(new RegisterPopUp(), true);
         }
 
-        private bool CanPreformAction() {
+        private bool CanPreformAction()
+        {
             return User != null && !string.IsNullOrEmpty(User.Email) &&
                 new EmailAddressAttribute().IsValid(User.Email) &&
                 !string.IsNullOrEmpty(User.Password);
 
         }
 
-        private async void LoginAction() {
+        private async void LoginAction()
+        {
             await App.FirebaseService.LoginAsync(User);
 
         }

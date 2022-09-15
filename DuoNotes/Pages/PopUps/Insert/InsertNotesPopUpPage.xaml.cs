@@ -3,18 +3,23 @@ using Rg.Plugins.Popup.Pages;
 
 using Xamarin.Forms.Xaml;
 
-namespace DuoNotes.View.PopUps {
+namespace DuoNotes.View.PopUps
+{
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class InsertNotesPopUpPage : PopupPage {
-        public InsertNotesPopUpPage() {
+    public partial class InsertNotesPopUpPage : PopupPage
+    {
+        public InsertNotesPopUpPage()
+        {
             InitializeComponent();
 
         }
-        protected override bool OnBackButtonPressed() {
+        protected override bool OnBackButtonPressed()
+        {
             return true;
         }
 
-        protected override bool OnBackgroundClicked() {
+        protected override bool OnBackgroundClicked()
+        {
             return false;
         }
     }

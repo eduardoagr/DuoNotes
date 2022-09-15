@@ -1,9 +1,11 @@
 ﻿
 using System.Globalization;
 
-namespace DuoNotes.Constants {
+namespace DuoNotes.Constants
+{
 
-    public class AppConstant {
+    public class AppConstant
+    {
 
         //syncfusion library key
 

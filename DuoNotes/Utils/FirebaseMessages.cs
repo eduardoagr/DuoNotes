@@ -5,14 +5,18 @@ using Firebase.Auth;
 
 using Newtonsoft.Json;
 
-namespace DuoNotes.Utils {
-    class Firebasemessages {
-        public static void GetMessages(FirebaseAuthException ex) {
+namespace DuoNotes.Utils
+{
+    class Firebasemessages
+    {
+        public static void GetMessages(FirebaseAuthException ex)
+        {
 
             var stringError = JsonConvert
                 .DeserializeObject<Response>(ex.ResponseData);
 
-            switch (stringError.Error.Message) {
+            switch (stringError.Error.Message)
+            {
                 case "EMAIL_EXISTS":
                     App.Current.MainPage.DisplayAlert(AppResources.
                         ServerError, AppResources.EMAIL_EXISTS,

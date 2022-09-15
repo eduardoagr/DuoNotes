@@ -1,7 +1,9 @@
 ﻿
 using Xamarin.Forms;
 
-namespace DuoNotes.Renders {
-    public class CollectionViewRender : CollectionView {
+namespace DuoNotes.Renders
+{
+    public class CollectionViewRender : CollectionView
+    {
     }
 }
