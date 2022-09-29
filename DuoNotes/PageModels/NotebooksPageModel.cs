@@ -212,7 +212,7 @@ namespace DuoNotes.PageModels
             if (SelectedItem != null)
             {
 
-                NotesPage notesPage = new NotesPage();
+                var notesPage = new NotesPage();
                 Application.Current.Properties[AppConstant.SelectedNotebook] = SelectedItem;
                 await Application.Current.MainPage.Navigation.PushAsync(notesPage, true);
             }

@@ -30,20 +30,20 @@
 		<PackageReference Include="FirebaseAuthentication.net" Version="3.7.2" />
 		<PackageReference Include="FirebaseDatabase.net" Version="4.1.0" />
 		<PackageReference Include="Microsoft.Azure.CognitiveServices.Vision.ComputerVision" Version="7.0.1" />
-		<PackageReference Include="Microsoft.Extensions.ApiDescription.Client" Version="6.0.8">
+		<PackageReference Include="Microsoft.Extensions.ApiDescription.Client" Version="6.0.9">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-		<PackageReference Include="PropertyChanged.Fody" Version="4.0.1" PrivateAssets="All" />
+		<PackageReference Include="PropertyChanged.Fody" Version="4.0.3" PrivateAssets="All" />
 		<PackageReference Include="Rg.Plugins.Popup" Version="2.1.0" />
-		<PackageReference Include="Syncfusion.Licensing" Version="20.2.0.48" />
-		<PackageReference Include="Syncfusion.Xamarin.Buttons" Version="20.2.0.48" />
-		<PackageReference Include="Syncfusion.Xamarin.DocIO" Version="20.2.0.48" />
-		<PackageReference Include="Syncfusion.Xamarin.DocIORenderer" Version="20.2.0.48" />
-		<PackageReference Include="Syncfusion.Xamarin.SfListView" Version="20.2.0.48" />
-		<PackageReference Include="Syncfusion.Xamarin.SfRichTextEditor" Version="20.2.0.48" />
+		<PackageReference Include="Syncfusion.Licensing" Version="20.2.0.50" />
+		<PackageReference Include="Syncfusion.Xamarin.Buttons" Version="20.2.0.50" />
+		<PackageReference Include="Syncfusion.Xamarin.DocIO" Version="20.2.0.50" />
+		<PackageReference Include="Syncfusion.Xamarin.DocIORenderer" Version="20.2.0.50" />
+		<PackageReference Include="Syncfusion.Xamarin.SfListView" Version="20.2.0.50" />
+		<PackageReference Include="Syncfusion.Xamarin.SfRichTextEditor" Version="20.2.0.50" />
 		<PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
-		<PackageReference Include="Xamarin.CommunityToolkit" Version="2.0.4" />
+		<PackageReference Include="Xamarin.CommunityToolkit" Version="2.0.5" />
 		<PackageReference Include="Xamarin.FFImageLoading.Svg.Forms" Version="2.4.11.982" />
 		<PackageReference Include="Xamarin.Forms" Version="5.0.0.2515" />
 		<PackageReference Include="Xamarin.Essentials" Version="1.7.3" />
