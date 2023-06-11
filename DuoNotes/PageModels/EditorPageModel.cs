@@ -1,10 +1,4 @@
 ﻿
-using System;
-using System.Collections.ObjectModel;
-using System.IO;
-using System.Text;
-using System.Threading.Tasks;
-
 using Acr.UserDialogs;
 
 using DuoNotes.Constants;
@@ -21,57 +15,52 @@ using Rg.Plugins.Popup.Services;
 using Syncfusion.XForms.Buttons;
 using Syncfusion.XForms.RichTextEditor;
 
+using System;
+using System.Collections.ObjectModel;
+using System.IO;
+using System.Text;
+using System.Threading.Tasks;
+
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
-namespace DuoNotes.PageModels
-{
+namespace DuoNotes.PageModels {
 
-    public class EditorPageModel : NotesPageModel
-    {
+    public class EditorPageModel : NotesPageModel {
 
-        public Note Note
-        {
+        public Note Note {
             get; set;
         }
 
-        public Command OcrCommand
-        {
+        public Command OcrCommand {
             get; set;
         }
 
-        public ObservableCollection<object> ToolbarOptionsCollection
-        {
+        public ObservableCollection<object> ToolbarOptionsCollection {
             get; set;
         }
 
-        public ComputerVisionClient VisionClient
-        {
+        public ComputerVisionClient VisionClient {
             get; set;
         }
 
-        public string HtmlText
-        {
+        public string HtmlText {
             get; set;
         }
 
-        public string PlainText
-        {
+        public string PlainText {
             get; set;
         }
 
-        public string PhotoPath
-        {
+        public string PhotoPath {
             get; set;
         }
 
-        public string PhotoName
-        {
+        public string PhotoName {
             get; set;
         }
 
-        public EditorPageModel()
-        {
+        public EditorPageModel() {
 
             ToolbarOptionsCollection = new ObservableCollection<object>();
 
@@ -80,24 +69,20 @@ namespace DuoNotes.PageModels
             AddToolbarItems();
         }
 
-        public void AddToolbarItems()
-        {
+        public void AddToolbarItems() {
 
             //Insert a new item to the custom toolbar collection.
-            var ocrBton = new SfButton
-            {
+            var ocrBton = new SfButton {
                 Style = (Style)Application.Current.Resources[AppConstant.EdtorToolBarBtonsstyle],
                 Text = MaterialIcons.MagnifyExpand,
                 Command = new Command(OcrAction)
             };
-            var saveButon = new SfButton
-            {
+            var saveButon = new SfButton {
                 Text = MaterialIcons.ContentSave,
                 Style = (Style)Application.Current.Resources[AppConstant.EdtorToolBarBtonsstyle],
                 Command = new Command(SaveAction)
             };
-            var shareButon = new SfButton
-            {
+            var shareButon = new SfButton {
                 Text = MaterialIcons.ShareVariant,
                 Style = (Style)Application.Current.Resources[AppConstant.EdtorToolBarBtonsstyle],
                 Command = new Command(ShareAction)
@@ -116,8 +101,7 @@ namespace DuoNotes.PageModels
 
         }
 
-        private async void ShareAction()
-        {
+        private async void ShareAction() {
 
             Application.Current.Properties[AppConstant.Text] = PlainText;
 
@@ -129,34 +113,29 @@ namespace DuoNotes.PageModels
 
         }
 
-        private async void OcrAction()
-        {
+        private async void OcrAction() {
             await TakePhotoAsync();
         }
 
-        public override async void AppearAction()
-        {
+        public override async void AppearAction() {
 
             Note = Application.Current.Properties[AppConstant.SelectedNote] as Note;
 
             var NewNote = await App.FirebaseService.ReadByIdAsync(AppConstant.Notes, Note.Id) as Note;
 
-            if (!string.IsNullOrEmpty(NewNote.FileLocation))
-            {
+            if (!string.IsNullOrEmpty(NewNote.FileLocation)) {
                 HtmlText = App.AzureService.GetBlobStorage($"{NewNote.Name}.html").Result;
             }
         }
 
-        private async void SaveAction()
-        {
+        private async void SaveAction() {
             var AppDirctory = FileSystem.CacheDirectory;
 
             var filePath = Path.Combine(AppDirctory, $"{Note.Name}.html");
 
             var FileName = Path.GetFileName(filePath);
 
-            using (var sw = new StreamWriter(File.Create(filePath)))
-            {
+            using (var sw = new StreamWriter(File.Create(filePath))) {
 
                 sw.WriteLine(HtmlText);
             }
@@ -168,29 +147,21 @@ namespace DuoNotes.PageModels
             File.Delete(filePath);
         }
 
-        async Task TakePhotoAsync()
-        {
-            try
-            {
+        async Task TakePhotoAsync() {
+            try {
                 var photo = await MediaPicker.CapturePhotoAsync();
                 await LoadPhotoAsync(photo);
 
-                if (PhotoPath != null)
-                {
+                if (PhotoPath != null) {
                     var url = await App.AzureService.UploadToAzureBlobStorage(PhotoPath, PhotoName);
-                    if (!string.IsNullOrEmpty(url))
-                    {
-                        using (UserDialogs.Instance.Loading(AppResources.Text))
-                        {
+                    if (!string.IsNullOrEmpty(url)) {
+                        using (UserDialogs.Instance.Loading(AppResources.Text)) {
                             var txt = await ComputerVision.ReadText(VisionClient, url);
                             var sb = new StringBuilder();
-                            if (txt != null)
-                            {
+                            if (txt != null) {
                                 {
-                                    foreach (var r in txt)
-                                    {
-                                        foreach (var l in r.Lines)
-                                        {
+                                    foreach (var r in txt) {
+                                        foreach (var l in r.Lines) {
                                             sb.Append(l.Text);
                                         }
                                     }
@@ -203,30 +174,24 @@ namespace DuoNotes.PageModels
                     }
 
                 }
-            } catch (FeatureNotSupportedException)
-            {
+            } catch (FeatureNotSupportedException) {
                 // Feature is not supported on the device
-            } catch (PermissionException)
-            {
+            } catch (PermissionException) {
                 // Permissions not granted
-            } catch (Exception ex)
-            {
+            } catch (Exception ex) {
                 Console.WriteLine($"CapturePhotoAsync THREW: {ex.Message}");
             }
         }
-        async Task LoadPhotoAsync(FileResult photo)
-        {
+        async Task LoadPhotoAsync(FileResult photo) {
             // canceled
-            if (photo == null)
-            {
+            if (photo == null) {
                 PhotoPath = null;
                 return;
             }
             // save the file into local storage
             var newFile = Path.Combine(FileSystem.CacheDirectory, photo.FileName);
             using (var stream = await photo.OpenReadAsync())
-            using (var newStream = File.OpenWrite(newFile))
-            {
+            using (var newStream = File.OpenWrite(newFile)) {
                 await stream.CopyToAsync(newStream);
             }
 
